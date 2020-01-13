@@ -24,12 +24,13 @@ public class compController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Gson Add(Complaint complaint, Model model){
+    public Gson Add(Complaint complaint){
         return JsonUtils.error(complaint);
     }
 
-    public String edit(){
-        return null;
+    public String edit(Model model){
+        model.addAttribute("title","123");
+        return "";
     }
 
     public String toEdit(){
