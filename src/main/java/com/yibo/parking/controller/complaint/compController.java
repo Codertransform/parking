@@ -27,4 +27,12 @@ public class compController {
     public Gson Add(Complaint complaint, Model model){
         return JsonUtils.error(complaint);
     }
+
+    public String edit(){
+        return null;
+    }
+
+    public String toEdit(){
+        return "";
+    }
 }
