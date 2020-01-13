@@ -28,11 +28,13 @@ public class compController {
         return JsonUtils.error(complaint);
     }
 
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(Model model){
         model.addAttribute("title","123");
         return "";
     }
 
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String toEdit(){
         return "";
     }
