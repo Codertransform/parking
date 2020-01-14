@@ -1,7 +1,7 @@
 package com.yibo.parking.utils;
 
 import com.google.gson.Gson;
-import com.yibo.parking.entity.Json;
+import com.yibo.parking.entity.util.Json;
 
 public class JsonUtils {
 

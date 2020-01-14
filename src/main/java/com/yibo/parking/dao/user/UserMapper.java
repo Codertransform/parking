@@ -1,6 +1,6 @@
-package com.yibo.parking.dao;
+package com.yibo.parking.dao.user;
 
-import com.yibo.parking.entity.User;
+import com.yibo.parking.entity.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

@@ -1,4 +1,4 @@
-package com.yibo.parking.entity;
+package com.yibo.parking.entity.util;
 
 import java.io.Serializable;
 

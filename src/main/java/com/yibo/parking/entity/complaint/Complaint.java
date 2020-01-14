@@ -1,4 +1,4 @@
-package com.yibo.parking.entity;
+package com.yibo.parking.entity.complaint;
 
 import java.util.Date;
 

@@ -1,7 +1,7 @@
 package com.yibo.parking.controller.complaint;
 
 import com.google.gson.Gson;
-import com.yibo.parking.entity.Complaint;
+import com.yibo.parking.entity.complaint.Complaint;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
-package com.yibo.parking.service;
+package com.yibo.parking.service.user;
 
-import com.yibo.parking.entity.User;
+import com.yibo.parking.entity.user.User;
 
 import java.util.List;
 
