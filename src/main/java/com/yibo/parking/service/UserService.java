@@ -1,4 +1,4 @@
-package com.yibo.parking.service.user;
+package com.yibo.parking.service;
 
 import com.yibo.parking.entity.user.User;
 
