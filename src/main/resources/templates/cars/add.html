@@ -24,89 +24,70 @@
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>新增投诉 - 投诉管理 - 易泊停车 v1.0</title>
+<title>新增车辆 - 车辆管理 - 易泊停车 v1.0</title>
 <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-ts-add" action="/complaint/add" method="post">
+	<form class="form form-horizontal" id="form-ts-add" action="/cars/add" method="post">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>姓名：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>车牌号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="name" name="name">
+				<input type="text" class="input-text" value="" placeholder="请输入车牌号" id="cardId" name="cardId">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">性别：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>品牌名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="sex" name="sex">
+				<input type="text" class="input-text" value="" placeholder="请输入品牌" id="brandName" name="brandName">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>联系电话：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>型号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="tel" name="tel">
+				<input type="text" class="input-text" value="" placeholder="" id="model" name="model">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>地址：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>颜色：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="address" name="address">
+				<input type="text" class="input-text" value="" placeholder="" id="color" name="color">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>车辆类型：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
 					<select name="column" class="select">
-						<option value="0">全部栏目</option>
-						<option value="1">新闻资讯</option>
-						<option value="11">├行业动态</option>
-						<option value="12">├行业资讯</option>
-						<option value="13">├行业新闻</option>
+						<option value="">请选择车辆类型</option>
+						<option value="0">SUV</option>
+						<option value="1">轿车</option>
 					</select>
 				</span>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标签：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="type" class="select">
-					<option value="0">全部类型</option>
-					<option value="1">帮助说明</option>
-					<option value="2">新闻资讯</option>
-				</select>
-				</span> </div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>状态：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="0" placeholder="" id="sort" name="sort">
+				<input type="text" class="input-text" value="" placeholder="" id="status" name="status">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">关键词：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>购买时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="keywords" name="keywords">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" id="buy_time" name="buy_time" class="input-text Wdate">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>事情摘要：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上次保养时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="abstract" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>日期：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'commentdatemax\')||\'%y-%M-%d\'}' })" id="date" name="date" class="input-text Wdate">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" id="maintenance" name="maintenance" class="input-text Wdate">
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button onClick="save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
+				<button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
 				<button onClick="save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
@@ -130,8 +111,48 @@
 <script type="text/javascript" src="/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
 <script type="text/javascript" src="/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
+	let form = $('#form-ts-add');
 	function save(){
-		var form = $('#form-ts-add');
+		form.validate({
+			rules:{
+				cardId:{
+					required:true
+				},
+				brandName:{
+					required:true
+				},
+				model:{
+					required:true
+				},
+				color:{
+					required:true
+				},
+				type:{
+					required:true
+				},
+				carType:{
+					required:true
+				},
+				status:{
+					required:true
+				},
+				buy_time:{
+					required:true
+				},
+				maintenance:{
+					required:true
+				}
+			},
+			onkeyup:false,
+			focusCleanup:true,
+			success:"valid",
+			submitHandler:function(form){
+				$(form).ajaxSubmit();
+				var index = parent.layer.getFrameIndex(window.name);
+				//parent.$('.btn-refresh').click();
+				parent.layer.close(index);
+			}
+		});
 		$.ajax({
 			url:form.attr('action'),
 			data:form.serialize(),
@@ -158,25 +179,31 @@ $(function(){
 	//表单验证
 	$("#form-ts-add").validate({
 		rules:{
-			name:{
+			cardId:{
 				required:true
 			},
-			tel:{
+			brandName:{
 				required:true
 			},
-			address:{
+			model:{
 				required:true
 			},
-			column:{
+			color:{
 				required:true
 			},
 			type:{
 				required:true
 			},
-			abstract:{
+			carType:{
 				required:true
 			},
-			date:{
+			status:{
+				required:true
+			},
+			buy_time:{
+				required:true
+			},
+			maintenance:{
 				required:true
 			}
 		},

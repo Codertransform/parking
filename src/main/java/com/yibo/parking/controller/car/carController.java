@@ -1,11 +1,13 @@
 package com.yibo.parking.controller.car;
 
+import com.google.gson.JsonObject;
 import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -23,5 +25,15 @@ public class carController {
         model.addAttribute("list",list);
         model.addAttribute("count", list.size());
         return "cars/index";
+    }
+
+    @RequestMapping(value = "/add",method = RequestMethod.GET)
+    public String add(Model model){
+        return "cars/add";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public JsonObject toAdd(Car car){
+        return null;
     }
 }

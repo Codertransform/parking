@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-01-14 17:38:35
+Date: 2020-01-15 17:35:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,7 +23,7 @@ CREATE TABLE `cars` (
   `id` varchar(20) NOT NULL,
   `cardId` varchar(10) NOT NULL COMMENT '车牌号',
   `brandName` varchar(20) NOT NULL COMMENT '品牌名',
-  `model` char(1) NOT NULL COMMENT '车型',
+  `model` char(1) NOT NULL COMMENT '型号',
   `color` char(1) NOT NULL COMMENT '颜色',
   `carType` char(1) NOT NULL COMMENT '车辆类型',
   `status` char(1) NOT NULL COMMENT '状态',
