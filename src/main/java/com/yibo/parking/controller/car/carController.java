@@ -1,8 +1,9 @@
 package com.yibo.parking.controller.car;
 
-import com.google.gson.JsonObject;
+import com.google.gson.Gson;
 import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
+import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,8 @@ public class carController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public JsonObject toAdd(Car car){
-        return null;
+    public Gson toAdd(Gson gson, Car car){
+        System.out.println(car);
+        return JsonUtils.success(car);
     }
 }
