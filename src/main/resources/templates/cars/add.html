@@ -88,7 +88,7 @@
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
-				<button id="draft" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
+				<button id="draft" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -118,11 +118,8 @@ $(function(){
 		increaseArea: '20%'
 	});
 
-	$('#draft').on('click',function () {
-		console.log("123123");
-		var form = $('#form-ts-add');
-		console.log(form.attr('action'));
-		check(form);
+	$('#draft').click(function () {
+		check();
 	});
 
 	/*$list = $("#fileList"),
@@ -229,7 +226,7 @@ $(function(){
 });
 
 	//表单验证
-	function check(data) {
+	function check() {
 		$("#form-ts-add").validate({
 			rules:{
 				cardId:{
@@ -264,21 +261,9 @@ $(function(){
 			focusCleanup:true,
 			success:"valid",
 			submitHandler:function(form){
-				console.log(data.attr('action'));
-				// $(form).ajaxSubmit();
-				$.ajax({
-					url:url,
-					data:data.serialize(),
-					type:'post',
-					dataType:'json',
-					success:function (data) {
-						if (data.code === '0'){
-							layer.close();
-						}
-					}
-				});
+				$(form).ajaxSubmit();
 				var index = parent.layer.getFrameIndex(window.name);
-				//parent.$('.btn-refresh').click();
+				parent.$('.btn-refresh').click();
 				parent.layer.close(index);
 			}
 		});

@@ -34,8 +34,7 @@ public class carController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Gson toAdd(Gson gson, Car car){
-        System.out.println(car);
+    public Gson toAdd(Car car){
         return JsonUtils.success(car);
     }
 }

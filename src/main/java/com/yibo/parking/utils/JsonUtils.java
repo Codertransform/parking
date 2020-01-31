@@ -5,7 +5,7 @@ import com.yibo.parking.entity.util.Json;
 
 public class JsonUtils {
 
-    private static Json json;
+    private static Json json = new Json();
 
     public static Gson success(Object data){
         json.setCode("0");
