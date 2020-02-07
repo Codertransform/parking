@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -17,5 +18,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> getCars() {
         return carMapper.getCars();
+    }
+
+    @Override
+    public int save(Car car) {
+        car.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+        return carMapper.save(car);
     }
 }

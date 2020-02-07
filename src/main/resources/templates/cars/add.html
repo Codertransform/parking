@@ -38,12 +38,6 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>品牌名称：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入品牌" id="brandName" name="brandName">
-			</div>
-		</div>
-		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>型号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="请输入车辆型号" id="model" name="model">
@@ -70,7 +64,15 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>状态：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="status" name="status">
+				<span class="select-box">
+					<select name="status" class="select">
+						<option value="">请选择车辆状态</option>
+						<option value="0">正常</option>
+						<option value="1">待保养</option>
+						<option value="2">待维修</option>
+						<option value="3">维修中</option>
+					</select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
@@ -230,9 +232,6 @@ $(function(){
 		$("#form-ts-add").validate({
 			rules:{
 				cardId:{
-					required:true
-				},
-				brandName:{
 					required:true
 				},
 				model:{

@@ -8,6 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface CarMapper {
-    @Select("select * from cars")
     List<Car> getCars();
+
+    int save(Car car);
 }
