@@ -2,7 +2,6 @@ package com.yibo.parking.controller.car;
 
 import com.google.gson.Gson;
 import com.yibo.parking.entity.car.Car;
-import com.yibo.parking.entity.util.Json;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,8 @@ public class carController {
         int i = carService.save(car);
         if (i == 1){
             return JsonUtils.success(car);
+        }else {
+            return JsonUtils.error(car);
         }
-        return JsonUtils.error(car);
     }
 }
