@@ -7,21 +7,19 @@ public class JsonUtils {
 
     private static Json json = new Json();
 
-    public static Gson success(Object data){
+    public static String success(Object data){
         json.setCode("0");
         json.setData(data);
-        json.setMessage("success");
+        json.setMessage("成功");
         Gson gson = new Gson();
-        gson.toJson(json);
-        return gson;
+        return gson.toJson(json);
     }
 
-    public static Gson error(Object data){
+    public static String error(Object data){
         json.setCode("-1");
         json.setData(data);
-        json.setMessage("error");
+        json.setMessage("失败");
         Gson gson = new Gson();
-        gson.toJson(json);
-        return gson;
+        return gson.toJson(json);
     }
 }

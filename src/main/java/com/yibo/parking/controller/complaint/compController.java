@@ -24,7 +24,7 @@ public class compController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Gson Add(Complaint complaint){
+    public Object Add(Complaint complaint){
         return JsonUtils.error(complaint);
     }
 

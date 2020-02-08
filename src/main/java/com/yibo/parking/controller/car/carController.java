@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -33,8 +34,9 @@ public class carController {
         return "cars/add";
     }
 
+    @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Gson toAdd(Car car){
+    public String toAdd(Car car){
         int i = carService.save(car);
         if (i == 1){
             return JsonUtils.success(car);
