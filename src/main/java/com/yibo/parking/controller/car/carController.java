@@ -30,7 +30,7 @@ public class carController {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.GET)
-    public String add(Model model){
+    public String add(){
         return "cars/add";
     }
 
@@ -43,6 +43,12 @@ public class carController {
         }else {
             return JsonUtils.error(car);
         }
+    }
+
+    @RequestMapping(value = "/edit",method = RequestMethod.GET)
+    public String edit(String id){
+        Car car = carService.get(id);
+        return "cars/add";
     }
 
     @ResponseBody

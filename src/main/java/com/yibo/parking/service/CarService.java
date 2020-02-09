@@ -10,4 +10,6 @@ public interface CarService {
     int save(Car car);
 
     int del(String id);
+
+    Car get(String id);
 }

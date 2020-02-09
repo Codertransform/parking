@@ -22,11 +22,19 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public int save(Car car) {
-        car.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-        return carMapper.save(car);
+        if (car.getId().isEmpty()){
+            return carMapper.update(car);
+        }else {
+            car.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+            return carMapper.insert(car);
+        }
     }
 
     public int del(String id) {
         return carMapper.del(id);
+    }
+
+    public Car get(String id) {
+        return carMapper.get(id);
     }
 }

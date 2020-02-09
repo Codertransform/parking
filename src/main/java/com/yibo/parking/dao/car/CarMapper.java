@@ -10,7 +10,11 @@ import java.util.List;
 public interface CarMapper {
     List<Car> getCars();
 
-    int save(Car car);
+    int insert(Car car);
+
+    int update(Car car);
 
     int del(String id);
+
+    Car get(String id);
 }

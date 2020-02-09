@@ -7,7 +7,11 @@
         select * from cars
     </select>
 
-    <insert id="save">
+    <select id="get" resultType="Car">
+        select * from cars where id = #{id}
+    </select>
+
+    <insert id="insert">
         insert into cars(
             id,
             cardId,
@@ -29,6 +33,18 @@
             #{maintenance}
         )
     </insert>
+
+    <update id="update">
+        update cars set
+            cardId = #{cardId},
+            model = #{model},
+            color = #{color},
+            carType = #{carType},
+            status = #{status},
+            buy_time = #{but_time},
+            maintenance = #{maintenance}
+        where id = #{id}
+    </update>
 
     <delete id="del">
         delete from cars where id = #{id}

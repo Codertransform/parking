@@ -25,8 +25,8 @@
 <!--/meta 作为公共模版分离出去-->
 
 <title>新增车辆 - 车辆管理 - 易泊停车 v1.0</title>
-<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+<meta name="keywords" content="易泊停车">
+<meta name="description" content="易泊停车管理有限公司车辆管理系统">
 </head>
 <body>
 <article class="page-container">
@@ -280,7 +280,7 @@ $(function(){
 						}
 					},
 					error:function (data) {
-						layer.msg('请求失败，请联系管理员',{icon:1,time:1000});
+						layer.msg(data.message,{icon:1,time:1000});
 					},
 				});
 			}
