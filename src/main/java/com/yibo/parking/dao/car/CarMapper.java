@@ -11,4 +11,6 @@ public interface CarMapper {
     List<Car> getCars();
 
     int save(Car car);
+
+    int del(String id);
 }

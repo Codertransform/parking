@@ -25,4 +25,8 @@ public class CarServiceImpl implements CarService {
         car.setId(UUID.randomUUID().toString().replaceAll("-", ""));
         return carMapper.save(car);
     }
+
+    public int del(String id) {
+        return carMapper.del(id);
+    }
 }

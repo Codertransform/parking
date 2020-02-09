@@ -10,7 +10,7 @@ public class JsonUtils {
     public static String success(Object data){
         json.setCode("0");
         json.setData(data);
-        json.setMessage("成功");
+        json.setMessage("操作成功");
         Gson gson = new Gson();
         return gson.toJson(json);
     }
@@ -18,7 +18,7 @@ public class JsonUtils {
     public static String error(Object data){
         json.setCode("-1");
         json.setData(data);
-        json.setMessage("失败");
+        json.setMessage("操作失败,请联系管理员");
         Gson gson = new Gson();
         return gson.toJson(json);
     }

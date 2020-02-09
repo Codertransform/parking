@@ -29,4 +29,8 @@
             #{maintenance}
         )
     </insert>
+
+    <delete id="del">
+        delete from cars where id = #{id}
+    </delete>
 </mapper>

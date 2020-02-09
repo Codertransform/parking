@@ -44,4 +44,15 @@ public class carController {
             return JsonUtils.error(car);
         }
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/del")
+    public String del(String id){
+        int d = carService.del(id);
+        if (d == 1){
+            return JsonUtils.success(id);
+        }else {
+            return JsonUtils.error(id);
+        }
+    }
 }
