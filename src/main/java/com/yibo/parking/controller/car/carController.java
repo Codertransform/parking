@@ -1,6 +1,5 @@
 package com.yibo.parking.controller.car;
 
-import com.google.gson.Gson;
 import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
@@ -46,8 +45,9 @@ public class carController {
     }
 
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
-    public String edit(String id){
+    public String edit(String id, Model model){
         Car car = carService.get(id);
+        model.addAttribute("car", car);
         return "cars/add";
     }
 

@@ -1,6 +1,6 @@
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -29,8 +29,8 @@
 <meta name="description" content="易泊停车管理有限公司车辆管理系统">
 </head>
 <body>
-<article class="page-container">
-	<form class="form form-horizontal" id="form-ts-add" action="/cars/add" method="post">
+<article class="page-container" th:switch="${car.id}">
+	<form th:case="${car.id ne null}" class="form form-horizontal" id="form-ts-add" action="/cars/add" method="post">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>车牌号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
