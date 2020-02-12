@@ -41,8 +41,20 @@
             color = #{color},
             carType = #{carType},
             status = #{status},
-            buy_time = #{but_time},
+            buy_time = #{buy_time},
             maintenance = #{maintenance}
+        where id = #{id}
+    </update>
+
+    <update id="stop">
+        update cars set
+            status = '-1'
+        where id = #{id}
+    </update>
+
+    <update id="start">
+        update cars set
+            status = '0'
         where id = #{id}
     </update>
 

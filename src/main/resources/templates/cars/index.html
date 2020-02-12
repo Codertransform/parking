@@ -41,7 +41,7 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 			<a class="btn btn-primary radius" data-title="添加车辆" data-href="/cars/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加车辆</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
@@ -56,10 +56,13 @@
 					<th width="75">颜色</th>
 					<th width="75">车辆类型</th>
 <!--					<th width="60">行驶里程(KM)</th>-->
-					<th width="60">维修保养状态</th>
+					<th width="60">状态</th>
 <!--					<th width="60">使用状态</th>-->
 					<th width="120">购买时间</th>
+<!--					<th width="60">是否有保险</th>-->
 					<th width="120">上次保养时间</th>
+<!--					<th width="120">租用状态</th>-->
+<!--					<th width="120">使用方</th>-->
 					<th width="120">操作</th>
 				</tr>
 			</thead>
@@ -70,13 +73,24 @@
 					<td th:text="${car.model}"></td>
 					<td th:text="${car.color}"></td>
 					<td th:text="${car.carType}"></td>
-<!--					<td th:text="${car.distance}"></td>-->
-					<td class="td-status"><span class="label label-success radius" th:text="${car.status}"></span></td>
-<!--					<td th:text="${car.buy_time}"></td>-->
+					<!--					<td th:text="${car.distance}"></td> 行驶里程-->
+					<td class="td-status" th:switch="${car.status}">
+						<span th:case="'-1'" class="label label-default radius">已停用</span>
+						<span th:case="'0'" class="label label-success radius">正常</span>
+						<span th:case="'1'" class="label label-primary radius">待保养</span>
+						<span th:case="'2'" class="label label-warning radius">待维修</span>
+						<span th:case="'3'" class="label label-danger radius">维修中</span>
+					</td>
+					<!--					<td th:text="${car.useStatus}"></td> 使用状态-->
 					<td th:text="${car.buy_time}"></td>
+					<!--					<td th:text="${car.isInsurance}"></td> 是否有保险-->
 					<td th:text="${car.maintenance}"></td>
-					<td class="f-14 td-manage">
-						<a style="text-decoration:none" th:onclick="article_stop(this,[[${car.id}]])" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
+					<!--					<td th:text="${car.hire}"></td> 租用状态-->
+					<!--					<td th:text="${car.userBy}"></td> 使用方-->
+					<td class="f-14 td-manage" th:switch="${car.status}">
+						<a style="text-decoration:none" th:onclick="article_stop(this,[[${car.id}]])" href="javascript:;" title="停用">
+							<i class="Hui-iconfont">&#xe6de;</i>
+						</a>
 						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('车辆信息编辑','/cars/edit',[[${car.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a style="text-decoration:none" class="ml-5" th:onclick="article_del(this,[[${car.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
@@ -187,21 +201,49 @@ function article_shenhe(obj,id){
 }
 /*资讯-下架*/
 function article_stop(obj,id){
-	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
+	layer.confirm('确认要停用吗？',{
+		btn:['停用','取消']
+	},function(index){
+		$.ajax({
+			url:'/cars/stop',
+			type:'POST',
+			data:{'id':id},
+			dataType:'json',
+			success:function (e) {
+				if (e.code == "0"){
+					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,\''+id+'\')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe603;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
+					$(obj).remove();
+					layer.msg(e.message,{icon: 0,time:1000});
+				}else {
+					layer.msg(e.message,{icon: 5,time:1000});
+				}
+			}
+		});
 	});
 }
 
 /*资讯-发布*/
 function article_start(obj,id){
-	layer.confirm('确认要发布吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布!',{icon: 6,time:1000});
+	layer.confirm('确认要启用吗？',{
+		btn:['启用','取消']
+	},function(index){
+		$.ajax({
+			url:'/cars/start',
+			type:'POST',
+			data:{'id':id},
+			dataType:'json',
+			success:function (e) {
+				if (e.code == "0"){
+					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,\''+id+'\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe6de;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">正常</span>');
+					$(obj).remove();
+					layer.msg(e.message,{icon: 0,time:1000});
+				}else {
+					layer.msg(e.message,{icon: 5,time:1000});
+				}
+			}
+		});
 	});
 }
 /*资讯-申请上线*/
@@ -211,6 +253,31 @@ function article_shenqing(obj,id){
 	layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
 }
 
+function datadel() {
+	var ids = [];
+	$('input[name=one]:checked').each(function () {
+		ids.push($(this).val());
+	});
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			url:'/cars/dels',
+			type:'POST',
+			data:{'ids':ids},
+			dataType:'json',
+			success:function (e) {
+				if (e.code == '0'){
+					layer.msg(e.message,{icon:1,time:1000});
+				}else {
+					layer.msg("错误码："+e.code+"错误信息："+e.message,{icon:2,time:1000});
+				}
+				location.replace(location.href);
+			},
+			error:function (e) {
+				layer.msg(e.message,{icon:1,time:1000});
+			}
+		});
+	});
+}
 </script> 
 </body>
 </html>

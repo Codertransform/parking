@@ -7,10 +7,10 @@ public class JsonUtils {
 
     private static Json json = new Json();
 
-    public static String success(Object data){
+    public static String success(Object data,String message){
         json.setCode("0");
         json.setData(data);
-        json.setMessage("操作成功");
+        json.setMessage(message);
         Gson gson = new Gson();
         return gson.toJson(json);
     }

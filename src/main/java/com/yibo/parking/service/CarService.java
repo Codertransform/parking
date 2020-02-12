@@ -11,5 +11,11 @@ public interface CarService {
 
     int del(String id);
 
+    int dels(String[] ids);
+
     Car get(String id);
+
+    int stop(String id);
+
+    int start(String id);
 }
