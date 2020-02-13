@@ -74,7 +74,10 @@
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${car.cardId}"></u></td>
 					<td th:text="${car.model}"></td>
 					<td th:text="${car.color}"></td>
-					<td th:text="${car.carType}"></td>
+					<td th:switch="${car.carType}">
+						<span th:case="0">SUV</span>
+						<span th:case="1">轿车</span>
+					</td>
 					<!--					<td th:text="${car.distance}"></td> 行驶里程-->
 					<td class="td-status" th:switch="${car.status}">
 						<span th:case="-1" class="label label-default radius">已停用</span>
