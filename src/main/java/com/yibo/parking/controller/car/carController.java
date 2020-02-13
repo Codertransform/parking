@@ -1,16 +1,17 @@
 package com.yibo.parking.controller.car;
 
 import com.yibo.parking.entity.car.Car;
-import com.yibo.parking.entity.util.Json;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/cars")
@@ -20,11 +21,15 @@ public class carController {
     private CarServiceImpl carService;
 
     @RequestMapping(value = {"","/"})
-    public String index(Model model){
-        List<Car> list = carService.getCars();
+    public String index(String carType, String logmin, String logmax, String cardId, Model model){
+        List<Car> list = carService.getCars(carType,logmin,logmax,cardId);
         model.addAttribute("title","车辆管理");
         model.addAttribute("list",list);
         model.addAttribute("count", list.size());
+        model.addAttribute("carType",carType);
+        model.addAttribute("logmin", logmin);
+        model.addAttribute("logmax", logmax);
+        model.addAttribute("cardId", cardId);
         return "cars/index";
     }
 

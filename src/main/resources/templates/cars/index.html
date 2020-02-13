@@ -25,19 +25,21 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> [[${title}]] <span class="c-gray en">&gt;</span> 车辆列表 <a class="btn btn-success btn-refresh radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
-		<span class="select-box inline">
-			<select name="" class="select">
-				<option value="0">全部分类</option>
-				<option value="1">轿车</option>
-				<option value="2">SUV</option>
-			</select>
-		</span> 日期范围：
-		<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;">
-		-
-		<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;">
-		<input type="text" name="" id="cardId" placeholder=" 车牌号 " style="width:250px" class="input-text">
-		<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜车辆 </button>
+		<form action="/cars/" method="post">
+			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
+			<span class="select-box inline">
+				<select name="carType" class="select" th:switch="${carType}">
+					<option value="" th:selected="${carType} eq ''">全部分类</option>
+					<option value="0" th:selected="${carType} eq '0'">SUV</option>
+					<option value="1" th:selected="${carType} eq '1'">轿车</option>
+				</select>
+			</span> 购买时间范围：
+			<input type="text" name="logmin" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" th:value="${logmin}" class="input-text Wdate" style="width:120px;">
+			-
+			<input type="text" name="logmax" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" th:value="${logmax}" class="input-text Wdate" style="width:120px;">
+			<input type="text" name="cardId" id="cardId" placeholder=" 车牌号 " th:value="${cardId}" style="width:250px" class="input-text">
+			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜车辆 </button>
+		</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
@@ -75,12 +77,13 @@
 					<td th:text="${car.carType}"></td>
 					<!--					<td th:text="${car.distance}"></td> 行驶里程-->
 					<td class="td-status" th:switch="${car.status}">
-						<span th:case="'-1'" class="label label-default radius">已停用</span>
-						<span th:case="'0'" class="label label-success radius">正常</span>
-						<span th:case="'1'" class="label label-primary radius">待保养</span>
-						<span th:case="'2'" class="label label-warning radius">待维修</span>
-						<span th:case="'3'" class="label label-danger radius">维修中</span>
+						<span th:case="-1" class="label label-default radius">已停用</span>
+						<span th:case="*" class="label label-success radius">正常</span>
+						<span th:case="1" class="label label-primary radius">待保养</span>
+						<span th:case="2" class="label label-warning radius">待维修</span>
+						<span th:case="3" class="label label-danger radius">维修中</span>
 					</td>
+
 					<!--					<td th:text="${car.useStatus}"></td> 使用状态-->
 					<td th:text="${car.buy_time}"></td>
 					<!--					<td th:text="${car.isInsurance}"></td> 是否有保险-->
@@ -88,8 +91,11 @@
 					<!--					<td th:text="${car.hire}"></td> 租用状态-->
 					<!--					<td th:text="${car.userBy}"></td> 使用方-->
 					<td class="f-14 td-manage" th:switch="${car.status}">
-						<a style="text-decoration:none" th:onclick="article_stop(this,[[${car.id}]])" href="javascript:;" title="停用">
-							<i class="Hui-iconfont">&#xe6de;</i>
+						<a style="text-decoration:none" th:case="0" th:onclick="article_stop(this,[[${car.id}]])"
+						   href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe6de;</i>
+						</a>
+						<a style="text-decoration:none" th:case="*" th:onclick="article_start(this,[[${car.id}]])"
+						   href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe603;</i>
 						</a>
 						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('车辆信息编辑','/cars/edit',[[${car.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a style="text-decoration:none" class="ml-5" th:onclick="article_del(this,[[${car.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
@@ -119,6 +125,21 @@ $('.table-sort').dataTable({
 	  {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
 	]
 });
+
+/*$('#search').click(function () {
+	var logmin = $('#logmin').val();
+	var logmax = $('#logmax').val();
+	var cardId = $('#cardId').val();
+	$.ajax({
+		url:'/cars',
+		type:'post',
+		data:{'logmin':logmin,'logmax':logmax,'cardId':cardId},
+		dataType:'json',
+		success:function (data) {
+			console.log(data.code);
+		}
+	})
+});*/
 
 /*资讯-添加*/
 function article_add(title,url,w,h){

@@ -5,6 +5,16 @@
 
     <select id="getCars" resultType="Car">
         select * from cars
+        where 1 = 1
+        <if test="carType != null and carType != ''">
+            and carType = #{carType}
+        </if>
+        <if test="logmin != null and logmin != '' and logmax != null and logmax != ''">
+            and buy_time between #{logmin} and #{logmax}
+        </if>
+        <if test="cardId != null and cardId != ''">
+            and cardId = #{cardId}
+        </if>
     </select>
 
     <select id="get" resultType="Car">

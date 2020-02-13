@@ -16,36 +16,8 @@ public class CarServiceImpl implements CarService {
     private CarMapper carMapper;
 
     @Override
-    public List<Car> getCars() {
-        List<Car> cars = carMapper.getCars();
-        for (Car car : cars) {
-            switch (car.getCarType()){
-                case "0":
-                    car.setCarType("SUV");
-                    break;
-                default:
-                    car.setCarType("轿车");
-                    break;
-            }
-            switch (car.getStatus()){
-                case "0":
-                    car.setStatus("正常");
-                    break;
-                case "1":
-                    car.setStatus("待保养");
-                    break;
-                case "2":
-                    car.setStatus("待维修");
-                    break;
-                case "3":
-                    car.setStatus("维修中");
-                    break;
-                default:
-                    car.setStatus("已停用");
-                    break;
-            }
-        }
-        return cars;
+    public List<Car> getCars(String carType, String logmin, String logmax, String cardId) {
+        return carMapper.getCars(carType,logmin,logmax,cardId);
     }
 
     @Override

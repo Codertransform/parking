@@ -5,7 +5,7 @@ import com.yibo.parking.entity.car.Car;
 import java.util.List;
 
 public interface CarService {
-    List<Car> getCars();
+    List<Car> getCars(String carType, String logmin, String logmax, String cardId);
 
     int save(Car car);
 

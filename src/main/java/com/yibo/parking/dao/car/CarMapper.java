@@ -2,13 +2,13 @@ package com.yibo.parking.dao.car;
 
 import com.yibo.parking.entity.car.Car;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface CarMapper {
-    List<Car> getCars();
+    List<Car> getCars(@Param("carType") String carType, @Param("logmin") String logmin, @Param("logmax") String logmax, @Param("cardId") String cardId);
 
     int insert(Car car);
 
