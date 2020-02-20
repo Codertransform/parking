@@ -49,47 +49,33 @@
 					<th width="25"><input type="checkbox" name="all" value=""></th>
 					<th width="40">车牌号</th>
 					<th width="120">行驶距离(单位：公里)</th>
-					<th width="200">检测结果</th>
-					<th width="200">保养项目</th>
-					<th width="120">保养时间</th>
 					<th width="80">经办人</th>
+					<th width="100">时间</th>
+					<th width="80">状态</th>
 					<th width="120">操作</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="text-c" th:each="car:${list}">
-					<td><input type="checkbox" th:value="${car.id}" name="one"></td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${car.cardId}"></u></td>
-					<td th:text="${car.model}"></td>
-					<td th:text="${car.color}"></td>
-					<td th:switch="${car.carType}">
-						<span th:case="0">SUV</span>
-						<span th:case="1">轿车</span>
+				<tr class="text-c" th:each="o:${orders}">
+					<td><input type="checkbox" th:value="${o.id}" name="one"></td>
+					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${o.carId}"></u></td>
+					<td th:text="${o.distance}"></td>
+					<td th:text="${o.manager}"></td>
+					<td th:text="${o.time}"></td>
+					<td th:switch="${o.status}">
+						<sapn th:case="-1" class="label label-primary radius">审核中</sapn>
+						<sapn th:case="0" class="label label-danger radius">未通过</sapn>
+						<sapn th:case="*" class="label label-success radius">通过</sapn>
 					</td>
-					<!--					<td th:text="${car.distance}"></td> 行驶里程-->
-					<td class="td-status" th:switch="${car.status}">
-						<span th:case="-1" class="label label-default radius">已停用</span>
-						<span th:case="*" class="label label-success radius">正常</span>
-						<span th:case="1" class="label label-primary radius">待保养</span>
-						<span th:case="2" class="label label-warning radius">待维修</span>
-						<span th:case="3" class="label label-danger radius">维修中</span>
-					</td>
-
-					<!--					<td th:text="${car.useStatus}"></td> 使用状态-->
-					<td th:text="${car.buy_time}"></td>
-					<!--					<td th:text="${car.isInsurance}"></td> 是否有保险-->
-					<td th:text="${car.maintenance}"></td>
-					<!--					<td th:text="${car.hire}"></td> 租用状态-->
-					<!--					<td th:text="${car.userBy}"></td> 使用方-->
-					<td class="f-14 td-manage" th:switch="${car.status}">
+					<td class="f-14 td-manage" th:switch="${o.status}">
 						<a style="text-decoration:none" th:case="0" th:onclick="article_stop(this,[[${car.id}]])"
-						   href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe6de;</i>
+						   href="javascript:;" title="不通过"><i class="Hui-iconfont">&#xe6de;</i>
 						</a>
 						<a style="text-decoration:none" th:case="*" th:onclick="article_start(this,[[${car.id}]])"
-						   href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe603;</i>
+						   href="javascript:;" title="通过"><i class="Hui-iconfont">&#xe603;</i>
 						</a>
-						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('车辆信息编辑','/cars/edit',[[${car.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a style="text-decoration:none" class="ml-5" th:onclick="article_del(this,[[${car.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+<!--						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('车辆信息编辑','/cars/edit',[[${car.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>-->
+<!--						<a style="text-decoration:none" class="ml-5" th:onclick="article_del(this,[[${car.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
 					</td>
 				</tr>
 			</tbody>
@@ -113,7 +99,7 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,7]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,6]}// 不参与排序的列
 	]
 });
 
@@ -285,7 +271,7 @@ function datadel() {
 				location.replace(location.href);
 			},
 			error:function (e) {
-				layer.msg(e.message,{icon:1,time:1000});
+				layer.msg(e.message,{icon:2,time:1000});
 			}
 		});
 	});
