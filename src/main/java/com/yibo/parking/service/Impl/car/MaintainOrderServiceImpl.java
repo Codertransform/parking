@@ -3,10 +3,12 @@ package com.yibo.parking.service.Impl.car;
 import com.yibo.parking.dao.car.MaintainOrderMapper;
 import com.yibo.parking.entity.car.MaintainOrder;
 import com.yibo.parking.service.MaintainOrderService;
+import com.yibo.parking.utils.OrderIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MaintainOrderServiceImpl implements MaintainOrderService {
@@ -19,8 +21,14 @@ public class MaintainOrderServiceImpl implements MaintainOrderService {
         return maintainOrderMapper.getOrders();
     }
 
-    public int insert(MaintainOrder order) {
-        order.setStatus("-1");
-        return maintainOrderMapper.insert(order);
+    public int save(MaintainOrder order) {
+        if (order.getId() != null){
+            return maintainOrderMapper.update(order);
+        }else {
+            order.setId(UUID.randomUUID().toString().replaceAll("-",""));
+            order.setOrder_id(OrderIdGenerate.generateOrderId());
+            order.setStatus("-1");
+            return maintainOrderMapper.insert(order);
+        }
     }
 }

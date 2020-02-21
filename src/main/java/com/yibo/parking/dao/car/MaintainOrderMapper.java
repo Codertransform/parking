@@ -10,4 +10,6 @@ public interface MaintainOrderMapper {
     List<MaintainOrder> getOrders();
 
     int insert(MaintainOrder order);
+
+    int update(MaintainOrder order);
 }

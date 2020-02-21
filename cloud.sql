@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-02-20 17:36:09
+Date: 2020-02-21 17:31:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,6 +56,7 @@ CREATE TABLE `dict` (
 DROP TABLE IF EXISTS `maintain_order`;
 CREATE TABLE `maintain_order` (
   `id` varchar(64) NOT NULL,
+  `order_id` varchar(64) DEFAULT NULL,
   `carId` varchar(10) NOT NULL COMMENT '车牌号',
   `distance` double(10,0) NOT NULL COMMENT '行驶距离',
   `time` datetime NOT NULL COMMENT '保养时间',
@@ -67,6 +68,7 @@ CREATE TABLE `maintain_order` (
 -- ----------------------------
 -- Records of maintain_order
 -- ----------------------------
+INSERT INTO `maintain_order` VALUES ('9647434e99d24fa1b9be01e896ea84d7', '2020022116092463549033', '陕C·V5591', '210000', '2020-02-21 15:44:22', '王振宇', '-1');
 
 -- ----------------------------
 -- Table structure for maintain_result

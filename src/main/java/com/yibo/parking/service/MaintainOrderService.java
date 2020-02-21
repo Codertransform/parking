@@ -7,5 +7,5 @@ import java.util.List;
 public interface MaintainOrderService {
     List<MaintainOrder> getOrders();
 
-    int insert(MaintainOrder order);
+    int save(MaintainOrder order);
 }

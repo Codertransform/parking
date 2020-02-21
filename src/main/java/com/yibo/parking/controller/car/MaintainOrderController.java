@@ -34,7 +34,7 @@ public class MaintainOrderController {
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public String toAdd(MaintainOrder order){
-        int i = orderService.insert(order);
+        int i = orderService.save(order);
         if (i == '1') return JsonUtils.success(order,"订单添加成功");
         else return JsonUtils.error(order);
     }

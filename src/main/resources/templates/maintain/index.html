@@ -47,6 +47,7 @@
 			<thead>
 				<tr class="text-c">
 					<th width="25"><input type="checkbox" name="all" value=""></th>
+					<th width="100">订单号</th>
 					<th width="40">车牌号</th>
 					<th width="120">行驶距离(单位：公里)</th>
 					<th width="80">经办人</th>
@@ -58,6 +59,7 @@
 			<tbody>
 				<tr class="text-c" th:each="o:${orders}">
 					<td><input type="checkbox" th:value="${o.id}" name="one"></td>
+					<td th:text="${o.order_id}"></td>
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${o.carId}"></u></td>
 					<td th:text="${o.distance}"></td>
 					<td th:text="${o.manager}"></td>
@@ -99,24 +101,9 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,6]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,7]}// 不参与排序的列
 	]
 });
-
-/*$('#search').click(function () {
-	var logmin = $('#logmin').val();
-	var logmax = $('#logmax').val();
-	var cardId = $('#cardId').val();
-	$.ajax({
-		url:'/cars',
-		type:'post',
-		data:{'logmin':logmin,'logmax':logmax,'cardId':cardId},
-		dataType:'json',
-		success:function (data) {
-			console.log(data.code);
-		}
-	})
-});*/
 
 /*资讯-添加*/
 function article_add(title,url,w,h){
