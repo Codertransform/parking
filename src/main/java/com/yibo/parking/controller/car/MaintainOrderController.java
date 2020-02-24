@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -37,5 +38,15 @@ public class MaintainOrderController {
         int i = orderService.save(order);
         if (i == '1') return JsonUtils.success(order,"订单添加成功");
         else return JsonUtils.error(order);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/check")
+    public String check(String id, String status){
+        int u = orderService.check(id,status);
+//        if (u == 1){
+//            return JsonUtils.success()
+//        }
+        return null;
     }
 }

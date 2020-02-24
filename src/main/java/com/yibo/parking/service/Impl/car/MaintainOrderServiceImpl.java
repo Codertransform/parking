@@ -31,4 +31,8 @@ public class MaintainOrderServiceImpl implements MaintainOrderService {
             return maintainOrderMapper.insert(order);
         }
     }
+
+    public int check(String id, String status) {
+        return maintainOrderMapper.check(id,status);
+    }
 }

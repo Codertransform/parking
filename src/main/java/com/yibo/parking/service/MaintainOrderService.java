@@ -8,4 +8,6 @@ public interface MaintainOrderService {
     List<MaintainOrder> getOrders();
 
     int save(MaintainOrder order);
+
+    int check(String id, String status);
 }
