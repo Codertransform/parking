@@ -44,9 +44,10 @@ public class MaintainOrderController {
     @RequestMapping(value = "/check")
     public String check(String id, String status){
         int u = orderService.check(id,status);
-//        if (u == 1){
-//            return JsonUtils.success()
-//        }
-        return null;
+        if (u == 1){
+            return JsonUtils.success(id,"审核成功");
+        }else {
+            return JsonUtils.error(id);
+        }
     }
 }
