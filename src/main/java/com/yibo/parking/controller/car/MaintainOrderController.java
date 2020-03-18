@@ -45,7 +45,9 @@ public class MaintainOrderController {
     public String check(String id, String status){
         int u = orderService.check(id,status);
         if (u == 1){
-            return JsonUtils.success(id,"状态已更改");
-        }else return JsonUtils.error(id);
+            return JsonUtils.success(id,"审核成功");
+        }else {
+            return JsonUtils.error(id);
+        }
     }
 }

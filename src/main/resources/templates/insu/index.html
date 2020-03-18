@@ -33,7 +33,7 @@
 					<option value="0" th:selected="${carType} eq '0'">SUV</option>
 					<option value="1" th:selected="${carType} eq '1'">轿车</option>
 				</select>
-			</span> 购买时间范围：
+			</span> 时间范围：
 			<input type="text" name="logmin" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" th:value="${logmin}" class="input-text Wdate" style="width:120px;">
 			-
 			<input type="text" name="logmax" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" th:value="${logmax}" class="input-text Wdate" style="width:120px;">
@@ -44,7 +44,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a class="btn btn-primary radius" data-title="添加车辆" data-href="/cars/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加车辆</a>
+			<a class="btn btn-primary radius" data-title="添加保险" data-href="/insurance/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加保险</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
 	</div>
