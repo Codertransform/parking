@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-02-21 17:31:19
+Date: 2020-03-19 18:19:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -51,6 +51,25 @@ CREATE TABLE `dict` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for lease
+-- ----------------------------
+DROP TABLE IF EXISTS `lease`;
+CREATE TABLE `lease` (
+  `id` varchar(64) NOT NULL,
+  `carId` varchar(64) NOT NULL COMMENT '车牌号',
+  `unit` varchar(50) NOT NULL COMMENT '单位名称',
+  `type` char(2) NOT NULL COMMENT '租车方式',
+  `position` varchar(200) DEFAULT NULL,
+  `startdate` datetime NOT NULL COMMENT '开始时间',
+  `enddate` datetime NOT NULL COMMENT '结束时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of lease
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for maintain_order
 -- ----------------------------
 DROP TABLE IF EXISTS `maintain_order`;
@@ -68,7 +87,7 @@ CREATE TABLE `maintain_order` (
 -- ----------------------------
 -- Records of maintain_order
 -- ----------------------------
-INSERT INTO `maintain_order` VALUES ('9647434e99d24fa1b9be01e896ea84d7', '2020022116092463549033', '陕C·V5591', '210000', '2020-02-21 15:44:22', '王振宇', '-1');
+INSERT INTO `maintain_order` VALUES ('9647434e99d24fa1b9be01e896ea84d7', '2020022116092463549033', '陕C·V5591', '210000', '2020-02-21 15:44:22', '王振宇', '1');
 
 -- ----------------------------
 -- Table structure for maintain_result
