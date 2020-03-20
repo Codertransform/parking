@@ -1,4 +1,4 @@
-package com.yibo.parking.controller.lease;
+package com.yibo.parking.controller.car;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/lease")
 public class leaseController {
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = {"","/"})
     public String index(Model model){
-//        model.addAttribute("lease",lease);
-        return "index";
+//        model.addAttribute("count",count);
+        model.addAttribute("title","车辆租用");
+        return "hire/index";
     }
 }
