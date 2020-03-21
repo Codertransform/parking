@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LeaseService {
 
-    public List<Lease> getLeases(Lease lease);
+    public List<Lease> getLeases(String logmin, String logmax, String unit, String carId);
 
     public int save(Lease lease);
 

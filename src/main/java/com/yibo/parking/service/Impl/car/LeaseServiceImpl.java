@@ -15,8 +15,8 @@ public class LeaseServiceImpl implements LeaseService {
     private LeaseMapper leaseMapper;
 
     @Override
-    public List<Lease> getLeases(Lease lease) {
-        return leaseMapper.getLeases(lease);
+    public List<Lease> getLeases(String logmin, String logmax, String unit, String carId) {
+        return leaseMapper.getLeases(logmin,logmax,unit,carId);
     }
 
     @Override

@@ -17,11 +17,14 @@ public class leaseController {
     private LeaseServiceImpl leaseService;
 
     @RequestMapping(value = {"","/"})
-    public String index(Lease lease,Model model){
-        List<Lease> leases = leaseService.getLeases(lease);
+    public String index(String logmin, String logmax, String unit, String carId, Model model){
+        List<Lease> leases = leaseService.getLeases(logmin,logmax,unit,carId);
         int count = leases.size();
         model.addAttribute("leases",leases);
         model.addAttribute("count",count);
+        model.addAttribute("logmin",logmin);
+        model.addAttribute("logmax",logmax);
+        model.addAttribute("carId",unit);
         model.addAttribute("title","车辆租用");
         return "hire/index";
     }

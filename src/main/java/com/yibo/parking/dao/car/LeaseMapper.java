@@ -2,6 +2,7 @@ package com.yibo.parking.dao.car;
 
 import com.yibo.parking.entity.car.Lease;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface LeaseMapper {
 
     public Lease get(Lease lease);
 
-    public List<Lease> getLeases(Lease lease);
+    public List<Lease> getLeases(@Param("logmin")String logmin, @Param("logmax")String logmax, @Param("unit") String unit, @Param("carId")String carId);
 
     public int insert(Lease lease);
 
