@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/lease")
+@RequestMapping(value = "/cars/lease")
 public class leaseController {
 
     @Autowired
@@ -24,7 +24,8 @@ public class leaseController {
         model.addAttribute("count",count);
         model.addAttribute("logmin",logmin);
         model.addAttribute("logmax",logmax);
-        model.addAttribute("carId",unit);
+        model.addAttribute("carId",carId);
+        model.addAttribute("unit",unit);
         model.addAttribute("title","车辆租用");
         return "hire/index";
     }

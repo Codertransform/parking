@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/type")
+@RequestMapping(value = "/cars/type")
 public class TypeController {
 
     @Autowired
