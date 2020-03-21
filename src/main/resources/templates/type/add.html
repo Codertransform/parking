@@ -24,41 +24,58 @@
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>新增保养订单 - 车辆保养 - 易泊停车 v1.0</title>
+<title>新增车辆类型 - 车辆类型 - 易泊停车 v1.0</title>
 <meta name="keywords" content="易泊停车">
 <meta name="description" content="易泊停车管理有限公司车辆管理系统">
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-ts-add" action="/maintain/add" method="post">
+	<form class="form form-horizontal" id="form-ts-add" action="/cars/type/add" method="post">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>车牌号：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入车牌号" id="carId" name="carId">
+				<input type="text" class="input-text" value="" placeholder="请输入类型名称" id="name" name="name">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>行驶距离：</label>
+			<label class="form-label col-xs-4 col-sm-2">小时费率(元)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入行驶距离" id="distance" name="distance">
+				<input type="text" class="input-text" value="" placeholder="请输入小时费率" id="hour" name="hour">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>经办人：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>半天费率(元)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入车辆颜色" id="manager" name="manager">
+				<input type="text" class="input-text" value="" placeholder="请输入半天费率" id="halfday" name="halfday">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>时间：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>全天费率(元)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" id="time" name="time" class="input-text Wdate">
+				<input type="text" class="input-text" value="" placeholder="请输入全天费率" id="allday" name="allday">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>周费率(元)：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="请输入全天费率" id="week" name="week">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>月费率(元)：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="请输入全天费率" id="month" name="month">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>半年费率(元)：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="请输入全天费率" id="halfyear" name="halfyear">
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="draft" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
-				<button class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
+				<button id="draft" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -199,16 +216,22 @@ $(function(){
 	function check() {
 		$("#form-ts-add").validate({
 			rules:{
-				carId:{
+				name:{
 					required:true
 				},
-				distance:{
+				halfday:{
 					required:true
 				},
-				manager:{
+				allday:{
 					required:true
 				},
-				time:{
+				week:{
+					required:true
+				},
+				month:{
+					required:true
+				},
+				year:{
 					required:true
 				}
 			},

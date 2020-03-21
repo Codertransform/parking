@@ -3,12 +3,12 @@ package com.yibo.parking.entity.car;
 public class Type {
     private String id;
     private String name;
-    private int hour;
-    private int halfday;
-    private int allday;
-    private int week;
-    private int month;
-    private int halfyear;
+    private Integer hour;
+    private Integer halfday;
+    private Integer allday;
+    private Integer week;
+    private Integer month;
+    private Integer halfyear;
 
     public String getId() {
         return id;
@@ -26,51 +26,51 @@ public class Type {
         this.name = name;
     }
 
-    public int getHour() {
+    public Integer getHour() {
         return hour;
     }
 
-    public void setHour(int hour) {
+    public void setHour(Integer hour) {
         this.hour = hour;
     }
 
-    public int getHalfday() {
+    public Integer getHalfday() {
         return halfday;
     }
 
-    public void setHalfday(int halfday) {
+    public void setHalfday(Integer halfday) {
         this.halfday = halfday;
     }
 
-    public int getAllday() {
+    public Integer getAllday() {
         return allday;
     }
 
-    public void setAllday(int allday) {
+    public void setAllday(Integer allday) {
         this.allday = allday;
     }
 
-    public int getWeek() {
+    public Integer getWeek() {
         return week;
     }
 
-    public void setWeek(int week) {
+    public void setWeek(Integer week) {
         this.week = week;
     }
 
-    public int getMonth() {
+    public Integer getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(Integer month) {
         this.month = month;
     }
 
-    public int getHalfyear() {
+    public Integer getHalfyear() {
         return halfyear;
     }
 
-    public void setHalfyear(int halfyear) {
+    public void setHalfyear(Integer halfyear) {
         this.halfyear = halfyear;
     }
 }

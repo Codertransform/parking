@@ -3,6 +3,7 @@ package com.yibo.parking.service.Impl.car;
 import com.yibo.parking.dao.car.TypeMapper;
 import com.yibo.parking.entity.car.Type;
 import com.yibo.parking.service.TypeService;
+import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class TypeServiceImpl implements TypeService {
         if (type.getId() != null && !type.getId().isEmpty()){
             return typeMapper.update(type);
         }else {
+            type.setId(EntityIdGenerate.generateId());
             return typeMapper.insert(type);
         }
     }

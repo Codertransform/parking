@@ -27,6 +27,13 @@
 	<div class="text-c">
 		<form action="/cars/lease" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
+			<span class="select-box inline">
+				<select name="unit" class="select">
+					<option value="0">请选择申请单位</option>
+					<option value="1">分类一</option>
+					<option value="2">分类二</option>
+				</select>
+			</span>
 			购买时间范围：
 			<input type="text" name="logmin" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" th:value="${logmin}" class="input-text Wdate" style="width:120px;">
 			-

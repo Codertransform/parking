@@ -3,6 +3,7 @@ package com.yibo.parking.service.Impl.car;
 import com.yibo.parking.dao.car.LeaseMapper;
 import com.yibo.parking.entity.car.Lease;
 import com.yibo.parking.service.LeaseService;
+import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class LeaseServiceImpl implements LeaseService {
         if (lease.getId() != null && !lease.getId().isEmpty()){
             return leaseMapper.update(lease);
         }else {
+            lease.setId(EntityIdGenerate.generateId());
             return leaseMapper.insert(lease);
         }
     }
