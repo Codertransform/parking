@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.car.LeaseMapper">
+
+    <select id="getLeases" resultType="Lease">
+        select * from lease
+        where 1 = 1
+        <if test="unit != null and unit != ''">
+            and unit = #{unit}
+        </if>
+        <if test="logmin != null and logmin != ''">
+            and startdate = #{logmin}
+        </if>
+        <if test="logmax != null and logmax != ''">
+            and enddate = #{logmax}
+        </if>
+        <if test="carId != null and carId != ''">
+            and carId = #{carId}
+        </if>
+    </select>
+
+    <select id="get" resultType="Lease">
+        select * from lease where id = #{id}
+    </select>
+
+    <insert id="insert">
+        insert into lease(
+            id,
+            carId,
+            unit,
+            type,
+            startmiles,
+            endmiles,
+            position,
+            status,
+            startdate,
+            enddate
+        )
+        values (
+            #{id},
+            #{carId},
+            #{unit},
+            #{type},
+            #{startmiles},
+            #{endmiles},
+            #{position},
+            #{status},
+            #{startdate},
+            #{enddate}
+        )
+    </insert>
+
+    <update id="update">
+        update lease set
+            carId = #{carId},
+            unit = #{unit},
+            type = #{type},
+            startmiles = #{startmiles},
+            endmiles = #{endmiles},
+            position = #{position},
+            status = #{status},
+            startdate = #{startdate},
+            enddate = #{enddate}
+        where id = #{id}
+    </update>
+
+    <!--<update id="stop">
+        update lease set
+            status = '-1'
+        where id = #{id}
+    </update>
+
+    <update id="start">
+        update lease set
+            status = '0'
+        where id = #{id}
+    </update>-->
+
+    <delete id="del">
+        delete from lease where id = #{id}
+    </delete>
+</mapper>

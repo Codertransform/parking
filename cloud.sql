@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-03-19 18:19:22
+Date: 2020-03-21 19:04:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,7 +59,10 @@ CREATE TABLE `lease` (
   `carId` varchar(64) NOT NULL COMMENT '车牌号',
   `unit` varchar(50) NOT NULL COMMENT '单位名称',
   `type` char(2) NOT NULL COMMENT '租车方式',
+  `startmiles` varchar(100) NOT NULL COMMENT '起始里程',
+  `endmiles` varchar(100) NOT NULL COMMENT '截止里程',
   `position` varchar(200) DEFAULT NULL,
+  `status` char(2) NOT NULL COMMENT '车辆状态',
   `startdate` datetime NOT NULL COMMENT '开始时间',
   `enddate` datetime NOT NULL COMMENT '结束时间',
   PRIMARY KEY (`id`)
@@ -104,4 +107,24 @@ CREATE TABLE `maintain_result` (
 
 -- ----------------------------
 -- Records of maintain_result
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for type
+-- ----------------------------
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE `type` (
+  `id` varchar(64) NOT NULL,
+  `name` varchar(100) NOT NULL COMMENT '类型名称',
+  `hour` int(11) DEFAULT NULL COMMENT '小时费率',
+  `halfday` int(11) NOT NULL COMMENT '半天费率',
+  `allday` int(11) NOT NULL COMMENT '全天费率',
+  `week` int(11) NOT NULL COMMENT '周费率',
+  `month` int(11) NOT NULL COMMENT '月费率',
+  `halfyear` int(11) NOT NULL COMMENT '半年费率',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='车辆类型';
+
+-- ----------------------------
+-- Records of type
 -- ----------------------------
