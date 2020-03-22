@@ -1,7 +1,6 @@
 package com.yibo.parking.controller.car;
 
 import com.yibo.parking.entity.car.Type;
-import com.yibo.parking.entity.util.Json;
 import com.yibo.parking.service.Impl.car.TypeServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,6 @@ public class TypeController {
     public String index(Model model){
         List<Type> types = typeService.getTypes();
         model.addAttribute("types",types);
-        model.addAttribute("count",types.size());
         model.addAttribute("title","车辆类型");
         return "type/index";
     }
@@ -40,6 +38,22 @@ public class TypeController {
         int i = typeService.save(type);
         if (i != 0)
         return JsonUtils.success(type,"车辆类型添加成功");
+        else return JsonUtils.error(type);
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String edit(Type type, Model model){
+        type = typeService.get(type.getId());
+        model.addAttribute("type",type);
+        return "type/edit";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String toEdit(Type type){
+        int u = typeService.save(type);
+        if (u != 0)
+        return JsonUtils.success(type,"车辆类型修改成功");
         else return JsonUtils.error(type);
     }
 

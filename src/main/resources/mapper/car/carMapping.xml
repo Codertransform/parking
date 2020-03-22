@@ -17,6 +17,10 @@
         </if>
     </select>
 
+    <select id="getAll" resultType="Car">
+        select * from cars
+    </select>
+
     <select id="get" resultType="Car">
         select * from cars where id = #{id}
     </select>

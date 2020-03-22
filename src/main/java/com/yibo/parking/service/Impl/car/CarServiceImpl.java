@@ -20,6 +20,10 @@ public class CarServiceImpl implements CarService {
         return carMapper.getCars(carType,logmin,logmax,cardId);
     }
 
+    public List<Car> getAllCars(){
+        return carMapper.getAll();
+    }
+
     @Override
     public int save(Car car) {
         if (car.getId() != null){

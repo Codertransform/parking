@@ -21,4 +21,6 @@ public interface CarMapper {
     int stop(String id);
 
     int start(String id);
+
+    List<Car> getAll();
 }

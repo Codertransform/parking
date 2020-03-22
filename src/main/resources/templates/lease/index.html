@@ -30,8 +30,7 @@
 			<span class="select-box inline">
 				<select name="unit" class="select">
 					<option value="0">请选择申请单位</option>
-					<option value="1">分类一</option>
-					<option value="2">分类二</option>
+					<option th:each="t:${types}" th:value="${t.id}" th:text="${t.name}" th:selected="${t.id eq unit}"></option>
 				</select>
 			</span>
 			购买时间范围：
@@ -45,9 +44,9 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a class="btn btn-primary radius" data-title="添加租用订单" data-href="/maintain/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加租用订单</a>
+			<a class="btn btn-primary radius" data-title="添加租用订单" data-href="/cars/lease/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加租用订单</a>
 		</span>
-		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
+		<span class="r">共有数据：<strong>[[${leases.size()}]]</strong> 条</span>
 	</div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
@@ -56,6 +55,7 @@
 					<th width="25"><input type="checkbox" name="all" value=""></th>
 					<th width="100">订单号</th>
 					<th width="40">车牌号</th>
+					<th width="40">车辆类型</th>
 					<th width="80">起始里程(单位：公里)</th>
 					<th width="80">申请单位</th>
 					<th width="100">时间</th>
@@ -66,10 +66,11 @@
 			<tbody>
 				<tr class="text-c" th:each="l:${leases}">
 					<td><input type="checkbox" th:value="${l.id}" name="one"></td>
-					<td th:text="${l.id}"></td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${l.carId}"></u></td>
+					<td th:text="${l.orderId}"></td>
+					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${l.car.brandName}"></u></td>
+					<td th:text="${l.type.name}"></td>
 					<td th:text="${l.startmiles}"></td>
-					<td th:text="${l.unit}"></td>
+					<td th:text="${l.unit.id}"></td>
 					<td th:text="${l.startdate}"></td>
 					<td class="td-status" th:switch="${l.status}">
 						<sapn th:case="-1" class="label label-primary radius">审核中</sapn>

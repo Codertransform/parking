@@ -1,10 +1,13 @@
 package com.yibo.parking.entity.car;
 
+import com.yibo.parking.entity.unit.Unit;
+
 public class Lease {
     private String id;
-    private String carId;
-    private String unit;
-    private String type;
+    private String orderId;
+    private Car car;
+    private Unit unit;
+    private Type type;
     private String startmiles;
     private String endmiles;
     private String position;
@@ -20,27 +23,35 @@ public class Lease {
         this.id = id;
     }
 
-    public String getCarId() {
-        return carId;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setCarId(String carId) {
-        this.carId = carId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
-    public String getUnit() {
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Unit getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(Unit unit) {
         this.unit = unit;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

@@ -1,6 +1,6 @@
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -24,26 +24,36 @@
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>新增保养订单 - 车辆保养 - 易泊停车 v1.0</title>
+<title>新增租用订单 - 车辆租用 - 易泊停车 v1.0</title>
 <meta name="keywords" content="易泊停车">
 <meta name="description" content="易泊停车管理有限公司车辆管理系统">
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-ts-add" action="/maintain/add" method="post">
+	<form class="form form-horizontal" id="form-ts-add" action="/cars/lease/add" method="post">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>车牌号：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>请选择车辆：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入车牌号" id="carId" name="carId">
+				<span class="select-box">
+					<select name="car.id" class="select">
+						<option value="0">请选择车辆</option>
+						<option th:each="c:${cars}" th:value="${c.id}" th:text="${c.cardId+' '+c.model+' '+c.color}"></option>
+					</select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>行驶距离：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>租用方式：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入行驶距离" id="distance" name="distance">
+				<span class="select-box">
+					<select name="car.id" class="select">
+						<option value="0">请选择租用方式</option>
+						<option th:each="t:${types}" th:value="${t.value}" th:text="${t.key}"></option>
+					</select>
+				</span>
 			</div>
 		</div>
-		<div class="row cl">
+		<!--<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>经办人：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="请输入车辆颜色" id="manager" name="manager">
@@ -54,11 +64,10 @@
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" id="time" name="time" class="input-text Wdate">
 			</div>
-		</div>
+		</div>-->
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="draft" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
-				<button class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
+				<button id="draft" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交</button>
 				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>

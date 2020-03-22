@@ -21,12 +21,29 @@
     </select>
 
     <select id="get" resultType="Lease">
-        select * from lease where id = #{id}
+        select
+            a.id as id,
+            a.order_id as orderId,
+            a.carId as car.id,
+            a.unit as unit.id,
+            a.type as type.id,
+            a.startmiles as startmiles,
+            a.endmiles as endmiles,
+            a.position as position,
+            a.status as status,
+            a.startdate as startdate,
+            a.enddate as enddate
+        from lease a
+        left join cars c on a.carId = c.id
+        left join type t on a.type = t.id
+        left join unit u on a.unit = u.id
+        where a.id = #{id}
     </select>
 
     <insert id="insert">
         insert into lease(
             id,
+            order_id,
             carId,
             unit,
             type,
@@ -39,9 +56,10 @@
         )
         values (
             #{id},
+            #{orderId},
             #{carId},
             #{unit},
-            #{type},
+            #{carType},
             #{startmiles},
             #{endmiles},
             #{position},
@@ -53,9 +71,10 @@
 
     <update id="update">
         update lease set
+            order_id = #{orderId},
             carId = #{carId},
             unit = #{unit},
-            type = #{type},
+            type = #{carType},
             startmiles = #{startmiles},
             endmiles = #{endmiles},
             position = #{position},

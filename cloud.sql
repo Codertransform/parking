@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-03-21 19:04:15
+Date: 2020-03-22 23:05:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `dict`;
 CREATE TABLE `dict` (
   `id` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='数据字典';
 
 -- ----------------------------
 -- Records of dict
@@ -56,9 +56,10 @@ CREATE TABLE `dict` (
 DROP TABLE IF EXISTS `lease`;
 CREATE TABLE `lease` (
   `id` varchar(64) NOT NULL,
-  `carId` varchar(64) NOT NULL COMMENT '车牌号',
+  `order_id` varchar(64) NOT NULL COMMENT '订单号',
+  `carId` varchar(64) NOT NULL COMMENT '车辆id',
   `unit` varchar(50) NOT NULL COMMENT '单位名称',
-  `type` char(2) NOT NULL COMMENT '租车方式',
+  `type` varchar(64) NOT NULL COMMENT '租用方式',
   `startmiles` varchar(100) NOT NULL COMMENT '起始里程',
   `endmiles` varchar(100) NOT NULL COMMENT '截止里程',
   `position` varchar(200) DEFAULT NULL,
@@ -66,7 +67,7 @@ CREATE TABLE `lease` (
   `startdate` datetime NOT NULL COMMENT '开始时间',
   `enddate` datetime NOT NULL COMMENT '结束时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='租车表';
 
 -- ----------------------------
 -- Records of lease
@@ -127,4 +128,21 @@ CREATE TABLE `type` (
 
 -- ----------------------------
 -- Records of type
+-- ----------------------------
+INSERT INTO `type` VALUES ('c33bd280f6b141f6800a05419faada5b', '手动挡2.0排量（含1.8）以内', '60', '100', '200', '900', '3500', '20000');
+
+-- ----------------------------
+-- Table structure for unit
+-- ----------------------------
+DROP TABLE IF EXISTS `unit`;
+CREATE TABLE `unit` (
+  `id` varchar(64) NOT NULL,
+  `parent_id` varchar(64) NOT NULL COMMENT '上级单位id',
+  `name` varchar(200) NOT NULL COMMENT '单位名称',
+  `remarks` text COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='申请单位表';
+
+-- ----------------------------
+-- Records of unit
 -- ----------------------------

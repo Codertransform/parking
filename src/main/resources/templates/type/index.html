@@ -40,7 +40,7 @@
 			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 			<a class="btn btn-primary radius" data-title="添加车辆类型" data-href="/cars/type/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加车辆类型</a>
 		</span>
-		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
+		<span class="r">共有数据：<strong>[[${types.size()}]]</strong> 条</span>
 	</div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
@@ -93,7 +93,7 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,7]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
 	]
 });
 
