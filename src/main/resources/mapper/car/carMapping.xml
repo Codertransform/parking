@@ -4,10 +4,21 @@
 <mapper namespace="com.yibo.parking.dao.car.CarMapper">
 
     <select id="getCars" resultType="Car">
-        select * from cars
+        select
+            a.id as id,
+            a.cardId as cardId,
+            a.model as model,
+            a.color as color,
+            a.carType as typeId,
+            t.name as typeName,
+            a.status as status,
+            a.buy_time as buy_time,
+            a.maintenance as maintenance
+        from cars a
+        left join type t on t.id = a.carType
         where 1 = 1
-        <if test="carType != null and carType != ''">
-            and carType = #{carType}
+        <if test="typeId != null and typeId != ''">
+            and carType = #{typeId}
         </if>
         <if test="logmin != null and logmin != '' and logmax != null and logmax != ''">
             and buy_time between #{logmin} and #{logmax}

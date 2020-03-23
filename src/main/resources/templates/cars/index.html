@@ -28,10 +28,9 @@
 		<form action="/cars/" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
 			<span class="select-box inline">
-				<select name="carType" class="select" th:switch="${carType}">
-					<option value="" th:selected="${carType} eq ''">全部分类</option>
-					<option value="0" th:selected="${carType} eq '0'">SUV</option>
-					<option value="1" th:selected="${carType} eq '1'">轿车</option>
+				<select name="typeId" class="select">
+					<option value="">全部分类</option>
+					<option th:each="t:${types}" th:value="${t.id}" th:text="${t.name}" th:selected="${typeId eq t.id}"></option>
 				</select>
 			</span> 购买时间范围：
 			<input type="text" name="logmin" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" th:value="${logmin}" class="input-text Wdate" style="width:120px;">
@@ -74,10 +73,7 @@
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${car.cardId}"></u></td>
 					<td th:text="${car.model}"></td>
 					<td th:text="${car.color}"></td>
-					<td th:switch="${car.carType}">
-						<span th:case="0">SUV</span>
-						<span th:case="1">轿车</span>
-					</td>
+					<td th:text="${car.typeName}"></td>
 					<!--					<td th:text="${car.distance}"></td> 行驶里程-->
 					<td class="td-status" th:switch="${car.status}">
 						<span th:case="-1" class="label label-default radius">已停用</span>

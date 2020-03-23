@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface CarMapper {
-    List<Car> getCars(@Param("carType") String carType, @Param("logmin") String logmin, @Param("logmax") String logmax, @Param("cardId") String cardId);
+    List<Car> getCars(@Param("typeId") String typeId, @Param("logmin") String logmin, @Param("logmax") String logmax, @Param("cardId") String cardId);
 
     int insert(Car car);
 

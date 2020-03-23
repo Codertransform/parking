@@ -16,8 +16,8 @@ public class CarServiceImpl implements CarService {
     private CarMapper carMapper;
 
     @Override
-    public List<Car> getCars(String carType, String logmin, String logmax, String cardId) {
-        return carMapper.getCars(carType,logmin,logmax,cardId);
+    public List<Car> getCars(String typeId, String logmin, String logmax, String cardId) {
+        return carMapper.getCars(typeId,logmin,logmax,cardId);
     }
 
     public List<Car> getAllCars(){
@@ -30,6 +30,7 @@ public class CarServiceImpl implements CarService {
             return carMapper.update(car);
         }else {
             car.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+
             return carMapper.insert(car);
         }
     }

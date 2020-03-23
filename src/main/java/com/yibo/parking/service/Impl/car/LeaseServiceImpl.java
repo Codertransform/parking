@@ -1,6 +1,7 @@
 package com.yibo.parking.service.Impl.car;
 
 import com.yibo.parking.dao.car.LeaseMapper;
+import com.yibo.parking.dao.car.TypeInfoMapper;
 import com.yibo.parking.dao.car.TypeMapper;
 import com.yibo.parking.entity.car.Lease;
 import com.yibo.parking.entity.car.Type;
@@ -21,6 +22,9 @@ public class LeaseServiceImpl implements LeaseService {
     @Autowired
     private TypeMapper typeMapper;
 
+    @Autowired
+    private TypeInfoMapper infoMapper;
+
     @Override
     public List<Lease> getLeases(String logmin, String logmax, String unit, String carId) {
         return leaseMapper.getLeases(logmin,logmax,unit,carId);
@@ -33,7 +37,6 @@ public class LeaseServiceImpl implements LeaseService {
         }else {
             lease.setId(EntityIdGenerate.generateId());
             lease.setOrderId(OrderIdGenerate.generateOrderId());
-            System.out.println(lease.getCar().getId());
             return leaseMapper.insert(lease);
         }
     }

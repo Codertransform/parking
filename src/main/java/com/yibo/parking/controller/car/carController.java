@@ -1,7 +1,9 @@
 package com.yibo.parking.controller.car;
 
 import com.yibo.parking.entity.car.Car;
+import com.yibo.parking.entity.car.Type;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
+import com.yibo.parking.service.Impl.car.TypeServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +22,18 @@ public class carController {
     @Autowired
     private CarServiceImpl carService;
 
+    @Autowired
+    private TypeServiceImpl typeService;
+
     @RequestMapping(value = {"","/"})
-    public String index(String carType, String logmin, String logmax, String cardId, Model model){
-        List<Car> list = carService.getCars(carType,logmin,logmax,cardId);
+    public String index(String typeId, String logmin, String logmax, String cardId, Model model){
+        List<Car> list = carService.getCars(typeId,logmin,logmax,cardId);
+        List<Type> types = typeService.getTypes();
         model.addAttribute("title","车辆管理");
         model.addAttribute("list",list);
+        model.addAttribute("types",types);
         model.addAttribute("count", list.size());
-        model.addAttribute("carType",carType);
+        model.addAttribute("typeId",typeId);
         model.addAttribute("logmin", logmin);
         model.addAttribute("logmax", logmax);
         model.addAttribute("cardId", cardId);
@@ -34,7 +41,9 @@ public class carController {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.GET)
-    public String add(){
+    public String add(Model model){
+        List<Type> types = typeService.getTypes();
+        model.addAttribute("types",types);
         return "cars/add";
     }
 

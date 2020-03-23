@@ -6,7 +6,8 @@ public class Car {
     private String brandName;       //品牌名
     private String model;           //车型
     private String color;           //颜色
-    private String carType;         //车辆类型
+    private String typeId;         //车辆类型id
+    private String typeName;         //车辆类型名称
     private String status;         //状态
     private String buy_time;     //购买时间
     private String maintenance;     //上次保养时间
@@ -51,12 +52,20 @@ public class Car {
         this.color = color;
     }
 
-    public String getCarType() {
-        return carType;
+    public String getTypeId() {
+        return typeId;
     }
 
-    public void setCarType(String carType) {
-        this.carType = carType;
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public String getStatus() {

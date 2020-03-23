@@ -48,7 +48,7 @@
 				<span class="select-box">
 					<select name="type" class="select">
 						<option value="0">请选择租用方式</option>
-						<option th:each="t:${types}" th:value="${t.value}" th:text="${t.key}"></option>
+						<option th:each="t:${types}" th:value="${t.id}" th:text="${t.name}"></option>
 					</select>
 				</span>
 			</div>
