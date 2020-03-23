@@ -1,8 +1,11 @@
 package com.yibo.parking.entity.car;
 
+import java.util.List;
+
 public class Type {
     private String id;
     private String name;
+    private List<TypeInfo> infos;
     private Integer hour;
     private Integer halfday;
     private Integer allday;
@@ -24,6 +27,14 @@ public class Type {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<TypeInfo> getInfos() {
+        return infos;
+    }
+
+    public void setInfos(List<TypeInfo> infos) {
+        this.infos = infos;
     }
 
     public Integer getHour() {

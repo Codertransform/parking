@@ -10,9 +10,7 @@ import com.yibo.parking.utils.OrderIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class LeaseServiceImpl implements LeaseService {
@@ -35,6 +33,7 @@ public class LeaseServiceImpl implements LeaseService {
         }else {
             lease.setId(EntityIdGenerate.generateId());
             lease.setOrderId(OrderIdGenerate.generateOrderId());
+            System.out.println(lease.getCar().getId());
             return leaseMapper.insert(lease);
         }
     }
@@ -58,17 +57,7 @@ public class LeaseServiceImpl implements LeaseService {
         return typeMapper.getTypes();
     }
 
-    public Map<String,Integer> getLeaseType(){
-        List<Type> types = typeMapper.getTypes();
-        Map<String,Integer> map = new LinkedHashMap<>();
-        for (Type t : types) {
-            map.put("小时",t.getHour());
-            map.put("半天",t.getHalfday());
-            map.put("全天",t.getAllday());
-            map.put("周",t.getWeek());
-            map.put("月",t.getMonth());
-            map.put("半年",t.getHalfyear());
-        }
-        return map;
+    public List<Type> getLeaseType(){
+        return typeMapper.getTypes();
     }
 }

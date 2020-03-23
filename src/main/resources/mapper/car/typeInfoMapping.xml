@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yibo.parking.dao.car.TypeMapper">
+<mapper namespace="com.yibo.parking.dao.car.TypeInfoMapper">
 
-    <select id="getTypes" resultType="Type">
-        select * from type
+    <select id="getInfos" resultType="TypeInfo">
+        select * from type_info
     </select>
 
-    <select id="get" resultType="Type">
-        select * from type where id = #{id}
+    <select id="gets" resultType="TypeInfo">
+        select * from type_info where type_id = #{id}
     </select>
 
     <insert id="insert">
-        insert into type(
+        insert into type_info(
             id,
-            name
+            type_id,
+            `key`,
+            value
         )
         values (
             #{id},
-            #{name}
+            #{typeId},
+            #{key},
+            #{value}
         )
     </insert>
 
     <update id="update">
-        update type set
-            name = #{name}
+        update type_info set
+            type_id = #{typeId},
+            `key` = #{key},
+            value = #{value}
         where id = #{id}
     </update>
 
@@ -41,6 +47,6 @@
     </update>-->
 
     <delete id="del">
-        delete from type where id = #{id}
+        delete from type_info where id = #{id}
     </delete>
 </mapper>

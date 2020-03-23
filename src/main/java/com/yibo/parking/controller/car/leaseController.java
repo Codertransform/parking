@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/cars/lease")
@@ -43,7 +42,7 @@ public class leaseController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model){
         List<Car> cars = carService.getAllCars();
-        Map<String,Integer> types =leaseService.getLeaseType();
+        List<Type> types =leaseService.getLeaseType();
         model.addAttribute("types",types);
         model.addAttribute("cars",cars);
         return "lease/add";

@@ -8,6 +8,7 @@ public class Lease {
     private Car car;
     private Unit unit;
     private Type type;
+    private String amount;
     private String startmiles;
     private String endmiles;
     private String position;
@@ -53,6 +54,14 @@ public class Lease {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public String getStartmiles() {
