@@ -8,7 +8,12 @@
     </select>
 
     <select id="gets" resultType="TypeInfo">
-        select * from type_info where type_id = #{id}
+        select
+            a.id AS id,
+            a.type_id AS typeId,
+            a.key AS `key`,
+            a.value AS `value`
+        from type_info as a where a.type_id = #{id}
     </select>
 
     <insert id="insert">

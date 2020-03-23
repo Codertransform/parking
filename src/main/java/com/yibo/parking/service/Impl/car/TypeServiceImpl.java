@@ -54,20 +54,73 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public Type get(String id) {
-        return typeMapper.get(id);
+        Type type = typeMapper.get(id);
+        List<TypeInfo> infos = infoMapper.gets(type);
+        for (TypeInfo info : infos) {
+            switch (info.getKey()){
+                case "hour":
+                    type.setHour(info.getValue());
+                    break;
+                case "halfday":
+                    type.setHalfday(info.getValue());
+                    break;
+                case "allday":
+                    type.setAllday(info.getValue());
+                    break;
+                case "week":
+                    type.setWeek(info.getValue());
+                    break;
+                case "month":
+                    type.setMonth(info.getValue());
+                    break;
+                default:
+                    type.setHalfyear(info.getValue());
+                    break;
+            }
+        }
+        return type;
     }
 
     @Override
     public int save(Type type) {
         if (type.getId() != null && !type.getId().isEmpty()){
-            return typeMapper.update(type);
+            int i = 0;
+            List<TypeInfo> infos = infoMapper.gets(type);
+            for (TypeInfo in : infos) {
+                System.out.println(in.getTypeId());
+                if (type.getHour() != null && in.getKey().equals("hour")){
+                    in.setValue(type.getHour());
+                }
+                if (type.getHalfday() != null && in.getKey().equals("halfday")){
+                    in.setValue(type.getHalfday());
+                }
+                if (type.getAllday() != null && in.getKey().equals("allday")){
+                    in.setValue(type.getAllday());
+                }
+                if (type.getWeek() != null && in.getKey().equals("week")){
+                    in.setValue(type.getWeek());
+                }
+                if (type.getMonth() != null && in.getKey().equals("month")){
+                    in.setValue(type.getMonth());
+                }
+                if (type.getHalfyear() != null && in.getKey().equals("halfyear")){
+                    in.setValue(type.getHalfyear());
+                }
+                if (infoMapper.update(in) != 0)
+                    i++;
+                else return 0;
+            }
+            int j = typeMapper.update(type);
+            if (i != 0 && j != 0)
+                return 1;
+            else return 0;
         }else {
             int i = 0;
             type.setId(EntityIdGenerate.generateId());
             String[] fields = ObjectUtils.getFiledName(type);
             //获取属性的名字
             for (String name : fields) {     //遍历所有属性
-                if (!name.equals("name") && !name.equals("id")){
+                if (!name.equals("name") && !name.equals("id") && !name.equals("infos")){
                     Object temp = ObjectUtils.getFieldValueByName(name, type);
                     Integer value = Integer.parseInt(temp == null ? "0":temp.toString());
                     TypeInfo info = new TypeInfo();
@@ -75,8 +128,9 @@ public class TypeServiceImpl implements TypeService {
                     info.setTypeId(type.getId());
                     info.setKey(name);
                     info.setValue(value);
-                    infoMapper.insert(info);
+                    if (infoMapper.insert(info) != 0)
                     i++;
+                    else return 0;
                 }
             }
             int j = typeMapper.insert(type);
