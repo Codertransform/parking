@@ -3,46 +3,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yibo.parking.dao.unit.UnitMapper">
 
-    <select id="getTypes" resultType="Type">
+    <select id="getUnits" resultType="Type">
         select * from unit
     </select>
 
-    <select id="get" resultType="Type">
+    <select id="getUnitsBy" resultType="Type">
         select * from unit where id = #{id}
     </select>
 
     <insert id="insert">
-        insert into type(
+        insert into unit(
             id,
-            name,
-            hour,
-            halfday,
-            allday,
-            week,
-            month,
-            halfyear
+            parent_id,
+            name
         )
         values (
             #{id},
-            #{name},
-            #{hour},
-            #{halfday},
-            #{allday},
-            #{week},
-            #{month},
-            #{halfyear}
+            #{parentId},
+            #{name}
         )
     </insert>
 
     <update id="update">
-        update type set
-            name = #{name},
-            hour = #{hour},
-            halfday = #{halfday},
-            allday = #{allday},
-            week = #{week},
-            month = #{month},
-            halfyear = #{halfyear}
+        update unit set
+            parent_id = #{parentId},
+            name = #{name}
         where id = #{id}
     </update>
 
