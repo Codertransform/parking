@@ -12,4 +12,9 @@ public class UnitController {
     public String index(Model model){
         return "unit/index";
     }
+
+    @RequestMapping(value = "/add")
+    public String add(){
+        return "unit/add";
+    }
 }
