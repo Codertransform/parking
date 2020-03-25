@@ -23,12 +23,12 @@
 </head>
 <body>
 <div class="page-container">
-	<form action="" method="post" class="form form-horizontal" id="form-user-add">
+	<form action="/unit/add" method="post" class="form form-horizontal" id="form-user-add">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"> 上级单位：</label>
 			<div class="formControls col-xs-6 col-sm-6">
 				<span class="select-box">
-					<select name="parentUnitId" class="select">
+					<select name="parentId" class="select">
 						<option value="0">请选择上级单位</option>
 <!--						<option th:each="c:${cars}" th:value="${c.id}" th:text="${c.cardId+' '+c.model+' '+c.color}"></option>-->
 					</select>
@@ -38,7 +38,13 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span> 单位名称：</label>
 			<div class="formControls col-xs-6 col-sm-6">
-				<input type="text" class="input-text" value="" placeholder="" id="unitName" name="unitName">
+				<input type="text" class="input-text" value="" placeholder="请输入单位名称" id="name" name="name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"> 序号：</label>
+			<div class="formControls col-xs-6 col-sm-6">
+				<input type="text" class="input-text" value="" placeholder="请输入序号" id="sort" name="sort">
 			</div>
 		</div>
 		<div class="row cl">

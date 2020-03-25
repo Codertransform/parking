@@ -3,6 +3,7 @@ package com.yibo.parking.service.Impl.unit;
 import com.yibo.parking.dao.unit.UnitMapper;
 import com.yibo.parking.entity.unit.Unit;
 import com.yibo.parking.service.UnitService;
+import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +27,15 @@ public class UnitServiceIpml implements UnitService {
 
     @Override
     public int save(Unit unit) {
+        if (unit.getParentId() == null){
+            unit.setParentId("0");
+        }
         if (unit.getId() != null && !unit.getId().isEmpty())
             return unitMapper.update(unit);
-        else
+        else{
+            unit.setId(EntityIdGenerate.generateId());
             return unitMapper.insert(unit);
+        }
     }
 
     @Override
