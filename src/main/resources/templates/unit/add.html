@@ -30,7 +30,7 @@
 				<span class="select-box">
 					<select name="parentId" class="select">
 						<option value="0">请选择上级单位</option>
-<!--						<option th:each="c:${cars}" th:value="${c.id}" th:text="${c.cardId+' '+c.model+' '+c.color}"></option>-->
+						<option th:each="u:${units}" th:value="${u.id}" th:text="${u.name}"></option>
 					</select>
 				</span>
 			</div>
@@ -72,10 +72,16 @@
 <script type="text/javascript" src="../lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
 $(function(){
+	var message = "[[${message}]]";
+
 	$(".textarea").Huitextarealength({
 		minlength:10,
 		maxlength:144
 	});
+
+	if (message !== ""){
+		layer.msg(message,{icon:1,time:1000});
+	}
 });
 </script>
 </body>

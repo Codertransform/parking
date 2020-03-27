@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-03-23 18:43:45
+Date: 2020-03-26 18:37:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -162,6 +162,7 @@ CREATE TABLE `unit` (
   `id` varchar(64) NOT NULL,
   `parent_id` varchar(64) NOT NULL COMMENT '上级单位id',
   `name` varchar(200) NOT NULL COMMENT '单位名称',
+  `sort` int(11) DEFAULT NULL COMMENT '序号',
   `remarks` text COMMENT '备注',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='申请单位表';
@@ -169,3 +170,5 @@ CREATE TABLE `unit` (
 -- ----------------------------
 -- Records of unit
 -- ----------------------------
+INSERT INTO `unit` VALUES ('7b9ee245c3f048ac9601078d4038ce4b', '0', '高新管委会', null, null);
+INSERT INTO `unit` VALUES ('a1eeace1445f4870a346bf5db57e58a9', '7b9ee245c3f048ac9601078d4038ce4b', 'ASD发', null, null);

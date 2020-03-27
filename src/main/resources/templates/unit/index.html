@@ -67,30 +67,12 @@ var setting = {
 	}
 };
 
-var list = [[${units}]];
+var reg = new RegExp("&quot;","g");
 
-var zNodes =[
-	/* <![CDATA[ */
-	for(var i = 0; i<list.length; i++){
-		if(i == 0){
-			{id:list[i]['id'],pId:list[i]['parentId'],name:list[i]['name'],open:true},
-		}else{
-			{id:list[i]['id'],pId:list[i]['parentId'],name:list[i]['name']},
-		}
-	}
-	/* ]]> */
-	/*{ id:1, pId:0, name:"高新管委会", open:true},
-	{ id:11, pId:1, name:"二级分类"},
-	{ id:111, pId:11, name:"三级分类"},
-	{ id:112, pId:11, name:"三级分类"},
-	{ id:113, pId:11, name:"三级分类"},
-	{ id:114, pId:11, name:"三级分类"},
-	{ id:115, pId:11, name:"三级分类"},
-	{ id:12, pId:1, name:"二级分类 1-2"},
-	{ id:121, pId:12, name:"三级分类 1-2-1"},
-	{ id:122, pId:12, name:"三级分类 1-2-2"},*/
-];
-		
+var str = eval('[[${units}]]');
+
+var zNodes = str.replace(reg,"\"");
+
 var code;
 		
 function showCode(str) {
@@ -98,8 +80,9 @@ function showCode(str) {
 	code.empty();
 	code.append("<li>"+str+"</li>");
 }
-		
+
 $(document).ready(function(){
+	console.log(zNodes);
 	var t = $("#treeDemo");
 	t = $.fn.zTree.init(t, setting, zNodes);
 	demoIframe = $("#testIframe");

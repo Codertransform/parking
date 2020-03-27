@@ -3,12 +3,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yibo.parking.dao.unit.UnitMapper">
 
-    <select id="getUnits" resultType="Type">
-        select * from unit
+    <select id="getUnits" resultType="Unit">
+        select
+            id as id,
+            parent_id as parentId,
+            name as name,
+            sort as sort,
+            remarks as remarks
+        from unit order by sort desc
     </select>
 
-    <select id="getUnitsBy" resultType="Type">
-        select * from unit where id = #{id}
+    <select id="getUnitsBy" resultType="Unit">
+        select
+            id as id,
+            parent_id as parentId,
+            name as name,
+            sort as sort,
+            remarks as remarks
+        from unit where id = #{id} order by sort desc
     </select>
 
     <insert id="insert">
