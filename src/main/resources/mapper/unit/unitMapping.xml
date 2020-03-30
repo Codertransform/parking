@@ -13,6 +13,16 @@
         from unit order by sort desc
     </select>
 
+    <select id="get" resultType="Unit">
+        select
+            id as id,
+            parent_id as parentId,
+            name as name,
+            sort as sort,
+            remarks as remarks
+        from unit where id = #{id}
+    </select>
+
     <select id="getUnitsBy" resultType="Unit">
         select
             id as id,

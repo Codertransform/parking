@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,13 +22,23 @@ public class UnitController {
 
     @RequestMapping(value = {"","/"})
     public String index(Model model){
-        List<Unit> unitsList = unitService.getUnits();
-        String units = unitService.List2Josn(unitsList);
-        System.out.println(units);
-        model.addAttribute("units", units);
+        model.addAttribute("title","单位管理");
         return "unit/index";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/getTree")
+    public String getTree(){
+        List<Unit> unitsList = unitService.getUnits();
+        return unitService.List2Josn(unitsList);
+    }
+
+    @RequestMapping(value = "/list")
+    public String list(String id, Model model){
+        model.addAttribute("title","查看详情");
+        model.addAttribute("unit",unitService.get(id));
+        return "unit/list";
+    }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(HttpSession session, Model model){

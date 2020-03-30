@@ -23,10 +23,10 @@
 <title>申请单位</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 产品分类 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 申请单位管理 <span class="c-gray en">&gt;</span> [[${title}]] <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <table class="table">
 	<tr>
-		<td width="200" class="va-t"><ul id="treeDemo" class="ztree"></ul></td>
+		<td width="200" class="va-t"><ul id="tree" class="ztree"></ul></td>
 		<td class="va-t"><iframe id="testIframe" name="testIframe" frameborder="0"  scrolling="auto"  width=100%  height=390px src="/unit/add"></iframe></td>
 	</tr>
 </table>
@@ -39,6 +39,7 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
 <script type="text/javascript">
+/*<![CDATA[*/
 var setting = {
 	view: {
 		dblClickExpand: false,
@@ -58,20 +59,33 @@ var setting = {
 			var zTree = $.fn.zTree.getZTreeObj("tree");
 			if (treeNode.isParent) {
 				zTree.expandNode(treeNode);
-				return false;
+				demoIframe.attr("src", "/unit/add");
+				// return false;
 			} else {
-				demoIframe.attr("src",treeNode.file);
+				demoIframe.attr("src", "/unit/list?id="+treeNode.id);
 				return true;
 			}
 		}
 	}
 };
 
-var reg = new RegExp("&quot;","g");
-
-var str = eval('[[${units}]]');
-
-var zNodes = str.replace(reg,"\"");
+function getTree() {
+	var tree = {};
+	$.ajax({
+		url: "/unit/getTree",
+		type: "post",
+		contentType: "application/json",
+		timeout: 3000, //超时时间：3秒
+		async: false,//false-同步（当这个ajax执行完后才会继续执行其他代码）；异步-与其他代码互不影响，一起运行。
+		dataType: "json",
+		success: function (data) {
+			tree = data;
+		}, error: function (data) {
+			console.log(data);
+		}
+	});
+	return tree;
+}
 
 var code;
 		
@@ -82,14 +96,14 @@ function showCode(str) {
 }
 
 $(document).ready(function(){
-	console.log(zNodes);
-	var t = $("#treeDemo");
-	t = $.fn.zTree.init(t, setting, zNodes);
+	var t = $("#tree");
+	t = $.fn.zTree.init(t, setting, getTree());
 	demoIframe = $("#testIframe");
 	//demoIframe.on("load", loadReady);
 	var zTree = $.fn.zTree.getZTreeObj("tree");
 	//zTree.selectNode(zTree.getNodeByParam("id",'11'));
 });
+/*]]>*/
 </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import com.yibo.parking.entity.unit.Unit;
 import java.util.List;
 
 public interface UnitService {
+    Unit get(String id);
 
     List<Unit> getUnits();
 

@@ -61,4 +61,8 @@ public class UnitServiceIpml implements UnitService {
         }
         return JSONArray.toJSONString(list);
     }
+
+    public Unit get(String id) {
+        return unitMapper.get(id);
+    }
 }

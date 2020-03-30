@@ -18,4 +18,5 @@ public interface UnitMapper {
 
     int delete(String id);
 
+    Unit get(String id);
 }
