@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-03-26 18:37:23
+Date: 2020-03-30 17:53:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -162,6 +162,7 @@ CREATE TABLE `unit` (
   `id` varchar(64) NOT NULL,
   `parent_id` varchar(64) NOT NULL COMMENT '上级单位id',
   `name` varchar(200) NOT NULL COMMENT '单位名称',
+  `tel` varchar(18) NOT NULL COMMENT '负责人手机',
   `sort` int(11) DEFAULT NULL COMMENT '序号',
   `remarks` text COMMENT '备注',
   PRIMARY KEY (`id`)
@@ -170,5 +171,11 @@ CREATE TABLE `unit` (
 -- ----------------------------
 -- Records of unit
 -- ----------------------------
-INSERT INTO `unit` VALUES ('7b9ee245c3f048ac9601078d4038ce4b', '0', '高新管委会', null, null);
-INSERT INTO `unit` VALUES ('a1eeace1445f4870a346bf5db57e58a9', '7b9ee245c3f048ac9601078d4038ce4b', 'ASD发', null, null);
+INSERT INTO `unit` VALUES ('0d31e70bb4a9453796b9510959d0ca30', 'c7be3c4d047745b8840f9b6529cc6b86', '456', '13000000000', null, null);
+INSERT INTO `unit` VALUES ('5f0952e82c0c4454890c90a513b47a90', 'db55c60805754b878baf5f35b5f6202c', '垃圾的酸辣粉', '13000000004', null, null);
+INSERT INTO `unit` VALUES ('7b9ee245c3f048ac9601078d4038ce4b', '0', '高新管委会', '', null, null);
+INSERT INTO `unit` VALUES ('8b9f02231e4742f1925976e787e5ef15', '0d31e70bb4a9453796b9510959d0ca30', '789', '13000000001', null, null);
+INSERT INTO `unit` VALUES ('a1eeace1445f4870a346bf5db57e58a9', '7b9ee245c3f048ac9601078d4038ce4b', 'ASD发', '', null, null);
+INSERT INTO `unit` VALUES ('c7be3c4d047745b8840f9b6529cc6b86', '0', '123', '15769271840', null, null);
+INSERT INTO `unit` VALUES ('db55c60805754b878baf5f35b5f6202c', '7b9ee245c3f048ac9601078d4038ce4b', '145', '13000000003', null, null);
+INSERT INTO `unit` VALUES ('ea344889ce8e4e638da892395aeba595', 'a1eeace1445f4870a346bf5db57e58a9', '124', '13000000002', null, null);

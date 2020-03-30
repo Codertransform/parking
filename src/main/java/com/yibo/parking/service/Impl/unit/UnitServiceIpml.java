@@ -8,10 +8,7 @@ import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UnitServiceIpml implements UnitService {
@@ -26,7 +23,19 @@ public class UnitServiceIpml implements UnitService {
 
     @Override
     public List<Unit> getUnitsBy(Unit unit) {
-        return unitMapper.getUnitsBy(unit);
+        List<Unit> list = new ArrayList<>();
+        List<Unit> units = unitMapper.getUnitsBy(unit);
+        Iterator<Unit> it = units.iterator();
+        while (it.hasNext()){
+            list.add(it.next());
+            Unit u = new Unit();
+            u.setParentId(it.next().getId());
+            int s = getUnitsBy(u).size();
+            if (s == 0){
+                break;
+            }
+        }
+        return list;
     }
 
     @Override

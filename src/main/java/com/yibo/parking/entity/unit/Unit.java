@@ -4,6 +4,7 @@ public class Unit {
     private String id;
     private String parentId;
     private String name;
+    private String tel;
     private Integer sort;
     private String remarks;
 
@@ -29,6 +30,14 @@ public class Unit {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public Integer getSort() {

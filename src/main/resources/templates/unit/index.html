@@ -59,10 +59,10 @@ var setting = {
 			var zTree = $.fn.zTree.getZTreeObj("tree");
 			if (treeNode.isParent) {
 				zTree.expandNode(treeNode);
-				demoIframe.attr("src", "/unit/add");
+				demoIframe.attr("src", "/unit/add?parentId="+treeNode.id);
 				// return false;
 			} else {
-				demoIframe.attr("src", "/unit/list?id="+treeNode.id);
+				demoIframe.attr("src", "/unit/add?parentId="+treeNode.id);
 				return true;
 			}
 		}

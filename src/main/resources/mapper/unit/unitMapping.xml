@@ -20,7 +20,7 @@
             name as name,
             sort as sort,
             remarks as remarks
-        from unit where id = #{id}
+        from unit where id = #{id} order by sort desc
     </select>
 
     <select id="getUnitsBy" resultType="Unit">
@@ -30,26 +30,36 @@
             name as name,
             sort as sort,
             remarks as remarks
-        from unit where id = #{id} order by sort desc
+        from unit where 1 = 1
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="parentId != null and parentId != ''">
+            and parent_id = #{parentId}
+        </if>
+        order by sort desc
     </select>
 
     <insert id="insert">
         insert into unit(
             id,
             parent_id,
-            name
+            name,
+            tel
         )
         values (
             #{id},
             #{parentId},
-            #{name}
+            #{name},
+            #{tel}
         )
     </insert>
 
     <update id="update">
         update unit set
             parent_id = #{parentId},
-            name = #{name}
+            name = #{name},
+            tel = #{tel}
         where id = #{id}
     </update>
 
