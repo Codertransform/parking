@@ -41,11 +41,16 @@ public class UnitController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Unit unit, Model model){
-        List<Unit> units = unitService.getUnitsBy(unit);
-        model.addAttribute("units",units);
-        if (unit.getParentId() != null)
-            unit.setId(unit.getParentId());
-            model.addAttribute("unit",unitService.get(unit.getId()));
+        if (unit.getParentId() != null){
+            unitService.clearUnits();
+            List<Unit> units = unitService.getSonUnits(unit.getParentId());
+            model.addAttribute("units",units);
+        }else {
+            List<Unit> units = unitService.getUnitsBy(unit);
+            model.addAttribute("units",units);
+        }
+        unit.setId(unit.getParentId());
+        model.addAttribute("unit",unitService.get(unit.getId()));
         return "unit/add";
     }
 
