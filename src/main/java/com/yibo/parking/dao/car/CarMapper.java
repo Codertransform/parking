@@ -23,4 +23,6 @@ public interface CarMapper {
     int start(String id);
 
     List<Car> getAll();
+
+    List<Car> getByStatus();
 }

@@ -28,6 +28,22 @@
         </if>
     </select>
 
+    <select id="getByStatus" resultType="Car">
+        select
+            a.id as id,
+            a.cardId as cardId,
+            a.model as model,
+            a.color as color,
+            a.carType as typeId,
+            t.name as typeName,
+            a.status as status,
+            a.buy_time as buy_time,
+            a.maintenance as maintenance
+        from cars a
+        left join type t on t.id = a.carType
+        where a.status = 0
+    </select>
+
     <select id="getAll" resultType="Car">
         select * from cars
     </select>

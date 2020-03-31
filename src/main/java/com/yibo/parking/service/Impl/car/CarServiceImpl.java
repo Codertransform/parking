@@ -1,13 +1,13 @@
 package com.yibo.parking.service.Impl.car;
 
+import com.alibaba.fastjson.JSONArray;
 import com.yibo.parking.dao.car.CarMapper;
 import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -58,5 +58,24 @@ public class CarServiceImpl implements CarService {
 
     public int start(String id) {
         return carMapper.start(id);
+    }
+
+    @Override
+    public String getByStatus() {
+        List<Car> cars = carMapper.getByStatus();
+        List<Map<String,Object>> mapList = new ArrayList<>();
+        for (Car c : cars) {
+            Map<String,Object> map = new HashMap<>();
+            map.put("id",c.getId());
+            map.put("cardId",c.getCardId());
+            map.put("model", c.getModel());
+            map.put("color", c.getColor());
+            map.put("carType", c.getTypeName());
+            map.put("status", c.getStatus());
+            map.put("buy_time", c.getBuy_time());
+            map.put("maintenance", c.getMaintenance());
+            mapList.add(map);
+        }
+        return JSONArray.toJSONString(mapList);
     }
 }

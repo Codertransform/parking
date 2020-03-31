@@ -18,4 +18,6 @@ public interface CarService {
     int stop(String id);
 
     int start(String id);
+
+    String getByStatus();
 }

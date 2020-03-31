@@ -1,7 +1,9 @@
 package com.yibo.parking.controller.wx;
 
+import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.utils.HttpURLConnectionDemo;
 import com.yibo.parking.utils.JsonUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/wx")
 public class WxController {
+
+    @Autowired
+    private CarServiceImpl carService;
 
     @ResponseBody
     @RequestMapping(value = "/login")
@@ -20,5 +25,11 @@ public class WxController {
         String userInfo = HttpURLConnectionDemo.doGet(url);
         System.out.println(userInfo);
         return JsonUtils.success(code,"code码申请成功");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getCarsInfo")
+    public String getCarsInfo(){
+        return JsonUtils.success(carService.getByStatus(),"获取到所有车辆");
     }
 }
