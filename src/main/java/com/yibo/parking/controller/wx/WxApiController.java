@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(value = "/wx")
-public class WxController {
+@RequestMapping(value = "/api")
+public class WxApiController {
 
     @Autowired
     private CarServiceImpl carService;
@@ -31,5 +31,11 @@ public class WxController {
     @RequestMapping(value = "/getCarsInfo")
     public String getCarsInfo(){
         return JsonUtils.success(carService.getByStatus(),"获取到所有车辆");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getBanners")
+    public String getBanners(){
+        return JsonUtils.success("123","成功获取所有banner");
     }
 }

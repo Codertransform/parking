@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-03-30 17:53:03
+Date: 2020-04-01 17:37:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -179,3 +179,20 @@ INSERT INTO `unit` VALUES ('a1eeace1445f4870a346bf5db57e58a9', '7b9ee245c3f048ac
 INSERT INTO `unit` VALUES ('c7be3c4d047745b8840f9b6529cc6b86', '0', '123', '15769271840', null, null);
 INSERT INTO `unit` VALUES ('db55c60805754b878baf5f35b5f6202c', '7b9ee245c3f048ac9601078d4038ce4b', '145', '13000000003', null, null);
 INSERT INTO `unit` VALUES ('ea344889ce8e4e638da892395aeba595', 'a1eeace1445f4870a346bf5db57e58a9', '124', '13000000002', null, null);
+
+-- ----------------------------
+-- Table structure for wx_banner
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_banner`;
+CREATE TABLE `wx_banner` (
+  `id` varchar(64) NOT NULL,
+  `name` varchar(100) NOT NULL COMMENT '图片名称',
+  `picAddress` varchar(250) NOT NULL COMMENT '图片地址',
+  `remarks` text COMMENT '备注',
+  `status` char(2) NOT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信小程序banner表';
+
+-- ----------------------------
+-- Records of wx_banner
+-- ----------------------------

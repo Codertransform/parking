@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.wx.WxBannerMapper">
+
+    <select id="getBanners" resultType="Banner">
+        select
+            id as id,
+            name as name,
+            picAddress as picAddress,
+            status as status,
+            remarks as remarks
+        from wx_banner
+        where 1=1
+        <if test="name != null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+    </select>
+
+    <select id="get" resultType="Banner">
+        select
+            id as id,
+            name as name,
+            picAddress as picAddress,
+            status as status,
+            remarks as remarks
+        from wx_banner where id = #{id}
+    </select>
+
+    <insert id="insert">
+        insert into wx_banner(
+            id,
+            name,
+            picAddress,
+            status,
+            remarks
+        )
+        values (
+            #{id},
+            #{name},
+            #{picAddress},
+            #{status},
+            #{remarks}
+        )
+    </insert>
+
+    <update id="update">
+        update wx_banner set
+            name = #{name},
+            picAddress = #{picAddress},
+            status = #{status},
+            remarks = #{remarks},
+        where id = #{id}
+    </update>
+
+    <!--<update id="stop">
+        update lease set
+            status = '-1'
+        where id = #{id}
+    </update>
+
+    <update id="start">
+        update lease set
+            status = '0'
+        where id = #{id}
+    </update>-->
+
+    <delete id="del">
+        delete from wx_banner where id = #{id}
+    </delete>
+</mapper>
