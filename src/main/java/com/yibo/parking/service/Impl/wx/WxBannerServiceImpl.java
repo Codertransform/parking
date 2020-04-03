@@ -7,7 +7,10 @@ import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class WxBannerServiceImpl implements WxBannerService {
@@ -40,5 +43,20 @@ public class WxBannerServiceImpl implements WxBannerService {
     @Override
     public int delete(Banner banner) {
         return 0;
+    }
+
+    public List<Map<String,Object>> getBannersApi() {
+        List<Banner> banners = bannerMapper.getBanners(new Banner());
+        List<Map<String,Object>> mapList = new ArrayList<>();
+        for (Banner b : banners) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id",b.getId());
+            map.put("name",b.getName());
+            map.put("picAddress",b.getPicAddress());
+            map.put("status",b.getStatus());
+            map.put("remarks",b.getRemarks());
+            mapList.add(map);
+        }
+        return mapList;
     }
 }

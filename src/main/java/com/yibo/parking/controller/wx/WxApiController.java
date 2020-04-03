@@ -1,6 +1,7 @@
 package com.yibo.parking.controller.wx;
 
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
+import com.yibo.parking.service.Impl.wx.WxBannerServiceImpl;
 import com.yibo.parking.utils.HttpURLConnectionDemo;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class WxApiController {
 
     @Autowired
     private CarServiceImpl carService;
+
+    @Autowired
+    private WxBannerServiceImpl bannerService;
 
     @ResponseBody
     @RequestMapping(value = "/login")
@@ -36,6 +40,6 @@ public class WxApiController {
     @ResponseBody
     @RequestMapping(value = "/getBanners")
     public String getBanners(){
-        return JsonUtils.success("123","成功获取所有banner");
+        return JsonUtils.success(bannerService.getBannersApi(),"成功获取所有banner");
     }
 }
