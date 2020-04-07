@@ -5,15 +5,19 @@ import com.yibo.parking.entity.wx.Banner;
 import com.yibo.parking.service.WxBannerService;
 import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class WxBannerServiceImpl implements WxBannerService {
+
+    @Value("${spring.servlet.multipart.location}")
+    private String uploadPath;
 
     @Autowired
     private WxBannerMapper bannerMapper;
@@ -30,6 +34,7 @@ public class WxBannerServiceImpl implements WxBannerService {
 
     @Override
     public int save(Banner banner) {
+
         int s = 0;
         if (banner.getId() != null && !banner.getId().equals("")){
             s = bannerMapper.update(banner);
@@ -58,5 +63,27 @@ public class WxBannerServiceImpl implements WxBannerService {
             mapList.add(map);
         }
         return mapList;
+    }
+
+    public String upload(MultipartFile picture) {
+        //设置图片为唯一的uuid
+        String pictureName = EntityIdGenerate.generateImgName() + ".jpg";
+        try {
+            //获取上传路径
+            String fileSavePath = uploadPath + "banner/";
+            /**
+             * transferTo在开发Web应用程序时比较常见的功能之一，
+             * 就是允许用户利用multipart请求将本地文件上传到服务器,
+             * Spring通过对ServletAPI的HttpServletRequest接口进行扩展，使其能够很好地处理文件上传
+             */
+            File file = new File(fileSavePath);
+            if (!file.exists()){
+                file.mkdir();
+            }
+            picture.transferTo(new File(fileSavePath + pictureName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pictureName;
     }
 }

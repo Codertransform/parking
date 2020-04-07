@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -42,5 +44,11 @@ public class WxBannerController {
         }else {
             return JsonUtils.error(banner);
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/upload",method = RequestMethod.POST)
+    public String upload(@RequestPart("file") MultipartFile picture){
+        return bannerService.upload(picture);
     }
 }

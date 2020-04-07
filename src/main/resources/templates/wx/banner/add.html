@@ -32,16 +32,9 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">备注：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="remarks" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
-			</div>
-		</div>
-		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片上传：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<div class="uploader-list-container"> 
+				<div class="uploader-list-container">
 					<div class="queueList">
 						<div id="dndArea" class="placeholder">
 							<div id="filePicker-2"></div>
@@ -57,6 +50,13 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">备注：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="remarks" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
@@ -83,6 +83,11 @@
 <script type="text/javascript" src="/lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript">
 function article_save(){
+	$('#form-article-add').validate({
+		rules:{
+
+		},
+	});
 	layer.msg("刷新父级的时候会自动关闭弹层。", {icon:7,time:1000}, function () {
 		window.parent.location.reload(); //刷新父页面
 	});
@@ -105,7 +110,7 @@ $(function(){
 		swf: '/lib/webuploader/0.1.5/Uploader.swf',
 	
 		// 文件接收服务端。
-		server: '/lib/webuploader/0.1.5/server/fileupload.php',
+		server: '/wx/banner/upload',
 	
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -245,7 +250,7 @@ $(function(){
                     if( this.width != 1 || this.height != 1 ) {
                         support = false;
                     }
-                }
+                };
                 data.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
                 return support;
             } )(),
@@ -291,11 +296,11 @@ $(function(){
                     window['expressinstallcallback'] = function( state ) {
                         switch(state) {
                             case 'Download.Cancelled':
-                                alert('您取消了更新！')
+                                alert('您取消了更新！');
                                 break;
 
                             case 'Download.Failed':
-                                alert('安装失败')
+                                alert('安装失败');
                                 break;
 
                             default:
@@ -349,7 +354,7 @@ $(function(){
             swf: 'lib/webuploader/0.1.5/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: 'lib/webuploader/0.1.5/server/fileupload.php',
+            server: '/wx/banner/upload',
             // runtimeOrder: 'flash',
 
             // accept: {
@@ -623,7 +628,6 @@ $(function(){
                     $statusBar.addClass( 'element-invisible' );
                     uploader.refresh();
                     break;
-
                 case 'ready':
                     $placeHolder.addClass( 'element-invisible' );
                     $( '#filePicker2' ).removeClass( 'element-invisible');
@@ -631,23 +635,19 @@ $(function(){
                     $statusBar.removeClass('element-invisible');
                     uploader.refresh();
                     break;
-
                 case 'uploading':
                     $( '#filePicker2' ).addClass( 'element-invisible' );
                     $progress.show();
                     $upload.text( '暂停上传' );
                     break;
-
                 case 'paused':
                     $progress.show();
                     $upload.text( '继续上传' );
                     break;
-
                 case 'confirm':
                     $progress.hide();
                     $( '#filePicker2' ).removeClass( 'element-invisible' );
                     $upload.text( '开始上传' );
-
                     stats = uploader.getStats();
                     if ( stats.successNum && !stats.uploadFailNum ) {
                         setState( 'finish' );
