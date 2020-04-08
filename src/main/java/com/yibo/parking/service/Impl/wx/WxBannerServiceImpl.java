@@ -68,9 +68,10 @@ public class WxBannerServiceImpl implements WxBannerService {
     public String upload(MultipartFile picture) {
         //设置图片为唯一的uuid
         String pictureName = EntityIdGenerate.generateImgName() + ".jpg";
+        String fileSavePath = "";
         try {
             //获取上传路径
-            String fileSavePath = uploadPath + "banner/";
+            fileSavePath = uploadPath + "banner/";
             /**
              * transferTo在开发Web应用程序时比较常见的功能之一，
              * 就是允许用户利用multipart请求将本地文件上传到服务器,
@@ -84,6 +85,6 @@ public class WxBannerServiceImpl implements WxBannerService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return pictureName;
+        return fileSavePath + pictureName;
     }
 }

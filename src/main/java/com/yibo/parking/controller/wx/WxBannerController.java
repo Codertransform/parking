@@ -37,7 +37,9 @@ public class WxBannerController {
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String toAdd(Banner banner){
+    public String toAdd(@RequestPart("file") MultipartFile picture, Banner banner){
+        System.out.println(picture.getOriginalFilename());
+        System.out.println(picture.getName());
         int a = bannerService.save(banner);
         if (a != 0){
             return JsonUtils.success(banner,"添加广告成功");
