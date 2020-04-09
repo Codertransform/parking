@@ -83,14 +83,10 @@
 <script type="text/javascript" src="/lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript">
 function article_save(){
-	console.log("123");
 	$('#form-article-add').validate({
 		rules:{
 			name:{
 				require:true
-			},
-			file:{
-				require: true
 			}
 		},
 		onkeyup:false,
