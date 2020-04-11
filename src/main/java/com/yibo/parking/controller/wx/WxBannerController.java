@@ -49,6 +49,7 @@ public class WxBannerController {
     @ResponseBody
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public String upload(@RequestPart("file") MultipartFile picture){
+        System.out.println(picture.getOriginalFilename());
         return bannerService.upload(picture);
     }
 }
