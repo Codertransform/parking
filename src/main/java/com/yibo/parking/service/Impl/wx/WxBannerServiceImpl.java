@@ -4,6 +4,8 @@ import com.yibo.parking.dao.wx.WxBannerMapper;
 import com.yibo.parking.entity.wx.Banner;
 import com.yibo.parking.service.WxBannerService;
 import com.yibo.parking.utils.EntityIdGenerate;
+import com.yibo.parking.utils.mimeUtils;
+import net.sf.jmimemagic.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -66,8 +68,7 @@ public class WxBannerServiceImpl implements WxBannerService {
     }
 
     public String upload(MultipartFile picture) {
-        //设置图片为唯一的uuid
-        String pictureName = EntityIdGenerate.generateImgName() + ".jpg";
+        String pictureName = "";
         String fileSavePath = "";
         try {
             //获取上传路径
@@ -81,8 +82,16 @@ public class WxBannerServiceImpl implements WxBannerService {
             if (!file.exists()){
                 file.mkdir();
             }
+            String mime = "";
+            if (picture.getOriginalFilename() != null){
+                File f = new File(picture.getOriginalFilename());
+                MagicMatch match = Magic.getMagicMatch(f, false);
+                mime = match.getMimeType();
+            }
+            //设置图片为唯一的id
+            pictureName = EntityIdGenerate.generateImgName() + "." + mime;
             picture.transferTo(new File(fileSavePath + pictureName));
-        } catch (IOException e) {
+        } catch (IOException | MagicException | MagicParseException | MagicMatchNotFoundException e) {
             e.printStackTrace();
         }
         return fileSavePath + pictureName;

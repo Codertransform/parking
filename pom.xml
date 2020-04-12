@@ -76,6 +76,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.67</version>
         </dependency>
+        <dependency>
+            <groupId>jmimemagic</groupId>
+            <artifactId>jmimemagic</artifactId>
+            <version>0.1.2</version>
+        </dependency>
     </dependencies>
 
     <build>
