@@ -4,15 +4,17 @@ import com.yibo.parking.dao.wx.WxBannerMapper;
 import com.yibo.parking.entity.wx.Banner;
 import com.yibo.parking.service.WxBannerService;
 import com.yibo.parking.utils.EntityIdGenerate;
-import com.yibo.parking.utils.mimeUtils;
+import com.yibo.parking.utils.FileType;
 import net.sf.jmimemagic.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 @Service
@@ -20,6 +22,9 @@ public class WxBannerServiceImpl implements WxBannerService {
 
     @Value("${spring.servlet.multipart.location}")
     private String uploadPath;
+
+    @Value("${file.upload.path.relative}")
+    private String relativepath;
 
     @Autowired
     private WxBannerMapper bannerMapper;
@@ -36,12 +41,12 @@ public class WxBannerServiceImpl implements WxBannerService {
 
     @Override
     public int save(Banner banner) {
-
         int s = 0;
         if (banner.getId() != null && !banner.getId().equals("")){
             s = bannerMapper.update(banner);
         }else {
             banner.setId(EntityIdGenerate.generateId());
+            banner.setStatus("0");
             s= bannerMapper.insert(banner);
         }
         return s;
@@ -67,10 +72,17 @@ public class WxBannerServiceImpl implements WxBannerService {
         return mapList;
     }
 
-    public String upload(MultipartFile picture) {
+    public Map<String,String> upload(MultipartFile picture, HttpServletRequest request) {
+        Map<String,String> map = new HashMap<>();
         String pictureName = "";
         String fileSavePath = "";
+        //获取InputStream
+        InputStream in = null;
+        //根据文件头获取文件类型
+        String type = "";
         try {
+            in = picture.getInputStream();
+            type = FileType.getFileType(in);
             //获取上传路径
             fileSavePath = uploadPath + "banner/";
             /**
@@ -79,21 +91,17 @@ public class WxBannerServiceImpl implements WxBannerService {
              * Spring通过对ServletAPI的HttpServletRequest接口进行扩展，使其能够很好地处理文件上传
              */
             File file = new File(fileSavePath);
-            if (!file.exists()){
-                file.mkdir();
-            }
-            String mime = "";
-            if (picture.getOriginalFilename() != null){
-                File f = new File(picture.getOriginalFilename());
-                MagicMatch match = Magic.getMagicMatch(f, false);
-                mime = match.getMimeType();
+            if (!file.isDirectory()){
+                file.mkdirs();
             }
             //设置图片为唯一的id
-            pictureName = EntityIdGenerate.generateImgName() + "." + mime;
+            pictureName = EntityIdGenerate.generateImgName() + "." + type;
             picture.transferTo(new File(fileSavePath + pictureName));
-        } catch (IOException | MagicException | MagicParseException | MagicMatchNotFoundException e) {
-            e.printStackTrace();
+            map.put("src","/uploadFiles/banner/" + pictureName);
+        } catch (IOException e) {
+            map.put("errmsg",e.getMessage());
+            return map;
         }
-        return fileSavePath + pictureName;
+        return map;
     }
 }

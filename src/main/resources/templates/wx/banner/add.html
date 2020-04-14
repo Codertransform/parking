@@ -25,18 +25,18 @@
 </head>
 <body>
 <div class="page-container">
-	<form class="form form-horizontal" id="form-article-add" action="/wx/banner/add" method="post" enctype="multipart/form-data">
+	<form class="form form-horizontal" id="form-article-add" action="/wx/banner/add" method="post">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="name" name="name">
+				<input type="text" class="input-text" value="" placeholder="" id="name" name="name"/>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片上传：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="hidden" name="pic" value=""/>
-				<button type="button" class="btn btn-primary radius" id="pic">
+				<input type="hidden" id="picAddress" name="picAddress" value=""/>
+				<button type="button" class="btn btn-primary radius" id="select">
 					<i class="layui-icon">&#xe67c;</i>上传图片
 				</button>
 				<!--<div class="uploader-list-container">
@@ -61,12 +61,11 @@
 			<label class="form-label col-xs-4 col-sm-2">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<textarea name="remarks" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"></textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button th:onclick="article_save()" class="btn btn-secondary radius" type="submit">
+				<button id="submit" class="btn btn-secondary radius" type="submit">
 					<i class="Hui-iconfont">&#xe632;</i> 保存
 				</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
@@ -94,6 +93,12 @@ function article_save(){
 		rules:{
 			name:{
 				require:true
+			},
+			picAddress:{
+				require: true
+			},
+			file:{
+				require: true
 			}
 		},
 		onkeyup:false,
@@ -105,7 +110,7 @@ function article_save(){
 				type: 'POST',
 				dataType: "json",
 				success:function (data) {
-					if (data.code == '0'){
+					if (data.code === '0'){
 						layer.msg(data.message, {icon:1,time:1000}, function () {
 							var index = parent.layer.getFrameIndex(window.name);
 							parent.location.reload(); //刷新父页面
@@ -135,19 +140,33 @@ layui.use('upload', function(){
 
 	//执行实例
 	var uploadInst = upload.render({
-		elem: '#pic', //绑定元素
+		elem: '#select', //绑定元素
 
 		url: '/wx/banner/upload', //上传接口
 		done: function(res){
 			//上传完毕回调
-			console.log(res);
+			$('#picAddress').val(res.data.src);
+			var img = "<img src='"+res.data.src+"' alt='test' width='100' height='100'>";
+			$("#picAddress").after(img);
 		},
-		error: function(){
+		error: function(res){
 			//请求异常回调
-			layer.msg("上传失败", {icon:7,time:1000});
+			layer.msg(res.errmsg, {icon:7,time:1000});
 		}
 	});
 });
+
+$(function () {
+	$(".textarea").Huitextarealength({
+		minlength:10,
+		maxlength:100,//字数限制
+		exceed:true//超多字数不让输入
+	});
+
+	$("#submit").click(function () {
+		article_save();
+	});
+})
 
 /*$(function(){
 	/!*$('.skin-minimal input').iCheck({
