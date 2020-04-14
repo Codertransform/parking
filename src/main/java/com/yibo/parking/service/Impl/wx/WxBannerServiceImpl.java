@@ -41,6 +41,7 @@ public class WxBannerServiceImpl implements WxBannerService {
 
     @Override
     public int save(Banner banner) {
+        System.out.println(banner.getId());
         int s = 0;
         if (banner.getId() != null && !banner.getId().equals("")){
             s = bannerMapper.update(banner);
