@@ -1,21 +1,23 @@
 package com.yibo.parking.service.Impl.wx;
 
+import com.alibaba.fastjson.JSONArray;
 import com.yibo.parking.dao.wx.WxBannerMapper;
 import com.yibo.parking.entity.wx.Banner;
 import com.yibo.parking.service.WxBannerService;
 import com.yibo.parking.utils.EntityIdGenerate;
 import com.yibo.parking.utils.FileType;
-import net.sf.jmimemagic.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class WxBannerServiceImpl implements WxBannerService {
@@ -36,7 +38,7 @@ public class WxBannerServiceImpl implements WxBannerService {
 
     @Override
     public Banner get(Banner banner) {
-        return null;
+        return bannerMapper.get(banner);
     }
 
     @Override
@@ -58,22 +60,24 @@ public class WxBannerServiceImpl implements WxBannerService {
         return 0;
     }
 
-    public List<Map<String,Object>> getBannersApi() {
-        List<Banner> banners = bannerMapper.getBanners(new Banner());
+    public String getBannersApi() {
+        Banner banner = new Banner();
+        banner.setStatus("0");
+        List<Banner> banners = bannerMapper.getBanners(banner);;
         List<Map<String,Object>> mapList = new ArrayList<>();
         for (Banner b : banners) {
             Map<String, Object> map = new HashMap<>();
             map.put("id",b.getId());
             map.put("name",b.getName());
-            map.put("picAddress",b.getPicAddress());
+            map.put("picAddress","https://wzytest.com"+b.getPicAddress());
             map.put("status",b.getStatus());
             map.put("remarks",b.getRemarks());
             mapList.add(map);
         }
-        return mapList;
+        return JSONArray.toJSONString(mapList);
     }
 
-    public Map<String,String> upload(MultipartFile picture, HttpServletRequest request) {
+    public Map<String,String> upload(MultipartFile picture) {
         Map<String,String> map = new HashMap<>();
         String pictureName = "";
         String fileSavePath = "";

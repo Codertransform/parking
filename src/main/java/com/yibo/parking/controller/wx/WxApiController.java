@@ -40,6 +40,6 @@ public class WxApiController {
     @ResponseBody
     @RequestMapping(value = "/getBanners")
     public String getBanners(){
-        return JsonUtils.success(bannerService.getBannersApi(),"成功获取所有banner");
+        return JsonUtils.success(bannerService.getBannersApi(),"成功获取所有可用banner");
     }
 }

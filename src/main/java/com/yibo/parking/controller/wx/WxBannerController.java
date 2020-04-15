@@ -1,6 +1,5 @@
 package com.yibo.parking.controller.wx;
 
-import com.yibo.parking.entity.util.Json;
 import com.yibo.parking.entity.wx.Banner;
 import com.yibo.parking.service.Impl.wx.WxBannerServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +39,7 @@ public class WxBannerController {
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String toAdd(Banner banner){
+        System.out.println(banner.getName());
         int a = bannerService.save(banner);
         if (a != 0){
             return JsonUtils.success(banner,"添加广告成功");
@@ -52,12 +50,18 @@ public class WxBannerController {
 
     @ResponseBody
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
-    public String upload(@RequestPart("file") MultipartFile picture, HttpServletRequest request) {
-        Map<String,String> path = bannerService.upload(picture, request);
+    public String upload(@RequestPart("file") MultipartFile picture) {
+        Map<String,String> path = bannerService.upload(picture);
         if (path.containsKey("src")){
             return JsonUtils.success(path,"上传成功");
         }else {
             return JsonUtils.error(path);
         }
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String edit(Banner banner, Model model){
+        model.addAttribute("banner",bannerService.get(banner));
+        return "wx/banner/edit";
     }
 }
