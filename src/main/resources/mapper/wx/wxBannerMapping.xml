@@ -56,6 +56,12 @@
         where id = #{id}
     </update>
 
+    <update id="status">
+        update wx_banner set
+            status = #{status}
+        where id = #{id}
+    </update>
+
     <!--<update id="stop">
         update lease set
             status = '-1'
@@ -68,7 +74,7 @@
         where id = #{id}
     </update>-->
 
-    <delete id="del">
+    <delete id="delete">
         delete from wx_banner where id = #{id}
     </delete>
 </mapper>

@@ -43,7 +43,6 @@ public class WxBannerServiceImpl implements WxBannerService {
 
     @Override
     public int save(Banner banner) {
-        System.out.println(banner.getId());
         int s = 0;
         if (banner.getId() != null && !banner.getId().equals("")){
             s = bannerMapper.update(banner);
@@ -57,7 +56,22 @@ public class WxBannerServiceImpl implements WxBannerService {
 
     @Override
     public int delete(Banner banner) {
-        return 0;
+        return bannerMapper.delete(banner);
+    }
+
+    public int dels(String[] ids){
+        int d = 0;
+        for (String id : ids) {
+            Banner b = new Banner();
+            b.setId(id);
+            bannerMapper.delete(b);
+            d++;
+        }
+        return d;
+    }
+
+    public int changStatus(Banner banner){
+        return bannerMapper.status(banner);
     }
 
     public String getBannersApi() {

@@ -6,10 +6,7 @@ import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -39,7 +36,6 @@ public class WxBannerController {
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String toAdd(Banner banner){
-        System.out.println(banner.getName());
         int a = bannerService.save(banner);
         if (a != 0){
             return JsonUtils.success(banner,"添加广告成功");
@@ -63,5 +59,56 @@ public class WxBannerController {
     public String edit(Banner banner, Model model){
         model.addAttribute("banner",bannerService.get(banner));
         return "wx/banner/edit";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String toEdit(Banner banner){
+        int u = bannerService.save(banner);
+        if (u != 0){
+            return JsonUtils.success(banner,"更新banner成功");
+        }else {
+            return JsonUtils.error(banner);
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/del")
+    public String del(Banner banner){
+        int d = bannerService.delete(banner);
+        if (d != 0){
+            return JsonUtils.success(banner,"删除本条banner成功");
+        }
+        return JsonUtils.error(banner);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/dels")
+    public String dels(@RequestParam("ids[]") String[] ids){
+        int d = bannerService.dels(ids);
+        if (d != 0){
+            return JsonUtils.success(ids,"删除成功");
+        }
+        return JsonUtils.error(ids);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/up")
+    public String upStatus(Banner banner){
+        int s = bannerService.changStatus(banner);
+        if (s != 0){
+            return JsonUtils.success(banner,"已上架");
+        }
+        return JsonUtils.error(banner);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/down")
+    public String downStatus(Banner banner){
+        int s = bannerService.changStatus(banner);
+        if (s != 0){
+            return JsonUtils.success(banner,"已下架");
+        }
+        return JsonUtils.error(banner);
     }
 }
