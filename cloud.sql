@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-04-01 17:37:28
+Date: 2020-04-15 18:24:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -188,11 +188,13 @@ CREATE TABLE `wx_banner` (
   `id` varchar(64) NOT NULL,
   `name` varchar(100) NOT NULL COMMENT '图片名称',
   `picAddress` varchar(250) NOT NULL COMMENT '图片地址',
-  `remarks` text COMMENT '备注',
   `status` char(2) NOT NULL COMMENT '状态',
+  `update_at` date DEFAULT NULL COMMENT '更新时间',
+  `remarks` text COMMENT '备注',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信小程序banner表';
 
 -- ----------------------------
 -- Records of wx_banner
 -- ----------------------------
+INSERT INTO `wx_banner` VALUES ('42601ff719dc4a54a3def79a4e2dc7b9', 'wxBanner', '/uploadFiles/banner/IMG2020041574056.png', '0', null, '');
