@@ -25,6 +25,7 @@ public class WxBannerController {
         model.addAttribute("title","微信banner管理");
         model.addAttribute("count",banners.size());
         model.addAttribute("banners",banners);
+        model.addAttribute("banner",banner);
         return "wx/banner/index";
     }
 

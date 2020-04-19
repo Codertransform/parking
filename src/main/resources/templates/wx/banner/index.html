@@ -26,7 +26,7 @@
 <div class="page-container">
 	<div class="text-c">
 		<form id="search-form" action="/wx/banner/" method="post">
-			<input type="text" name="name" id="name" placeholder=" 广告名称" style="width:250px" class="input-text">
+			<input type="text" name="name" id="name" th:value="${banner.name}" placeholder=" 广告名称" style="width:250px" class="input-text">
 			<button class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜图片</button>
 		</form>
 	</div>
@@ -140,7 +140,6 @@ function picture_stop(obj,id){
 			type: 'post',
 			dataType: 'json',
 			success: function (e) {
-				console.log(e);
 				if (e.code === "0"){
 					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_start(this,\''+id+'\')" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
 					$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
