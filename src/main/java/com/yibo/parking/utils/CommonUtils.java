@@ -37,6 +37,8 @@ public class CommonUtils {
         // store the text in the session
         request.getSession().setAttribute(validateSessionKey, capText);
 
+        request.getSession().setMaxInactiveInterval(30);
+
         // create the image with the text
         BufferedImage bi = captchaProducer.createImage(capText);
 

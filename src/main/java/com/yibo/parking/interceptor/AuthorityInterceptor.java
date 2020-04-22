@@ -27,6 +27,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         String uri = request.getRequestURI();
+        System.out.println(uri);
         if (NOT_INTERCEPT_URI.contains(uri)) {
             log.info("不拦截" + uri);
             return true;

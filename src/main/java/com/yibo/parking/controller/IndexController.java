@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +51,8 @@ public class IndexController {
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String toLogin(String username, String password, String validateCode, HttpServletRequest request, HttpSession session, Model model){
+    public String toLogin(String username, String password, String validateCode, HttpServletRequest request
+            , HttpSession session, RedirectAttributes redirectAttributes){
         String loginValidateCode = request.getSession().getAttribute(LOGIN_VALIDATE_CODE).toString();
         Map<String,Object> map = new HashMap<String,Object>();
         if(loginValidateCode == null){
@@ -67,7 +68,7 @@ public class IndexController {
             session.setAttribute("user",user);
             return "redirect:/";
         }
-        model.addAttribute("message","用户名密码错误");
+        redirectAttributes.addFlashAttribute("message","用户名密码错误");
         return "redirect:/login";
     }
 
@@ -78,24 +79,5 @@ public class IndexController {
     @RequestMapping(value = {"/ValidateCode"})
     public void loginValidateCode(HttpServletRequest request, HttpServletResponse response) throws Exception{
         CommonUtils.validateCode(request,response,captchaProducer,LOGIN_VALIDATE_CODE);
-    }
-
-    /**
-     * 检查验证码是否正确
-     */
-    @RequestMapping("/checkLoginValidateCode")
-    @ResponseBody
-    public Map<String,Object> checkLoginValidateCode(HttpServletRequest request, @RequestParam("validateCode")String validateCode) {
-        String loginValidateCode = request.getSession().getAttribute(LOGIN_VALIDATE_CODE).toString();
-        Map<String,Object> map = new HashMap<String,Object>();
-        if(loginValidateCode == null){
-            map.put("status",null);//验证码过期
-        }else if(loginValidateCode.equals(validateCode)){
-            map.put("status",true);//验证码正确
-        }else {
-            map.put("status",false);//验证码不正确
-        }
-        map.put("code",200);
-        return map;
     }
 }
