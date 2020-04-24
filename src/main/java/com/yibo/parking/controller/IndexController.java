@@ -7,8 +7,8 @@ import com.yibo.parking.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -16,8 +16,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class IndexController {
@@ -43,29 +41,43 @@ public class IndexController {
         return "welcome";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model){
+    @RequestMapping(value = "/login")
+    public String login(@ModelAttribute("message") String message, Model model){
         model.addAttribute("user","user");
+        if (message != null){
+            System.out.println("234");
+            System.out.println(message);
+            model.addAttribute("message", message);
+        }
         return "login";
     }
 
     @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/loginDo")
     public String toLogin(String username, String password, String validateCode, HttpServletRequest request
-            , HttpSession session, RedirectAttributes redirectAttributes){
+            , HttpSession session, RedirectAttributes redirectAttributes) {
         String loginValidateCode = request.getSession().getAttribute(LOGIN_VALIDATE_CODE).toString();
-        Map<String,Object> map = new HashMap<String,Object>();
-        if(loginValidateCode == null){
-            map.put("status",null);//验证码过期
-        }else if(loginValidateCode.equals(validateCode)){
-            map.put("status",true);//验证码正确
-        }else {
-            map.put("status",false);//验证码不正确
+        if (username == null || username.equals("")){
+            redirectAttributes.addFlashAttribute("message", "用户名不能为空！");
+            return "redirect:/login";
         }
-        map.put("code",200);
+        if (password == null || password.equals("")){
+            redirectAttributes.addFlashAttribute("message", "密码不能为空！");
+            return "redirect:/login";
+        }
+        //验证码不正确
+        if(loginValidateCode == null || loginValidateCode.equals("")){
+            redirectAttributes.addFlashAttribute("message","验证码过期");//验证码过期
+            return "redirect:/login";
+        }
+        if (!loginValidateCode.equals(validateCode)){
+            redirectAttributes.addFlashAttribute("message", "验证码不正确");//验证码正确
+            return "redirect:/login";
+        }
         User user = userService.get(username,password);
         if (user != null && user.getId() != null){
             session.setAttribute("user",user);
+            redirectAttributes.addFlashAttribute("message","恭喜登陆成功，欢迎回来！");
             return "redirect:/";
         }
         redirectAttributes.addFlashAttribute("message","用户名密码错误");
