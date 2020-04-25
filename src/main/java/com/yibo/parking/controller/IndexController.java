@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,19 +44,15 @@ public class IndexController {
 
     @RequestMapping(value = "/login")
     public String login(@ModelAttribute("message") String message, Model model){
-        model.addAttribute("user","user");
         if (message != null){
-            System.out.println("234");
-            System.out.println(message);
             model.addAttribute("message", message);
         }
         return "login";
     }
 
-    @ResponseBody
     @RequestMapping(value = "/loginDo")
-    public String toLogin(String username, String password, String validateCode, HttpServletRequest request
-            , HttpSession session, RedirectAttributes redirectAttributes) {
+    public String toLogin(String username, String password, String validateCode, HttpServletRequest request,
+                          HttpSession session, RedirectAttributes redirectAttributes) {
         String loginValidateCode = request.getSession().getAttribute(LOGIN_VALIDATE_CODE).toString();
         if (username == null || username.equals("")){
             redirectAttributes.addFlashAttribute("message", "用户名不能为空！");

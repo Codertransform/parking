@@ -14,7 +14,8 @@
             username,
             password,
             regist_time,
-            login_time
+            login_time,
+            login_ip
         from user
         where 1=1
         <if test="id != null and id != ''">
@@ -27,4 +28,39 @@
             and password = #{password}
         </if>
     </select>
+
+    <insert id="insert">
+        insert into user (
+            id,
+            role_id,
+            username,
+            password,
+            regist_time,
+            login_time,
+            login_ip
+        )values(
+            #{id},
+            #{role_id},
+            #{username},
+            #{password},
+            #{regist_time},
+            #{login_time},
+            #{login_ip}
+        )
+    </insert>
+
+    <update id="update">
+        update user set
+            role_id = #{role_id},
+            username = #{username},
+            password = #{password},
+            regist_time = #{regist_time},
+            login_time = #{login_time},
+            login_ip = #{login_ip}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from user where id=#{id}
+    </delete>
 </mapper>

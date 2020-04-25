@@ -21,6 +21,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
 
     static {
         NOT_INTERCEPT_URI.add("/login");
+        NOT_INTERCEPT_URI.add("/loginDo");
         NOT_INTERCEPT_URI.add("/ValidateCode");
     }
 
