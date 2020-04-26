@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-04-15 18:24:36
+Date: 2020-04-26 18:51:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -181,6 +181,26 @@ INSERT INTO `unit` VALUES ('db55c60805754b878baf5f35b5f6202c', '7b9ee245c3f048ac
 INSERT INTO `unit` VALUES ('ea344889ce8e4e638da892395aeba595', 'a1eeace1445f4870a346bf5db57e58a9', '124', '13000000002', null, null);
 
 -- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` varchar(64) NOT NULL,
+  `role_id` varchar(64) NOT NULL COMMENT '角色id',
+  `username` varchar(20) NOT NULL COMMENT '用户名',
+  `password` varchar(64) NOT NULL COMMENT '密码',
+  `regist_time` datetime NOT NULL COMMENT '注册时间',
+  `login_time` datetime DEFAULT NULL COMMENT '登录时间',
+  `login_ip` varchar(30) DEFAULT NULL COMMENT '登陆ip',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('54ed5db46069475691a4110e26c4b9be', 'e9f37c3cf31c4a50846df8296b4d3423', 'admin', '123', '2020-04-26 00:00:00', null, '');
+
+-- ----------------------------
 -- Table structure for wx_banner
 -- ----------------------------
 DROP TABLE IF EXISTS `wx_banner`;
@@ -198,3 +218,4 @@ CREATE TABLE `wx_banner` (
 -- Records of wx_banner
 -- ----------------------------
 INSERT INTO `wx_banner` VALUES ('42601ff719dc4a54a3def79a4e2dc7b9', 'wxBanner', '/uploadFiles/banner/IMG2020041574056.png', '0', null, '');
+INSERT INTO `wx_banner` VALUES ('5b3f6b6b2a9e4461a25b07d1584cde08', 'wxBanner2', '/uploadFiles/banner/IMG2020041647829.jpg', '0', null, '看见哈罗德是否合理');
