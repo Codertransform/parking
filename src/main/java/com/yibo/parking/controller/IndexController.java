@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
@@ -73,7 +71,7 @@ public class IndexController {
         }
         User user = userService.get(username,password);
         if (user != null && user.getId() != null){
-            session.setAttribute("user",user);
+            session.setAttribute(user.getId(),user);
             redirectAttributes.addFlashAttribute("message","恭喜登陆成功，欢迎回来！");
             return "redirect:/";
         }
@@ -85,8 +83,17 @@ public class IndexController {
     /**
      * 登录验证码图片
      */
-    @RequestMapping(value = {"/ValidateCode"})
+    @RequestMapping(value = "/ValidateCode")
     public void loginValidateCode(HttpServletRequest request, HttpServletResponse response) throws Exception{
         CommonUtils.validateCode(request,response,captchaProducer,LOGIN_VALIDATE_CODE);
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logOut(User user, HttpServletRequest request){
+        User userSession = (User) request.getSession().getAttribute("user");
+        if (user.getId().equals(userSession.getId())){
+
+        }
+        return "redirect:/login";
     }
 }

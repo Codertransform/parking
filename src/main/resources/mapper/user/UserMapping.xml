@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yibo.parking.entity.user.User">
+<mapper namespace="com.yibo.parking.dao.user.UserMapper">
 
     <select id="getAllUser" resultType="User">
         select * from user
@@ -9,13 +9,13 @@
 
     <select id="get" resultType="User">
         select
-            id,
-            role_id,
-            username,
-            password,
-            regist_time,
-            login_time,
-            login_ip
+            id as id,
+            role_id as role_id,
+            username as username,
+            password as password,
+            regist_time as regist_time,
+            login_time as login_time,
+            login_ip as login_ip
         from user
         where 1=1
         <if test="id != null and id != ''">
