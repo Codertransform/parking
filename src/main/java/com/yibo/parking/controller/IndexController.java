@@ -5,9 +5,10 @@ import com.yibo.parking.entity.user.User;
 import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import com.yibo.parking.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,7 +32,9 @@ public class IndexController {
     public static final String LOGIN_VALIDATE_CODE = "login_validate_code";
 
     @RequestMapping(value = {"","/"})
-    public String index(){
+    public String index(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("user",auth.getName());
         return "index-2";
     }
 
@@ -41,10 +44,7 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/login")
-    public String login(@ModelAttribute("message") String message, Model model){
-        if (message != null){
-            model.addAttribute("message", message);
-        }
+    public String login( Model model){
         return "login";
     }
 

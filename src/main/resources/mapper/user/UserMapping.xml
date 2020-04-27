@@ -29,6 +29,22 @@
         </if>
     </select>
 
+    <select id="findByName" resultType="User">
+        select
+            id as id,
+            role_id as role_id,
+            username as username,
+            password as password,
+            regist_time as regist_time,
+            login_time as login_time,
+            login_ip as login_ip
+        from user
+        where 1=1
+        <if test="username != null and username != ''">
+            and username = #{username}
+        </if>
+    </select>
+
     <insert id="insert">
         insert into user (
             id,
