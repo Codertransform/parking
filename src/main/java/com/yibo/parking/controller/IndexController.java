@@ -30,12 +30,12 @@ public class IndexController {
      */
     public static final String LOGIN_VALIDATE_CODE = "login_validate_code";
 
-    @RequestMapping(value = {"","/"})
+    @RequestMapping(value = {"/admin","/admin/"})
     public String index(){
         return "index-2";
     }
 
-    @RequestMapping(value = "/welcome")
+    @RequestMapping(value = "/amdin/welcome")
     public String welcome(){
         return "welcome";
     }
@@ -71,9 +71,9 @@ public class IndexController {
         }
         User user = userService.get(username,password);
         if (user != null && user.getId() != null){
-            session.setAttribute(user.getId(),user);
-            redirectAttributes.addFlashAttribute("message","恭喜登陆成功，欢迎回来！");
-            return "redirect:/";
+            session.setAttribute("user",user);
+            redirectAttributes.addFlashAttribute("message","登陆成功，欢迎回来！");
+            return "redirect:/admin/";
         }
         redirectAttributes.addFlashAttribute("message","用户名密码错误");
         return "redirect:/login";
@@ -88,7 +88,7 @@ public class IndexController {
         CommonUtils.validateCode(request,response,captchaProducer,LOGIN_VALIDATE_CODE);
     }
 
-    @RequestMapping(value = "/logout")
+    @RequestMapping(value = "/admin/logout")
     public String logOut(User user, HttpServletRequest request){
         User userSession = (User) request.getSession().getAttribute("user");
         if (user.getId().equals(userSession.getId())){

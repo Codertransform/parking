@@ -1,6 +1,5 @@
 package com.yibo.parking.interceptor;
 
-import com.yibo.parking.entity.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -8,8 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +22,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
         NOT_INTERCEPT_URI.add("/ValidateCode");
     }
 
-    @Override
+    /*@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
         String uri = request.getRequestURI();
         if (NOT_INTERCEPT_URI.contains(uri)) {
@@ -40,7 +37,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
             return false;
         }
         return true;
-    }
+    }*/
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler
