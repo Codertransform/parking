@@ -5,9 +5,10 @@ import com.yibo.parking.entity.user.User;
 import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import com.yibo.parking.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,21 +31,20 @@ public class IndexController {
      */
     public static final String LOGIN_VALIDATE_CODE = "login_validate_code";
 
-    @RequestMapping(value = {"/admin","/admin/"})
-    public String index(){
+    @RequestMapping(value = {"","/"})
+    public String index(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("user",auth.getName());
         return "index-2";
     }
 
-    @RequestMapping(value = "/amdin/welcome")
+    @RequestMapping(value = "/welcome")
     public String welcome(){
         return "welcome";
     }
 
     @RequestMapping(value = "/login")
-    public String login(@ModelAttribute("message") String message, Model model){
-        if (message != null){
-            model.addAttribute("message", message);
-        }
+    public String login( Model model){
         return "login";
     }
 
@@ -71,9 +71,9 @@ public class IndexController {
         }
         User user = userService.get(username,password);
         if (user != null && user.getId() != null){
-            session.setAttribute("user",user);
-            redirectAttributes.addFlashAttribute("message","登陆成功，欢迎回来！");
-            return "redirect:/admin/";
+            session.setAttribute(user.getId(),user);
+            redirectAttributes.addFlashAttribute("message","恭喜登陆成功，欢迎回来！");
+            return "redirect:/";
         }
         redirectAttributes.addFlashAttribute("message","用户名密码错误");
         return "redirect:/login";
@@ -88,7 +88,7 @@ public class IndexController {
         CommonUtils.validateCode(request,response,captchaProducer,LOGIN_VALIDATE_CODE);
     }
 
-    @RequestMapping(value = "/admin/logout")
+    @RequestMapping(value = "/logout")
     public String logOut(User user, HttpServletRequest request){
         User userSession = (User) request.getSession().getAttribute("user");
         if (user.getId().equals(userSession.getId())){

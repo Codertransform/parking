@@ -27,4 +27,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.get(user);
     }
 
+    public User findByName(String username) {
+        return userMapper.findByName(username);
+    }
 }
