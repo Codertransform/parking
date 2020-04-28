@@ -1,7 +1,6 @@
 package com.yibo.parking.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.yibo.parking.entity.user.User;
 import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import com.yibo.parking.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +9,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class IndexController {
@@ -48,7 +45,7 @@ public class IndexController {
         return "login";
     }
 
-    @RequestMapping(value = "/loginDo")
+    /*@RequestMapping(value = "/loginDo")
     public String toLogin(String username, String password, String validateCode, HttpServletRequest request,
                           HttpSession session, RedirectAttributes redirectAttributes) {
         String loginValidateCode = request.getSession().getAttribute(LOGIN_VALIDATE_CODE).toString();
@@ -77,8 +74,7 @@ public class IndexController {
         }
         redirectAttributes.addFlashAttribute("message","用户名密码错误");
         return "redirect:/login";
-    }
-
+    }*/
 
     /**
      * 登录验证码图片
@@ -89,11 +85,7 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/logout")
-    public String logOut(User user, HttpServletRequest request){
-        User userSession = (User) request.getSession().getAttribute("user");
-        if (user.getId().equals(userSession.getId())){
-
-        }
-        return "redirect:/login";
+    public String logOut(){
+        return "logout";
     }
 }

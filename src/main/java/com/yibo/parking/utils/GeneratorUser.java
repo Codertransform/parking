@@ -1,5 +1,8 @@
 package com.yibo.parking.utils;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.sql.*;
 
 public class GeneratorUser {
@@ -12,6 +15,7 @@ public class GeneratorUser {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         try {
             con = getConnection();
             String sql = "insert into user(id, role_id, username, password, regist_time, login_time, login_ip) values(?,?,?,?,?,?,?)";
@@ -20,7 +24,7 @@ public class GeneratorUser {
                 stmt.setString(1, EntityIdGenerate.generateId());
                 stmt.setString(2, EntityIdGenerate.generateId());
                 stmt.setString(3, "admin");
-                stmt.setString(4, "123");
+                stmt.setString(4, passwordEncoder.encode("123"));
                 stmt.setString(5, "2020-04-26 00:00:00");
                 stmt.setString(6, null);
                 stmt.setString(7, "");

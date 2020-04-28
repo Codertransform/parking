@@ -22,21 +22,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/loginProcess")	//登陆界面提交表单的action对应的名称
                 .defaultSuccessUrl("/")		//验证成功后默认的跳转动作
                 .failureUrl("/login")		//验证失败后跳转的动作
+//                .successHandler(myAuthenctiationSuccessHandler)
                 .permitAll()				//表示这个不需要验证登录页面/登录失败页面
                 .and()
-                .authorizeRequests()
+            .sessionManagement()
+                .invalidSessionUrl("/login")//session失效后跳转路径
+                .and()
+            .authorizeRequests()
                 .antMatchers("/assets/*","/lib/*","/static/*","/css/*","/image/*","/img/*","/font/*","/js/*","/Widget/*").permitAll()
                 .antMatchers("/ValidateCode").permitAll()
                 .antMatchers(HttpMethod.POST).hasRole("ADMIN")
                 //.antMatchers("/index").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .logout()
+            .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
                 .and()
-                .csrf().disable();
+            .csrf().disable();
     }
 
     @Override
