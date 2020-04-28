@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-04-26 18:51:27
+Date: 2020-04-28 19:23:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -198,7 +198,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('54ed5db46069475691a4110e26c4b9be', 'e9f37c3cf31c4a50846df8296b4d3423', 'admin', '123', '2020-04-26 00:00:00', null, '');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', null, '');
 
 -- ----------------------------
 -- Table structure for wx_banner
