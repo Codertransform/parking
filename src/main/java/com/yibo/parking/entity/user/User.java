@@ -64,4 +64,17 @@ public class User {
     public void setLogin_ip(String login_ip) {
         this.login_ip = login_ip;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", role_id='" + role_id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", regist_time='" + regist_time + '\'' +
+                ", login_time='" + login_time + '\'' +
+                ", login_ip='" + login_ip + '\'' +
+                '}';
+    }
 }

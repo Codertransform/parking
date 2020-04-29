@@ -37,15 +37,11 @@ public class BytreesUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserData userData = null;
 
-        String validateCode = request.getParameter("validateCode");
-
-        if(StringUtils.isEmpty(validateCode)) {
-            logger.info("验证码不能为空！");
-            throw new UsernameNotFoundException("验证码不能为空！");
-        }
-
         // TODO 根据用户名，查找到对应的密码，与权限
-        System.out.println("get name:" + username);
+        if(StringUtils.isEmpty(username)) {
+            logger.info("用户名不能为空！");
+            throw new UsernameNotFoundException("用户名不能为空！");
+        }
 
         User user=userService.findByName(username);
 
@@ -61,6 +57,13 @@ public class BytreesUserDetailService implements UserDetailsService {
         else
         {
             System.out.println("没有找到用户名和密码");
+        }
+
+        String validateCode = request.getParameter("validateCode");
+
+        if(StringUtils.isEmpty(validateCode) || validateCode.equals("验证码:")) {
+            logger.info("验证码不能为空！");
+            throw new UsernameNotFoundException("验证码不能为空！");
         }
 
         return userData;
