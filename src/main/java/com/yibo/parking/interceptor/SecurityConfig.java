@@ -13,6 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private MyAuthenctiationSuccessHandler authenctiationSuccessHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
@@ -22,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/loginProcess")	//登陆界面提交表单的action对应的名称
                 .defaultSuccessUrl("/")		//验证成功后默认的跳转动作
                 .failureUrl("/login")		//验证失败后跳转的动作
-//                .successHandler(myAuthenctiationSuccessHandler)
+                .successHandler(authenctiationSuccessHandler)
                 .permitAll()				//表示这个不需要验证登录页面/登录失败页面
                 .and()
             .sessionManagement()
@@ -30,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .authorizeRequests()
                 .antMatchers("/assets/*","/lib/*","/static/*","/css/*","/image/*","/img/*","/font/*","/js/*","/Widget/*").permitAll()
+                .antMatchers("/api/*").permitAll()
                 .antMatchers("/ValidateCode").permitAll()
                 .antMatchers(HttpMethod.POST).hasRole("ADMIN")
                 //.antMatchers("/index").hasRole("ADMIN")
@@ -55,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/font/**");
         web.ignoring().antMatchers("/js/**");
         web.ignoring().antMatchers("/Widget/**");
+        web.ignoring().antMatchers("/uploadFiles/**");
     }
 
     @Autowired

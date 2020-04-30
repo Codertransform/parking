@@ -14,4 +14,12 @@ public interface UserMapper {
     User get(User user);
 
     User findByName(@Param("username") String username);
+
+    int update(User user);
+
+    int loginUpdate(User user);
+
+    int insert(User user);
+
+    int delete(User user);
 }

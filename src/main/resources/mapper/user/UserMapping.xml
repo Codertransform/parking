@@ -76,6 +76,13 @@
         where id = #{id}
     </update>
 
+    <update id="loginUpdate">
+        update user set
+            login_time = #{login_time},
+            login_ip = #{login_ip}
+        where id = #{id}
+    </update>
+
     <delete id="delete">
         delete from user where id=#{id}
     </delete>

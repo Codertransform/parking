@@ -30,4 +30,24 @@ public class UserServiceImpl implements UserService {
     public User findByName(String username) {
         return userMapper.findByName(username);
     }
+
+    @Override
+    public int update(User user) {
+        return userMapper.update(user);
+    }
+
+    @Override
+    public int loginUpdate(User user) {
+        return userMapper.loginUpdate(user);
+    }
+
+    @Override
+    public int insert(User user) {
+        return 0;
+    }
+
+    @Override
+    public int delete(User user) {
+        return 0;
+    }
 }

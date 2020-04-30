@@ -1,6 +1,7 @@
 package com.yibo.parking.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.yibo.parking.entity.user.User;
 import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import com.yibo.parking.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,10 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/welcome")
-    public String welcome(){
+    public String welcome(Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByName(auth.getName());
+        model.addAttribute("user",user);
         return "welcome";
     }
 
@@ -44,37 +48,6 @@ public class IndexController {
     public String login( Model model){
         return "login";
     }
-
-    /*@RequestMapping(value = "/loginDo")
-    public String toLogin(String username, String password, String validateCode, HttpServletRequest request,
-                          HttpSession session, RedirectAttributes redirectAttributes) {
-        String loginValidateCode = request.getSession().getAttribute(LOGIN_VALIDATE_CODE).toString();
-        if (username == null || username.equals("")){
-            redirectAttributes.addFlashAttribute("message", "用户名不能为空！");
-            return "redirect:/login";
-        }
-        if (password == null || password.equals("")){
-            redirectAttributes.addFlashAttribute("message", "密码不能为空！");
-            return "redirect:/login";
-        }
-        //验证码不正确
-        if(loginValidateCode == null || loginValidateCode.equals("")){
-            redirectAttributes.addFlashAttribute("message","验证码过期");//验证码过期
-            return "redirect:/login";
-        }
-        if (!loginValidateCode.equals(validateCode)){
-            redirectAttributes.addFlashAttribute("message", "验证码不正确");//验证码正确
-            return "redirect:/login";
-        }
-        User user = userService.get(username,password);
-        if (user != null && user.getId() != null){
-            session.setAttribute(user.getId(),user);
-            redirectAttributes.addFlashAttribute("message","恭喜登陆成功，欢迎回来！");
-            return "redirect:/";
-        }
-        redirectAttributes.addFlashAttribute("message","用户名密码错误");
-        return "redirect:/login";
-    }*/
 
     /**
      * 登录验证码图片
