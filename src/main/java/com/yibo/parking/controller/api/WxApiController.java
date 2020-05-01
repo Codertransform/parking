@@ -1,4 +1,4 @@
-package com.yibo.parking.controller.wx;
+package com.yibo.parking.controller.api;
 
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxBannerServiceImpl;
@@ -41,5 +41,11 @@ public class WxApiController {
     @RequestMapping(value = "/getBanners")
     public String getBanners(){
         return JsonUtils.success(bannerService.getBannersApi(),"成功获取所有可用banner");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getSomes")
+    public String getSomes(){
+        return null;
     }
 }
