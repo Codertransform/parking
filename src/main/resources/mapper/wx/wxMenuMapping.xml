@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yibo.parking.dao.wx.WxBannerMapper">
+<mapper namespace="com.yibo.parking.dao.wx.WxMenuMapper">
 
-    <select id="getBanners" resultType="Banner">
+    <select id="getMenus" resultType="Menu">
         select
             id as id,
             name as name,
-            picAddress as picAddress,
-            status as status,
-            remarks as remarks
-        from wx_banner
+            icon as icon,
+            link as link,
+            status as status
+        from wx_menus
         where 1=1
         <if test="name != null and name != ''">
             and name = #{name}
@@ -20,44 +20,44 @@
         </if>
     </select>
 
-    <select id="get" resultType="Banner">
+    <select id="get" resultType="Menu">
         select
             id as id,
             name as name,
-            picAddress as picAddress,
-            status as status,
-            remarks as remarks
-        from wx_banner where id = #{id}
+            icon as icon,
+            link as link,
+            status as status
+        from wx_menus where id = #{id}
     </select>
 
     <insert id="insert">
-        insert into wx_banner(
+        insert into wx_menus(
             id,
             name,
-            picAddress,
-            status,
-            remarks
+            icon,
+            link,
+            status
         )
         values (
             #{id},
             #{name},
-            #{picAddress},
-            #{status},
-            #{remarks}
+            #{icon},
+            #{link},
+            #{status}
         )
     </insert>
 
     <update id="update">
-        update wx_banner set
+        update wx_menus set
             name = #{name},
-            picAddress = #{picAddress},
-            status = #{status},
-            remarks = #{remarks}
+            icon = #{icon},
+            link = #{link},
+            status = #{status}
         where id = #{id}
     </update>
 
     <update id="status">
-        update wx_banner set
+        update wx_menus set
             status = #{status}
         where id = #{id}
     </update>
@@ -75,6 +75,6 @@
     </update>-->
 
     <delete id="delete">
-        delete from wx_banner where id = #{id}
+        delete from wx_menus where id = #{id}
     </delete>
 </mapper>

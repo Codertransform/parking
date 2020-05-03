@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-04-28 19:23:45
+Date: 2020-05-03 19:14:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -198,7 +198,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', null, '');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-03 09:43:41', '192.168.1.233');
 
 -- ----------------------------
 -- Table structure for wx_banner
@@ -219,3 +219,20 @@ CREATE TABLE `wx_banner` (
 -- ----------------------------
 INSERT INTO `wx_banner` VALUES ('42601ff719dc4a54a3def79a4e2dc7b9', 'wxBanner', '/uploadFiles/banner/IMG2020041574056.png', '0', null, '');
 INSERT INTO `wx_banner` VALUES ('5b3f6b6b2a9e4461a25b07d1584cde08', 'wxBanner2', '/uploadFiles/banner/IMG2020041647829.jpg', '0', null, '看见哈罗德是否合理');
+
+-- ----------------------------
+-- Table structure for wx_menus
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_menus`;
+CREATE TABLE `wx_menus` (
+  `id` varchar(64) NOT NULL,
+  `icon` varchar(150) NOT NULL COMMENT '图标地址',
+  `name` varchar(10) NOT NULL COMMENT '名称',
+  `link` varchar(150) NOT NULL COMMENT '链接地址',
+  `status` char(2) NOT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信功能菜单表';
+
+-- ----------------------------
+-- Records of wx_menus
+-- ----------------------------
