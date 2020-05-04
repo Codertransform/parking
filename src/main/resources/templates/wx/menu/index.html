@@ -33,7 +33,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a class="btn btn-primary radius" onclick="picture_add('添加广告','/wx/banner/add')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加功能菜单</a>
+			<a class="btn btn-primary radius" onclick="picture_add('添加功能菜单','/wx/menu/add')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加功能菜单</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
 	</div>
@@ -46,6 +46,7 @@
 					<th width="150">图标</th>
 					<th width="150">链接</th>
 					<th width="80">状态</th>
+					<th width="80">备注</th>
 					<th width="100">操作</th>
 				</tr>
 			</thead>
@@ -72,7 +73,7 @@ $('.table-sort').dataTable({
 	"bStateSave": true,//状态保存
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,5]}// 制定列不参与排序
+	  {"orderable":false,"aTargets":[0,6]}// 制定列不参与排序
 	]
 });
 

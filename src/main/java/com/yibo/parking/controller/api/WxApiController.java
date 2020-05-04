@@ -1,13 +1,17 @@
 package com.yibo.parking.controller.api;
 
+import com.yibo.parking.entity.wx.Menu;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxBannerServiceImpl;
+import com.yibo.parking.service.Impl.wx.WxMenusServiceImpl;
 import com.yibo.parking.utils.HttpURLConnectionDemo;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/api")
@@ -18,6 +22,9 @@ public class WxApiController {
 
     @Autowired
     private WxBannerServiceImpl bannerService;
+
+    @Autowired
+    private WxMenusServiceImpl menusService;
 
     @ResponseBody
     @RequestMapping(value = "/login")
@@ -44,8 +51,12 @@ public class WxApiController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getSomes")
-    public String getSomes(){
-        return null;
+    @RequestMapping(value = "/getMenus")
+    public String getMenus(){
+        List<Menu> menus = menusService.getMenus(new Menu());
+        if (menus != null){
+            return JsonUtils.success(menus,"成功获取功能菜单");
+        }
+        return JsonUtils.error(menus);
     }
 }

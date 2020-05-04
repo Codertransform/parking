@@ -19,25 +19,25 @@
 <script type="text/javascript" src="/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>新增广告图片</title>
+<title>新增功能菜单</title>
 <!--<link href="/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />-->
 <link rel="stylesheet" type="text/css" href="/lib/layer/2.5.6/css/layui.css"/>
 </head>
 <body>
 <div class="page-container">
-	<form class="form form-horizontal" id="form-article-add" action="/wx/banner/add" method="post">
+	<form class="form form-horizontal" id="form-article-add" action="/wx/menu/add" method="post">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片名称：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="请输入图片名称" id="name" name="name"/>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片上传：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上传图标：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="hidden" id="picAddress" name="picAddress" value=""/>
+				<input type="hidden" id="icon" name="icon" value=""/>
 				<button type="button" class="btn btn-primary radius" id="select">
-					<i class="layui-icon">&#xe67c;</i>上传图片
+					<i class="layui-icon">&#xe67c;</i>上传图标
 				</button>
 				<!--<div class="uploader-list-container">
 					<div class="queueList">
@@ -94,7 +94,7 @@ function article_save(){
 			name:{
 				required:true
 			},
-			picAddress:{
+			select:{
 				required: true
 			},
 			file:{
@@ -142,12 +142,12 @@ layui.use('upload', function(){
 	var uploadInst = upload.render({
 		elem: '#select', //绑定元素
 
-		url: '/wx/banner/upload', //上传接口
+		url: '/wx/menu/upload', //上传接口
 		done: function(res){
 			//上传完毕回调
-			$('#picAddress').val(res.data.src);
+			$('#icon').val(res.data.src);
 			var img = "<img src='"+res.data.src+"' alt='test' width='100' height='100'>";
-			$("#picAddress").after(img);
+			$("#icon").after(img);
 		},
 		error: function(res){
 			//请求异常回调

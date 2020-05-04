@@ -6,6 +6,7 @@ public class Menu {
     private String name;
     private String link;
     private String status;
+    private String remarks;
 
     public String getId() {
         return id;
@@ -45,5 +46,13 @@ public class Menu {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 }

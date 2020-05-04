@@ -4,11 +4,14 @@ import com.yibo.parking.dao.wx.WxMenuMapper;
 import com.yibo.parking.entity.wx.Menu;
 import com.yibo.parking.service.WxMenuService;
 import com.yibo.parking.utils.EntityIdGenerate;
+import com.yibo.parking.utils.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class WxMenusServiceImpl implements WxMenuService {
@@ -42,5 +45,9 @@ public class WxMenusServiceImpl implements WxMenuService {
     @Override
     public int delete(Menu menu) {
         return menuMapper.delete(menu);
+    }
+
+    public Map<String, String> upload(MultipartFile icon) {
+        return UploadUtil.upload(icon,"wx/icon");
     }
 }
