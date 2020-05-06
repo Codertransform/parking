@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class UploadUtil {
 
-    private static Environment environment = ApplicationContextUtil.get(Environment.class);
+    private static final Environment environment = ApplicationContextUtil.get(Environment.class);
 
     public static Map<String,String> upload(MultipartFile picture, String address) {
         Map<String,String> map = new HashMap<>();

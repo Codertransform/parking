@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org" lang="ch">
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -25,19 +25,20 @@
 </head>
 <body>
 <div class="page-container">
-	<form class="form form-horizontal" id="form-article-add" action="/wx/banner/save" method="post">
-		<input type="hidden" name="id" th:value="${banner.id}"/>
+	<form class="form form-horizontal" id="form-article-add" action="/wx/menu/save" method="post">
+		<input type="hidden" name="id" th:value="${menu.id}"/>
+		<input type="hidden" name="status" th:value="${menu.status}"/>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片名称：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" th:value="${banner.name}" placeholder="请输入图片名称" id="name" name="name"/>
+				<input type="text" class="input-text" th:value="${menu.name}" placeholder="请输入图片名称" id="name" name="name"/>
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片上传：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上传图标：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="hidden" id="picAddress" name="picAddress" th:value="${banner.picAddress}"/>
-				<img id="banner" th:src='${banner.picAddress}' th:alt='${banner.name}' width='100' height='100'>
+				<input type="hidden" id="icon" name="icon" th:value="${menu.icon}"/>
+				<img id="icon2" th:src='${menu.icon}' th:alt='${menu.name}' width='50' height='50'>
 				<button type="button" class="btn btn-primary radius" id="select">
 					<i class="layui-icon">&#xe67c;</i>上传图片
 				</button>
@@ -63,7 +64,7 @@
 			<label class="form-label col-xs-4 col-sm-2">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<textarea name="remarks" cols="" rows="" class="textarea"
-						  placeholder="说点什么...最少输入10个字符" th:value="${banner.remarks}" onKeyUp="$.Huitextarealength(this,200)"></textarea>
+						  placeholder="说点什么...最少输入10个字符" th:value="${menu.remarks}" onKeyUp="$.Huitextarealength(this,200)"></textarea>
 			</div>
 		</div>
 		<div class="row cl">
@@ -142,11 +143,11 @@ layui.use('upload', function(){
 	var uploadInst = upload.render({
 		elem: '#select', //绑定元素
 
-		url: '/wx/banner/upload', //上传接口
+		url: '/wx/menu/upload', //上传接口
 		done: function(res){
 			//上传完毕回调
-			$('#picAddress').val(res.data.src);
-			$('#banner').attr('src',res.data.src);
+			$('#icon').val(res.data.src);
+			$('#icon2').attr('src',res.data.src);
 		},
 		error: function(res){
 			//请求异常回调

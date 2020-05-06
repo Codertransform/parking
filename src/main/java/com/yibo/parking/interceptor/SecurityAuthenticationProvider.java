@@ -60,7 +60,7 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
         String saveCode = (String) session.getAttribute("login_validate_code");//captcha
         //获取到session验证码后随时清除
         if(!StringUtils.isEmpty(saveCode)) {
-            session.removeAttribute("RANDOMVALIDATECODEKEY");//captcha
+            session.removeAttribute("login_validate_code");//captcha
         }
         logger.info("requestCode:"+requestCode+",saveCode:"+saveCode);
         if(StringUtils.isEmpty(saveCode) || StringUtils.isEmpty(requestCode) || !requestCode.equals(saveCode)) {

@@ -19,4 +19,6 @@ public interface WxMenuMapper {
     int delete(Menu menu);
 
     int status(Menu menu);
+
+    List<Menu> findByStatus(Menu menu);
 }

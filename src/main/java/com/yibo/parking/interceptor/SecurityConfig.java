@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/*","/lib/*","/static/*","/css/*","/image/*","/img/*","/font/*","/js/*","/Widget/*").permitAll()
                 .antMatchers("/api/*").permitAll()
                 .antMatchers("*/upload").permitAll()
+                .antMatchers("/uploadFiles/*").permitAll()
                 .antMatchers("/ValidateCode").permitAll()
                 .antMatchers(HttpMethod.POST).hasRole("ADMIN")
                 //.antMatchers("/index").hasRole("ADMIN")

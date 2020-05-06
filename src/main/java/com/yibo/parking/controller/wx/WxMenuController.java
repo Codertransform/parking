@@ -36,14 +36,32 @@ public class WxMenuController {
         return "wx/menu/add";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String toAdd(Menu menu){
-        int i = menusService.save(menu);
+    @ResponseBody
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(Menu menu){
+        Map<String,Object> map = menusService.save(menu);
+        int i = (int) map.get("code");
         if (i != 0) {
-            return JsonUtils.success(menu,"添加成功");
+            return JsonUtils.success(menu, String.valueOf(map.get("message")));
         }else {
             return JsonUtils.error(menu);
         }
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String update(Menu menu, Model model){
+        model.addAttribute("menu",menusService.get(menu));
+        return "wx/menu/edit";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/del")
+    public String del(Menu menu){
+        int d = menusService.delete(menu);
+        if (d != 0)
+            return JsonUtils.success(menu,"删除成功");
+        else
+            return JsonUtils.error(menu);
     }
 
     @ResponseBody
@@ -55,5 +73,16 @@ public class WxMenuController {
         }else {
             return JsonUtils.error(path);
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/status")
+    public String status(Menu menu){
+        Map<String,Object> map = menusService.status(menu);
+        int s = (int) map.get("code");
+        if (s == 0)
+            return JsonUtils.success(menu, String.valueOf(map.get("message")));
+        else
+            return JsonUtils.success(menu, String.valueOf(map.get("message")));
     }
 }

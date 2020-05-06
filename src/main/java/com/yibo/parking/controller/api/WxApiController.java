@@ -1,6 +1,5 @@
 package com.yibo.parking.controller.api;
 
-import com.yibo.parking.entity.wx.Menu;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxBannerServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxMenusServiceImpl;
@@ -10,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/api")
@@ -53,7 +50,7 @@ public class WxApiController {
     @ResponseBody
     @RequestMapping(value = "/getMenus")
     public String getMenus(){
-        List<Menu> menus = menusService.getMenus(new Menu());
+        String menus = menusService.findByStatusApi();
         if (menus != null){
             return JsonUtils.success(menus,"成功获取功能菜单");
         }

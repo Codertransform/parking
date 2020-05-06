@@ -32,6 +32,21 @@
         from wx_menus where id = #{id}
     </select>
 
+    <select id="findByStatus" resultType="Menu">
+        select
+            id as id,
+            name as name,
+            icon as icon,
+            link as link,
+            status as status,
+            remarks as remarks
+        from wx_menus
+        where 1=1
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+    </select>
+
     <insert id="insert">
         insert into wx_menus(
             id,
