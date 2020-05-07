@@ -24,7 +24,7 @@ public class WxMenuController {
 
     @RequestMapping(value = {"","/"})
     public String index(Menu menu, Model model){
-        List<Menu> menus = menusService.getMenus(new Menu());
+        List<Menu> menus = menusService.getMenus(menu);
         model.addAttribute("menu",menu);
         model.addAttribute("menus",menus);
         model.addAttribute("count",menus.size());
