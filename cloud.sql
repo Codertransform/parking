@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-05-04 23:19:25
+Date: 2020-05-08 18:30:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -112,6 +112,30 @@ CREATE TABLE `maintain_result` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for member
+-- ----------------------------
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE `member` (
+  `id` varchar(64) NOT NULL,
+  `username` varchar(10) NOT NULL COMMENT '姓名',
+  `idCard` varchar(30) NOT NULL COMMENT '身份证号',
+  `tel` varchar(20) NOT NULL COMMENT '电话',
+  `unit_id` varchar(64) NOT NULL COMMENT '单位id',
+  `wx_id` varchar(100) NOT NULL COMMENT '微信号',
+  `wx_name` varchar(200) DEFAULT NULL COMMENT '微信名',
+  `openId` varchar(120) DEFAULT NULL COMMENT '微信openId',
+  `unionId` varchar(120) DEFAULT NULL COMMENT '微信unionId',
+  `status` char(2) NOT NULL COMMENT '状态',
+  `remarks` text COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='人员表';
+
+-- ----------------------------
+-- Records of member
+-- ----------------------------
+INSERT INTO `member` VALUES ('b41d7348c9f74bd9a67fda4920a25e84', '张三', '610302199209082056', '15769271840', '5f0952e82c0c4454890c90a513b47a90', 'lovek24', null, null, null, '', '');
+
+-- ----------------------------
 -- Table structure for type
 -- ----------------------------
 DROP TABLE IF EXISTS `type`;
@@ -198,7 +222,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-04 22:22:37', '192.168.1.233');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-08 17:59:30', '192.168.1.233');
 
 -- ----------------------------
 -- Table structure for wx_banner
@@ -228,7 +252,7 @@ CREATE TABLE `wx_menus` (
   `id` varchar(64) NOT NULL,
   `icon` varchar(150) NOT NULL COMMENT '图标地址',
   `name` varchar(10) NOT NULL COMMENT '名称',
-  `link` varchar(150) NOT NULL COMMENT '链接地址',
+  `link` varchar(150) DEFAULT NULL COMMENT '链接地址',
   `status` char(2) NOT NULL COMMENT '状态',
   `remarks` text COMMENT '备注',
   PRIMARY KEY (`id`)
@@ -237,3 +261,7 @@ CREATE TABLE `wx_menus` (
 -- ----------------------------
 -- Records of wx_menus
 -- ----------------------------
+INSERT INTO `wx_menus` VALUES ('3e769211d3fc4a0bb7f2705bcfc6217d', '/uploadFiles/wx/icon/IMG2020050696823.png', '超值套餐', '/pages/package/package', '0', '');
+INSERT INTO `wx_menus` VALUES ('5b74accbeb1f4644b2437418b2950461', '/uploadFiles/wx/icon/IMG2020050697006.png', '领优惠券', '', '0', '');
+INSERT INTO `wx_menus` VALUES ('647452fc7d15462c80d67b8887bf5a6c', '/uploadFiles/wx/icon/IMG2020050640762.png', '限时活动', null, '0', '');
+INSERT INTO `wx_menus` VALUES ('ff513d6798f84c18a38550f7ec015d39', '/uploadFiles/wx/icon/IMG2020050652903.png', '签到积分', '', '0', '');
