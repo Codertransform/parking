@@ -71,12 +71,28 @@ public class MemberServiceImpl implements MemberService {
     public Map<String,Object> status(Member member){
         Map<String,Object> map = new HashMap<>();
         int s = memberDao.status(member);
-        if (s != 0) {
-            map.put("code",0);
-            map.put("message","审核成功！");
-        }else {
-            map.put("code",-1);
-            map.put("message","审核失败，请联系管理员");
+        if (s == 0){
+            map.put("code", -9);
+            map.put("message","信息有误，操作失败！");
+            return map;
+        }
+        switch (member.getStatus()){
+            case "1":
+                map.put("code",1);
+                map.put("message","审核通过");
+                break;
+            case "-1":
+                map.put("code",-1);
+                map.put("message","审核未通过");
+                break;
+            case "-2":
+                map.put("code",-2);
+                map.put("message","已下架");
+                break;
+            default:
+                map.put("code",2);
+                map.put("message", "已上架");
+                break;
         }
         return map;
     }
