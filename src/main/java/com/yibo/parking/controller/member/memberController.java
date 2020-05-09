@@ -42,6 +42,7 @@ public class memberController {
     @RequestMapping(value = "/edit")
     public String edit(Member member, Model model){
         model.addAttribute("member",memberService.get(member));
+        model.addAttribute("units",unitService.getUnits());
         return "member/edit";
     }
 
@@ -50,10 +51,11 @@ public class memberController {
     public String save(Member member){
         Map<String,Object> map = memberService.save(member);
         int s = (int) map.get("code");
-        if (s != 0) {
+        if (s == 0) {
             return JsonUtils.success(member, String.valueOf(map.get("message")));
+        }else {
+            return JsonUtils.error(member);
         }
-        return JsonUtils.error(member);
     }
 
     @ResponseBody
@@ -61,7 +63,7 @@ public class memberController {
     public String del(Member member){
         Map<String,Object> map = memberService.delete(member);
         int d = (int) map.get("code");
-        if (d != 0) {
+        if (d == 0) {
             return JsonUtils.success(member, String.valueOf(map.get("message")));
         }
         return JsonUtils.error(member);

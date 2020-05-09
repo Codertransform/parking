@@ -31,8 +31,10 @@ public class WxApiController {
                 .replace("SECRET","7d47726502ee6f9d4b35ec2a1ac07fa7")
                 .replace("JSCODE",code);
         String userInfo = HttpURLConnectionDemo.doGet(url);
-        System.out.println(userInfo);
-        return JsonUtils.success(code,"code码申请成功");
+        if (!userInfo.equals("")) {
+            return JsonUtils.success(userInfo,"获取用户凭证成功");
+        }
+        return JsonUtils.error(userInfo);
     }
 
     @ResponseBody

@@ -35,20 +35,15 @@ public class MemberServiceImpl implements MemberService {
             if (u != 0){
                 map.put("code",0);
                 map.put("message","修改成功");
-            }else {
-                map.put("code",-1);
-                map.put("message","修改失败");
             }
             return map;
         }else {
             member.setId(EntityIdGenerate.generateId());
+            member.setStatus("0");
             int i = memberDao.insert(member);
             if (i != 0) {
-                map.put("code",1);
+                map.put("code",0);
                 map.put("message","添加成功");
-            }else {
-                map.put("code",-2);
-                map.put("message","添加失败");
             }
             return map;
         }
@@ -58,12 +53,12 @@ public class MemberServiceImpl implements MemberService {
     public Map<String,Object> delete(Member member) {
         Map<String,Object> map = new HashMap<>();
         int d = memberDao.delete(member);
-        if (d != 0){
+        if (d == 0){
+            map.put("code",-9);
+            map.put("message","删除失败");
+        }else {
             map.put("code",0);
             map.put("message","删除成功");
-        }else {
-            map.put("code",-1);
-            map.put("message","删除失败");
         }
         return map;
     }
@@ -79,11 +74,11 @@ public class MemberServiceImpl implements MemberService {
         switch (member.getStatus()){
             case "1":
                 map.put("code",1);
-                map.put("message","审核通过");
+                map.put("message","已通过");
                 break;
             case "-1":
                 map.put("code",-1);
-                map.put("message","审核未通过");
+                map.put("message","未通过");
                 break;
             case "-2":
                 map.put("code",-2);
