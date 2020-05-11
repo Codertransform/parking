@@ -15,6 +15,7 @@
             m.wx_name as wxName,
             m.openId as openId,
             m.unionId as unionId,
+            m.session_key as sessionKey,
             m.status as status,
             m.remarks as remarks
         from member m
@@ -33,6 +34,7 @@
             m.wx_name as wxName,
             m.openId as openId,
             m.unionId as unionId,
+            m.session_key as sessionKey,
             m.status as status,
             m.remarks as remarks
         from member m
@@ -70,6 +72,7 @@
             m.wx_name as wxName,
             m.openId as openId,
             m.unionId as unionId,
+            m.session_key as sessionKey,
             m.status as status,
             m.remarks as remarks
         from member m

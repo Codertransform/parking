@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-05-09 20:09:37
+Date: 2020-05-12 00:22:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -125,6 +125,7 @@ CREATE TABLE `member` (
   `wx_name` varchar(200) DEFAULT NULL COMMENT '微信名',
   `openId` varchar(120) DEFAULT NULL COMMENT '微信openId',
   `unionId` varchar(120) DEFAULT NULL COMMENT '微信unionId',
+  `session_key` varchar(120) DEFAULT NULL COMMENT 'session_key',
   `status` char(2) NOT NULL COMMENT '状态',
   `remarks` text COMMENT '备注',
   PRIMARY KEY (`id`)
@@ -132,6 +133,22 @@ CREATE TABLE `member` (
 
 -- ----------------------------
 -- Records of member
+-- ----------------------------
+INSERT INTO `member` VALUES ('b41d7348c9f74bd9a67fda4920a25e84', '张三', '610302199209082056', '15769271840', '5f0952e82c0c4454890c90a513b47a90', 'lovek24', null, null, null, '', '-2', '');
+
+-- ----------------------------
+-- Table structure for member_login_log
+-- ----------------------------
+DROP TABLE IF EXISTS `member_login_log`;
+CREATE TABLE `member_login_log` (
+  `id` varchar(64) NOT NULL,
+  `member_id` varchar(64) NOT NULL COMMENT '用户id',
+  `login_time` datetime NOT NULL COMMENT '登录时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of member_login_log
 -- ----------------------------
 
 -- ----------------------------
@@ -221,7 +238,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-09 10:28:19', '192.168.1.233');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-11 22:55:39', '192.168.0.139');
 
 -- ----------------------------
 -- Table structure for wx_banner

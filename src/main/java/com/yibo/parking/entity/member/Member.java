@@ -12,6 +12,7 @@ public class Member {
     private String wxName;
     private String openId;
     private String unionId;
+    private String sessionKey;
     private String status;
     private String remarks;
 
@@ -85,6 +86,14 @@ public class Member {
 
     public void setUnionId(String unionId) {
         this.unionId = unionId;
+    }
+
+    public String getSessionKey() {
+        return sessionKey;
+    }
+
+    public void setSessionKey(String sessionKey) {
+        this.sessionKey = sessionKey;
     }
 
     public String getStatus() {

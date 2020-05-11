@@ -1,5 +1,7 @@
 package com.yibo.parking.controller.api;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxBannerServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxMenusServiceImpl;
@@ -31,6 +33,9 @@ public class WxApiController {
                 .replace("SECRET","7d47726502ee6f9d4b35ec2a1ac07fa7")
                 .replace("JSCODE",code);
         String userInfo = HttpURLConnectionDemo.doGet(url);
+        System.out.println(userInfo);
+        JsonObject jsonObject  = new JsonParser().parse(userInfo).getAsJsonObject();
+        System.out.println(jsonObject.get("openid"));
         if (!userInfo.equals("")) {
             return JsonUtils.success(userInfo,"获取用户凭证成功");
         }
