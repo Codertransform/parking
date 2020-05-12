@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-05-12 00:22:41
+Date: 2020-05-12 18:52:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -121,11 +121,7 @@ CREATE TABLE `member` (
   `idCard` varchar(30) NOT NULL COMMENT '身份证号',
   `tel` varchar(20) NOT NULL COMMENT '电话',
   `unit_id` varchar(64) NOT NULL COMMENT '单位id',
-  `wx_id` varchar(100) NOT NULL COMMENT '微信号',
-  `wx_name` varchar(200) DEFAULT NULL COMMENT '微信名',
   `openId` varchar(120) DEFAULT NULL COMMENT '微信openId',
-  `unionId` varchar(120) DEFAULT NULL COMMENT '微信unionId',
-  `session_key` varchar(120) DEFAULT NULL COMMENT 'session_key',
   `status` char(2) NOT NULL COMMENT '状态',
   `remarks` text COMMENT '备注',
   PRIMARY KEY (`id`)
@@ -134,7 +130,7 @@ CREATE TABLE `member` (
 -- ----------------------------
 -- Records of member
 -- ----------------------------
-INSERT INTO `member` VALUES ('b41d7348c9f74bd9a67fda4920a25e84', '张三', '610302199209082056', '15769271840', '5f0952e82c0c4454890c90a513b47a90', 'lovek24', null, null, null, '', '-2', '');
+INSERT INTO `member` VALUES ('b41d7348c9f74bd9a67fda4920a25e84', '张三', '610302199209082056', '15769271840', '5f0952e82c0c4454890c90a513b47a90', null, '-2', '');
 
 -- ----------------------------
 -- Table structure for member_login_log
@@ -149,6 +145,19 @@ CREATE TABLE `member_login_log` (
 
 -- ----------------------------
 -- Records of member_login_log
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for member_wxinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `member_wxinfo`;
+CREATE TABLE `member_wxinfo` (
+  `id` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of member_wxinfo
 -- ----------------------------
 
 -- ----------------------------
@@ -238,7 +247,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-11 22:55:39', '192.168.0.139');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-12 10:03:40', '192.168.1.233');
 
 -- ----------------------------
 -- Table structure for wx_banner

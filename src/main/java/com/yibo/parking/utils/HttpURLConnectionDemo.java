@@ -3,6 +3,7 @@ package com.yibo.parking.utils;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class HttpURLConnectionDemo {
 
@@ -76,7 +77,7 @@ public class HttpURLConnectionDemo {
             //通过conn取得输入流，并使用Reader读取
             if (200 == conn.getResponseCode()){
                 is = conn.getInputStream();
-                br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                 String line;
                 while ((line = br.readLine()) != null){
                     result.append(line);
@@ -103,7 +104,6 @@ public class HttpURLConnectionDemo {
         }
         return result.toString();
     }
-
 
     public static void main(String[] args) throws Exception {
 
