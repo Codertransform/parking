@@ -92,7 +92,7 @@ public class MemberServiceImpl implements MemberService {
         return map;
     }
 
-    public Member selectById(String openid) {
+    public Member findByOpenId(String openid) {
         Member member = new Member();
         member.setOpenId(openid);
         return memberDao.get(member);

@@ -1,7 +1,6 @@
 package com.yibo.parking.controller.api;
 
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
-import com.yibo.parking.service.Impl.member.MemberServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxBannerServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxMenusServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
@@ -22,9 +21,6 @@ public class WxApiController {
 
     @Autowired
     private WxMenusServiceImpl menusService;
-
-    @Autowired
-    private MemberServiceImpl memberService;
 
     @ResponseBody
     @RequestMapping(value = "/getCarsInfo")

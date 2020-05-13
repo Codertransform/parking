@@ -11,11 +11,7 @@
             m.tel as tel,
             u.id as "unit.id",
             u.name as "unit.name",
-            m.wx_id as wxId,
-            m.wx_name as wxName,
             m.openId as openId,
-            m.unionId as unionId,
-            m.session_key as sessionKey,
             m.status as status,
             m.remarks as remarks
         from member m
@@ -30,11 +26,7 @@
             m.tel as tel,
             u.id as "unit.id",
             u.name as "unit.name",
-            m.wx_id as wxId,
-            m.wx_name as wxName,
             m.openId as openId,
-            m.unionId as unionId,
-            m.session_key as sessionKey,
             m.status as status,
             m.remarks as remarks
         from member m
@@ -46,21 +38,12 @@
         <if test="username != null and username != ''">
             and m.username = #{username}
         </if>
-        <if test="wxId != null and wxId != ''">
-            and m.wx_id = #{wxId}
-        </if>
-        <if test="wxName != null and wxName != ''">
-            and m.wx_name = #{wxName}
-        </if>
         <if test="openId != null and openId != ''">
             and m.openId = #{openId}
         </if>
-        <if test="unionId != null and unionId != ''">
-            and unionId = #{unionId}
-        </if>
     </select>
 
-    <select id="findByName" resultType="User">
+    <select id="findByName" resultType="Member">
         select
             m.id as id,
             m.username as username,
@@ -68,11 +51,7 @@
             m.tel as tel,
             u.id as "unit.id",
             u.name as "unit.name",
-            m.wx_id as wxId,
-            m.wx_name as wxName,
             m.openId as openId,
-            m.unionId as unionId,
-            m.session_key as sessionKey,
             m.status as status,
             m.remarks as remarks
         from member m
@@ -90,10 +69,7 @@
             idCard,
             tel,
             unit_id,
-            wx_id,
-            wx_name,
             openId,
-            unionId,
             status,
             remarks
         )values(
@@ -102,10 +78,7 @@
             #{idCard},
             #{tel},
             #{unit.id},
-            #{wxId},
-            #{wxName},
             #{openId},
-            #{unionId},
             #{status},
             #{remarks}
         )
@@ -117,10 +90,7 @@
             idCard = #{idCard},
             tel = #{tel},
             unit_id = #{unit.id},
-            wx_id = #{wxId},
-            wx_name = #{wxName},
             openId = #{openId},
-            unionId = #{unionId},
             status = #{status},
             remarks = #{remarks}
         where id = #{id}

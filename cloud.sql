@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-05-12 18:52:26
+Date: 2020-05-13 18:11:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -138,7 +138,8 @@ INSERT INTO `member` VALUES ('b41d7348c9f74bd9a67fda4920a25e84', '张三', '6103
 DROP TABLE IF EXISTS `member_login_log`;
 CREATE TABLE `member_login_log` (
   `id` varchar(64) NOT NULL,
-  `member_id` varchar(64) NOT NULL COMMENT '用户id',
+  `member_id` varchar(64) DEFAULT NULL COMMENT '用户id',
+  `open_id` varchar(64) NOT NULL COMMENT '微信openId',
   `login_time` datetime NOT NULL COMMENT '登录时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -153,6 +154,17 @@ CREATE TABLE `member_login_log` (
 DROP TABLE IF EXISTS `member_wxinfo`;
 CREATE TABLE `member_wxinfo` (
   `id` varchar(64) NOT NULL,
+  `member_id` varchar(64) DEFAULT NULL,
+  `openId` varchar(64) NOT NULL,
+  `session_key` varchar(120) NOT NULL,
+  `nickName` varchar(20) NOT NULL,
+  `gender` int(1) NOT NULL,
+  `avatarUrl` varchar(350) NOT NULL,
+  `country` varchar(10) NOT NULL,
+  `province` varchar(50) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  `language` varchar(10) DEFAULT NULL,
+  `skey` varchar(64) NOT NULL COMMENT '自定义状态码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -247,7 +259,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-12 10:03:40', '192.168.1.233');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-13 09:05:50', '192.168.1.233');
 
 -- ----------------------------
 -- Table structure for wx_banner

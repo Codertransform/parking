@@ -47,9 +47,7 @@
 					<th width="150">身份证号</th>
 					<th width="120">电话</th>
 					<th width="120">单位</th>
-					<th width="150">微信号</th>
 					<th width="180">openId</th>
-					<th width="180">unionId</th>
 					<th width="100">备注</th>
 					<th width="50">状态</th>
 					<th width="100">操作</th>
@@ -62,9 +60,7 @@
 					<td th:text="${m.idCard}"></td>
 					<td th:text="${m.tel}"></td>
 					<td th:text="${m.unit.name}"></td>
-					<td th:text="${m.wxId}"></td>
 					<td th:text="${m.openId}"></td>
-					<td th:text="${m.unionId}"></td>
 					<td th:text="${m.remarks}"></td>
 					<td class="td-status" th:switch="${m.status}">
 						<span th:case="0" class="label label-default radius">待审核</span>

@@ -50,9 +50,4 @@ public class UserServiceImpl implements UserService {
     public int delete(User user) {
         return 0;
     }
-
-    public User selectById(String openid) {
-        User user  = new User();
-        return userMapper.get(user);
-    }
 }
