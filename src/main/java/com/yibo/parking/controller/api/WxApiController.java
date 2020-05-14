@@ -7,6 +7,7 @@ import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -42,5 +43,12 @@ public class WxApiController {
             return JsonUtils.success(menus,"成功获取功能菜单");
         }
         return JsonUtils.error(menus);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getCarInfo")
+    public String getCarInfo(@RequestParam("id") String id){
+        System.out.println(carService.get(id));
+        return JsonUtils.success(carService.get(id),"成功获取车辆信息");
     }
 }
