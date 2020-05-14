@@ -1,5 +1,6 @@
 package com.yibo.parking.controller.api;
 
+import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxBannerServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxMenusServiceImpl;
@@ -48,7 +49,10 @@ public class WxApiController {
     @ResponseBody
     @RequestMapping(value = "/getCarInfo")
     public String getCarInfo(@RequestParam("id") String id){
-        System.out.println(carService.get(id));
-        return JsonUtils.success(carService.get(id),"成功获取车辆信息");
+        Car car = carService.get(id);
+        if (car != null){
+            return JsonUtils.success(car,"成功获取车辆信息");
+        }
+        return JsonUtils.error(car);
     }
 }
