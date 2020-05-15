@@ -97,4 +97,17 @@ public class MemberServiceImpl implements MemberService {
         member.setOpenId(openid);
         return memberDao.get(member);
     }
+
+    public Member findMember(String name, String tel, String idCrad) {
+        Member member = new Member();
+        member.setUsername(name);
+        member.setTel(tel);
+        member.setIdCard(idCrad);
+        return memberDao.get(member);
+    }
+
+    public int certify(Member member, String openId) {
+        member.setOpenId(openId);
+        return memberDao.update(member);
+    }
 }

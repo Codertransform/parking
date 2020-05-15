@@ -31,6 +31,19 @@
         </if>
     </select>
 
+    <select id="findByOpenId" resultType="MemberLoginLog">
+        select
+            m.id as id,
+            m.member_id as "member.id",
+            m.open_id as openId,
+            m.login_time as loginTime
+        from member_login_log m
+        where 1=1
+        <if test="openId != null and openId != ''">
+            and m.open_id = #{openId}
+        </if>
+    </select>
+
     <insert id="insert">
         insert into member_login_log (
             id,

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-05-13 18:11:15
+Date: 2020-05-15 19:21:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `cars` (
 -- Records of cars
 -- ----------------------------
 INSERT INTO `cars` VALUES ('5cbd1e936bfd48f783e28859cde904d6', '陕C·7797W', '斯巴鲁123', '灰色', '05a4a584e5c745978306e47d913834bf', '0', '2020-02-07 21:14:11', '2020-02-07 15:22:43');
-INSERT INTO `cars` VALUES ('d8774db7b1914a9daefb3ff85301ccc7', '陕C·V5591', '静安寺独立开发', '白色', '05a4a584e5c745978306e47d913834bf', '-1', '2020-02-07 15:22:41', '2020-02-07 15:22:43');
+INSERT INTO `cars` VALUES ('d8774db7b1914a9daefb3ff85301ccc7', '陕C·V5591', '静安寺独立开发', '白色', '05a4a584e5c745978306e47d913834bf', '0', '2020-02-07 15:22:41', '2020-02-07 15:22:43');
 
 -- ----------------------------
 -- Table structure for dict
@@ -130,7 +130,7 @@ CREATE TABLE `member` (
 -- ----------------------------
 -- Records of member
 -- ----------------------------
-INSERT INTO `member` VALUES ('b41d7348c9f74bd9a67fda4920a25e84', '张三', '610302199209082056', '15769271840', '5f0952e82c0c4454890c90a513b47a90', null, '-2', '');
+INSERT INTO `member` VALUES ('b41d7348c9f74bd9a67fda4920a25e84', '张三', '610302199209082056', '15769271840', '5f0952e82c0c4454890c90a513b47a90', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', '-2', '');
 
 -- ----------------------------
 -- Table structure for member_login_log
@@ -147,6 +147,7 @@ CREATE TABLE `member_login_log` (
 -- ----------------------------
 -- Records of member_login_log
 -- ----------------------------
+INSERT INTO `member_login_log` VALUES ('3cb4a8b7e62d480c8791c367020851a7', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', '2020-05-15 19:16:55');
 
 -- ----------------------------
 -- Table structure for member_wxinfo
@@ -171,6 +172,7 @@ CREATE TABLE `member_wxinfo` (
 -- ----------------------------
 -- Records of member_wxinfo
 -- ----------------------------
+INSERT INTO `member_wxinfo` VALUES ('5a7715dfdeb5473ebd70806ec350c292', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', 'Z0aTX7SUcP5Xl8LS/B0kPQ==', '王振宇', '1', 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epyHSUjzhEH4k2comWaa166icjoWmrhjcIiamHkpIDRyyMBDSnXUac5sUUrFuTXSafDUNWHykzaQInw/132', 'China', 'Shaanxi', 'Baoji', 'zh_CN', '2e50aadccace421782495fee383ca785');
 
 -- ----------------------------
 -- Table structure for type
@@ -259,7 +261,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-13 09:05:50', '192.168.1.233');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-15 15:48:17', '192.168.1.233');
 
 -- ----------------------------
 -- Table structure for wx_banner
@@ -287,7 +289,7 @@ INSERT INTO `wx_banner` VALUES ('5b3f6b6b2a9e4461a25b07d1584cde08', 'wxBanner2',
 DROP TABLE IF EXISTS `wx_menus`;
 CREATE TABLE `wx_menus` (
   `id` varchar(64) NOT NULL,
-  `icon` varchar(150) NOT NULL COMMENT '图标地址',
+  `icon` varchar(150) DEFAULT NULL COMMENT '图标地址',
   `name` varchar(10) NOT NULL COMMENT '名称',
   `link` varchar(150) DEFAULT NULL COMMENT '链接地址',
   `status` char(2) NOT NULL COMMENT '状态',

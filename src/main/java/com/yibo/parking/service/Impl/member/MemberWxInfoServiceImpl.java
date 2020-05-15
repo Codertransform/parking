@@ -2,6 +2,8 @@ package com.yibo.parking.service.Impl.member;
 
 import com.yibo.parking.dao.member.MemberLoginLogDao;
 import com.yibo.parking.dao.member.MemberWxInfoDao;
+import com.yibo.parking.entity.member.Member;
+import com.yibo.parking.entity.member.MemberLoginLog;
 import com.yibo.parking.entity.member.MemberWxInfo;
 import com.yibo.parking.service.MemberWxInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +37,25 @@ public class MemberWxInfoServiceImpl implements MemberWxInfoService {
     @Override
     public int update(MemberWxInfo info){
         return infoDao.update(info);
+    }
+
+    public MemberWxInfo findBySkey(String skey) {
+        MemberWxInfo info = new MemberWxInfo();
+        info.setSkey(skey);
+        return infoDao.get(info);
+    }
+
+    public int certify(MemberWxInfo info, String id) {
+        Member m = new Member();
+        m.setId(id);
+        info.setMember(m);
+        int ui = infoDao.update(info);
+        MemberLoginLog log = logDao.findByOpenId(info.getOpenId());
+        log.setMember(m);
+        int ul = logDao.update(log);
+        if (ui != 0 && ul != 0){
+            return 1;
+        }
+        return 0;
     }
 }

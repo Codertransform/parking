@@ -2,6 +2,7 @@ package com.yibo.parking.service.Impl.wx;
 
 import com.alibaba.fastjson.JSONArray;
 import com.yibo.parking.dao.wx.WxMenuMapper;
+import com.yibo.parking.entity.member.Member;
 import com.yibo.parking.entity.wx.Menu;
 import com.yibo.parking.service.WxMenuService;
 import com.yibo.parking.utils.EntityIdGenerate;

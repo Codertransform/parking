@@ -54,7 +54,7 @@ public class WxLoginApiController {
         // 5.根据返回的MemberWxInfo实体类，判断用户是否是新用户，是的话，将用户信息存到数据库；不是的话，更新最新登录时间
         MemberWxInfo info = infoService.getByOpenId(openid);
         // uuid生成唯一key，用于维护微信小程序用户与服务端的会话
-        String skey = EntityIdGenerate.generateId();
+        String skey = null;
         //encrypteData比rowData多了appid和openid
         JSONObject userInfo = WechatUtil.getUserInfo(encrypteData, sessionKey, iv);
         if (info == null && userInfo != null) {
@@ -78,6 +78,7 @@ public class WxLoginApiController {
             info.setGender(Integer.parseInt(gender));
             info.setNickName(nickName);
             info.setLanguage(language);
+            skey = EntityIdGenerate.generateId();
             info.setSkey(skey);
 
             MemberLoginLog log = new MemberLoginLog();
@@ -85,7 +86,6 @@ public class WxLoginApiController {
             log.setOpenId(openid);
             log.setLoginTime(new Date());
             logService.insert(log);
-
             infoService.insert(info);
         } else {
             // 已存在，更新用户登录时间
@@ -93,7 +93,8 @@ public class WxLoginApiController {
             log.setLoginTime(new Date());
             logService.update(log);
             // 重新设置会话skey
-            info.setSkey(EntityIdGenerate.generateId());
+            skey = EntityIdGenerate.generateId();
+            info.setSkey(skey);
             infoService.update(info);
         }
         //6. 把新的skey返回给小程序
