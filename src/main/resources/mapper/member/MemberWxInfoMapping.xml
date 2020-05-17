@@ -15,7 +15,8 @@
             m.province as province,
             m.city as city,
             m.language as language,
-            m.skey as skey
+            m.skey as skey,
+            m.status as status
         from member_wxinfo m
     </select>
 
@@ -32,7 +33,8 @@
             m.province as province,
             m.city as city,
             m.language as language,
-            m.skey as skey
+            m.skey as skey,
+            m.status as status
         from member_wxinfo m
         where 1=1
         <if test="id != null and id != ''">
@@ -46,6 +48,9 @@
         </if>
         <if test="skey != null and skey != ''">
             and m.skey = #{skey}
+        </if>
+        <if test="status != null and status != ''">
+            and m.status = #{status}
         </if>
     </select>
 
@@ -61,7 +66,8 @@
             m.province as province,
             m.city as city,
             m.language as language,
-            m.skey as skey
+            m.skey as skey,
+            m.status as status
         from member_wxinfo m
         where 1=1
         <if test="nickName != null and nickName != ''">
@@ -82,7 +88,8 @@
             province,
             city,
             language,
-            skey
+            skey,
+            status
         )values(
             #{id},
             #{member.id},
@@ -95,7 +102,8 @@
             #{province},
             #{city},
             #{language},
-            #{skey}
+            #{skey},
+            #{status}
         )
     </insert>
 
@@ -111,7 +119,8 @@
             province = #{province},
             city = #{city},
             language = #{language},
-            skey = #{skey}
+            skey = #{skey},
+            status = #{status}
         where id = #{id}
     </update>
 

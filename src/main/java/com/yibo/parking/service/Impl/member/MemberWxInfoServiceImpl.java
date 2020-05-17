@@ -49,6 +49,7 @@ public class MemberWxInfoServiceImpl implements MemberWxInfoService {
         Member m = new Member();
         m.setId(id);
         info.setMember(m);
+        info.setStatus(1);
         int ui = infoDao.update(info);
         MemberLoginLog log = logDao.findByOpenId(info.getOpenId());
         log.setMember(m);

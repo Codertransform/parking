@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/api/login")
@@ -57,6 +59,7 @@ public class WxLoginApiController {
         String skey = null;
         //encrypteData比rowData多了appid和openid
         JSONObject userInfo = WechatUtil.getUserInfo(encrypteData, sessionKey, iv);
+        Map<String,Object> map = new HashMap<>();
         if (info == null && userInfo != null) {
             // 用户信息入库
             String nickName = userInfo.getString("nickName");
@@ -80,6 +83,7 @@ public class WxLoginApiController {
             info.setLanguage(language);
             skey = EntityIdGenerate.generateId();
             info.setSkey(skey);
+            info.setStatus(0);
 
             MemberLoginLog log = new MemberLoginLog();
             log.setId(EntityIdGenerate.generateId());
@@ -87,6 +91,7 @@ public class WxLoginApiController {
             log.setLoginTime(new Date());
             logService.insert(log);
             infoService.insert(info);
+            map.put("userInfo",info);
         } else {
             // 已存在，更新用户登录时间
             MemberLoginLog log = logService.findByOpenId(openid);
@@ -96,8 +101,10 @@ public class WxLoginApiController {
             skey = EntityIdGenerate.generateId();
             info.setSkey(skey);
             infoService.update(info);
+            map.put("userInfo",info);
         }
+        map.put("skey",skey);
         //6. 把新的skey返回给小程序
-        return GlobalResult.build(200, null, skey);
+        return GlobalResult.build(200, null, map);
     }
 }

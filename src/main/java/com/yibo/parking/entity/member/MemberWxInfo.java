@@ -13,6 +13,7 @@ public class MemberWxInfo {
     private String city;
     private String language;
     private String skey;
+    private Integer status;
 
     public String getId() {
         return id;
@@ -108,5 +109,13 @@ public class MemberWxInfo {
 
     public void setSkey(String skey) {
         this.skey = skey;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
