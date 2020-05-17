@@ -49,7 +49,22 @@
     </select>
 
     <select id="get" resultType="Car">
-        select * from cars where id = #{id}
+        select
+            a.id as id,
+            a.cardId as cardId,
+            a.model as model,
+            a.color as color,
+            a.carType as typeId,
+            t.name as typeName,
+            a.status as status,
+            a.buy_time as buy_time,
+            a.maintenance as maintenance
+        from cars a
+        left join type t on t.id = a.carType
+        where 1=1
+        <if test="id != null and id != ''">
+            and a.id = #{id}
+        </if>
     </select>
 
     <insert id="insert">

@@ -16,7 +16,7 @@ public interface CarMapper {
 
     int del(String id);
 
-    Car get(String id);
+    Car get(@Param("id") String id);
 
     int stop(String id);
 
