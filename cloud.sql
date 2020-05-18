@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-05-17 19:01:22
+Date: 2020-05-18 18:31:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `cars` (
 -- ----------------------------
 -- Records of cars
 -- ----------------------------
-INSERT INTO `cars` VALUES ('5cbd1e936bfd48f783e28859cde904d6', '陕C·7797W', '斯巴鲁123', '灰色', '05a4a584e5c745978306e47d913834bf', '0', '2020-02-07 21:14:11', '2020-02-07 15:22:43');
+INSERT INTO `cars` VALUES ('5cbd1e936bfd48f783e28859cde904d6', '陕C·7797W', '斯巴鲁', '灰色', '05a4a584e5c745978306e47d913834bf', '0', '2020-02-07 21:14:11', '2020-02-07 15:22:43');
 INSERT INTO `cars` VALUES ('d8774db7b1914a9daefb3ff85301ccc7', '陕C·V5591', '静安寺独立开发', '白色', '05a4a584e5c745978306e47d913834bf', '0', '2020-02-07 15:22:41', '2020-02-07 15:22:43');
 
 -- ----------------------------
@@ -147,7 +147,7 @@ CREATE TABLE `member_login_log` (
 -- ----------------------------
 -- Records of member_login_log
 -- ----------------------------
-INSERT INTO `member_login_log` VALUES ('3cb4a8b7e62d480c8791c367020851a7', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', '2020-05-17 18:59:42');
+INSERT INTO `member_login_log` VALUES ('3cb4a8b7e62d480c8791c367020851a7', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', '2020-05-18 13:39:49');
 
 -- ----------------------------
 -- Table structure for member_wxinfo
@@ -173,7 +173,7 @@ CREATE TABLE `member_wxinfo` (
 -- ----------------------------
 -- Records of member_wxinfo
 -- ----------------------------
-INSERT INTO `member_wxinfo` VALUES ('5a7715dfdeb5473ebd70806ec350c292', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', 'Z0aTX7SUcP5Xl8LS/B0kPQ==', '王振宇', '1', 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epyHSUjzhEH4k2comWaa166icjoWmrhjcIiamHkpIDRyyMBDSnXUac5sUUrFuTXSafDUNWHykzaQInw/132', 'China', 'Shaanxi', 'Baoji', 'zh_CN', 'f8b378b06194427ca8aa8aaa3fdd9d7e', '1');
+INSERT INTO `member_wxinfo` VALUES ('5a7715dfdeb5473ebd70806ec350c292', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', 'Z0aTX7SUcP5Xl8LS/B0kPQ==', '王振宇', '1', 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epyHSUjzhEH4k2comWaa166icjoWmrhjcIiamHkpIDRyyMBDSnXUac5sUUrFuTXSafDUNWHykzaQInw/132', 'China', 'Shaanxi', 'Baoji', 'zh_CN', '700cfaf12c874ddc86daa2fcc4a9e2ce', '1');
 
 -- ----------------------------
 -- Table structure for type
@@ -208,15 +208,9 @@ CREATE TABLE `type_info` (
 INSERT INTO `type_info` VALUES ('15b7730ca76449c79654d5eb2fd81004', '05a4a584e5c745978306e47d913834bf', 'month', '3500');
 INSERT INTO `type_info` VALUES ('362bdb32996e4ab1bb6002f8268f3ca0', '05a4a584e5c745978306e47d913834bf', 'allday', '200');
 INSERT INTO `type_info` VALUES ('4f194f5d7adb4ac98cab26bb6666b1c1', '05a4a584e5c745978306e47d913834bf', 'halfyear', '20000');
-INSERT INTO `type_info` VALUES ('5540b0f50b494d17a76f74d2fef70bf7', 'c7954c25104448c387b4286ab9c38090', 'hour', '10');
 INSERT INTO `type_info` VALUES ('5f88e673209342a6a6d886b84c87d4c8', '05a4a584e5c745978306e47d913834bf', 'halfday', '100');
 INSERT INTO `type_info` VALUES ('672ac03ca3af4668a8dfb0ea823c9785', '05a4a584e5c745978306e47d913834bf', 'hour', '0');
-INSERT INTO `type_info` VALUES ('95f26eb7b2a9464e8acd93f0cff0dc1d', 'c7954c25104448c387b4286ab9c38090', 'week', '900');
-INSERT INTO `type_info` VALUES ('ab469c2edd32418a9d38f8aee997e948', 'c7954c25104448c387b4286ab9c38090', 'halfyear', '20000');
-INSERT INTO `type_info` VALUES ('b37a7a855ff24eb7bf6f48276464655f', 'c7954c25104448c387b4286ab9c38090', 'halfday', '100');
 INSERT INTO `type_info` VALUES ('cbe86dd6d8d2490993d7b0669dc84f4f', '05a4a584e5c745978306e47d913834bf', 'week', '900');
-INSERT INTO `type_info` VALUES ('cdb0bb5e24cf43ad85101da98432d1ed', 'c7954c25104448c387b4286ab9c38090', 'allday', '200');
-INSERT INTO `type_info` VALUES ('cee9a4299da34fc68eedc3ac64785c10', 'c7954c25104448c387b4286ab9c38090', 'month', '3500');
 
 -- ----------------------------
 -- Table structure for unit
@@ -262,7 +256,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-17 15:33:55', '192.168.1.233');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-18 17:05:27', '192.168.1.233');
 
 -- ----------------------------
 -- Table structure for wx_banner

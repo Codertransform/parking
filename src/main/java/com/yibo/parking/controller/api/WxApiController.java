@@ -1,9 +1,11 @@
 package com.yibo.parking.controller.api;
 
 import com.yibo.parking.entity.car.Car;
+import com.yibo.parking.entity.car.TypeInfo;
 import com.yibo.parking.entity.member.Member;
 import com.yibo.parking.entity.member.MemberWxInfo;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
+import com.yibo.parking.service.Impl.car.TypeServiceImpl;
 import com.yibo.parking.service.Impl.member.MemberServiceImpl;
 import com.yibo.parking.service.Impl.member.MemberWxInfoServiceImpl;
 import com.yibo.parking.service.Impl.wx.WxBannerServiceImpl;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/api")
@@ -33,6 +37,9 @@ public class WxApiController {
 
     @Autowired
     private MemberWxInfoServiceImpl infoService;
+
+    @Autowired
+    private TypeServiceImpl typeService;
 
     @ResponseBody
     @RequestMapping(value = "/getCarsInfo")
@@ -83,5 +90,15 @@ public class WxApiController {
             return JsonUtils.success(null,"认证成功");
         }
         return JsonUtils.error(null);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getTypeInfos")
+    public String getTypeInfos(String id){
+        List<TypeInfo> infos = typeService.getTypeInfos(id);
+        if (infos != null){
+            return JsonUtils.success(infos,"成功获取类型明细");
+        }
+        return JsonUtils.error(infos);
     }
 }

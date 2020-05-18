@@ -16,6 +16,19 @@
         from type_info as a where a.type_id = #{id}
     </select>
 
+    <select id="findByTypeId" resultType="TypeInfo">
+        select
+            a.id AS id,
+            a.type_id AS typeId,
+            a.key AS `key`,
+            a.value AS `value`
+        from type_info a
+        where 1=1
+        <if test="typeId != null and typeId != ''">
+            and a.`type_id` = #{typeId}
+        </if>
+    </select>
+
     <insert id="insert">
         insert into type_info(
             id,

@@ -61,6 +61,8 @@ public class carController {
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String edit(String id, Model model){
         Car car = carService.get(id);
+        List<Type> types = typeService.getTypes();
+        model.addAttribute("types",types);
         model.addAttribute("car", car);
         return "cars/edit";
     }

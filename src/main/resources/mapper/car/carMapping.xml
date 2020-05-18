@@ -83,7 +83,7 @@
             #{cardId},
             #{model},
             #{color},
-            #{carType},
+            #{typeId},
             #{status},
             #{buy_time},
             #{maintenance}
@@ -95,7 +95,7 @@
             cardId = #{cardId},
             model = #{model},
             color = #{color},
-            carType = #{carType},
+            carType = #{typeId},
             status = #{status},
             buy_time = #{buy_time},
             maintenance = #{maintenance}

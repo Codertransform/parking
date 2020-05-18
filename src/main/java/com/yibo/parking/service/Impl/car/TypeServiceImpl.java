@@ -2,6 +2,7 @@ package com.yibo.parking.service.Impl.car;
 
 import com.yibo.parking.dao.car.TypeInfoMapper;
 import com.yibo.parking.dao.car.TypeMapper;
+import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.car.Type;
 import com.yibo.parking.entity.car.TypeInfo;
 import com.yibo.parking.service.TypeService;
@@ -20,6 +21,9 @@ public class TypeServiceImpl implements TypeService {
 
     @Autowired
     private TypeInfoMapper infoMapper;
+
+    @Autowired
+    private CarServiceImpl carService;
 
     @Override
     public List<Type> getTypes() {
@@ -153,5 +157,11 @@ public class TypeServiceImpl implements TypeService {
             d++;
         }
         return d;
+    }
+
+    public List<TypeInfo> getTypeInfos(String carId){
+        Car car = carService.get(carId);
+        Type type = typeMapper.get(car.getTypeId());
+        return infoMapper.findByTypeId(type.getId());
     }
 }

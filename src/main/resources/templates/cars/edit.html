@@ -1,6 +1,6 @@
 <!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -54,10 +54,9 @@
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>车辆类型：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-					<select name="carType" class="select" th:switch="${car.carType}">
+					<select name="typeId" class="select">
 						<option value="">请选择车辆类型</option>
-						<option value="0" th:selected="${car.carType} eq 0">SUV</option>
-						<option value="1" th:selected="${car.carType} eq 1">轿车</option>
+						<option th:each="t:${types}" th:value="${t.id}" th:text="${t.name}" th:selected="${t.id eq car.typeId}"></option>
 					</select>
 				</span>
 			</div>
@@ -91,7 +90,7 @@
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button id="draft" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
-				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				<button onclick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
 	</form>

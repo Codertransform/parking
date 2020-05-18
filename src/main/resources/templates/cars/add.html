@@ -53,7 +53,7 @@
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>车辆类型：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-					<select name="carType" class="select">
+					<select name="typeId" class="select">
 						<option value="">请选择车辆类型</option>
 						<option th:each="t:${types}" th:value="${t.id}" th:text="${t.name}"></option>
 					</select>
