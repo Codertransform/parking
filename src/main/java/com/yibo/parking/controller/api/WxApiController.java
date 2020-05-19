@@ -5,6 +5,7 @@ import com.yibo.parking.entity.car.TypeInfo;
 import com.yibo.parking.entity.member.Member;
 import com.yibo.parking.entity.member.MemberWxInfo;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
+import com.yibo.parking.service.Impl.car.LeaseServiceImpl;
 import com.yibo.parking.service.Impl.car.TypeServiceImpl;
 import com.yibo.parking.service.Impl.member.MemberServiceImpl;
 import com.yibo.parking.service.Impl.member.MemberWxInfoServiceImpl;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/api")
@@ -40,6 +42,9 @@ public class WxApiController {
 
     @Autowired
     private TypeServiceImpl typeService;
+
+    @Autowired
+    private LeaseServiceImpl leaseService;
 
     @ResponseBody
     @RequestMapping(value = "/getCarsInfo")
@@ -100,5 +105,16 @@ public class WxApiController {
             return JsonUtils.success(infos,"成功获取类型明细");
         }
         return JsonUtils.error(infos);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/orderSubmit")
+    public String submitOrder(String carId, String typeCheck, String start, String end, String userId){
+        Map<String,Object> map = leaseService.saveApi(carId,typeCheck,start,end,userId);
+        int s = (int) map.get("flag");
+        if (s != 0) {
+            return JsonUtils.success(map.get("lease"),"预约订单保存成功");
+        }
+        return JsonUtils.error(map.get("lease"));
     }
 }

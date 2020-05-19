@@ -40,8 +40,12 @@ public class EntityIdGenerate {
         String timeStr = sdf.format(new Date());
 
         // 13位毫秒+5位随机数
-        ///return  timeMillis + String.valueOf(r);
+//        return  "YBTC" + timeMillis + String.valueOf(r);
         // 17位时间+5位随机数
-        return timeStr + r;
+        return "YBTC" + timeStr + r;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(generateOrderId());
     }
 }

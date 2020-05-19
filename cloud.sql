@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-05-18 18:31:28
+Date: 2020-05-19 18:26:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,6 +59,7 @@ CREATE TABLE `lease` (
   `order_id` varchar(64) NOT NULL COMMENT '订单号',
   `carId` varchar(64) NOT NULL COMMENT '车辆id',
   `unit` varchar(50) NOT NULL COMMENT '单位名称',
+  `member_id` varchar(64) NOT NULL COMMENT '用户id',
   `type` varchar(64) NOT NULL COMMENT '租用方式',
   `amount` int(10) NOT NULL COMMENT '总金额',
   `startmiles` varchar(100) DEFAULT NULL COMMENT '起始里程',
@@ -73,6 +74,7 @@ CREATE TABLE `lease` (
 -- ----------------------------
 -- Records of lease
 -- ----------------------------
+INSERT INTO `lease` VALUES ('d490c0fd3f95431d8ad79e773edeae8b', 'YBTC2020051918025243474002', '5cbd1e936bfd48f783e28859cde904d6', '5f0952e82c0c4454890c90a513b47a90', 'b41d7348c9f74bd9a67fda4920a25e84', '05a4a584e5c745978306e47d913834bf', '200', null, null, null, null, '2020-05-19 17:46:00', '2020-05-20 17:46:00');
 
 -- ----------------------------
 -- Table structure for maintain_order
@@ -87,7 +89,7 @@ CREATE TABLE `maintain_order` (
   `manager` varchar(10) NOT NULL COMMENT '经办人 ',
   `status` char(2) NOT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='保养订单';
 
 -- ----------------------------
 -- Records of maintain_order
@@ -105,7 +107,7 @@ CREATE TABLE `maintain_result` (
   `car_img` varchar(150) NOT NULL COMMENT '车链照片',
   `people_img` varchar(150) NOT NULL COMMENT '人车合照',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='保养结果';
 
 -- ----------------------------
 -- Records of maintain_result
@@ -147,7 +149,7 @@ CREATE TABLE `member_login_log` (
 -- ----------------------------
 -- Records of member_login_log
 -- ----------------------------
-INSERT INTO `member_login_log` VALUES ('3cb4a8b7e62d480c8791c367020851a7', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', '2020-05-18 13:39:49');
+INSERT INTO `member_login_log` VALUES ('3cb4a8b7e62d480c8791c367020851a7', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', '2020-05-19 17:42:27');
 
 -- ----------------------------
 -- Table structure for member_wxinfo
@@ -173,7 +175,7 @@ CREATE TABLE `member_wxinfo` (
 -- ----------------------------
 -- Records of member_wxinfo
 -- ----------------------------
-INSERT INTO `member_wxinfo` VALUES ('5a7715dfdeb5473ebd70806ec350c292', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', 'Z0aTX7SUcP5Xl8LS/B0kPQ==', '王振宇', '1', 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epyHSUjzhEH4k2comWaa166icjoWmrhjcIiamHkpIDRyyMBDSnXUac5sUUrFuTXSafDUNWHykzaQInw/132', 'China', 'Shaanxi', 'Baoji', 'zh_CN', '700cfaf12c874ddc86daa2fcc4a9e2ce', '1');
+INSERT INTO `member_wxinfo` VALUES ('5a7715dfdeb5473ebd70806ec350c292', 'b41d7348c9f74bd9a67fda4920a25e84', 'ogFYn4z7DgLFGufrDdmHIzXSyArU', 'Z0aTX7SUcP5Xl8LS/B0kPQ==', '王振宇', '1', 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epyHSUjzhEH4k2comWaa166icjoWmrhjcIiamHkpIDRyyMBDSnXUac5sUUrFuTXSafDUNWHykzaQInw/132', 'China', 'Shaanxi', 'Baoji', 'zh_CN', 'a78567bcea644dcfbfb480bcc06bd6f7', '1');
 
 -- ----------------------------
 -- Table structure for type
@@ -256,7 +258,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-18 17:05:27', '192.168.1.233');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-19 15:54:05', '192.168.1.233');
 
 -- ----------------------------
 -- Table structure for wx_banner

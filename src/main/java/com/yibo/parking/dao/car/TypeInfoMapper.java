@@ -20,4 +20,8 @@ public interface TypeInfoMapper {
     int delete(TypeInfo info);
 
     List<TypeInfo> findByTypeId(@Param("typeId") String typeId);
+
+    TypeInfo get(TypeInfo info);
+
+    TypeInfo get(@Param("id") String id);
 }

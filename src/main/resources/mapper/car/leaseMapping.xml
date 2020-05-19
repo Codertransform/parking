@@ -15,7 +15,7 @@
         <if test="logmax != null and logmax != ''">
             and enddate = #{logmax}
         </if>
-        <if test="carId != null and carId != ''">
+        <if test="car != null and car.id != null and car.id != ''">
             and carId = #{carId}
         </if>
     </select>
@@ -24,9 +24,10 @@
         select
             a.id as id,
             a.order_id as orderId,
-            a.carId as car.id,
-            a.unit as unit.id,
-            a.type as type.id,
+            a.carId as "car.id",
+            a.unit as "unit.id",
+            a.member_id as "member.id",
+            a.type as "type.id",
             a.startmiles as startmiles,
             a.endmiles as endmiles,
             a.position as position,
@@ -46,7 +47,9 @@
             order_id,
             carId,
             unit,
+            member_id,
             type,
+            amount,
             startmiles,
             endmiles,
             position,
@@ -57,9 +60,11 @@
         values (
             #{id},
             #{orderId},
-            #{carId},
-            #{unit},
-            #{carType},
+            #{car.id},
+            #{unit.id},
+            #{member.id},
+            #{type.id},
+            #{amount},
             #{startmiles},
             #{endmiles},
             #{position},
@@ -72,9 +77,11 @@
     <update id="update">
         update lease set
             order_id = #{orderId},
-            carId = #{carId},
-            unit = #{unit},
-            type = #{carType},
+            carId = #{car.id},
+            unit = #{unit.id},
+            member_id = #{member.id},
+            type = #{type.id},
+            amount = #{amount},
             startmiles = #{startmiles},
             endmiles = #{endmiles},
             position = #{position},

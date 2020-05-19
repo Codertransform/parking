@@ -16,6 +16,19 @@
         from type_info as a where a.type_id = #{id}
     </select>
 
+    <select id="get" resultType="TypeInfo">
+        select
+            a.id as id ,
+            a.type_id as typeId,
+            a.`key` as "key",
+            a.value as "value"
+        from type_info a
+        where 1=1
+        <if test="id != null and id != ''">
+            and a.id = #{id}
+        </if>
+    </select>
+
     <select id="findByTypeId" resultType="TypeInfo">
         select
             a.id AS id,

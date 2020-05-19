@@ -1,5 +1,6 @@
 package com.yibo.parking.entity.car;
 
+import com.yibo.parking.entity.member.Member;
 import com.yibo.parking.entity.unit.Unit;
 
 public class Lease {
@@ -7,6 +8,7 @@ public class Lease {
     private String orderId;
     private Car car;
     private Unit unit;
+    private Member member;
     private Type type;
     private String amount;
     private String startmiles;
@@ -46,6 +48,14 @@ public class Lease {
 
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     public Type getType() {
