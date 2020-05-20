@@ -117,4 +117,11 @@ public class WxApiController {
         }
         return JsonUtils.error(map.get("lease"));
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/getOrders")
+    public String getOrders(String userId){
+        Map<String,Object> map = leaseService.getOrders(userId);
+        return null;
+    }
 }

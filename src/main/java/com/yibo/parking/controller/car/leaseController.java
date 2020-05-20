@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/cars/lease")
@@ -55,5 +56,16 @@ public class leaseController {
         if (a != 0)
             return JsonUtils.success(lease,"租用订单添加成功");
         else return JsonUtils.error(lease);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/check")
+    public String check(Lease lease){
+        Map<String,Object> map = leaseService.check(lease);
+        int c = (int) map.get("flag");
+        if (c != 0) {
+            return JsonUtils.success(map.get("lease"), String.valueOf(map.get("msg")));
+        }
+        return JsonUtils.error(map.get("lease"));
     }
 }

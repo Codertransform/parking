@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-05-19 18:26:30
+Date: 2020-05-20 17:35:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,7 +74,7 @@ CREATE TABLE `lease` (
 -- ----------------------------
 -- Records of lease
 -- ----------------------------
-INSERT INTO `lease` VALUES ('d490c0fd3f95431d8ad79e773edeae8b', 'YBTC2020051918025243474002', '5cbd1e936bfd48f783e28859cde904d6', '5f0952e82c0c4454890c90a513b47a90', 'b41d7348c9f74bd9a67fda4920a25e84', '05a4a584e5c745978306e47d913834bf', '200', null, null, null, null, '2020-05-19 17:46:00', '2020-05-20 17:46:00');
+INSERT INTO `lease` VALUES ('d490c0fd3f95431d8ad79e773edeae8b', 'YBTC2020051918025243474002', '5cbd1e936bfd48f783e28859cde904d6', '5f0952e82c0c4454890c90a513b47a90', 'b41d7348c9f74bd9a67fda4920a25e84', '05a4a584e5c745978306e47d913834bf', '200', null, null, null, '1', '2020-05-19 17:46:00', '2020-05-20 17:46:00');
 
 -- ----------------------------
 -- Table structure for maintain_order
@@ -258,7 +258,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-19 15:54:05', '192.168.1.233');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-20 17:27:35', '192.168.1.233');
 
 -- ----------------------------
 -- Table structure for wx_banner

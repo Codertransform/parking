@@ -91,10 +91,35 @@ public class LeaseServiceImpl implements LeaseService {
         Type type = typeMapper.get(car.getTypeId());
         lease.setType(type);
         lease.setAmount(String.valueOf(infoMapper.get(typeCheck).getValue()));
+        lease.setStatus("-1");
         lease.setStartdate(start);
         lease.setEnddate(end);
         map.put("flag",leaseMapper.insert(lease));
         map.put("lease",lease);
+        return map;
+    }
+
+    public Map<String, Object> getOrders(String userId) {
+
+        return null;
+    }
+
+    public Map<String, Object> check(Lease lease) {
+        Map<String,Object> map = new HashMap<>();
+        int l = leaseMapper.check(lease);
+        Lease lease1 = leaseMapper.get(lease);
+        map.put("flag",l);
+        map.put("lease",lease1);
+        switch (lease.getStatus()){
+            case "2":
+                map.put("msg","审核已通过，请提醒用车单位尽快支付款项");
+                break;
+            case "-2":
+                map.put("msg","很抱歉，没能通过审核！");
+                break;
+            default:
+                map.put("msg","订单已支付完成");
+        }
         return map;
     }
 }

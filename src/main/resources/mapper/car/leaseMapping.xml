@@ -4,10 +4,29 @@
 <mapper namespace="com.yibo.parking.dao.car.LeaseMapper">
 
     <select id="getLeases" resultType="Lease">
-        select * from lease
+        select
+            a.id as id,
+            a.order_id as orderId,
+            a.carId as "car.id",
+            c.cardId as "car.cardId",
+            a.unit as "unit.id",
+            u.name as "unit.name",
+            a.member_id as "member.id",
+            a.type as "type.id",
+            t.name as "type.name",
+            a.startmiles as startmiles,
+            a.endmiles as endmiles,
+            a.position as position,
+            a.status as status,
+            a.startdate as startdate,
+            a.enddate as enddate
+        from lease a
+        left join cars c on c.id = a.carId
+        left join unit u on u.id = a.unit
+        left join type t on t.id = a.type
         where 1 = 1
-        <if test="unit != null and unit != ''">
-            and unit = #{unit}
+        <if test="unit != null and unit.id != null and unit.id != ''">
+            and unit = #{unit.id}
         </if>
         <if test="logmin != null and logmin != ''">
             and startdate = #{logmin}
@@ -16,7 +35,7 @@
             and enddate = #{logmax}
         </if>
         <if test="car != null and car.id != null and car.id != ''">
-            and carId = #{carId}
+            and carId = #{car.id}
         </if>
     </select>
 
@@ -88,6 +107,12 @@
             status = #{status},
             startdate = #{startdate},
             enddate = #{enddate}
+        where id = #{id}
+    </update>
+
+    <update id="check">
+        update lease set
+            status = #{status}
         where id = #{id}
     </update>
 
