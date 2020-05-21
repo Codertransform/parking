@@ -54,7 +54,7 @@ public class DataReceiveConfigration {
 
     @Bean
     public TcpNetServerConnectionFactory getServerConnectionFactory() {
-        TcpNetServerConnectionFactory serverConnectionFactory = new TcpNetServerConnectionFactory(1234);
+        TcpNetServerConnectionFactory serverConnectionFactory = new TcpNetServerConnectionFactory(443);
         serverConnectionFactory.setSerializer(new ByteArrayRawSerializer());
         serverConnectionFactory.setDeserializer(new ByteArrayRawSerializer());
         serverConnectionFactory.setLookupHost(false);
