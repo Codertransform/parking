@@ -7,7 +7,9 @@ import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DeviceServiceImpl implements DeviceService {
@@ -39,5 +41,19 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public int delete(Device device) {
         return deviceMapper.delete(device);
+    }
+
+    public Map<String,Object> status(Device device) {
+        Map<String,Object> map = new HashMap<>();
+        int s = deviceMapper.status(device);
+        Device d = new Device();
+        d.setId(device.getId());
+        if (s != 0) {
+            map.put("flag", true);
+            map.put("device",deviceMapper.get(d));
+        }else {
+            map.put("flag",false);
+        }
+        return map;
     }
 }

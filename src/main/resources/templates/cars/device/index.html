@@ -57,14 +57,15 @@
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" title="查看" th:text="${dev.deviceId}"></u></td>
 					<td th:text="${dev.carId}"></td>
 					<td class="td-status" th:switch="${dev.status}">
-						<span th:case="-1" class="label label-default radius">已停用</span>
+						<span th:case="0" class="label label-default radius">已停用</span>
 						<span th:case="*" class="label label-success radius">正常</span>
 					</td>
 					<td class="f-14 td-manage" th:switch="${dev.status}">
-						<a style="text-decoration:none" th:case="0" th:onclick="article_stop(this,[[${dev.id}]])"
+						[[${dev.status}]]
+						<a style="text-decoration:none" th:case="*" th:onclick="article_stop(this,[[${dev.id}]])"
 						   href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe6de;</i>
 						</a>
-						<a style="text-decoration:none" th:case="*" th:onclick="article_start(this,[[${dev.id}]])"
+						<a style="text-decoration:none" th:case="0" th:onclick="article_start(this,[[${dev.id}]])"
 						   href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe603;</i>
 						</a>
 						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('车辆信息编辑','/cars/device/edit',[[${dev.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
@@ -196,9 +197,9 @@ function article_stop(obj,id){
 		btn:['停用','取消']
 	},function(index){
 		$.ajax({
-			url:'/cars/device/stop',
+			url:'/cars/device/status',
 			type:'POST',
-			data:{'id':id},
+			data:{'id':id,'status':0},
 			dataType:'json',
 			success:function (e) {
 				if (e.code === "0"){
@@ -220,9 +221,9 @@ function article_start(obj,id){
 		btn:['启用','取消']
 	},function(index){
 		$.ajax({
-			url:'/cars/device/start',
+			url:'/cars/device/status',
 			type:'POST',
-			data:{'id':id},
+			data:{'id':id,'status':1},
 			dataType:'json',
 			success:function (e) {
 				if (e.code === "0"){

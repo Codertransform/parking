@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/cars/device")
@@ -62,5 +63,16 @@ public class DeviceController {
             return JsonUtils.success(device,"设备删除成功");
         }
         return JsonUtils.error(device);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/status")
+    public String status(Device device){
+        Map<String,Object> map = deviceService.status(device);
+        boolean flag = (boolean) map.get("flag");
+        if (flag){
+            return JsonUtils.success(map.get("device"),"设备已停用");
+        }
+        return JsonUtils.error(null);
     }
 }

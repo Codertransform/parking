@@ -16,4 +16,6 @@ public interface DeviceMapper {
     int update(Device device);
 
     int delete(Device device);
+
+    int status(Device device);
 }
