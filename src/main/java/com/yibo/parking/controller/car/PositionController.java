@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PositionController {
 
     @RequestMapping(value = {"","/"})
-    public String index(String cardId,String logmin, String logmax, Model model){
+    public String index(String carId,String logmin, String logmax, Model model){
         model.addAttribute("title","车辆定位追踪");
-        model.addAttribute("cardId",cardId);
+        model.addAttribute("cardId",carId);
         model.addAttribute("logmin",logmin);
         model.addAttribute("logmax",logmax);
         return "cars/position/index";

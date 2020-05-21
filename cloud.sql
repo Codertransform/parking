@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2020-05-20 17:35:46
+Date: 2020-05-21 17:37:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,6 +36,23 @@ CREATE TABLE `cars` (
 -- ----------------------------
 INSERT INTO `cars` VALUES ('5cbd1e936bfd48f783e28859cde904d6', '陕C·7797W', '斯巴鲁', '灰色', '05a4a584e5c745978306e47d913834bf', '0', '2020-02-07 21:14:11', '2020-02-07 15:22:43');
 INSERT INTO `cars` VALUES ('d8774db7b1914a9daefb3ff85301ccc7', '陕C·V5591', '静安寺独立开发', '白色', '05a4a584e5c745978306e47d913834bf', '0', '2020-02-07 15:22:41', '2020-02-07 15:22:43');
+
+-- ----------------------------
+-- Table structure for device
+-- ----------------------------
+DROP TABLE IF EXISTS `device`;
+CREATE TABLE `device` (
+  `id` varchar(64) NOT NULL,
+  `device_id` varchar(15) NOT NULL COMMENT '设备编号',
+  `car_id` varchar(64) DEFAULT NULL COMMENT '车辆id',
+  `status` char(2) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of device
+-- ----------------------------
+INSERT INTO `device` VALUES ('0f6ee3eda73a409eb7a7a223d272f079', '1715704370', '陕C·7797W', '0');
 
 -- ----------------------------
 -- Table structure for dict
@@ -258,7 +275,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-20 17:27:35', '192.168.1.233');
+INSERT INTO `user` VALUES ('ee21b75f2e7e4e1fbeb73c2666a898f8', 'c1b50c69b9ff4611b6613363ae9b11e3', 'admin', '$2a$10$elowJGDnO/kppmsmC5PoLOeGvbjdDecl2QFS01xlzVa/uhZwbTxKS', '2020-04-26 00:00:00', '2020-05-21 17:22:31', '192.168.1.233');
 
 -- ----------------------------
 -- Table structure for wx_banner

@@ -45,7 +45,7 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/login")
-    public String login( Model model){
+    public String login(){
         return "login";
     }
 
