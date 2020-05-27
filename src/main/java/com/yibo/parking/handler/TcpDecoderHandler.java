@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -42,9 +44,9 @@ public class TcpDecoderHandler extends MessageToMessageDecoder<ByteBuf> {
             gpsData.setDataType(split[2]);
             gpsData.setTime(split[3]);
             gpsData.setValid(split[4]);
-            gpsData.setLatitude(split[5]);
+            gpsData.setLatitude(position(split[5]));
             gpsData.setLat_flag(split[6]);
-            gpsData.setLongitude(split[7]);
+            gpsData.setLongitude(position(split[7]));
             gpsData.setLon_flag(split[8]);
             gpsData.setSpeed(split[9]);
             gpsData.setDirection(split[10]);
@@ -67,8 +69,24 @@ public class TcpDecoderHandler extends MessageToMessageDecoder<ByteBuf> {
         if (s == '$'){
             String hexString = HexConvert.BinaryToHexString( data ).replace( " ","" );
             System.out.println(hexString);
-
-            System.out.println("收到发来的消息：" );
+            OriginGPSData gpsData = new OriginGPSData();
+            gpsData.setId(EntityIdGenerate.generateId());
+            gpsData.setSerialNumber(hexString.substring(2,12));
+            gpsData.setTime(hexString.substring(12,18));
+            gpsData.setDate(hexString.substring(18,24));
+            String latitude = hexString.substring(24,32);
+            String longitude = hexString.substring(34,43);
+            String lat = new DecimalFormat(".000000").format(Double.parseDouble(latitude.substring(2))/10000/60);
+            String lon = new DecimalFormat(".000000").format(Double.parseDouble(longitude.substring(3))/10000/60);
+            latitude = latitude.substring(0,2) + lat;
+            longitude = longitude.substring(0,3) + lon;
+            gpsData.setLatitude(latitude);
+            gpsData.setLongitude(longitude);
+            String flag = hexString.substring(43,44);
+            System.out.println(flag + "长度：" + flag.length());
+            byte[] bytes = HexConvert.hexStringToBytes(flag);
+            System.out.println(Arrays.toString(bytes));
+//            System.out.println("收到发来的消息：" );
         }
 //        list.add(msg);
     }

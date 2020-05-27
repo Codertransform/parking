@@ -26,7 +26,8 @@
             voltage,
             GSM,
             satellites,
-            voltage_unit
+            voltage_unit,
+            iccid
         )
         values (
             #{id},
@@ -50,7 +51,8 @@
             #{voltage},
             #{GSM},
             #{satellites},
-            #{voltage_unit}
+            #{voltage_unit},
+            #{iccid}
         )
     </insert>
 </mapper>

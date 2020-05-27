@@ -44,6 +44,16 @@ public class HexConvert {
         }
         return d;
     }
+
+    public static String hexString2binaryString(String hexString) {
+        String bString = "", tmp;
+        for (int i = 0; i < hexString.length(); i++) {
+            tmp = "0000" + Integer.toBinaryString(Integer.parseInt(hexString.substring(i, i + 1), 16));
+            bString += tmp.substring(tmp.length() - 4);
+        }
+        return bString;
+    }
+
     //返回匹配字符
     private static byte charToByte(char c) {
         return (byte) "0123456789ABCDEF".indexOf(c);
