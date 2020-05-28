@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -33,11 +32,11 @@ public class TcpDecoderHandler extends MessageToMessageDecoder<ByteBuf> {
         byte[] data = new byte[byteBuf.readableBytes()];
         byteBuf.readBytes(data);
         char s = (char) data[0];
+        OriginGPSData gpsData = new OriginGPSData();
         if (s == '*') {
             String msg = new String(data, StandardCharsets.UTF_8);
             msg = msg.substring(1,msg.length()-1);
             String[] split = msg.split(",");
-            OriginGPSData gpsData = new OriginGPSData();
             gpsData.setId(EntityIdGenerate.generateId());
             gpsData.setManuName(split[0]);
             gpsData.setSerialNumber(split[1]);
@@ -69,9 +68,9 @@ public class TcpDecoderHandler extends MessageToMessageDecoder<ByteBuf> {
         if (s == '$'){
             String hexString = HexConvert.BinaryToHexString( data ).replace( " ","" );
             System.out.println(hexString);
-            OriginGPSData gpsData = new OriginGPSData();
             gpsData.setId(EntityIdGenerate.generateId());
             gpsData.setSerialNumber(hexString.substring(2,12));
+            gpsData.setDataType("No");
             gpsData.setTime(hexString.substring(12,18));
             gpsData.setDate(hexString.substring(18,24));
             String latitude = hexString.substring(24,32);
@@ -83,12 +82,42 @@ public class TcpDecoderHandler extends MessageToMessageDecoder<ByteBuf> {
             gpsData.setLatitude(latitude);
             gpsData.setLongitude(longitude);
             String flag = hexString.substring(43,44);
-            System.out.println(flag + "长度：" + flag.length());
-            byte[] bytes = HexConvert.hexStringToBytes(flag);
-            System.out.println(Arrays.toString(bytes));
-//            System.out.println("收到发来的消息：" );
+            String bytes = HexConvert.hexString2binaryString(flag);
+            char[] chars = bytes.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                if (i == 0 & chars[i] == '1'){
+                    gpsData.setValid("A");
+                }else if (i == 0 & chars[i] == '0'){
+                    gpsData.setValid("V");
+                }
+                if (i == 1 & chars[i] == '1'){
+                    gpsData.setLat_flag("N");
+                }else if (i == 1 & chars[i] == '0'){
+                    gpsData.setLat_flag("S");
+                }
+                if (i == 2 & chars[i] == '1'){
+                    gpsData.setLon_flag("E");
+                }else if (i == 2 & chars[i] == '0'){
+                    gpsData.setLon_flag("W");
+                }
+            }
+            gpsData.setSpeed(String.valueOf(Integer.parseInt(hexString.substring(44,47))*1.852));
+            gpsData.setDirection(hexString.substring(47,50));
+            gpsData.setVehicle_status(hexString.substring(50,58));
+            long GSM = Long.parseLong(hexString.substring(62,64), 16);
+            gpsData.setGSM(String.valueOf(GSM));
+            gpsData.setSatellites(hexString.substring(64,66));
+            long in = Long.parseLong(hexString.substring(66,68),16);
+            long sn = Long.parseLong(hexString.substring(68,70),16);
+            String unit = in + "." +sn;
+            gpsData.setVoltage_unit(unit);
+            gpsData.setNet_mcc(String.valueOf(Long.parseLong(hexString.substring(76,78),16)));
+            gpsData.setNet_mnc(String.valueOf(Long.parseLong(hexString.substring(78,80),16)));
+            gpsData.setNet_lac(String.valueOf(Long.parseLong(hexString.substring(80,84),16)));
+            gpsData.setNet_cellid(String.valueOf(Long.parseLong(hexString.substring(84,88),16)));
+            int i = originDataMapper.insert(gpsData);
+            System.out.println("收到发来的消息：" + gpsData);
         }
-//        list.add(msg);
     }
 
     private String position(String pos){

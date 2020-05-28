@@ -1,22 +1,20 @@
 package com.yibo.parking.interceptor;
 
 import com.yibo.parking.handler.TcpDecoderHandler;
-import com.yibo.parking.handler.TransformHandler;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Flux;
-import reactor.netty.http.server.HttpServer;
 import reactor.netty.tcp.TcpServer;
 
 @Configuration
 public class DataReceiveConfigration {
 
     @Bean
-    CommandLineRunner serverRunner(TcpDecoderHandler tcpDecoderHandler, TransformHandler transformHandler) {
+    CommandLineRunner serverRunner(TcpDecoderHandler tcpDecoderHandler) {
         return strings -> {
             createTcpServer(tcpDecoderHandler);
-            transformServer(transformHandler);
+//            transformServer(transformHandler);
         };
     }
 
@@ -33,12 +31,12 @@ public class DataReceiveConfigration {
                 .bindNow();
     }
 
-    private void transformServer(TransformHandler transformHandler){
+    /*private void transformServer(TransformHandler transformHandler){
         HttpServer.create().handle((in,out) ->{
             out.responseHeaders();
             return Flux.never();
         })
         .port(8080)
         .bindNow();
-    }
+    }*/
 }

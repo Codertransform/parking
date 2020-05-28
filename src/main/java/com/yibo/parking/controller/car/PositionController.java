@@ -16,4 +16,6 @@ public class PositionController {
         model.addAttribute("logmax",logmax);
         return "cars/position/index";
     }
+
+
 }
