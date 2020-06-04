@@ -36,11 +36,7 @@
 	<div class="text-c">
 		<form action="/cars/position/" autocomplete="off" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
-			时间范围：
-			<input type="text" name="logmin" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" th:value="${logmin}" class="input-text Wdate" style="width:120px;">
-			-
-			<input type="text" name="logmax" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" th:value="${logmax}" class="input-text Wdate" style="width:120px;">
-			<input type="text" name="carId" id="carId" placeholder=" 车牌号 " th:value="${carId}" style="width:250px" class="input-text">
+			<input type="text" name="carId" id="carId" placeholder=" 车牌号 " th:value="${data.carId}" style="width:250px" class="input-text">
 			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜车辆 </button>
 		</form>
 	</div>
@@ -69,41 +65,14 @@
 	var map = new AMap.Map('container',{
 		resizeEnable: true, //是否监控地图容器尺寸变化
 	});
-	AMap.plugin('AMap.Geolocation', function() {
-		var geolocation = new AMap.Geolocation({
-			enableHighAccuracy: true,//是否使用高精度定位，默认:true
-			timeout: 10000,          //超过10秒后停止定位，默认：5s
-			buttonPosition:'RB',    //定位按钮的停靠位置
-			buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-			zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
-
-		});
-		map.addControl(geolocation);
-		geolocation.getCurrentPosition(function(status,result){
-			if(status==='complete'){
-				onComplete(result)
-			}else{
-				onError(result)
-			}
-		});
+	// 创建一个 Marker 实例：
+	var marker = new AMap.Marker({
+		position: new AMap.LngLat(116.39, 39.9),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+		title: '北京'
 	});
-	//解析定位结果
-	function onComplete(data) {
-		document.getElementById('status').innerHTML='定位成功';
-		var str = [];
-		str.push('定位结果：' + data.position);
-		str.push('定位类别：' + data.location_type);
-		if(data.accuracy){
-			str.push('精度：' + data.accuracy + ' 米');
-		}//如为IP精确定位结果则没有精度信息
-		str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
-		document.getElementById('result').innerHTML = str.join('<br>');
-	}
-	//解析定位错误信息
-	function onError(data) {
-		document.getElementById('status').innerHTML='定位失败'
-		document.getElementById('result').innerHTML = '失败原因排查信息:'+data.message;
-	}
+
+	// 将创建的点标记添加到已有的地图实例：
+	map.add(marker);
 </script>
 </body>
 </html>

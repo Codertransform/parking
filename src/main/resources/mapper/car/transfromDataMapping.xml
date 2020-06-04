@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.car.TransformDataMapper">
+
+    <select id="findList" resultType="TransformData">
+        select
+            a.id as "id",
+            a.origin_id as "originId",
+            a.latitude as "latitude",
+            a.longitude as "longitude",
+            c.cardId as "carId"
+        from transform_gps_data a
+        left join origin_gps_data ogd on a.origin_id = ogd.id
+        left join device d on ogd.serial_number = d.device_id
+        left join cars c on d.car_id = c.id
+        where 1=1
+        <if test="id != null and id != ''">
+            and a.id = #{id}
+        </if>
+        <if test="carId != null and carId != ''">
+            and c.cardId = #{carId}
+        </if>
+    </select>
+</mapper>
