@@ -6,7 +6,10 @@ import com.yibo.parking.service.TransformDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TransformDataServiceImpl implements TransformDataService {
@@ -15,7 +18,16 @@ public class TransformDataServiceImpl implements TransformDataService {
     private TransformDataMapper dataMapper;
 
     @Override
-    public List<TransformData> findList(TransformData data) {
-        return dataMapper.findList(data);
+    public List<Map<String,String>> findList(TransformData data) {
+        List<TransformData> list = dataMapper.findList(data);
+        List<Map<String,String>> mapList = new ArrayList<>();
+        for (TransformData d : list) {
+            Map<String,String> map = new HashMap<>();
+            map.put("latitude", d.getLatitude());
+            map.put("longitude", d.getLongitude());
+            map.put("carId", d.getCarId());
+            mapList.add(map);
+        }
+        return mapList;
     }
 }

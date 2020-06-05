@@ -65,6 +65,8 @@
 	var map = new AMap.Map('container',{
 		resizeEnable: true, //是否监控地图容器尺寸变化
 	});
+	var position = [[${dataList}]];
+	console.log(position);
 	// 创建一个 Marker 实例：
 	var marker = new AMap.Marker({
 		position: new AMap.LngLat(116.39, 39.9),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]

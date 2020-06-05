@@ -9,11 +9,12 @@
             a.origin_id as "originId",
             a.latitude as "latitude",
             a.longitude as "longitude",
+            a.time as "time",
             c.cardId as "carId"
         from transform_gps_data a
         left join origin_gps_data ogd on a.origin_id = ogd.id
         left join device d on ogd.serial_number = d.device_id
-        left join cars c on d.car_id = c.id
+        left join cars c on d.car_id = c.cardId
         where 1=1
         <if test="id != null and id != ''">
             and a.id = #{id}
@@ -21,5 +22,7 @@
         <if test="carId != null and carId != ''">
             and c.cardId = #{carId}
         </if>
+        group by c.cardId
+        order by a.time desc
     </select>
 </mapper>

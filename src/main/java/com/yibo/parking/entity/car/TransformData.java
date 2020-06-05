@@ -4,7 +4,7 @@ public class TransformData {
     private String id;
     private String originId;        //原始数据id
     private String latitude;        //纬度
-    private String longtitude;      //经度
+    private String longitude;      //经度
     private String carId;           //车牌号
 
     public String getId() {
@@ -31,12 +31,12 @@ public class TransformData {
         this.latitude = latitude;
     }
 
-    public String getLongtitude() {
-        return longtitude;
+    public String getLongitude() {
+        return longitude;
     }
 
-    public void setLongtitude(String longtitude) {
-        this.longtitude = longtitude;
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public String getCarId() {
