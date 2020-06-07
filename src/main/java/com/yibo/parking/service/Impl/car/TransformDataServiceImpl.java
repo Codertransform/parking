@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class TransformDataServiceImpl implements TransformDataService {
@@ -18,16 +16,17 @@ public class TransformDataServiceImpl implements TransformDataService {
     private TransformDataMapper dataMapper;
 
     @Override
-    public List<Map<String,String>> findList(TransformData data) {
-        List<TransformData> list = dataMapper.findList(data);
-        List<Map<String,String>> mapList = new ArrayList<>();
-        for (TransformData d : list) {
-            Map<String,String> map = new HashMap<>();
-            map.put("latitude", d.getLatitude());
-            map.put("longitude", d.getLongitude());
-            map.put("carId", d.getCarId());
-            mapList.add(map);
+    public List<String[]> findList(TransformData data) {
+        List<TransformData> datas = dataMapper.findList(data);
+        List<String[]> list = new ArrayList<>();
+        for (TransformData d : datas) {
+            String[] tds = {d.getCarId(),d.getLatitude(),d.getLongitude()};
+            list.add(tds);
         }
-        return mapList;
+        return list;
+    }
+
+    public List<TransformData> findList(){
+        return dataMapper.findList(new TransformData());
     }
 }

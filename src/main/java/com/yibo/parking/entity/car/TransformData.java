@@ -46,4 +46,15 @@ public class TransformData {
     public void setCarId(String carId) {
         this.carId = carId;
     }
+
+    @Override
+    public String toString() {
+        return "TransformData{" +
+                "id='" + id + '\'' +
+                ", originId='" + originId + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", carId='" + carId + '\'' +
+                '}';
+    }
 }

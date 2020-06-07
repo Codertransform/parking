@@ -58,23 +58,51 @@
 <script type="text/javascript" src="/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=f52c8718520bac7e44db8010b3f8419e"></script>
 <script type="text/javascript">
+
 	var map = new AMap.Map('container',{
 		resizeEnable: true, //是否监控地图容器尺寸变化
 	});
-	var position = [[${dataList}]];
-	console.log(position);
-	// 创建一个 Marker 实例：
-	var marker = new AMap.Marker({
-		position: new AMap.LngLat(116.39, 39.9),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
-		title: '北京'
-	});
 
-	// 将创建的点标记添加到已有的地图实例：
-	map.add(marker);
+	$(function () {
+		getLocations();
+		setInterval('getLocations()',3000);//轮询执行，500ms一次
+	})
+
+	var markerList = [];
+
+	function getLocations() {
+		map.remove(markerList);
+		markerList = [];
+		$.ajax({
+			url:'/cars/position/getCars',
+			type:'post',
+			async:false,
+			dataType:'json',
+			success:function (res) {
+				$.each(res,function (index,value) {
+					/*var icon = new AMap.Icon({
+						size: new AMap.Size(40, 50),    // 图标尺寸
+						image: '/img/car.png',  // Icon的图像
+						imageOffset: new AMap.Pixel(0, -60),  // 图像相对展示区域的偏移量，适于雪碧图等
+						imageSize: new AMap.Size(40, 50)   // 根据所设置的大小拉伸或压缩图片
+					});*/
+					// 创建一个 Marker 实例：
+					var marker = new AMap.Marker({
+						position: new AMap.LngLat(value.longitude, value.latitude),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+						title: value.carId,
+						// icon: icon,
+						zoom:13
+					});
+					markerList.push(marker);
+				})
+			}
+		})
+		// 将创建的点标记添加到已有的地图实例：
+		map.add(markerList);
+	}
 </script>
 </body>
 </html>
