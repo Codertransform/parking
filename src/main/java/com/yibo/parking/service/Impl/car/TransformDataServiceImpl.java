@@ -29,4 +29,8 @@ public class TransformDataServiceImpl implements TransformDataService {
     public List<TransformData> findList(){
         return dataMapper.findList(new TransformData());
     }
+
+    public List<TransformData> getLocation() {
+        return dataMapper.getLocation();
+    }
 }

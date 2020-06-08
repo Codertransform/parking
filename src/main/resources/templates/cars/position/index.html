@@ -66,6 +66,8 @@
 		resizeEnable: true, //是否监控地图容器尺寸变化
 	});
 
+
+
 	$(function () {
 		getLocations();
 		setInterval('getLocations()',3000);//轮询执行，500ms一次
@@ -93,7 +95,8 @@
 					var marker = new AMap.Marker({
 						position: new AMap.LngLat(value.longitude, value.latitude),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
 						title: value.carId,
-						// icon: icon,
+						offset: new AMap.Pixel(-10, -10),
+						icon: '/img/car.png', // 添加 Icon 图标 URL
 						zoom:13
 					});
 					markerList.push(marker);

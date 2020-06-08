@@ -9,4 +9,6 @@ import java.util.List;
 public interface TransformDataMapper {
 
     List<TransformData> findList(TransformData data);
+
+    List<TransformData> getLocation();
 }

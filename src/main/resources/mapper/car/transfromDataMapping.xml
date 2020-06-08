@@ -22,7 +22,21 @@
         <if test="carId != null and carId != ''">
             and c.cardId = #{carId}
         </if>
-        group by c.cardId
-        order by a.time desc
+    </select>
+
+    <select id="getLocation" resultType="TransformData">
+        select
+            a.id as "id",
+            a.origin_id as "originId",
+            a.latitude as "latitude",
+            a.longitude as "longitude",
+            a.time as "time",
+            c.cardId as "carId"
+        from transform_gps_data a
+        left join origin_gps_data ogd on a.origin_id = ogd.id
+        left join device d on ogd.serial_number = d.device_id
+        left join cars c on d.car_id = c.cardId
+        group by c.cardId,a.time
+        order by a.time desc limit 1
     </select>
 </mapper>
