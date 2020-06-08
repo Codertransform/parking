@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <script type="text/javascript" src="../internal.js"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.1&services=true"></script>
+    <script type="text/javascript" src="http://systemApi.map.baidu.com/systemApi?v=1.1&services=true"></script>
     <style type="text/css">
         .content{width:530px; height: 350px;margin: 10px auto;}
         .content table{width: 100%}
@@ -68,7 +68,7 @@
     }
     function init(){
         var mapNode = editor.selection.getRange().getClosedNode(),
-            isMapImg = mapNode && /api[.]map[.]baidu[.]com/ig.test(mapNode.getAttribute("src")),
+            isMapImg = mapNode && /systemApi[.]map[.]baidu[.]com/ig.test(mapNode.getAttribute("src")),
             isMapIframe = mapNode && domUtils.hasClass(mapNode, 'ueditor_baidumap');
         if(isMapImg || isMapIframe){
             var url, centerPos, markerPos;
@@ -122,7 +122,7 @@
                     '&markerStyles=' + 'l,A'].join('');
             editor.execCommand('inserthtml', '<iframe class="ueditor_baidumap" src="' + url + '"' + (styleStr ? ' style="' + styleStr + '"' :'') + ' frameborder="0" width="' + (mapWidth+4) + '" height="' + (mapHeight+4) + '"></iframe>');
         } else {
-            var url = "http://api.map.baidu.com/staticimage?center=" + center.lng + ',' + center.lat +
+            var url = "http://systemApi.map.baidu.com/staticimage?center=" + center.lng + ',' + center.lat +
                     "&zoom=" + zoom + "&width=" + size.width + '&height=' + size.height + "&markers=" + point.lng + ',' + point.lat;
             editor.execCommand('inserthtml', '<img width="'+ size.width +'"height="'+ size.height +'" src="' + url + '"' + (styleStr ? ' style="' + styleStr + '"' :'') + '/>');
         }

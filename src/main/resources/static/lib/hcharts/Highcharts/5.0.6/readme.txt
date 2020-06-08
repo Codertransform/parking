@@ -8,7 +8,7 @@ Demos: http://www.hcharts.cn/demos/highcharts
 
 Docs: http://www.hcharts.cn/docs
 
-API: http://api.hcharts.cn/highcharts
+API: http://systemApi.hcharts.cn/highcharts
 
 Copyright @ 2016 Highsoft AS (http://highsoft.com)
 
