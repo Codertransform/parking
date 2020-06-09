@@ -40,7 +40,11 @@ public class SystemServerController {
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String toAdd(SystemServer server){
-        return JsonUtils.success(server,"添加接口成功");
+    public String toAdd(SystemServer server) throws Exception {
+        int i = serverService.insert(server);
+        if (i != 0) {
+            return JsonUtils.success(server,"添加服务成功");
+        }
+        return JsonUtils.error(server);
     }
 }

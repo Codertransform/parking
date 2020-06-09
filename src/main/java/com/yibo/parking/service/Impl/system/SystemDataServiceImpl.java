@@ -3,6 +3,7 @@ package com.yibo.parking.service.Impl.system;
 import com.yibo.parking.dao.system.SystemDataMapper;
 import com.yibo.parking.entity.system.SystemData;
 import com.yibo.parking.service.SystemDataService;
+import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,21 +17,28 @@ public class SystemDataServiceImpl implements SystemDataService {
 
     @Override
     public List<SystemData> findList(SystemData data) {
-        return null;
+        return dataMapper.findList(data);
     }
 
     @Override
     public SystemData get(SystemData systemData) {
-        return null;
+        return dataMapper.get(systemData);
     }
 
     @Override
     public int save(SystemData systemData) {
-        return 0;
+        int s = 0;
+        if (systemData.getId() != null){
+            s = dataMapper.update(systemData);
+        }else {
+            systemData.setId(EntityIdGenerate.generateId());
+            s = dataMapper.insert(systemData);
+        }
+        return s;
     }
 
     @Override
     public int delete(SystemData systemData) {
-        return 0;
+        return dataMapper.delete(systemData);
     }
 }

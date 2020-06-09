@@ -8,9 +8,9 @@ public interface SystemServerService {
 
     List<SystemServer> findList(SystemServer systemServer);
 
-    String insert(SystemServer systemServer);
+    int insert(SystemServer systemServer) throws Exception;
 
-    String update(SystemServer systemServer);
+    int update(SystemServer systemServer);
 
-    String delete(SystemServer systemServer);
+    int delete(SystemServer systemServer);
 }

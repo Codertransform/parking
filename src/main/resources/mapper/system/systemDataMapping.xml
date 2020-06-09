@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.system.SystemDataMapper">
+
+    <select id="findList" resultType="SystemData">
+        select
+            a.id as "id",
+            a.type as "type",
+            a.key as "key",
+            a.value as "value"
+        from system_data a
+        where 1 = 1
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+    </select>
+
+    <select id="get" resultType="SystemData">
+        select
+            a.id as "id",
+            a.type as "type",
+            a.key as "key",
+            a.value as "value"
+        from system_data a
+        where a.id = #{id}
+    </select>
+
+    <select id="getByKey" resultType="SystemData">
+        select
+            a.id as "id",
+            a.type as "type",
+            a.key as "key",
+            a.value as "value"
+        from system_data a
+        where 1=1
+        <if test="type != null and type != ''">
+            and a.type = #{type}
+        </if>
+        <if test="key != null and key != ''">
+            and a.`key`= #{key}
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into system_data(
+            id,
+            type,
+            `key`,
+            value
+        )
+        values (
+            #{id},
+            #{type},
+            #{key},
+            #{value}
+        )
+    </insert>
+
+    <update id="update">
+        update system_data set
+            type = #{type},
+            `key` = #{key},
+            value = #{value}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from system_data where id = #{id}
+    </delete>
+</mapper>

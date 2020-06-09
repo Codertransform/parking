@@ -9,4 +9,6 @@ import java.util.List;
 public interface SystemServerMapper {
 
     List<SystemServer> findList(SystemServer systemServer);
+
+    int insert(SystemServer systemServer);
 }

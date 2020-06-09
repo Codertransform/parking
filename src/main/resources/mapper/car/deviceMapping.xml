@@ -6,6 +6,7 @@
     <select id="findList" resultType="Device">
         select
             a.id as id,
+            a.sid as "sId",
             a.device_id as deviceId,
             a.car_id as carId,
             a.status as status
@@ -13,6 +14,9 @@
         where 1 = 1
         <if test="deviceId != null and deviceId != ''">
             and device_id = #{deviceId}
+        </if>
+        <if test="sId != null and sId != ''">
+            and sid = #{sId}
         </if>
         <if test="carId != null and carId != ''">
             and car_id = #{carId}
@@ -22,6 +26,7 @@
     <select id="get" resultType="Device">
         select
             a.id as id,
+            a.sid as sId,
             a.device_id as deviceId,
             a.car_id as carId,
             a.status as status
@@ -35,12 +40,14 @@
     <insert id="insert">
         insert into device(
             id,
+            sid,
             device_id,
             car_id,
             status
         )
         values (
             #{id},
+            #{sId},
             #{deviceId},
             #{carId},
             #{status}
@@ -49,6 +56,7 @@
 
     <update id="update">
         update device set
+            sid = #{sId},
             device_id = #{deviceId},
             car_id = #{carId},
             status = #{status}

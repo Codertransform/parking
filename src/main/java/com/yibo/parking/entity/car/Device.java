@@ -2,6 +2,7 @@ package com.yibo.parking.entity.car;
 
 public class Device {
     private String id;
+    private String sId;
     private String deviceId;
     private String carId;
     private String status;
@@ -12,6 +13,14 @@ public class Device {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getsId() {
+        return sId;
+    }
+
+    public void setsId(String sId) {
+        this.sId = sId;
     }
 
     public String getDeviceId() {
