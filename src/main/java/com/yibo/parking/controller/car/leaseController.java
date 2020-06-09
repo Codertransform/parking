@@ -68,4 +68,15 @@ public class leaseController {
         }
         return JsonUtils.error(map.get("lease"));
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/del")
+    public String del(Lease lease){
+        Map<String,Object> map = leaseService.delete(lease.getId());
+        boolean flag = (boolean) map.get("flag");
+        if (flag) {
+            return JsonUtils.success(lease, String.valueOf(map.get("message")));
+        }
+        return JsonUtils.error(lease);
+    }
 }

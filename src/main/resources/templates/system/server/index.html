@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE HTML>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -31,16 +31,16 @@
 </nav>
 <div class="page-container">
 	<div class="text-c">
-		<form id="search-form" action="/system/api/" method="post">
+		<form id="search-form" action="/system/server/" method="post">
 			接口名称:
 			<input type="text" class="input-text" id="name" name="name" style="width:150px">
-			<button type="submit" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 接口查询</button>
+			<button type="submit" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 服务查询</button>
 		</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a class="btn btn-primary radius" onclick="api_add('添加接口','/system/api/add')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加接口</a>
+			<a class="btn btn-primary radius" onclick="api_add('添加服务','/system/server/add')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加服务</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
 	</div>
@@ -49,20 +49,18 @@
 			<thead>
 				<tr class="text-c">
 					<th width="25"><input type="checkbox" name="" value=""></th>
+					<th>sid</th>
 					<th>名称</th>
-					<th>接口地址</th>
-					<th>参数</th>
 					<th width="100">操作</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="text-c">
+				<tr class="text-c" th:each="s:${servers}">
 					<td><input type="checkbox" value="" name=""></td>
-					<td>高德服务</td>
-					<td>高德服务</td>
-					<td>高德服务</td>
+					<td th:text="${s.sId}"></td>
+					<td th:text="${s.name}"></td>
 					<td class="f-14">
-						<a style="text-decoration:none" onclick="system_data_edit('角色编辑','system-data-edit.html','0001','400','310')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a style="text-decoration:none" onclick="system_data_edit('角色编辑','/system/server/edit','${s.id}','400','310')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a title="删除" href="javascript:;" onclick="system_data_del(this,'10001')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
 			</tbody>
@@ -85,7 +83,7 @@ $('.table-sort').dataTable({
 	"bStateSave": true,//状态保存
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
+	  {"orderable":false,"aTargets":[0,3]}// 制定列不参与排序
 	]
 });
 /*接口-添加*/

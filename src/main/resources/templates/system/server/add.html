@@ -25,46 +25,11 @@
 </head>
 <body>
 <div class="page-container">
-	<form class="form form-horizontal" id="form-article-add" action="/system/api/add" method="post">
+	<form class="form form-horizontal" id="form-article-add" action="/system/server/add" method="post">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="请输入名称" id="name" name="name"/>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>接口地址：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入身份证号" id="idCard" name="idCard"/>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>电话：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入电话号" id="tel" name="tel"/>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>单位：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<span class="select-box">
-					<select name="unit.id" id="unitId" class="select">
-						<option value="0">请选择单位</option>
-						<option th:each="u:${units}" th:value="${u.id}" th:text="${u.name}"></option>
-					</select>
-				</span>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>微信号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入微信号" id="wxId" name="wxId"/>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">备注：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="remarks" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*0-100"></textarea>
 			</div>
 		</div>
 		<div class="row cl">

@@ -1,7 +1,7 @@
 package com.yibo.parking.controller.system;
 
-import com.yibo.parking.entity.system.SystemApi;
-import com.yibo.parking.service.Impl.system.SystemApiServiceImpl;
+import com.yibo.parking.entity.system.SystemServer;
+import com.yibo.parking.service.Impl.system.SystemServerServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,34 +13,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/system/api")
-public class SystemApiController {
+@RequestMapping(value = "/system/server")
+public class SystemServerController {
 
     @Autowired
-    private SystemApiServiceImpl apiService;
+    private SystemServerServiceImpl serverService;
 
     @RequestMapping(value = {"","/"})
-    public String index(SystemApi systemApi, Model model){
-        List<SystemApi> apis = apiService.findList(systemApi);
+    public String index(SystemServer systemServer, Model model){
+        List<SystemServer> servers = serverService.findList(systemServer);
         model.addAttribute("title","接口服务");
-        model.addAttribute("apis",apis);
-        if (apis.size() == 0){
+        model.addAttribute("servers",servers);
+        if (servers.size() == 0){
             model.addAttribute("count", 0);
         }else {
-            model.addAttribute("count", apis.size());
+            model.addAttribute("count", servers.size());
         }
-        return "system/api/index";
+        return "system/server/index";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model){
-        model.addAttribute("title","添加接口");
-        return "system/api/add";
+        model.addAttribute("title","添加服务");
+        return "system/server/add";
     }
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String toAdd(SystemApi api){
-        return JsonUtils.success(api,"添加接口成功");
+    public String toAdd(SystemServer server){
+        return JsonUtils.success(server,"添加接口成功");
     }
 }

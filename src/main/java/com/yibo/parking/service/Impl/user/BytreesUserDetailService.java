@@ -45,17 +45,14 @@ public class BytreesUserDetailService implements UserDetailsService {
 
         User user=userService.findByName(username);
 
-        if(user != null)
-        {
+        if(user != null){
             System.out.println("找到用户名和密码:"+ user.toString());
             //返回的用户信息如下，参数分别是：用户名，密码，用户权限
             if(user.getUsername().equals("admin"))
                 userData=new UserData(user.getUsername(), user.getPassword(), "ROLE_ADMIN", true,true,true,true);//ROLE_ADMIN
             else
                 userData=new UserData(user.getUsername(), user.getPassword(), "ROLE_USER", true,true,true,true); //ROLE_USER
-        }
-        else
-        {
+        }else{
             System.out.println("没有找到用户名和密码");
         }
 

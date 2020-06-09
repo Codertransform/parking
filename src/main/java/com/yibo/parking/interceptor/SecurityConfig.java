@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //从内存中获取
         //auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder()).withUser("user").password(new BCryptPasswordEncoder().encode("123456")).roles("admin");
         //从接口中获取
-        //auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
+//        auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
         auth.authenticationProvider(provider);
     }
 }

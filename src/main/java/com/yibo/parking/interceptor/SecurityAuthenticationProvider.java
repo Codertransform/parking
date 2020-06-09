@@ -1,6 +1,7 @@
 package com.yibo.parking.interceptor;
 
 import com.yibo.parking.entity.user.UserData;
+import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     HttpServletRequest request;
 
+    @Autowired
+    private UserServiceImpl userService;
+
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
@@ -42,7 +46,6 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
         String userName = authentication.getName();	// 这个获取表单输入中返回的用户名;
         String password = authentication.getCredentials().toString();	// 这个是表单中输入的密码；
 
-
         // 这里构建来判断用户是否存在和密码是否正确
         UserData userData = (UserData) userDetailService.loadUserByUsername(userName);
         if (userData == null)
@@ -52,7 +55,6 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
 
         if (!passwordEncoder().matches(password,userData.getPassword()))
         {
-            System.out.println("密码不正确");
             throw new BadCredentialsException("密码不正确");
         }
         String requestCode = request.getParameter("validateCode");
@@ -67,9 +69,9 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
             logger.info("图片验证码错误！");
             throw new DisabledException("图形验证码错误！");
         }
+
         Collection<? extends GrantedAuthority> authorities = userData.getAuthorities();
         // 构建返回的用户登录成功的token
-        System.out.println("登陆成功");
         return new UsernamePasswordAuthenticationToken(userData, password, authorities);
     }
 

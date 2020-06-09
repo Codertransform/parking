@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yibo.parking.dao.system.SystemApiMapper">
+<mapper namespace="com.yibo.parking.dao.system.SystemServerMapper">
 
-    <select id="findList" resultType="SystemApi">
+    <select id="findList" resultType="SystemServer">
         select
             a.id as "id",
-            a.name as "name",
-            a.api_url as "apiUrl",
-            a.paramters as "paramters"
-        from system_api a
+            a.sid as "sId",
+            a.name as "name"
+        from system_server a
         where 1 = 1
         <if test="name != null and name != ''">
             and name = #{name}
@@ -17,29 +16,26 @@
     </select>
 
     <insert id="insert">
-        insert into system_api(
+        insert into system_server(
             id,
             name,
-            api_url,
-            paramters
+            sid
         )
         values (
             #{id},
             #{name},
-            #{apiUlr},
-            #{paramters}
+            #{sId}
         )
     </insert>
 
     <update id="update">
-        update system_api set
+        update system_server set
             name = #{name},
-            api_url = #{apiUrl},
-            paramters = #{paramters}
+            sid = #{sId}
         where id = #{id}
     </update>
 
     <delete id="del">
-        delete from system_api where id = #{id}
+        delete from system_server where id = #{id}
     </delete>
 </mapper>

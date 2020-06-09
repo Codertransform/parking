@@ -54,8 +54,17 @@ public class LeaseServiceImpl implements LeaseService {
     }
 
     @Override
-    public int delete(String id) {
-        return leaseMapper.delete(id);
+    public Map<String, Object> delete(String id) {
+        Map<String,Object> map = new HashMap<>();
+        int d = leaseMapper.delete(id);
+        if (d != 0) {
+            map.put("flag", true);
+            map.put("message", "租用订单删除成功！");
+        }else {
+            map.put("flag", false);
+            map.put("message", "信息有误请联系管理员！");
+        }
+        return map;
     }
 
     @Override
