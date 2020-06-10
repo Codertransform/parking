@@ -39,6 +39,17 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>设备编号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+					<select name="sId" class="select">
+						<option value="">请选择高德服务</option>
+						<option th:each="s:${servers}" th:value="${s.sId}" th:text="${s.name}"></option>
+					</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">车牌号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" th:value="${dev.carId}" placeholder="请输入车牌号" id="carId" name="carId">

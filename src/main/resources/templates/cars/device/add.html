@@ -38,6 +38,17 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>高德服务：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+					<select name="sId" class="select">
+						<option value="">请选择高德服务</option>
+						<option th:each="s:${servers}" th:value="${s.sId}" th:text="${s.name}"></option>
+					</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">车牌号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="请输入车牌号" id="carId" name="carId">
@@ -46,7 +57,7 @@
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button id="draft" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存 </button>
-				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				<button th:onclick="removeIframe()" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
 	</form>

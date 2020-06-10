@@ -4,6 +4,7 @@ public class Device {
     private String id;
     private String sId;
     private String deviceId;
+    private String tId;
     private String carId;
     private String status;
 
@@ -29,6 +30,14 @@ public class Device {
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public String gettId() {
+        return tId;
+    }
+
+    public void settId(String tId) {
+        this.tId = tId;
     }
 
     public String getCarId() {

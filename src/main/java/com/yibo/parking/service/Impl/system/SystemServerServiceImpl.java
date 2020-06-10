@@ -42,7 +42,7 @@ public class SystemServerServiceImpl implements SystemServerService {
         String result = HttpClientUtil.doPost(url,map);
         JSONObject object = JSONObject.parseObject(result);
         systemServer.setId(EntityIdGenerate.generateId());
-        if (object.get("errcode").equals("10000")){
+        if (object.get("errcode").toString().equals("10000")){
             JSONObject json = object.getJSONObject("data");
             systemServer.setsId(json.get("sid").toString());
         }

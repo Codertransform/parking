@@ -45,6 +45,8 @@
 				<tr class="text-c">
 					<th width="25"><input type="checkbox" name="all" value=""></th>
 					<th width="80">设备编号</th>
+					<th width="80">服务编号</th>
+					<th width="80">高德设备编号</th>
 					<th width="60">车牌号</th>
 					<th width="60">状态</th>
 					<th width="120">操作</th>
@@ -55,6 +57,8 @@
 					<td><input type="checkbox" th:value="${dev.id}" name="one"></td>
 <!--					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${dev.deviceId}"></u></td>-->
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" title="查看" th:text="${dev.deviceId}"></u></td>
+					<td th:text="${dev.sId}"></td>
+					<td th:text="${dev.tId}"></td>
 					<td th:text="${dev.carId}"></td>
 					<td class="td-status" th:switch="${dev.status}">
 						<span th:case="0" class="label label-default radius">已停用</span>
@@ -92,24 +96,9 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,4]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,6]}// 不参与排序的列
 	]
 });
-
-/*$('#search').click(function () {
-	var logmin = $('#logmin').val();
-	var logmax = $('#logmax').val();
-	var cardId = $('#cardId').val();
-	$.ajax({
-		url:'/cars',
-		type:'post',
-		data:{'logmin':logmin,'logmax':logmax,'cardId':cardId},
-		dataType:'json',
-		success:function (data) {
-			console.log(data.code);
-		}
-	})
-});*/
 
 /*资讯-添加*/
 function article_add(title,url,w,h){
