@@ -100,7 +100,7 @@ public class LeaseServiceImpl implements LeaseService {
         Type type = typeMapper.get(car.getTypeId());
         lease.setType(type);
         lease.setAmount(String.valueOf(infoMapper.get(typeCheck).getValue()));
-        lease.setStatus("-1");
+        lease.setStatus("0");
         lease.setStartdate(start);
         lease.setEnddate(end);
         map.put("flag",leaseMapper.insert(lease));

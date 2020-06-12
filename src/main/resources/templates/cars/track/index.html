@@ -46,7 +46,7 @@
 					<th width="80">车牌号</th>
 					<th width="80">起始时间</th>
 					<th width="80">截止时间</th>
-					<th width="60">里程</th>
+					<th width="60">里程(米)</th>
 					<th width="120">操作</th>
 				</tr>
 			</thead>
@@ -60,7 +60,7 @@
 					<td th:text="${tr.endTime}"></td>
 					<td th:text="${tr.miles}"></td>
 					<td class="f-14 td-manage">
-						<a style="text-decoration:none" th:onclick="track_replay('轨迹回放','/cars/track/replay',[[${tr.id}]])" href="javascript:;" title="回放">回放</a>
+						<a style="text-decoration:none" th:onclick="track_replay('轨迹回放','/cars/track/replay',[[${tr.trackId}]],[[${tr.carId}]])" href="javascript:;" title="回放">回放</a>
 					</td>
 				</tr>
 			</tbody>
@@ -108,7 +108,7 @@ function article_add(title,url,w,h){
 }
 
 /*资讯-添加*/
-function track_replay(title,url,id,w,h){
+function track_replay(title,url,id,carId,w,h){
 	if (w == null || w === '') {
 		w=800;
 	}
@@ -121,7 +121,7 @@ function track_replay(title,url,id,w,h){
 		fix: false, //不固定
 		maxmin: true,
 		title: title,
-		content: url
+		content: url + "?trackId=" + id + "&carId=" + carId
 	});
 	layer.full(index);
 }
