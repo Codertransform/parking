@@ -22,4 +22,22 @@ public class JsonUtils {
         Gson gson = new Gson();
         return gson.toJson(json);
     }
+
+    public static String orderApiError(String code, String message){
+        Json json = new Json();
+        json.setCode(code);
+        json.setData(null);
+        json.setMessage(message);
+        Gson gson = new Gson();
+        return gson.toJson(json);
+    }
+
+    public static String orderApiSuccess(String code, Object object, String message){
+        Json json = new Json();
+        json.setCode(code);
+        json.setData(object);
+        json.setMessage(message);
+        Gson gson = new Gson();
+        return gson.toJson(json);
+    }
 }

@@ -60,6 +60,28 @@
         where a.id = #{id}
     </select>
 
+    <select id="getByCarId" resultType="Lease">
+        select
+        a.id as id,
+        a.order_id as orderId,
+        a.carId as "car.id",
+        a.unit as "unit.id",
+        a.member_id as "member.id",
+        a.type as "type.id",
+        a.startmiles as startmiles,
+        a.endmiles as endmiles,
+        a.position as position,
+        a.status as status,
+        a.startdate as startdate,
+        a.enddate as enddate
+        from lease a
+        where a.status = 1 or a.status = 2
+        <if test="carId != null and carId != ''">
+            and a.carId = #{carId}
+        </if>
+        order by a.startdate desc limit 1
+    </select>
+
     <insert id="insert">
         insert into lease(
             id,

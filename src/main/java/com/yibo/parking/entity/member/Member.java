@@ -8,6 +8,7 @@ public class Member {
     private String idCard;
     private String tel;
     private Unit unit;
+    private String wxId;
     private String openId;
     private String status;
     private String remarks;
@@ -50,6 +51,14 @@ public class Member {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getWxId() {
+        return wxId;
+    }
+
+    public void setWxId(String wxId) {
+        this.wxId = wxId;
     }
 
     public String getOpenId() {

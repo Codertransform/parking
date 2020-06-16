@@ -11,6 +11,7 @@
             m.tel as tel,
             u.id as "unit.id",
             u.name as "unit.name",
+            m.wx_id as wxId,
             m.openId as openId,
             m.status as status,
             m.remarks as remarks
@@ -26,6 +27,7 @@
             m.tel as tel,
             u.id as "unit.id",
             u.name as "unit.name",
+            m.wx_id as wxId,
             m.openId as openId,
             m.status as status,
             m.remarks as remarks
@@ -57,6 +59,7 @@
             m.tel as tel,
             u.id as "unit.id",
             u.name as "unit.name",
+            m.wx_id as wxId,
             m.openId as openId,
             m.status as status,
             m.remarks as remarks
@@ -75,6 +78,7 @@
             idCard,
             tel,
             unit_id,
+            wx_id,
             openId,
             status,
             remarks
@@ -84,6 +88,7 @@
             #{idCard},
             #{tel},
             #{unit.id},
+            #{wxId},
             #{openId},
             #{status},
             #{remarks}
@@ -96,7 +101,7 @@
             idCard = #{idCard},
             tel = #{tel},
             unit_id = #{unit.id},
-            openId = #{openId},
+            wx_id = #{wxId},
             status = #{status},
             remarks = #{remarks}
         where id = #{id}

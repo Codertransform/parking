@@ -58,7 +58,8 @@
 					<th width="40">车辆类型</th>
 <!--					<th width="80">起始里程(单位：公里)</th>-->
 					<th width="80">申请单位</th>
-					<th width="100">时间</th>
+					<th width="100">起始时间</th>
+					<th width="100">截止时间</th>
 					<th width="80">状态</th>
 					<th width="120">操作</th>
 				</tr>
@@ -72,6 +73,7 @@
 <!--					<td th:text="${l.startmiles}"></td>-->
 					<td th:text="${l.unit.name}"></td>
 					<td th:text="${l.startdate}"></td>
+					<td th:text="${l.enddate}"></td>
 					<td class="td-status" th:switch="${l.status}">
 						<sapn th:case="-2" class="label label-danger radius">未通过</sapn>
 						<sapn th:case="0" class="label label-primary radius">待审核</sapn>
@@ -114,7 +116,7 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,7]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
 	]
 });
 

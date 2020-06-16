@@ -1,6 +1,5 @@
 package com.yibo.parking.controller.car;
 
-import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.car.Lease;
 import com.yibo.parking.entity.car.Type;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
@@ -40,13 +39,11 @@ public class leaseController {
         return "lease/index";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add(Model model){
-        List<Car> cars = carService.getAllCars();
-        List<Type> types =leaseService.getLeaseType();
-        model.addAttribute("types",types);
-        model.addAttribute("cars",cars);
-        return "lease/add";
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String add(Lease lease, Model model){
+        lease = leaseService.get(lease);
+        model.addAttribute("lease", lease);
+        return "lease/edit";
     }
 
     @ResponseBody

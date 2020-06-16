@@ -111,11 +111,11 @@ public class WxApiController {
     @RequestMapping(value = "/orderSubmit")
     public String submitOrder(String carId, String typeCheck, String start, String end, String userId){
         Map<String,Object> map = leaseService.saveApi(carId,typeCheck,start,end,userId);
-        int s = (int) map.get("flag");
-        if (s != 0) {
-            return JsonUtils.success(map.get("lease"),"预约订单保存成功");
+        boolean flag = (boolean) map.get("flag");
+        if (flag) {
+            return JsonUtils.orderApiSuccess(String.valueOf(map.get("code")),map.get("lease"), String.valueOf(map.get("message")));
         }
-        return JsonUtils.error(map.get("lease"));
+        return JsonUtils.orderApiError(map.get("code").toString(),map.get("message").toString());
     }
 
     @ResponseBody

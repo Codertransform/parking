@@ -20,4 +20,6 @@ public interface LeaseMapper {
     public int delete(String id);
 
     int check(Lease lease);
+
+    Lease getByCarId(@Param("carId") String carId);
 }
