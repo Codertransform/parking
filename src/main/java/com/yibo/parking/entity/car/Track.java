@@ -7,6 +7,8 @@ public class Track {
     private String startTime;
     private String endTime;
     private String miles;
+    private String start;
+    private String end;
 
     public String getId() {
         return id;
@@ -54,5 +56,21 @@ public class Track {
 
     public void setMiles(String miles) {
         this.miles = miles;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
     }
 }

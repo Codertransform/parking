@@ -122,6 +122,14 @@ public class WxApiController {
     @RequestMapping(value = "/getOrders")
     public String getOrders(String userId){
         Map<String,Object> map = leaseService.getOrders(userId);
-        return null;
+        boolean flag = (boolean) map.get("flag");
+        if (flag){
+            int all = (int) map.get("all");
+            int unpay = (int) map.get("unpay");
+            int paied = (int) map.get("paied");
+            return JsonUtils.orderGetApiSuccess("0",map.get("leases"),map.get("message").toString(),all,unpay,paied);
+        }else {
+            return JsonUtils.orderGetApiSuccess("-1",map.get("leases"),map.get("message").toString(),0,0,0);
+        }
     }
 }

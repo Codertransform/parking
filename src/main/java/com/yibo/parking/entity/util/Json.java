@@ -6,6 +6,9 @@ public class Json implements Serializable {
     private String code;
     private Object data;
     private String message;
+    private Integer all;
+    private Integer unpay;
+    private Integer paied;
 
     public String getCode() {
         return code;
@@ -29,5 +32,29 @@ public class Json implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Integer getAll() {
+        return all;
+    }
+
+    public void setAll(Integer all) {
+        this.all = all;
+    }
+
+    public Integer getUnpay() {
+        return unpay;
+    }
+
+    public void setUnpay(Integer unpay) {
+        this.unpay = unpay;
+    }
+
+    public Integer getPaied() {
+        return paied;
+    }
+
+    public void setPaied(Integer paied) {
+        this.paied = paied;
     }
 }

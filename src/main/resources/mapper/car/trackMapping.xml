@@ -19,6 +19,10 @@
         <if test="carId != null and carId != ''">
             and a.car_id = #{carId}
         </if>
+        <if test="start != null and start != '' and end != null and end != ''">
+            and a.start_time between #{start} and #{end}
+            and a.end_time between #{start} and #{end}
+        </if>
     </select>
 
     <select id="get" resultType="Track">

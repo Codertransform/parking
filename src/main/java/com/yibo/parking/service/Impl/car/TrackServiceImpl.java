@@ -40,14 +40,13 @@ public class TrackServiceImpl implements TrackService {
         map.put("sid",dev.getsId());
         map.put("tid",dev.gettId());
         map.put("trid",track.getTrackId());
-        map.put("pagesize","200");
+        map.put("pagesize","500");
         String result = HttpClientUtil.doPost(url,map);
         JSONObject object = JSONObject.parseObject(result);
         JSONArray array = new JSONArray();
         if (object.get("errcode").toString().equals("10000")) {
             JSONObject jsonObject = object.getJSONObject("data");
             array = jsonObject.getJSONArray("tracks");
-
         }
         System.out.println(array);
         return array;

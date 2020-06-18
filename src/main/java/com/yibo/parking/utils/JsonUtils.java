@@ -28,8 +28,7 @@ public class JsonUtils {
         json.setCode(code);
         json.setData(null);
         json.setMessage(message);
-        Gson gson = new Gson();
-        return gson.toJson(json);
+        return new Gson().toJson(json);
     }
 
     public static String orderApiSuccess(String code, Object object, String message){
@@ -37,7 +36,17 @@ public class JsonUtils {
         json.setCode(code);
         json.setData(object);
         json.setMessage(message);
-        Gson gson = new Gson();
-        return gson.toJson(json);
+        return new Gson().toJson(json);
+    }
+
+    public static String orderGetApiSuccess(String code, Object object, String message, int all, int unpay, int paied){
+        Json json = new Json();
+        json.setCode(code);
+        json.setData(object);
+        json.setMessage(message);
+        json.setAll(all);
+        json.setUnpay(unpay);
+        json.setPaied(paied);
+        return new Gson().toJson(json);
     }
 }

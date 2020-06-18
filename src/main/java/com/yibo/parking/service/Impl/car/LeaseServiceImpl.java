@@ -5,11 +5,13 @@ import com.yibo.parking.dao.car.LeaseMapper;
 import com.yibo.parking.dao.car.TypeInfoMapper;
 import com.yibo.parking.dao.car.TypeMapper;
 import com.yibo.parking.dao.member.MemberDao;
+import com.yibo.parking.dao.member.MemberWxInfoDao;
 import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.car.Lease;
 import com.yibo.parking.entity.car.Type;
 import com.yibo.parking.entity.car.TypeInfo;
 import com.yibo.parking.entity.member.Member;
+import com.yibo.parking.entity.member.MemberWxInfo;
 import com.yibo.parking.service.LeaseService;
 import com.yibo.parking.utils.EntityIdGenerate;
 import com.yibo.parking.utils.OrderIdGenerate;
@@ -40,6 +42,9 @@ public class LeaseServiceImpl implements LeaseService {
 
     @Autowired
     private MemberDao memberDao;
+
+    @Autowired
+    private MemberWxInfoDao infoDao;
 
     @Override
     public List<Lease> getLeases(String logmin, String logmax, String unit, String carId) {
@@ -142,8 +147,34 @@ public class LeaseServiceImpl implements LeaseService {
     }
 
     public Map<String, Object> getOrders(String userId) {
-
-        return null;
+        Map<String, Object> map = new HashMap<>();
+        MemberWxInfo info = new MemberWxInfo();
+        info.setId(userId);
+        MemberWxInfo in = infoDao.get(info);
+        List<Lease> leases = leaseMapper.findByMemberId(in.getMember().getId());
+        if (leases.size() != 0) {
+            int all = leases.size();
+            int unpay = 0;
+            int paied = 0;
+            for (Lease l : leases) {
+                if (l.getStatus().equals("1")){
+                    paied ++;
+                }else {
+                    unpay++;
+                }
+            }
+            map.put("flag", true);
+            map.put("message","查到所有订单");
+            map.put("leases", leases);
+            map.put("all",all);
+            map.put("unpay",unpay);
+            map.put("paied",paied);
+        }else {
+            map.put("flag", false);
+            map.put("message", "未查到数据");
+            map.put("leases", null);
+        }
+        return map;
     }
 
     public Map<String, Object> check(Lease lease) {
@@ -160,7 +191,7 @@ public class LeaseServiceImpl implements LeaseService {
                 map.put("msg","很抱歉，没能通过审核！");
                 break;
             default:
-                map.put("msg","订单已支付完成");
+                map.put("msg","订单支付已完成");
         }
         return map;
     }

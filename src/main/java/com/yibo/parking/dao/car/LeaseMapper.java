@@ -22,4 +22,6 @@ public interface LeaseMapper {
     int check(Lease lease);
 
     Lease getByCarId(@Param("carId") String carId);
+
+    List<Lease> findByMemberId(@Param("memberId") String memberId);
 }
