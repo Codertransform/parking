@@ -2,7 +2,9 @@ package com.yibo.parking.service.Impl.car;
 
 import com.alibaba.fastjson.JSONArray;
 import com.yibo.parking.dao.car.CarMapper;
+import com.yibo.parking.dao.car.LeaseMapper;
 import com.yibo.parking.entity.car.Car;
+import com.yibo.parking.entity.car.Lease;
 import com.yibo.parking.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class CarServiceImpl implements CarService {
 
     @Autowired
     private CarMapper carMapper;
+
+    @Autowired
+    private LeaseMapper leaseMapper;
 
     @Override
     public List<Car> getCars(String typeId, String logmin, String logmax, String cardId) {
@@ -65,16 +70,19 @@ public class CarServiceImpl implements CarService {
         List<Car> cars = carMapper.getByStatus();
         List<Map<String,Object>> mapList = new ArrayList<>();
         for (Car c : cars) {
-            Map<String,Object> map = new HashMap<>();
-            map.put("id",c.getId());
-            map.put("cardId",c.getCardId());
-            map.put("model", c.getModel());
-            map.put("color", c.getColor());
-            map.put("carType", c.getTypeName());
-            map.put("status", c.getStatus());
-            map.put("buy_time", c.getBuy_time());
-            map.put("maintenance", c.getMaintenance());
-            mapList.add(map);
+            List<Lease> leases = leaseMapper.findByCarId(c.getId());
+            if (leases.size() == 0) {
+                Map<String,Object> map = new HashMap<>();
+                map.put("id",c.getId());
+                map.put("cardId",c.getCardId());
+                map.put("model", c.getModel());
+                map.put("color", c.getColor());
+                map.put("carType", c.getTypeName());
+                map.put("status", c.getStatus());
+                map.put("buy_time", c.getBuy_time());
+                map.put("maintenance", c.getMaintenance());
+                mapList.add(map);
+            }
         }
         return JSONArray.toJSONString(mapList);
     }

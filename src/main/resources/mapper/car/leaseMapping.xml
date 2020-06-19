@@ -104,6 +104,24 @@
         order by a.startdate desc
     </select>
 
+    <select id="findByCarId" resultType="Lease">
+        select
+            a.id as id,
+            a.order_id as orderId,
+            a.carId as "car.id",
+            a.unit as "unit.id",
+            a.member_id as "member.id",
+            a.type as "type.id",
+            a.startmiles as startmiles,
+            a.endmiles as endmiles,
+            a.position as position,
+            a.status as status,
+            a.startdate as startdate,
+            a.enddate as enddate
+        from lease a
+        where a.carId = #{carId}
+    </select>
+
     <insert id="insert">
         insert into lease(
             id,

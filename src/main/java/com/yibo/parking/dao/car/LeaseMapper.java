@@ -24,4 +24,6 @@ public interface LeaseMapper {
     Lease getByCarId(@Param("carId") String carId);
 
     List<Lease> findByMemberId(@Param("memberId") String memberId);
+
+    List<Lease> findByCarId(@Param("carId") String carId);
 }

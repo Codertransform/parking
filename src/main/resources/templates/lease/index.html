@@ -29,7 +29,7 @@
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
 			<span class="select-box inline">
 				<select name="unit" class="select">
-					<option value="0">请选择申请单位</option>
+					<option value="0">请选择车辆类型</option>
 					<option th:each="t:${types}" th:value="${t.id}" th:text="${t.name}" th:selected="${t.id eq unit}"></option>
 				</select>
 			</span>
@@ -38,7 +38,7 @@
 			-
 			<input type="text" name="logmax" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" th:value="${logmax}" class="input-text Wdate" style="width:120px;">
 			<input type="text" name="carId" id="carId" placeholder=" 车牌号 " th:value="${carId}" style="width:250px" class="input-text">
-			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜车辆 </button>
+			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜订单 </button>
 		</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
