@@ -97,15 +97,17 @@ public class LeaseServiceImpl implements LeaseService {
     public Map<String,Object> saveApi(String carId, String typeCheck, String start, String end, String userId) {
         Map<String,Object> map = new HashMap<>();
         map.put("flag", true);
-        Lease le = leaseMapper.getByCarId(carId);
-        if (le == null){
+        List<Lease> le = leaseMapper.findByCarId(carId);
+        if (le.size() == 0){
             Car car = carMapper.get(carId);
             Member member = new Member();
             member.setId(userId);
             member = memberDao.get(member);
             Type type = new Type();
             type.setId(car.getTypeId());
-            TypeInfo info = infoMapper.get(typeCheck);
+            TypeInfo typeInfo = new TypeInfo();
+            typeInfo.setId(typeCheck);
+            TypeInfo info = infoMapper.get(typeInfo);
             Lease lease = new Lease();
             lease.setId(EntityIdGenerate.generateId());
             lease.setOrderId(EntityIdGenerate.generateOrderId());
@@ -126,21 +128,48 @@ public class LeaseServiceImpl implements LeaseService {
         }else {
             System.out.println("123");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            try {
-                Date start1 = format.parse(le.getStartdate());
-                Date end1 = format.parse(le.getEnddate());
-                Date startdate = format.parse(start + ":00");
-                Date enddate = format.parse(end + ":00");
-                System.out.println(startdate.after(start1));
-                System.out.println(enddate.after(end1));
-                if (startdate.after(start1) || enddate.before(end1)){
-                    System.out.println("车辆已出租请选择其他车辆");
-                    map.put("flag",false);
-                    map.put("code", "1000");
-                    map.put("message", "车辆已出租请选择其他车辆");
+            for (Lease l : le) {
+                try {
+                    Date start1 = format.parse(l.getStartdate());
+                    Date end1 = format.parse(l.getEnddate());
+                    Date startdate = format.parse(start + ":00");
+                    Date enddate = format.parse(end + ":00");
+                    System.out.println(startdate.after(start1));
+                    System.out.println(enddate.after(end1));
+                    if (startdate.after(start1) || enddate.before(end1)){
+                        System.out.println("车辆已出租请选择其他车辆");
+                        map.put("flag",false);
+                        map.put("code", "1000");
+                        map.put("message", "车辆已出租请选择其他车辆");
+                    }else {
+                        Car car = carMapper.get(carId);
+                        Member member = new Member();
+                        member.setId(userId);
+                        member = memberDao.get(member);
+                        Type type = new Type();
+                        type.setId(car.getTypeId());
+                        TypeInfo typeInfo = new TypeInfo();
+                        typeInfo.setId(typeCheck);
+                        TypeInfo info = infoMapper.get(typeInfo);
+                        Lease lease = new Lease();
+                        lease.setId(EntityIdGenerate.generateId());
+                        lease.setOrderId(EntityIdGenerate.generateOrderId());
+                        lease.setCar(car);
+                        lease.setMember(member);
+                        lease.setUnit(member.getUnit());
+                        lease.setType(type);
+                        lease.setAmount(info.getValue().toString());
+                        lease.setStatus("0");
+                        lease.setStartdate(start);
+                        lease.setEnddate(end);
+                        leaseMapper.insert(lease);
+                        map.put("code", "1002");
+                        map.put("lease",lease);
+                        map.put("message", "预约下单成功");
+                    }
+                } catch (ParseException e) {
+                    System.out.println(e.getMessage());
                 }
-            } catch (ParseException e) {
-                System.out.println(e.getMessage());
             }
         }
         return map;
