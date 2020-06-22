@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.car.GalleryMapper">
+
+    <select id="findList" resultType="Gallery">
+        select
+            a.id as "id",
+            a.car_id as "car.id",
+            c.cardId as "car.cardId",
+            a.thumb as "thumb",
+            a.max_size as "maxSize",
+            a.update_time as "updateTime",
+            a.status as "status"
+        from cars_pic a
+        left join cars c on a.car_id = c.id
+        where 1 = 1
+        <if test="car != null and car.id != null and car.id != ''">
+            and a.car_id = #{car.id}
+        </if>
+    </select>
+
+    <select id="get" resultType="Gallery">
+        select
+            a.id as "id",
+            a.car_id as "carId",
+            a.thumb as "thumb",
+            a.max_size as "maxSize",
+            a.update_time as "updateTime",
+            a.status as "status"
+        from cars_pic a
+        where a.id = #{id}
+    </select>
+
+    <insert id="insert">
+        insert into cars_pic(
+            id,
+            car_id,
+            thumb,
+            max_size,
+            update_time,
+            status
+        )
+        values (
+            #{id},
+            #{carId},
+            #{thumb},
+            #{maxSize},
+            #{updateTime},
+            #{status}
+        )
+    </insert>
+
+    <update id="update">
+        update cars_pic set
+            car_id = #{carId},
+            thumb = #{thumb},
+            max_size = #{maxSize},
+            update_time = #{updateTime},
+            status = #{status}
+        where id = #{id}
+    </update>
+
+    <delete id="del">
+        delete from cars_pic where id = #{id}
+    </delete>
+</mapper>
