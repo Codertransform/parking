@@ -6,8 +6,10 @@ import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.car.Gallery;
 import com.yibo.parking.service.GalleryService;
 import com.yibo.parking.utils.EntityIdGenerate;
+import com.yibo.parking.utils.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,7 +30,7 @@ public class GalleryServiceImpl implements GalleryService {
 
     @Override
     public Gallery get(Gallery gallery) {
-        return null;
+        return galleryMapper.get(gallery);
     }
 
     @Override
@@ -76,5 +78,9 @@ public class GalleryServiceImpl implements GalleryService {
             map.put("message", "所有车辆相册创建成功");
         }
         return map;
+    }
+
+    public Map<String, String> upload(MultipartFile picture) {
+        return UploadUtil.upload(picture,"cars/thumb");
     }
 }

@@ -24,11 +24,13 @@
         select
             a.id as "id",
             a.car_id as "car.id",
+            c.cardId as "car.cardId",
             a.thumb as "thumb",
             a.max_size as "maxSize",
             a.update_time as "updateTime",
             a.status as "status"
         from cars_pic a
+        left join cars c on a.car_id = c.id
         where a.id = #{id}
     </select>
 

@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -39,8 +42,22 @@ public class GalleryController {
         return JsonUtils.orderApiError(map.get("code").toString(), map.get("message").toString());
     }
 
-    @RequestMapping(value = "/add")
-    public String add(){
+    @RequestMapping(value = "/edit")
+    public String edit(Gallery gallery, Model model){
+        gallery = galleryService.get(gallery);
+        model.addAttribute("gallery",gallery);
         return "cars/gallery/add";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/thumb/upload",method = RequestMethod.POST)
+    public String upload(@RequestPart("file") MultipartFile picture) {
+        Map<String,String> path = galleryService.upload(picture);
+        if (path.containsKey("src")){
+            System.out.println(path.get("src"));
+            return JsonUtils.success(path,"上传成功");
+        }else {
+            return JsonUtils.error(path);
+        }
     }
 }

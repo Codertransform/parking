@@ -66,8 +66,8 @@ $maxFileAge = 5 * 3600; // Temp file age in seconds
 if (!file_exists($targetDir)) {
     @mkdir($targetDir);
 }
-
-// Create target dir
+ate target dir
+// Cre
 if (!file_exists($uploadDir)) {
     @mkdir($uploadDir);
 }
