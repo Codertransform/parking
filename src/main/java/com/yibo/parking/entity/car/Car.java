@@ -9,6 +9,7 @@ public class Car {
     private String typeId;         //车辆类型id
     private String typeName;         //车辆类型名称
     private String status;         //状态
+    private String picStatus;      //相册状态
     private String buy_time;     //购买时间
     private String maintenance;     //上次保养时间
 
@@ -74,6 +75,14 @@ public class Car {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPicStatus() {
+        return picStatus;
+    }
+
+    public void setPicStatus(String picStatus) {
+        this.picStatus = picStatus;
     }
 
     public String getBuy_time() {

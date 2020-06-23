@@ -25,4 +25,6 @@ public interface CarMapper {
     List<Car> getAll();
 
     List<Car> getByStatus();
+
+    List<Car> findByPicStatus(Car car);
 }

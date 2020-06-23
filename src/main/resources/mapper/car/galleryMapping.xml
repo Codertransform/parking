@@ -23,7 +23,7 @@
     <select id="get" resultType="Gallery">
         select
             a.id as "id",
-            a.car_id as "carId",
+            a.car_id as "car.id",
             a.thumb as "thumb",
             a.max_size as "maxSize",
             a.update_time as "updateTime",
@@ -43,7 +43,7 @@
         )
         values (
             #{id},
-            #{carId},
+            #{car.id},
             #{thumb},
             #{maxSize},
             #{updateTime},
@@ -53,7 +53,7 @@
 
     <update id="update">
         update cars_pic set
-            car_id = #{carId},
+            car_id = #{car.id},
             thumb = #{thumb},
             max_size = #{maxSize},
             update_time = #{updateTime},

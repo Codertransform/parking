@@ -12,6 +12,7 @@
             a.carType as typeId,
             t.name as typeName,
             a.status as status,
+            a.pic_status as picStatus,
             a.buy_time as buy_time,
             a.maintenance as maintenance
         from cars a
@@ -37,11 +38,32 @@
             a.carType as typeId,
             t.name as typeName,
             a.status as status,
+            a.pic_status as picStatus,
             a.buy_time as buy_time,
             a.maintenance as maintenance
         from cars a
         left join type t on t.id = a.carType
         where a.status = 0
+    </select>
+
+    <select id="findByPicStatus" resultType="Car">
+        select
+            a.id as id,
+            a.cardId as cardId,
+            a.model as model,
+            a.color as color,
+            a.carType as typeId,
+            t.name as typeName,
+            a.status as status,
+            a.pic_status as picStatus,
+            a.buy_time as buy_time,
+            a.maintenance as maintenance
+        from cars a
+        left join type t on t.id = a.carType
+        where a.status = 0
+        <if test="picStatus != null and picStatus != ''">
+            and a.pic_status = #{picStatus}
+        </if>
     </select>
 
     <select id="getAll" resultType="Car">
@@ -57,6 +79,7 @@
             a.carType as typeId,
             t.name as typeName,
             a.status as status,
+            a.pic_status as picStatus,
             a.buy_time as buy_time,
             a.maintenance as maintenance
         from cars a
@@ -75,6 +98,7 @@
             color,
             carType,
             status,
+            pic_status,
             buy_time,
             maintenance
         )
@@ -85,6 +109,7 @@
             #{color},
             #{typeId},
             #{status},
+            #{picStatus},
             #{buy_time},
             #{maintenance}
         )
@@ -97,6 +122,7 @@
             color = #{color},
             carType = #{typeId},
             status = #{status},
+            pic_status = #{picStatus},
             buy_time = #{buy_time},
             maintenance = #{maintenance}
         where id = #{id}

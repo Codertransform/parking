@@ -5,10 +5,12 @@ import com.yibo.parking.dao.car.GalleryMapper;
 import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.car.Gallery;
 import com.yibo.parking.service.GalleryService;
+import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class GalleryServiceImpl implements GalleryService {
@@ -44,13 +46,35 @@ public class GalleryServiceImpl implements GalleryService {
 
     }
 
-    public void autoAdd() {
-        List<Car> cars = carMapper.getByStatus();
+    public Map<String,Object> autoCreate() {
+        Map<String,Object> map = new HashMap<>();
+        Car car = new Car();
+        car.setPicStatus("0");
+        List<Car> cars = carMapper.findByPicStatus(car);
         if (cars.size() == 0) {
-
+            map.put("flag", false);
+            map.put("code", "1001");
+            map.put("message", "未检测到有效车辆，请先添加车辆");
+            map.put("data", null);
+        }else {
+            List<Gallery> galleries = new ArrayList<>();
+            for (Car c : cars) {
+                Gallery gallery = new Gallery();
+                gallery.setId(EntityIdGenerate.generateId());
+                gallery.setCar(c);
+                gallery.setMaxSize("5");
+                gallery.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+                gallery.setStatus("0");
+                galleryMapper.insert(gallery);
+                galleries.add(gallery);
+                c.setPicStatus("1");
+                carMapper.update(c);
+            }
+            map.put("flag", true);
+            map.put("code","1002");
+            map.put("data", galleries);
+            map.put("message", "所有车辆相册创建成功");
         }
-        for (Car c : cars) {
-
-        }
+        return map;
     }
 }

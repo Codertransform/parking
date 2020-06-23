@@ -33,7 +33,7 @@
 			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
 				<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
 			</a>
-			<a class="btn btn-primary radius" onclick="picture_autoadd('/cars/gallery/autoAdd')" href="javascript:;">
+			<a class="btn btn-primary radius" onclick="picture_autoadd('/cars/gallery/autoCreate')" href="javascript:;">
 				<i class="Hui-iconfont">&#xe600;</i> 自动生成车辆图库
 			</a>
 		</span>
@@ -54,8 +54,8 @@
 			<tbody>
 				<tr class="text-c" th:each="g:${galleries}">
 					<td><input name="one" type="checkbox" value=""></td>
-					<td class="text-l"><a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')" th:text="${g.car.cardId}"></a></td>
-					<td><a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="210" class="picture-thumb" th:src="${g.thumb}"></a></td>
+					<td class="text-l"><a class="maincolor" href="javascript:;" th:onclick="picture_edit('图库编辑','picture-show.html',[[${g.id}]])" th:text="${g.car.cardId}"></a></td>
+					<td><a href="javascript:;" th:onclick="picture_edit('图库编辑','picture-show.html',[[${g.id}]])"><img width="210" class="picture-thumb" th:src="${g.thumb}"></a></td>
 					<td class="text-c" th:text="${g.maxSize}"></td>
 					<td th:text="${g.updateTime}"></td>
 					<td class="td-status" th:switch="${g.status}">
@@ -63,9 +63,9 @@
 						<span th:case="*" class="label label-default radius">已下架</span>
 					</td>
 					<td class="td-manage">
-						<a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-						<a style="text-decoration:none" class="ml-5" onClick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+						<a style="text-decoration:none" th:onclick="picture_stop(this,[[${g.id}]])" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
+						<a style="text-decoration:none" class="ml-5" th:onclick="picture_edit('图库编辑','/cars/gallery/add',[[${g.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a style="text-decoration:none" class="ml-5" th:onclick="picture_del(this,[[${g.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
 				</tr>
 			</tbody>
@@ -106,7 +106,12 @@ function picture_autoadd(url){
 			type:'post',
 			dataType:'json',
 			success:function (res) {
-
+				if(res.code === "1002"){
+					layer.msg(res.message, {icon:6,time:1000});
+					window.location.reload();
+				}else {
+					layer.msg(res.message, {icon:5,time:1000});
+				}
 			}
 		})
 	},
