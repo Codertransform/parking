@@ -1,6 +1,7 @@
 package com.yibo.parking.controller.car;
 
 import com.yibo.parking.entity.car.Gallery;
+import com.yibo.parking.entity.car.GalleryInfo;
 import com.yibo.parking.service.Impl.car.GalleryServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,11 @@ public class GalleryController {
     }
 
     @RequestMapping(value = "/show")
-    public String show(Model model){
+    public String show(GalleryInfo info, Model model) throws Exception {
+        String name = galleryService.getName(info);
+        List<GalleryInfo> infos = galleryService.findInfos(info);
+        model.addAttribute("name",name);
+        model.addAttribute("infos",infos);
         return "cars/gallery/show";
     }
 }

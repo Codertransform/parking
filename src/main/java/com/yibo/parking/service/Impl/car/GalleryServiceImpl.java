@@ -1,9 +1,11 @@
 package com.yibo.parking.service.Impl.car;
 
 import com.yibo.parking.dao.car.CarMapper;
+import com.yibo.parking.dao.car.GalleryInfoMapper;
 import com.yibo.parking.dao.car.GalleryMapper;
 import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.car.Gallery;
+import com.yibo.parking.entity.car.GalleryInfo;
 import com.yibo.parking.service.GalleryService;
 import com.yibo.parking.utils.EntityIdGenerate;
 import com.yibo.parking.utils.UploadUtil;
@@ -19,6 +21,9 @@ public class GalleryServiceImpl implements GalleryService {
 
     @Autowired
     private GalleryMapper galleryMapper;
+
+    @Autowired
+    private GalleryInfoMapper infoMapper;
 
     @Autowired
     private CarMapper carMapper;
@@ -40,7 +45,6 @@ public class GalleryServiceImpl implements GalleryService {
 
     @Override
     public int update(Gallery gallery) {
-
         gallery.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         return galleryMapper.update(gallery);
     }
@@ -84,5 +88,19 @@ public class GalleryServiceImpl implements GalleryService {
 
     public Map<String, String> upload(MultipartFile picture) {
         return UploadUtil.upload(picture,"cars/thumb");
+    }
+
+    public String getName(GalleryInfo info) throws Exception {
+        if (info.getPicId() == null){
+            throw new Exception("非法参数！");
+        }
+        Gallery gallery = new Gallery();
+        gallery.setId(info.getPicId());
+        gallery = galleryMapper.get(gallery);
+        return gallery.getCar().getCardId();
+    }
+
+    public List<GalleryInfo> findInfos(GalleryInfo info) {
+        return infoMapper.findList(info);
     }
 }

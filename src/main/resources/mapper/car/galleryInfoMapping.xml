@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.car.GalleryInfoMapper">
+
+    <select id="findList" resultType="GalleryInfo">
+        select
+            a.id as "id",
+            a.pic_id as "picId",
+            a.img_url as "imgUrl",
+            a.title as "title",
+            a.upload_time as "uploadTime"
+        from cars_pic_info a
+        where 1 = 1
+        <if test="picId != null and picId != ''">
+            and a.pic_id = #{picId}
+        </if>
+    </select>
+
+    <select id="get" resultType="GalleryInfo">
+        select
+            a.id as "id",
+            a.pic_id as "picId",
+            a.img_url as "imgUrl",
+            a.title as "title",
+            a.upload_time as "uploadTime"
+        from cars_pic_info a
+        where a.id = #{id}
+    </select>
+
+    <insert id="insert">
+        insert into cars_pic_info(
+            id,
+            pic_id,
+            img_url,
+            title,
+            upload_time
+        )
+        values (
+            #{id},
+            #{picId},
+            #{imgUrl},
+            #{title},
+            #{uploadTime}
+        )
+    </insert>
+
+    <update id="update">
+        update cars_pic_info set
+            pic_id = #{picId},
+            img_url = #{imgUrl},
+            title = #{title},
+            upload_time = #{uploadTime}
+        where id = #{id}
+    </update>
+
+    <delete id="del">
+        delete from cars_pic_info where id = #{id}
+    </delete>
+</mapper>
