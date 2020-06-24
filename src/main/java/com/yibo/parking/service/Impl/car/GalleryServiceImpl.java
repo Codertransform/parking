@@ -39,8 +39,10 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public void update(Gallery gallery) {
+    public int update(Gallery gallery) {
 
+        gallery.setUpdateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        return galleryMapper.update(gallery);
     }
 
     @Override

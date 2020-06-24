@@ -54,8 +54,8 @@
 			<tbody>
 				<tr class="text-c" th:each="g:${galleries}">
 					<td><input name="one" type="checkbox" value=""></td>
-					<td class="text-l"><a class="maincolor" href="javascript:;" th:onclick="picture_edit('图库编辑','picture-show.html',[[${g.id}]])" th:text="${g.car.cardId}"></a></td>
-					<td><a href="javascript:;" th:onclick="picture_edit('图库编辑','picture-show.html',[[${g.id}]])"><img width="210" class="picture-thumb" th:src="${g.thumb}"></a></td>
+					<td class="text-l"><a class="maincolor" href="javascript:;" th:onclick="picture_edit('图库编辑','/cars/gallery/show',[[${g.id}]])" th:text="${g.car.cardId}"></a></td>
+					<td><a href="javascript:;" th:onclick="picture_edit('图库编辑','/cars/gallery/show',[[${g.id}]])"><img width="210" class="picture-thumb" th:src="${g.thumb}"></a></td>
 					<td class="text-c" th:text="${g.maxSize}"></td>
 					<td th:text="${g.updateTime}"></td>
 					<td class="td-status" th:switch="${g.status}">

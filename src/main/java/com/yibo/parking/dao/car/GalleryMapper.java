@@ -14,7 +14,7 @@ public interface GalleryMapper {
 
     void insert(Gallery gallery);
 
-    void update(Gallery gallery);
+    int update(Gallery gallery);
 
     void delete(Gallery gallery);
 }

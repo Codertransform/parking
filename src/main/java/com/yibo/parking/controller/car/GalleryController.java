@@ -60,4 +60,19 @@ public class GalleryController {
             return JsonUtils.error(path);
         }
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/save")
+    public String save(Gallery gallery){
+        int i =galleryService.update(gallery);
+        if (i != 0) {
+            return JsonUtils.success(gallery,"相册修改成功");
+        }
+        return JsonUtils.error(gallery);
+    }
+
+    @RequestMapping(value = "/show")
+    public String show(Model model){
+        return "cars/gallery/show";
+    }
 }
