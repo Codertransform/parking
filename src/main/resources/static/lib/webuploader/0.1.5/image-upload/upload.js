@@ -1,7 +1,7 @@
 (function( $ ){
     // 当domReady的时候开始初始化
     $(function() {
-        var $wrap = $('.uploader-list-container'),
+        var $wrap = $('#uploader'),
 
             // 图片容器
             $queue = $( '<ul class="filelist"></ul>' )
@@ -107,7 +107,7 @@
                         delete window['expressinstallcallback'];
                     };
 
-                    var swf = 'expressInstall.swf';
+                    var swf = './expressInstall.swf';
                     // insert flash object
                     var html = '<object type="application/' +
                             'x-shockwave-flash" data="' +  swf + '" ';
@@ -140,7 +140,7 @@
         // 实例化
         uploader = WebUploader.create({
             pick: {
-                id: '#filePicker-2',
+                id: '#filePicker',
                 label: '点击选择图片'
             },
             formData: {
@@ -148,10 +148,10 @@
             },
             dnd: '#dndArea',
             paste: '#uploader',
-            swf: '../Uploader.swf',
+            swf: '/lib/webuploader/0.1.5/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: '../server/fileupload.php',
+            server: '/cars/gallery/uploads',
             // runtimeOrder: 'flash',
 
             // accept: {
@@ -184,10 +184,6 @@
             }
 
             return !denied;
-        });
-
-        uploader.on('dialogOpen', function() {
-            console.log('here');
         });
 
         // uploader.on('filesQueued', function() {
@@ -261,7 +257,7 @@
                         img = $('<img src="'+src+'">');
                         $wrap.empty().append( img );
                     } else {
-                        $.ajax('../server/preview.php', {
+                        $.ajax('../../server/preview.php', {
                             method: 'POST',
                             data: src,
                             dataType:'json'
@@ -473,9 +469,7 @@
                     break;
                 case 'finish':
                     stats = uploader.getStats();
-                    if ( stats.successNum ) {
-                        alert( '上传成功' );
-                    } else {
+                    if ( !stats.successNum ) {
                         // 没有成功的图片，重设
                         state = 'done';
                         location.reload();

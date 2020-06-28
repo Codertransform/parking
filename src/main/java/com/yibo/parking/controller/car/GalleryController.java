@@ -52,10 +52,9 @@ public class GalleryController {
 
     @ResponseBody
     @RequestMapping(value = "/thumb/upload",method = RequestMethod.POST)
-    public String upload(@RequestPart("file") MultipartFile picture) {
+    public String thumbUpload(@RequestPart("file") MultipartFile picture) {
         Map<String,String> path = galleryService.upload(picture);
         if (path.containsKey("src")){
-            System.out.println(path.get("src"));
             return JsonUtils.success(path,"上传成功");
         }else {
             return JsonUtils.error(path);
@@ -73,11 +72,28 @@ public class GalleryController {
     }
 
     @RequestMapping(value = "/show")
-    public String show(GalleryInfo info, Model model) throws Exception {
-        String name = galleryService.getName(info);
-        List<GalleryInfo> infos = galleryService.findInfos(info);
+    public String show(Gallery gallery, Model model) throws Exception {
+        String name = galleryService.getName(gallery);
+        List<GalleryInfo> infos = galleryService.findInfos(gallery);
         model.addAttribute("name",name);
         model.addAttribute("infos",infos);
         return "cars/gallery/show";
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public String upload(String id, Model model){
+        model.addAttribute("id",id);
+        return "cars/gallery/upload";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/uploads")
+    public String uploads(@RequestPart("file") MultipartFile picture){
+        Map<String,String> path = galleryService.uploads(picture);
+        if (path.containsKey("src")){
+            return JsonUtils.success(path,"上传成功");
+        }else {
+            return JsonUtils.error(path);
+        }
     }
 }

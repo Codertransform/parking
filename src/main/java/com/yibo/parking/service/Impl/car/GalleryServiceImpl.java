@@ -90,17 +90,18 @@ public class GalleryServiceImpl implements GalleryService {
         return UploadUtil.upload(picture,"cars/thumb");
     }
 
-    public String getName(GalleryInfo info) throws Exception {
-        if (info.getPicId() == null){
-            throw new Exception("非法参数！");
-        }
-        Gallery gallery = new Gallery();
-        gallery.setId(info.getPicId());
+    public Map<String, String> uploads(MultipartFile picture) {
+        return UploadUtil.upload(picture,"cars/img");
+    }
+
+    public String getName(Gallery gallery) throws Exception {
         gallery = galleryMapper.get(gallery);
         return gallery.getCar().getCardId();
     }
 
-    public List<GalleryInfo> findInfos(GalleryInfo info) {
+    public List<GalleryInfo> findInfos(Gallery gallery) {
+        GalleryInfo info = new GalleryInfo();
+        info.setPicId(gallery.getId());
         return infoMapper.findList(info);
     }
 }
