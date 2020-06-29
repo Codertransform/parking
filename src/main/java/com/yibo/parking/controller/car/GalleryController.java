@@ -80,16 +80,18 @@ public class GalleryController {
         return "cars/gallery/show";
     }
 
-    @RequestMapping(value = "/upload", method = RequestMethod.GET)
-    public String upload(String id, Model model){
-        model.addAttribute("id",id);
+    @RequestMapping(value = "/upload")
+    public String upload(Gallery gallery, Model model) throws Exception {
+        gallery = galleryService.get(gallery);
+        model.addAttribute("gallery",gallery);
+        model.addAttribute("title","车辆照片上传");
         return "cars/gallery/upload";
     }
 
     @ResponseBody
     @RequestMapping(value = "/uploads")
-    public String uploads(@RequestPart("file") MultipartFile picture){
-        Map<String,String> path = galleryService.uploads(picture);
+    public String uploads(@RequestPart("file") MultipartFile picture, String picId, String carName){
+        Map<String,String> path = galleryService.uploads(picture,picId,carName);
         if (path.containsKey("src")){
             return JsonUtils.success(path,"上传成功");
         }else {

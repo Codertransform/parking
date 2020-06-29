@@ -3,6 +3,10 @@
     $(function() {
         var $wrap = $('#uploader'),
 
+            carName = $("input[name=carName]").val(),
+
+            picId = $("input[name=picId]").val(),
+
             // 图片容器
             $queue = $( '<ul class="filelist"></ul>' )
                 .appendTo( $wrap.find( '.queueList' ) ),
@@ -144,7 +148,8 @@
                 label: '点击选择图片'
             },
             formData: {
-                uid: 123
+                picId: picId,
+                carName: carName
             },
             dnd: '#dndArea',
             paste: '#uploader',
@@ -406,7 +411,7 @@
 
             } else {
                 stats = uploader.getStats();
-                text = '共' + fileCount + '张（' +
+                text = '共 ' + fileCount + '张（' +
                         WebUploader.formatSize( fileSize )  +
                         '），已上传' + stats.successNum + '张';
 
@@ -534,8 +539,14 @@
             }
         });
 
-        uploader.onError = function( code ) {
+        uploader.onError = function( file, code ) {
             alert( 'Eroor: ' + code );
+        };
+
+        uploader.uploadSuccess = function ( file, response ) {
+            if (response.code === "0"){
+                layer.msg(response.message,{icon:1,time:1000});
+            }
         };
 
         $upload.on('click', function() {

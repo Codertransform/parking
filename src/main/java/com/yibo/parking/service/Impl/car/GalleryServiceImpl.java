@@ -90,8 +90,16 @@ public class GalleryServiceImpl implements GalleryService {
         return UploadUtil.upload(picture,"cars/thumb");
     }
 
-    public Map<String, String> uploads(MultipartFile picture) {
-        return UploadUtil.upload(picture,"cars/img");
+    public Map<String, String> uploads(MultipartFile picture, String picId,String carName) {
+        Map<String, String> map = UploadUtil.upload(picture,"cars/img/"+carName);
+        GalleryInfo info = new GalleryInfo();
+        info.setId(EntityIdGenerate.generateId());
+        info.setPicId(picId);
+        info.setImgUrl(map.get("src"));
+        info.setTitle(carName);
+        info.setUploadTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        infoMapper.insert(info);
+        return map;
     }
 
     public String getName(Gallery gallery) throws Exception {

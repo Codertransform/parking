@@ -32,9 +32,6 @@
 			<a href="javascript:;" th:onclick="picture_edit()" class="btn btn-primary radius">
 				<i class="Hui-iconfont">&#xe6df;</i> 编辑
 			</a>
-			<a href="javascript:;" th:onclick="picture_uploads()" class="btn btn-primary radius">
-				<i class="Hui-iconfont">&#xe6df;</i> 批量上传
-			</a>
 			<a href="javascript:;" th:onclick="datadel()" class="btn btn-danger radius">
 				<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
 			</a>
@@ -56,27 +53,6 @@
 			</li>
 		</ul>
 	</div>
-	<div class="uploads">
-		<label class="form-label col-xs-4 col-sm-2"></label>
-		<div class="formControls col-xs-8 col-sm-9">
-			<div class="uploader-list-container">
-				<div class="queueList">
-					<div id="dndArea" class="placeholder">
-						<div id="filePicker-2"></div>
-						<p>或将照片拖到这里，单次最多可选300张</p>
-					</div>
-				</div>
-				<div class="statusBar" style="display:none;">
-					<div class="progress"> <span class="text">0%</span> <span class="percentage"></span> </div>
-					<div class="info"></div>
-					<div class="btns">
-						<div id="filePicker2"></div>
-						<div class="uploadBtn">开始上传</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -87,7 +63,6 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="/lib/lightbox2/2.8.1/js/lightbox.min.js"></script>
 <script type="text/javascript" src="/lib/webuploader/0.1.5/webuploader.min.js"></script>
-<script type="text/javascript" src="/lib/webuploader/0.1.5/image-upload/upload.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(".portfolio-area li").Huihover();
@@ -99,13 +74,6 @@ $(function(){
 
 function picture_edit() {
 
-}
-
-function picture_uploads() {
-	var uploads = $('.uploads'),
-	contain = $('.portfolio-content');
-	uploads.show();
-	contain.hide();
 }
 
 function datadel() {

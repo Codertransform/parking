@@ -10,7 +10,8 @@
     <div id="wrapper">
         <div id="container">
             <!--头部，相册选择和格式选择-->
-
+            <input type="hidden" name="picId" th:value="${gallery.id}"/>
+            <input type="hidden" name="carName" th:value="${gallery.car.cardId}"/>
             <div id="uploader">
                 <div class="queueList">
                     <div id="dndArea" class="placeholder">
