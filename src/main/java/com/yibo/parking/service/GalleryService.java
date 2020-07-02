@@ -14,5 +14,5 @@ public interface GalleryService {
 
     int update(Gallery gallery);
 
-    void delete(Gallery gallery);
+    int delete(Gallery gallery);
 }

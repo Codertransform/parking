@@ -16,7 +16,7 @@ public class UnitServiceIpml implements UnitService {
     @Autowired
     private UnitMapper unitMapper;
 
-    private List<Unit> units = new ArrayList<>();
+    private final List<Unit> units = new ArrayList<>();
 
     @Override
     public List<Unit> getUnits() {
@@ -29,6 +29,7 @@ public class UnitServiceIpml implements UnitService {
     }
 
     public List<Unit> getSonUnits(String parentId){
+        units.clear();
         Unit unit = new Unit();
         unit.setParentId(parentId);
         List<Unit> unitList = unitMapper.getUnitsBy(unit);
@@ -39,10 +40,6 @@ public class UnitServiceIpml implements UnitService {
             }
         }
         return units;
-    }
-
-    public void clearUnits(){
-        units.clear();
     }
 
     @Override
@@ -80,5 +77,9 @@ public class UnitServiceIpml implements UnitService {
 
     public Unit get(String id) {
         return unitMapper.get(id);
+    }
+
+    public List<Unit> findList(){
+        return null;
     }
 }

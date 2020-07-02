@@ -50,8 +50,12 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public void delete(Gallery gallery) {
-
+    public int delete(Gallery gallery) {
+        gallery = galleryMapper.get(gallery);
+        Car car = gallery.getCar();
+        car.setPicStatus("0");
+        carMapper.updatePicStatus(car);
+        return galleryMapper.delete(gallery);
     }
 
     public Map<String,Object> autoCreate() {

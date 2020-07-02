@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class UnitController {
     }
 
     @RequestMapping(value = "/list")
-    public String list(String id, Model model){
+    public String list(@RequestParam(required = false) String id, Model model){
         model.addAttribute("title","查看详情");
         model.addAttribute("unit",unitService.get(id));
         return "unit/list";

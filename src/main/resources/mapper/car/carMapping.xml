@@ -140,6 +140,12 @@
         where id = #{id}
     </update>
 
+    <update id="updatePicStatus">
+        update cars set
+            pic_status = #{picStatus}
+        where id = #{id}
+    </update>
+
     <delete id="del">
         delete from cars where id = #{id}
     </delete>

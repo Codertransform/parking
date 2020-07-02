@@ -16,5 +16,6 @@ public interface GalleryMapper {
 
     int update(Gallery gallery);
 
-    void delete(Gallery gallery);
+    int delete(Gallery gallery);
+
 }

@@ -98,4 +98,14 @@ public class GalleryController {
             return JsonUtils.error(path);
         }
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/del")
+    public String del(Gallery gallery){
+        int d = galleryService.delete(gallery);
+        if (d != 0) {
+            return JsonUtils.success(gallery,"删除成功");
+        }
+        return JsonUtils.error(gallery);
+    }
 }

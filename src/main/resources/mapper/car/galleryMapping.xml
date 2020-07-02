@@ -63,7 +63,7 @@
         where id = #{id}
     </update>
 
-    <delete id="del">
+    <delete id="delete">
         delete from cars_pic where id = #{id}
     </delete>
 </mapper>
