@@ -42,6 +42,10 @@ public class UnitServiceIpml implements UnitService {
         return units;
     }
 
+    public void clearUnits(){
+        units.clear();
+    }
+
     @Override
     public int save(Unit unit) {
         if (unit.getParentId() == null){
