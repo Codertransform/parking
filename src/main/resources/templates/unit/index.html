@@ -27,7 +27,7 @@
 <table class="table">
 	<tr>
 		<td width="200" class="va-t"><ul id="tree" class="ztree"></ul></td>
-		<td class="va-t"><iframe id="testIframe" name="testIframe" frameborder="0"  scrolling="auto"  width=100%  height=390px src="/unit/add"></iframe></td>
+		<td class="va-t"><iframe id="testIframe" name="testIframe" frameborder="0"  scrolling="auto"  width=100%  height=750px src="/unit/list"></iframe></td>
 	</tr>
 </table>
 <!--_footer 作为公共模版分离出去-->
@@ -59,10 +59,10 @@ var setting = {
 			var zTree = $.fn.zTree.getZTreeObj("tree");
 			if (treeNode.isParent) {
 				zTree.expandNode(treeNode);
-				demoIframe.attr("src", "/unit/add?parentId="+treeNode.id);
+				demoIframe.attr("src", "/unit/list?parentId="+treeNode.id);
 				// return false;
 			} else {
-				demoIframe.attr("src", "/unit/add?id="+treeNode.id);
+				demoIframe.attr("src", "/unit/list?id="+treeNode.id);
 				return true;
 			}
 		}

@@ -5,7 +5,7 @@ public class Unit {
     private String parentId;
     private String name;
     private String tel;
-    private Integer sort;
+    private String sort;
     private String remarks;
 
     public String getId() {
@@ -40,11 +40,11 @@ public class Unit {
         this.tel = tel;
     }
 
-    public Integer getSort() {
+    public String getSort() {
         return sort;
     }
 
-    public void setSort(Integer sort) {
+    public void setSort(String sort) {
         this.sort = sort;
     }
 
@@ -54,5 +54,17 @@ public class Unit {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "id='" + id + '\'' +
+                ", parentId='" + parentId + '\'' +
+                ", name='" + name + '\'' +
+                ", tel='" + tel + '\'' +
+                ", sort='" + sort + '\'' +
+                ", remarks='" + remarks + '\'' +
+                '}';
     }
 }

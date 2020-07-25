@@ -48,13 +48,17 @@
             id,
             parent_id,
             name,
-            tel
+            tel,
+            sort,
+            remarks
         )
         values (
             #{id},
             #{parentId},
             #{name},
-            #{tel}
+            #{tel},
+            #{sort},
+            #{remarks}
         )
     </insert>
 
@@ -62,7 +66,9 @@
         update unit set
             parent_id = #{parentId},
             name = #{name},
-            tel = #{tel}
+            tel = #{tel},
+            sort = #{sort},
+            remarks = #{remarks}
         where id = #{id}
     </update>
 

@@ -29,7 +29,6 @@ public class UnitServiceIpml implements UnitService {
     }
 
     public List<Unit> getSonUnits(String parentId){
-        units.clear();
         Unit unit = new Unit();
         unit.setParentId(parentId);
         List<Unit> unitList = unitMapper.getUnitsBy(unit);
@@ -37,6 +36,27 @@ public class UnitServiceIpml implements UnitService {
             if (u.getParentId().equals(parentId)){
                 units.add(u);
                 getSonUnits(u.getId());
+            }
+        }
+        return units;
+    }
+
+    public List<Unit> getUnitsByU(Unit unit){
+        if (unit.getParentId() == null){
+            units.addAll(getUnits());
+            return units;
+        }
+        Unit unit1 = new Unit();
+        if (unit.getId() != null) {
+            unit1.setParentId(unit.getId());
+        }else {
+            unit1.setParentId(unit.getParentId());
+        }
+        List<Unit> unitList = unitMapper.getUnitsBy(unit1);
+        if (unitList.size() != 0){
+            for (Unit u : unitList) {
+                units.add(u);
+                getUnitsByU(u);
             }
         }
         return units;

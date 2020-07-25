@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -34,9 +33,12 @@ public class UnitController {
     }
 
     @RequestMapping(value = "/list")
-    public String list(@RequestParam(required = false) String id, Model model){
-        model.addAttribute("title","查看详情");
-        model.addAttribute("unit",unitService.get(id));
+    public String list(Unit unit, Model model){
+        unitService.clearUnits();
+        List<Unit> units = unitService.getUnitsByU(unit);
+        model.addAttribute("title","组织列表");
+        model.addAttribute("units",units);
+        model.addAttribute("count",units.size());
         return "unit/list";
     }
 
@@ -64,5 +66,27 @@ public class UnitController {
         }else{
             return JsonUtils.error(unit);
         }
+    }
+
+    @RequestMapping(value = "/edit")
+    public String edit(Unit unit, Model model){
+        model.addAttribute("title","组织信息修改");
+        model.addAttribute("unit",unitService.get(unit.getId()));
+        model.addAttribute("units",unitService.getUnits());
+        return "unit/edit";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String toEdit(Unit unit){
+        int e = unitService.save(unit);
+        return e != 0 ? JsonUtils.success(unit,"组织信息修改成功") : JsonUtils.error(unit);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/del")
+    public String del(Unit unit){
+        int d = unitService.delete(unit.getId());
+        return d != 0 ? JsonUtils.success(unit,"组织信息删除成功") : JsonUtils.error(unit);
     }
 }
