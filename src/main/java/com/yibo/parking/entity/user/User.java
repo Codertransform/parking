@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 public class User implements UserDetails {
     private String id;
@@ -13,6 +14,7 @@ public class User implements UserDetails {
     private String regist_time;
     private String login_time;
     private String login_ip;
+    private List<Role> roles;
 
     public String getId() {
         return id;
@@ -66,6 +68,14 @@ public class User implements UserDetails {
         this.login_ip = login_ip;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return false;
@@ -92,7 +102,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override
