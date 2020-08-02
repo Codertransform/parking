@@ -17,6 +17,19 @@
         </if>
     </select>
 
+    <select id="findInfosByCarId" resultType="GalleryInfo">
+        select
+            a.id as "id",
+            a.pic_id as "picId",
+            a.img_url as "imgUrl",
+            a.title as "title",
+            a.upload_time as "uploadTime"
+        from cars_pic_info a
+        LEFT JOIN cars_pic b ON b.id = a.pic_id
+        LEFT JOIN cars c ON c.id = b.car_id
+        where c.id = #{carId};
+    </select>
+
     <select id="get" resultType="GalleryInfo">
         select
             a.id as "id",

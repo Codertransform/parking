@@ -31,7 +31,13 @@
             a.status as "status"
         from cars_pic a
         left join cars c on a.car_id = c.id
-        where a.id = #{id}
+        where 1=1
+        <if test="id != null and id != ''">
+            and a.id = #{id}
+        </if>
+        <if test="car != null and car.id != null and car.id != ''">
+            and a.car_id = #{car.id}
+        </if>
     </select>
 
     <insert id="insert">

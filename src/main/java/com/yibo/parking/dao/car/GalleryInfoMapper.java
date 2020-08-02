@@ -2,6 +2,7 @@ package com.yibo.parking.dao.car;
 
 import com.yibo.parking.entity.car.GalleryInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface GalleryInfoMapper {
     int update(GalleryInfo info);
 
     int delete(GalleryInfo info);
+
+    List<GalleryInfo> findInfosByCarId(@Param("carId") String carId);
 }

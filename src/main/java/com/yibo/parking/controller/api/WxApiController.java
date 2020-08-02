@@ -1,10 +1,12 @@
 package com.yibo.parking.controller.api;
 
 import com.yibo.parking.entity.car.Car;
+import com.yibo.parking.entity.car.GalleryInfo;
 import com.yibo.parking.entity.car.TypeInfo;
 import com.yibo.parking.entity.member.Member;
 import com.yibo.parking.entity.member.MemberWxInfo;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
+import com.yibo.parking.service.Impl.car.GalleryServiceImpl;
 import com.yibo.parking.service.Impl.car.LeaseServiceImpl;
 import com.yibo.parking.service.Impl.car.TypeServiceImpl;
 import com.yibo.parking.service.Impl.member.MemberServiceImpl;
@@ -45,6 +47,9 @@ public class WxApiController {
 
     @Autowired
     private LeaseServiceImpl leaseService;
+
+    @Autowired
+    private GalleryServiceImpl galleryService;
 
     @ResponseBody
     @RequestMapping(value = "/getCarsInfo")
@@ -103,6 +108,16 @@ public class WxApiController {
         List<TypeInfo> infos = typeService.getTypeInfos(id);
         if (infos != null){
             return JsonUtils.success(infos,"成功获取类型明细");
+        }
+        return JsonUtils.error(infos);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getGalleryInfos")
+    public String getGalleryInfos(String id){
+        List<GalleryInfo> infos = galleryService.findInfosByCarId(id);
+        if (infos != null) {
+            return JsonUtils.success(infos,"成功获取所有车辆图片");
         }
         return JsonUtils.error(infos);
     }

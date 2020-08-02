@@ -116,4 +116,12 @@ public class GalleryServiceImpl implements GalleryService {
         info.setPicId(gallery.getId());
         return infoMapper.findList(info);
     }
+
+    public List<GalleryInfo> findInfosByCarId(String carId){
+        List<GalleryInfo> infos = infoMapper.findInfosByCarId(carId);
+        for (GalleryInfo info: infos) {
+            info.setImgUrl("https://wzytest.com" + info.getImgUrl());
+        }
+        return infos;
+    }
 }

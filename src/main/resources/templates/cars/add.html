@@ -67,7 +67,7 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上次保养时间：</label>
+			<label class="form-label col-xs-4 col-sm-2">上次保养时间：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" id="maintenance" name="maintenance" autocomplete="off" class="input-text Wdate">
 			</div>
@@ -236,9 +236,6 @@ $(function(){
 				},
 				buy_time:{
 					required:true
-				},
-				maintenance:{
-					required:true
 				}
 			},
 			onkeyup:false,
@@ -250,7 +247,7 @@ $(function(){
 					type: 'POST',
 					dataType: "json",
 					success:function (data) {
-						if (data.code == '0'){
+						if (data.code === '0'){
 							layer.msg(data.message, {icon:1,time:1000}, function () {
 								var index = parent.layer.getFrameIndex(window.name);
 								parent.location.reload(); //刷新父页面

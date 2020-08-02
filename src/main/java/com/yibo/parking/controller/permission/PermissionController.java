@@ -10,7 +10,7 @@ public class PermissionController {
 
     @RequestMapping(value = {"","/"})
     public String index(Model model){
-        model.addAttribute("title","权限管理");
+        model.addAttribute("title","权限节点管理");
         return "/permission/index";
     }
 }
