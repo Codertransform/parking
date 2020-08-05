@@ -70,27 +70,27 @@ public class WxLoginApiController {
             String province = userInfo.getString("province");
             String language = userInfo.getString("language");
 
-            info = new MemberWxInfo();
-            info.setId(EntityIdGenerate.generateId());
-            info.setOpenId(openid);
-            info.setSessionKey(sessionKey);
-            info.setCity(city);
-            info.setProvince(province);
-            info.setCountry(country);
-            info.setAvatarUrl(avatarUrl);
-            info.setGender(Integer.parseInt(gender));
-            info.setNickName(nickName);
-            info.setLanguage(language);
+            MemberWxInfo info1 = new MemberWxInfo();
+            info1.setId(EntityIdGenerate.generateId());
+            info1.setOpenId(openid);
+            info1.setSessionKey(sessionKey);
+            info1.setCity(city);
+            info1.setProvince(province);
+            info1.setCountry(country);
+            info1.setAvatarUrl(avatarUrl);
+            info1.setGender(Integer.parseInt(gender));
+            info1.setNickName(nickName);
+            info1.setLanguage(language);
             skey = EntityIdGenerate.generateId();
-            info.setSkey(skey);
-            info.setStatus(0);
+            info1.setSkey(skey);
+            info1.setStatus(0);
 
             MemberLoginLog log = new MemberLoginLog();
             log.setId(EntityIdGenerate.generateId());
             log.setOpenId(openid);
             log.setLoginTime(new Date());
             logService.insert(log);
-            infoService.insert(info);
+            infoService.insert(info1);
             map.put("userInfo",info);
         } else {
             // 已存在，更新用户登录时间

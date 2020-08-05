@@ -102,6 +102,7 @@
             tel = #{tel},
             unit_id = #{unit.id},
             wx_id = #{wxId},
+            openId = #{openId},
             status = #{status},
             remarks = #{remarks}
         where id = #{id}

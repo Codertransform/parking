@@ -97,7 +97,7 @@ public class WxApiController {
         int m = memberService.certify(member, info.getOpenId());
         int i = infoService.certify(info, member.getId());
         if (m != 0 && i != 0){
-            return JsonUtils.success(null,"认证成功");
+            return JsonUtils.success(member,"认证成功");
         }
         return JsonUtils.error(null);
     }
