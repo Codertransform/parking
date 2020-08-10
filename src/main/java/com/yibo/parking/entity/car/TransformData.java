@@ -6,6 +6,8 @@ public class TransformData {
     private String latitude;        //纬度
     private String longitude;      //经度
     private String carId;           //车牌号
+    private String time;
+    private String deviceId;
 
     public String getId() {
         return id;
@@ -47,6 +49,22 @@ public class TransformData {
         this.carId = carId;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
     @Override
     public String toString() {
         return "TransformData{" +
@@ -55,6 +73,8 @@ public class TransformData {
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 ", carId='" + carId + '\'' +
+                ", time='" + time + '\'' +
+                ", deviceId='" + deviceId + '\'' +
                 '}';
     }
 }

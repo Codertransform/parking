@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.user.PermissionMapper">
+
+    <select id="get" resultType="Permission">
+        select
+            id as id,
+            pId as "pId",
+            name as "name",
+            sort as "sort",
+            remarks as "remarks"
+        from permission
+        where id = #{id}
+    </select>
+
+    <select id="findList" resultType="Permission">
+        select
+            a.id as "id",
+            a.pId as "pId",
+            b.name as "pName",
+            a.name as "name",
+            a.sort as "sort",
+            a.remarks as "remarks"
+        from permission a
+        left join permission b on b.id = a.pId
+        where 1=1
+        <if test="pId != null and pId != ''">
+            and a.pId = #{pId}
+        </if>
+        <if test="name != null and name != ''">
+            and a.name like concat('%',#{name},'%')
+        </if>
+        <if test="pName != null and pName != ''">
+            and b.name like concat('%',#{pName},'%')
+        </if>
+        order by a.sort
+    </select>
+
+    <insert id="insert">
+        insert into permission (
+            id,
+            pId,
+            name,
+            sort,
+            remarks
+        )values(
+            #{id},
+            #{pId},
+            #{name},
+            #{sort},
+            #{remarks}
+        )
+    </insert>
+
+    <update id="update">
+        update permission set
+            pId = #{pId},
+            name = #{name},
+            sort = #{sort},
+            remarks = #{remarks}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from permission where id=#{id}
+    </delete>
+</mapper>

@@ -21,7 +21,7 @@ public class UnitController {
 
     @RequestMapping(value = {"","/"})
     public String index(Model model){
-        model.addAttribute("title","单位管理");
+        model.addAttribute("title","组织机构");
         return "unit/index";
     }
 

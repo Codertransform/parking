@@ -78,14 +78,16 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     public int delete(Device device) {
+        device = deviceMapper.get(device);
         SystemData data = dataMapper.getByKey("高德","key");
         String url = "https://tsapi.amap.com/v1/track/terminal/delete";
         Map<String,String> map = new HashMap<>();
         map.put("key",data.getValue());
         map.put("sid",device.getsId());
-        map.put("tid",device.getDeviceId());
+        map.put("tid",device.gettId());
         String result = HttpClientUtil.doPost(url,map);
         JSONObject object = JSONObject.parseObject(result);
+        System.out.println(object);
         if (object.get("errcode").toString().equals("10000")){
             return deviceMapper.delete(device);
         }

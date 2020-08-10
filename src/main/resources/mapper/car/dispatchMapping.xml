@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.car.DispatchMapper">
+
+    <select id="findList" resultType="Dispatch">
+        select
+            a.id as "id",
+            a.carId as "car.id",
+            c.cardId as "car.cardId",
+            a.unitId as "unit.id",
+            u.name as "unit.name",
+            a.adminId as "user.id",
+            b.username as "user.username",
+            a.oprate_time as "oprateTime",
+            a.remarks as "remarks"
+        from dispatch a
+        left join cars c on c.id = a.carId
+        left join unit u on a.unitId = u.id
+        left join user b on b.id = a.adminId
+        where 1 = 1
+        <if test="oprateTime != null and oprateTime != ''">
+            and a.oprate_time = #{oprateTime}
+        </if>
+        <if test="car != null and car.cardId != null and car.cardId != ''">
+            and c.cardId = #{car.cardId}
+        </if>
+    </select>
+
+    <select id="get" resultType="Dispatch">
+        select
+            a.id as "id",
+            a.carId as "car.id",
+            c.cardId as "car.cardId",
+            a.unitId as "unit.id",
+            u.name as "unit.name",
+            a.adminId as "user.id",
+            b.username as "user.username",
+            a.oprate_time as "oprateTime",
+            a.remarks as "remarks"
+        from dispatch a
+        left join cars c on c.id = a.carId
+        left join unit u on a.unitId = u.id
+        left join user b on b.id = a.adminId
+        where a.id = #{id}
+        <if test="car != null and car.id != null and car.id != ''">
+            and a.carId = #{car.id}
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into dispatch(
+            id,
+            carId,
+            unitId,
+            adminId,
+            oprate_time,
+            remarks
+        )
+        values (
+            #{id},
+            #{car.id},
+            #{unit.id},
+            #{user.id},
+            #{oprateTime},
+            #{remarks}
+        )
+    </insert>
+
+    <update id="update">
+        update dispatch set
+            carId = #{car.id},
+            unitId = #{unit.id},
+            adminId = #{user.id},
+            oprate_time = #{oprateTime},
+            remarks = #{remarks}
+        where id = #{id}
+    </update>
+
+    <delete id="del">
+        delete from dispatch where id = #{id}
+    </delete>
+</mapper>

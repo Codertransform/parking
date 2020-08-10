@@ -306,7 +306,7 @@ function datadel() {
 	});
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
-			url:'/cars/dels',
+			url:'/cars/lease/dels',
 			type:'POST',
 			data:{'ids':ids},
 			dataType:'json',

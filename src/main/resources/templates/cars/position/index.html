@@ -66,43 +66,65 @@
 		resizeEnable: true, //是否监控地图容器尺寸变化
 	});
 
-
+	var carId = "";
 
 	$(function () {
-		getLocations();
-		setInterval('getLocations()',3000);//轮询执行，500ms一次
+		carId = $('#carId').val();
+		getLocations(carId);
+		setInterval('getLocations(carId)',3000);//轮询执行，500ms一次
 	})
 
 	var markerList = [];
 
-	function getLocations() {
+	function getLocations(carId) {
 		map.remove(markerList);
 		markerList = [];
-		$.ajax({
-			url:'/cars/position/getCars',
-			type:'post',
-			async:false,
-			dataType:'json',
-			success:function (res) {
-				$.each(res,function (index,value) {
-					/*var icon = new AMap.Icon({
-						size: new AMap.Size(40, 50),    // 图标尺寸
-						image: '/img/car.png',  // Icon的图像
-						imageOffset: new AMap.Pixel(0, -60),  // 图像相对展示区域的偏移量，适于雪碧图等
-						imageSize: new AMap.Size(40, 50)   // 根据所设置的大小拉伸或压缩图片
-					});*/
-					// 创建一个 Marker 实例：
-					var marker = new AMap.Marker({
-						position: new AMap.LngLat(value.longitude, value.latitude),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
-						title: value.carId,
-						offset: new AMap.Pixel(-10, -10),
-						icon: '/img/car.png', // 添加 Icon 图标 URL
-						zoom:13
-					});
-					markerList.push(marker);
-				})
-			}
-		})
+		if (carId !== "" && carId != null){
+			$.ajax({
+				url:'/cars/position/getCars',
+				type:'post',
+				data:{'carId':carId},
+				async:false,
+				dataType:'json',
+				success:function (res) {
+					$.each(res,function (index,value) {
+						if (value.carId !== null){
+							// 创建一个 Marker 实例：
+							var marker = new AMap.Marker({
+								position: new AMap.LngLat(value.longitude, value.latitude),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+								title: value.carId,
+								offset: new AMap.Pixel(-10, -10),
+								icon: '/img/car.png', // 添加 Icon 图标 URL
+								zoom:13
+							});
+							markerList.push(marker);
+						}
+					})
+				}
+			})
+		}else {
+			$.ajax({
+				url:'/cars/position/getCars',
+				type:'post',
+				async:false,
+				dataType:'json',
+				success:function (res) {
+					$.each(res,function (index,value) {
+						if (value.carId !== null){
+							// 创建一个 Marker 实例：
+							var marker = new AMap.Marker({
+								position: new AMap.LngLat(value.longitude, value.latitude),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+								title: value.carId,
+								offset: new AMap.Pixel(-10, -10),
+								icon: '/img/car.png', // 添加 Icon 图标 URL
+								zoom:13
+							});
+							markerList.push(marker);
+						}
+					})
+				}
+			})
+		}
 		// 将创建的点标记添加到已有的地图实例：
 		map.add(markerList);
 	}

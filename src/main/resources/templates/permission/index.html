@@ -27,7 +27,8 @@
 <div class="page-container">
 	<div class="text-c">
 		<form class="Huiform" method="post" action="/permission/" target="_self">
-			<input type="text" class="input-text" style="width:250px" placeholder="权限名 称" id="name" name="name">
+			<input type="text" class="input-text" style="width:250px" placeholder="权限名称" th:value="${per.name}" id="name" name="name">
+			<input type="text" class="input-text" style="width:250px" placeholder="上级权限名称" th:value="${per.pName}" id="pName" name="pName">
 			<button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜权限节点</button>
 		</form>
 	</div>
@@ -36,7 +37,7 @@
 			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 			<a href="javascript:;" onclick="admin_permission_add('添加权限节点','/permission/add','','310')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a>
 		</span>
-		<span class="r">共有数据：<strong>54</strong> 条</span> </div>
+		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span> </div>
 	<table class="table table-border table-bordered table-striped table-hover" id="treeTable">
 		<thead>
 			<tr>
@@ -44,26 +45,24 @@
 			</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
-				<th width="40">ID</th>
-				<th width="200">权限名称</th>
-				<th>字段名</th>
+				<th width="40">序号</th>
+				<th width="200">节点名称</th>
+				<th width="200">上级节点</th>
+				<th>备注</th>
 				<th width="100">操作</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr id="1">
-				<td><input type="checkbox" value="1" name=""></td>
-				<td>1</td>
-				<td><span controller="true">栏目添加</span></td>
-				<td></td>
-				<td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('角色编辑','admin-permission-add.html','1','','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_permission_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-			</tr>
-			<tr id="2" pId="1">
-				<td><input type="checkbox" value="1" name=""></td>
-				<td>2</td>
-				<td>栏目添加</td>
-				<td></td>
-				<td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('角色编辑','admin-permission-add.html','1','','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_permission_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+			<tr th:each="p:${pers}">
+				<td><input type="checkbox" th:value="${p.id}" name=""></td>
+				<td th:text="${p.sort}"></td>
+				<td><span style="text-align: center" th:text="${p.name}"></span></td>
+				<td><span style="text-align: center" th:text="${p.pName}"></span></td>
+				<td th:text="${p.remarks}"></td>
+				<td>
+					<a title="编辑" href="javascript:;" th:onclick="admin_permission_edit('权限节点编辑','/permission/edit',[[${p.id}]],'','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+					<a title="删除" href="javascript:;" th:onclick="admin_permission_del(this,[[${p.id}]])" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -99,7 +98,7 @@ function admin_permission_add(title,url,w,h){
 }
 /*管理员-权限-编辑*/
 function admin_permission_edit(title,url,id,w,h){
-	layer_show(title,url,w,h);
+	layer_show(title,url + "?id=" + id,w,h);
 }
 
 /*管理员-权限-删除*/
@@ -107,7 +106,8 @@ function admin_permission_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
 			type: 'POST',
-			url: '',
+			url: '/permission/delete',
+			data:{'id': id},
 			dataType: 'json',
 			success: function(data){
 				$(obj).parents("tr").remove();

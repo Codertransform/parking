@@ -26,7 +26,7 @@ public class PositionController {
 
     @ResponseBody
     @RequestMapping(value = "/getCars")
-    public List<TransformData> getCars(){
-        return transformDataService.getLocation();
+    public List<TransformData> getCars(TransformData data){
+        return transformDataService.getLocation(data);
     }
 }

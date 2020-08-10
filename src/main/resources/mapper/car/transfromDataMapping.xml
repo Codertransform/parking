@@ -30,13 +30,10 @@
             a.origin_id as "originId",
             a.latitude as "latitude",
             a.longitude as "longitude",
-            a.time as "time",
-            c.cardId as "carId"
+            a.time as "time"
         from transform_gps_data a
-        left join origin_gps_data ogd on a.origin_id = ogd.id
-        left join device d on ogd.serial_number = d.device_id
-        left join cars c on d.car_id = c.cardId
-        group by c.cardId,a.time
+        left join origin_gps_data o on o.id = a.origin_id
+        where o.serial_number = #{deviceId}
         order by a.time desc limit 1
     </select>
 </mapper>

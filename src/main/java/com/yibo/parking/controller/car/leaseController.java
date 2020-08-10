@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class leaseController {
         model.addAttribute("logmax",logmax);
         model.addAttribute("carId",carId);
         model.addAttribute("unit",unit);
-        model.addAttribute("title","车辆租用");
+        model.addAttribute("title","租用订单");
         return "lease/index";
     }
 
@@ -75,5 +76,15 @@ public class leaseController {
             return JsonUtils.success(lease, String.valueOf(map.get("message")));
         }
         return JsonUtils.error(lease);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/dels")
+    public String dels(@RequestParam("ids[]") String[] ids){
+        int d = leaseService.dels(ids);
+        if (d > 0) {
+            return JsonUtils.success(ids,"批量删除成功");
+        }
+        return JsonUtils.error(ids);
     }
 }
