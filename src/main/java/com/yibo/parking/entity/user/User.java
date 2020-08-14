@@ -1,31 +1,24 @@
 package com.yibo.parking.entity.user;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
 import java.util.List;
 
-public class User implements UserDetails {
+public class User {
+
     private String id;
-    private String role_id;
     private String username;
     private String password;
+    private String sex;
+    private String phone;
+    private String email;
     private String regist_time;
     private String login_time;
     private String login_ip;
     private List<Role> roles;
+    private String roleId;
+    private String roleName;
 
     public String getId() {
         return id;
-    }
-
-    public String getRole_id() {
-        return role_id;
-    }
-
-    public void setRole_id(String role_id) {
-        this.role_id = role_id;
     }
 
     public void setId(String id) {
@@ -36,12 +29,40 @@ public class User implements UserDetails {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRegist_time() {
@@ -76,45 +97,28 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
+    public String getRoleId() {
+        return roleId;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
-    }
 
     @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", role_id='" + role_id + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 ", regist_time='" + regist_time + '\'' +
                 ", login_time='" + login_time + '\'' +
                 ", login_ip='" + login_ip + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

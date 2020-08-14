@@ -8,6 +8,7 @@
             id as id,
             pId as "pId",
             name as "name",
+            url as "url",
             sort as "sort",
             remarks as "remarks"
         from permission
@@ -20,6 +21,7 @@
             a.pId as "pId",
             b.name as "pName",
             a.name as "name",
+            a.url as "url",
             a.sort as "sort",
             a.remarks as "remarks"
         from permission a
@@ -42,12 +44,14 @@
             id,
             pId,
             name,
+            url,
             sort,
             remarks
         )values(
             #{id},
             #{pId},
             #{name},
+            #{url},
             #{sort},
             #{remarks}
         )
@@ -57,6 +61,7 @@
         update permission set
             pId = #{pId},
             name = #{name},
+            url = #{url},
             sort = #{sort},
             remarks = #{remarks}
         where id = #{id}

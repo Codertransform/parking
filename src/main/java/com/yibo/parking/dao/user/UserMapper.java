@@ -17,7 +17,9 @@ public interface UserMapper {
 
     int update(User user);
 
-    int loginUpdate(User user);
+    void loginUpdate(User user);
+
+    void UpdatePWD(User user);
 
     int insert(User user);
 

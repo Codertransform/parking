@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.user.RolePermissionMapper">
+
+    <select id="findList" resultType="RolePermission">
+        select
+            id as "id",
+            role_id as "roleId",
+            permission_id as "permissionId"
+        from role_permission
+        where 1=1
+        <if test="roleId != null and roleId != ''">
+            and role_id = #{roleId}
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into role_permission (
+            id,
+            role_id,
+            permission_id
+        )values(
+            #{id},
+            #{roleId},
+            #{permissionId}
+        )
+    </insert>
+
+    <delete id="delete">
+        delete from role_permission where id = #{id}
+    </delete>
+</mapper>

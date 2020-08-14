@@ -1,11 +1,15 @@
 package com.yibo.parking.entity.user;
 
-import org.springframework.security.core.GrantedAuthority;
+import java.util.List;
 
-public class Role implements GrantedAuthority {
+
+public class Role{
+
     private String id;
     private String name;
+    private String flag;
     private String description;
+    private List<Permission> permissions;
 
     public String getId() {
         return id;
@@ -23,6 +27,14 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -31,8 +43,22 @@ public class Role implements GrantedAuthority {
         this.description = description;
     }
 
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
     @Override
-    public String getAuthority() {
-        return name;
+    public String toString() {
+        return "Role{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", flag='" + flag + '\'' +
+                ", description='" + description + '\'' +
+                ", permissions=" + permissions +
+                '}';
     }
 }

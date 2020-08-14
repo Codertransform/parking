@@ -1,10 +1,12 @@
 package com.yibo.parking.entity.user;
 
 public class Permission {
+
     private String id;
     private String pId;
     private String pName;
     private String name;
+    private String url;
     private Integer sort;
     private String remarks;
 
@@ -40,6 +42,14 @@ public class Permission {
         this.name = name;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public Integer getSort() {
         return sort;
     }
@@ -54,5 +64,18 @@ public class Permission {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    @Override
+    public String toString() {
+        return "Permission{" +
+                "id='" + id + '\'' +
+                ", pId='" + pId + '\'' +
+                ", pName='" + pName + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", sort=" + sort +
+                ", remarks='" + remarks + '\'' +
+                '}';
     }
 }

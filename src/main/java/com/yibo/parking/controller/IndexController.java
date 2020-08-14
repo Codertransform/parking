@@ -30,9 +30,7 @@ public class IndexController {
     public static final String LOGIN_VALIDATE_CODE = "login_validate_code";
 
     @RequestMapping(value = {"","/"})
-    public String index(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("user",auth.getName());
+    public String index(){
         return "index-2";
     }
 
@@ -44,21 +42,11 @@ public class IndexController {
         return "welcome";
     }
 
-    @RequestMapping(value = "/login")
-    public String login(){
-        return "login";
-    }
-
     /**
      * 登录验证码图片
      */
     @RequestMapping(value = "/ValidateCode")
     public void loginValidateCode(HttpServletRequest request, HttpServletResponse response) throws Exception{
         CommonUtils.validateCode(request,response,captchaProducer,LOGIN_VALIDATE_CODE);
-    }
-
-    @RequestMapping(value = "/logout")
-    public String logOut(){
-        return "logout";
     }
 }

@@ -1,6 +1,5 @@
 package com.yibo.parking.interceptor;
 
-import com.yibo.parking.entity.user.UserData;
 import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -26,9 +25,6 @@ import java.util.Collection;
 public class SecurityAuthenticationProvider implements AuthenticationProvider {
 
     Logger logger = LoggerFactory.getLogger(SecurityAuthenticationProvider.class);
-
-    @Autowired
-    private UserDetailsService userDetailService;
 
     @Autowired
     HttpServletRequest request;
@@ -47,13 +43,13 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();	// 这个是表单中输入的密码；
 
         // 这里构建来判断用户是否存在和密码是否正确
-        UserData userData = (UserData) userDetailService.loadUserByUsername(userName);
-        if (userData == null)
+        UserDetails user = userService.loadUserByUsername(userName);
+        if (user == null)
         {
             throw new BadCredentialsException("用户不存在");
         }
 
-        if (!passwordEncoder().matches(password,userData.getPassword()))
+        if (!passwordEncoder().matches(password,user.getPassword()))
         {
             throw new BadCredentialsException("密码不正确");
         }
@@ -70,13 +66,14 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
             throw new DisabledException("图形验证码错误！");
         }
 
-        Collection<? extends GrantedAuthority> authorities = userData.getAuthorities();
+        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
         // 构建返回的用户登录成功的token
-        return new UsernamePasswordAuthenticationToken(userData, password, authorities);
+        return new UsernamePasswordAuthenticationToken(user, password, authorities);
     }
 
     @Override
     public boolean supports(Class<?> aClass) {
+//        return UsernamePasswordAuthenticationToken.class.equals(aClass);
         return true;
     }
 }

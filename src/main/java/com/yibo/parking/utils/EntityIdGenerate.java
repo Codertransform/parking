@@ -46,6 +46,6 @@ public class EntityIdGenerate {
     }
 
     public static void main(String[] args) {
-        System.out.println(generateOrderId());
+        System.out.println(generateId());
     }
 }

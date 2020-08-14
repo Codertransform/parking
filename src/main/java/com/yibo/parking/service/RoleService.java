@@ -3,6 +3,7 @@ package com.yibo.parking.service;
 import com.yibo.parking.entity.user.Role;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RoleService {
 
@@ -10,9 +11,7 @@ public interface RoleService {
 
     List<Role> findList(Role role);
 
-    int insert(Role role);
-
-    int update(Role role);
+    Map<String,Object> save(Role role, String[] pers);
 
     int delete(Role role);
 }

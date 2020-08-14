@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="zh">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -44,17 +45,17 @@
 					<li class="navbar-levelone"><a href="javascript:;">微信小程序</a></li>
 					<!--<li class="navbar-levelone"><a href="javascript:;">财务</a></li>
 					<li class="navbar-levelone"><a href="javascript:;">手机</a></li>-->
-				</li>
-			</ul>
-		</nav>
+				</ul>
+			</nav>
+		</div>
 		<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
-			<ul class="cl">
-				<li>超级管理员</li>
+			<ul class="cl" sec:authorize="isAuthenticated()">
+				<li><span sec:authentication="principal.authorities"></span></li>
 				<li class="dropDown dropDown_hover">
-					<a href="#" class="dropDown_A">[[${user}]] <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<a href="#" class="dropDown_A"><span sec:authentication="name"></span><i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-						<li><a href="#">切换账户</a></li>
+<!--						<li><a href="#">切换账户</a></li>-->
 						<li><a href="/logout">退出</a></li>
 				</ul>
 			</li>
@@ -72,7 +73,6 @@
 			</ul>
 		</nav>
 	</div>
-</div>
 </header>
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
@@ -88,26 +88,26 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 车辆管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-<!--					<li><a data-href="/cars" data-title="车辆列表" href="javascript:void(0)">车辆列表</a></li>-->
-<!--					<li><a data-href="/cars/gallery" data-title="车辆图库" href="javascript:void(0)">车辆图库</a></li>-->
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars" data-title="车辆列表" href="javascript:void(0)">车辆列表</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/gallery" data-title="车辆图库" href="javascript:void(0)">车辆图库</a></li>
 					<!--					<li><a data-href="/insurance" data-title="车辆保险" href="javascript:void(0)">车辆保险</a></li>-->
 					<!--					<li><a data-href="/maintain" data-title="车辆保养" href="javascript:void(0)">车辆保养</a></li>-->
 					<!--					<li><a data-href="/repair" data-title="车辆维修" href="javascript:void(0)">车辆维修</a></li>-->
-<!--					<li><a data-href="/cars/dispatch" data-title="车辆分派" href="javascript:void(0)">车辆分派</a></li>-->
-<!--					<li><a data-href="/cars/lease" data-title="租用订单" href="javascript:void(0)">租用订单</a></li>-->
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/dispatch" data-title="车辆分派" href="javascript:void(0)">车辆分派</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/lease" data-title="租用订单" href="javascript:void(0)">租用订单</a></li>
 					<!--					<li><a data-href="/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>-->
-<!--					<li><a data-href="/cars/type" data-title="车辆类型" href="javascript:void(0)">车辆类型</a></li>-->
-					<li><a data-href="/cars/position" data-title="车辆定位追踪" href="javascript:void(0)">车辆定位追踪</a></li>
-					<li><a data-href="/cars/track" data-title="车辆轨迹" href="javascript:void(0)">车辆轨迹</a></li>
-<!--					<li><a data-href="/cars/device" data-title="GPS设备" href="javascript:void(0)">GPS设备</a></li>-->
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/type" data-title="车辆类型" href="javascript:void(0)">车辆类型</a></li>
+					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')"><a data-href="/cars/position" data-title="车辆定位追踪" href="javascript:void(0)">车辆定位追踪</a></li>
+					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')"><a data-href="/cars/track" data-title="车辆轨迹" href="javascript:void(0)">车辆轨迹</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/device" data-title="GPS设备" href="javascript:void(0)">GPS设备</a></li>
 				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-unit">
-<!--			<dt><i class="Hui-iconfont">&#xe616;</i> 组织机构管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+			<dt  sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 组织机构管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-<!--					<li><a data-href="/unit" data-title="组织机构" href="javascript:void(0)">组织机构</a></li>-->
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/unit" data-title="组织机构" href="javascript:void(0)">组织机构</a></li>
 					<!--					<li><a data-href="/insurance" data-title="车辆保险" href="javascript:void(0)">车辆保险</a></li>-->
 					<!--					<li><a data-href="/maintain" data-title="车辆保养" href="javascript:void(0)">车辆保养</a></li>-->
 					<!--					<li><a data-href="/repair" data-title="车辆维修" href="javascript:void(0)">车辆维修</a></li>-->
@@ -127,10 +127,10 @@
 			</dd>
 		</dl>-->
 		<dl id="menu-member">
-<!--			<dt><i class="Hui-iconfont">&#xe60d;</i> 人员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe60d;</i> 人员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-<!--					<li><a data-href="/member" data-title="人员列表" href="javascript:;">人员列表</a></li>-->
+					<li  sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/member" data-title="人员列表" href="javascript:;">人员列表</a></li>
 <!--					<li><a data-href="member-del.html" data-title="删除的会员" href="javascript:;">删除的会员</a></li>-->
 <!--					<li><a data-href="member-level.html" data-title="等级管理" href="javascript:;">等级管理</a></li>-->
 <!--					<li><a data-href="/member/score" data-title="积分管理" href="javascript:;">积分管理</a></li>-->
@@ -141,12 +141,12 @@
 			</dd>
 		</dl>
 		<dl id="menu-admin">
-<!--			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+			<dt  sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-<!--					<li><a data-href="/role" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>-->
-<!--					<li><a data-href="/permission" data-title="权限节点管理" href="javascript:void(0)">权限节点管理</a></li>-->
-<!--					<li><a data-href="/admin" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>-->
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/role" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/permission" data-title="权限节点管理" href="javascript:void(0)">权限节点管理</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/admin" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -165,13 +165,13 @@
 			</dd>
 		</dl>-->
 		<dl id="menu-system">
-<!--			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-<!--					<li><a data-href="/system/server" data-title="系统服务" href="javascript:void(0)">系统服务</a></li>-->
-<!--					<li><a data-href="/system/base" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>-->
-<!--					<li><a data-href="/system/category" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>-->
-<!--					<li><a data-href="/system/data" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>-->
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/server" data-title="系统服务" href="javascript:void(0)">系统服务</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/base" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/category" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/data" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
 <!--					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>-->
 <!--					<li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>-->
 				</ul>

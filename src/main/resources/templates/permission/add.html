@@ -44,6 +44,12 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">链接：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="请输入连接" id="url" name="url">
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3">序号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" autocomplete="off" placeholder="请输入序号" id="sort" name="sort">
@@ -95,6 +101,9 @@ function save() {
 				required:true
 			},
 			pId:{
+				required:true,
+			},
+			url:{
 				required:true,
 			}
 		},

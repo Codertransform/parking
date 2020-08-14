@@ -1,12 +1,18 @@
 package com.yibo.parking.interceptor;
 
+import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -14,6 +20,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyAuthenctiationSuccessHandler authenctiationSuccessHandler;
+
+    @Autowired
+    private UserServiceImpl userService;
+
+    @Autowired
+    private DataSource dataSource;   //是在application.properites
+
+    /**
+     * 记住我功能的token存取器配置
+     * @return
+     */
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        return tokenRepository;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -40,13 +63,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/permission/**").permitAll()
                 .antMatchers("/role").permitAll()
                 .antMatchers("/role/**").permitAll()
-                //.antMatchers("/index").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers("/admin").permitAll()
+                .antMatchers("/admin/**").permitAll()
+                .antMatchers("/","/welcome").permitAll()
+                .anyRequest().access("@rbacService.hasPermission(request,authentication)")    //必须经过认证以后才能访问
                 .and()
             .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
+                .and()
+            .rememberMe()
+                .rememberMeParameter("online").userDetailsService(userService)
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(7200)
                 .and()
             .csrf().disable();
     }
@@ -68,6 +98,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SecurityAuthenticationProvider provider;//注入我们自己的AuthenticationProvider
+
+//    @Autowired
+//    private UserServiceImpl userService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
