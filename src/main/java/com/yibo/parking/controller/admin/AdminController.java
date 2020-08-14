@@ -25,7 +25,7 @@ public class AdminController {
     private RoleServiceImpl roleService;
 
     @RequestMapping(value = {"","/"})
-    public String index(User user, Model model){
+    public String index(Model model){
         List<User> users = userService.getAllUser();
         model.addAttribute("title", "管理员列表");
         model.addAttribute("users", users);

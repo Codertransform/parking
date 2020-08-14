@@ -65,7 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/role/**").permitAll()
                 .antMatchers("/admin").permitAll()
                 .antMatchers("/admin/**").permitAll()
-                .antMatchers("/","/welcome").permitAll()
                 .anyRequest().access("@rbacService.hasPermission(request,authentication)")    //必须经过认证以后才能访问
                 .and()
             .logout()
