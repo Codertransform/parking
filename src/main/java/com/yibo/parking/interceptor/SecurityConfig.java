@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")			//登陆界面，用于输入用户和密码。跟控制器login中返回的名称相同
                 .loginProcessingUrl("/loginProcess")	//登陆界面提交表单的action对应的名称
                 .defaultSuccessUrl("/")		//验证成功后默认的跳转动作
-                .failureUrl("/login")		//验证失败后跳转的动作
+                .failureUrl("/login") 		//验证失败后跳转的动作
                 .successHandler(authenctiationSuccessHandler)
                 .permitAll()				//表示这个不需要验证登录页面/登录失败页面
                 .and()
@@ -59,12 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("**/upload").permitAll()
                 .antMatchers("/uploadFiles/**").permitAll()
                 .antMatchers("/ValidateCode").permitAll()
-                .antMatchers("/permission").permitAll()
-                .antMatchers("/permission/**").permitAll()
-                .antMatchers("/role").permitAll()
-                .antMatchers("/role/**").permitAll()
-                .antMatchers("/admin").permitAll()
-                .antMatchers("/admin/**").permitAll()
                 .anyRequest().access("@rbacService.hasPermission(request,authentication)")    //必须经过认证以后才能访问
                 .and()
             .logout()

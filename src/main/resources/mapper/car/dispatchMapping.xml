@@ -42,7 +42,10 @@
         left join cars c on c.id = a.carId
         left join unit u on a.unitId = u.id
         left join user b on b.id = a.adminId
-        where a.id = #{id}
+        where 1=1
+        <if test="id != null and id != ''">
+            and a.id = #{id}
+        </if>
         <if test="car != null and car.id != null and car.id != ''">
             and a.carId = #{car.id}
         </if>

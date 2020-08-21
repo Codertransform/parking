@@ -7,6 +7,7 @@ public class TransformData {
     private String longitude;      //经度
     private String carId;           //车牌号
     private String time;
+    private String unitId;
     private String deviceId;
 
     public String getId() {
@@ -55,6 +56,14 @@ public class TransformData {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(String unitId) {
+        this.unitId = unitId;
     }
 
     public String getDeviceId() {

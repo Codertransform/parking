@@ -6,7 +6,6 @@ import com.yibo.parking.entity.user.User;
 public class Dispatch {
     private String id;
     private Car car;
-    private String cardId;
     private Unit unit;
     private User user;
     private String oprateTime;
@@ -26,18 +25,6 @@ public class Dispatch {
 
     public void setCar(Car car) {
         this.car = car;
-    }
-
-    public String getCardId() {
-        Car car = getCar();
-        return car.getCardId();
-    }
-
-    public void setCardId(String cardId) {
-        System.out.println(cardId);
-        Car car = new Car();
-        car.setCardId(cardId);
-        setCar(car);
     }
 
     public Unit getUnit() {

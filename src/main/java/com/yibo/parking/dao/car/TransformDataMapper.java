@@ -10,5 +10,7 @@ public interface TransformDataMapper {
 
     List<TransformData> findList(TransformData data);
 
-    TransformData getLocation(TransformData data);
+//    TransformData getLocation(TransformData data);
+
+    List<TransformData> getLocation(TransformData data);
 }

@@ -52,6 +52,8 @@
 		success:function (e) {
 			var location = e[0].startPoint.location.split(",");
 
+			var end = e[0].endPoint.location.split(",");
+
 			var marker,lineArr = [];
 
 			var map = new AMap.Map("container", {
@@ -67,6 +69,44 @@
 				offset: new AMap.Pixel(-26, -13),
 				autoRotation: true
 			});
+
+			// 创建一个 Icon
+			var startIcon = new AMap.Icon({
+				// 图标尺寸
+				size: new AMap.Size(25, 34),
+				// 图标的取图地址
+				image: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png',
+				// 图标所用图片大小
+				imageSize: new AMap.Size(135, 40),
+				// 图标取图偏移量
+				imageOffset: new AMap.Pixel(-9, -3),
+				zIndex: 999
+			});
+
+			// 将 icon 传入 marker
+			var startMarker = new AMap.Marker({
+				position: new AMap.LngLat(location[0],location[1]),
+				icon: startIcon,
+				offset: new AMap.Pixel(-13, -30)
+			});
+
+			// 创建一个 icon
+			var endIcon = new AMap.Icon({
+				size: new AMap.Size(25, 34),
+				image: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png',
+				imageSize: new AMap.Size(135, 40),
+				imageOffset: new AMap.Pixel(-95, -3),
+				zIndex: 999
+			});
+
+			// 将 icon 传入 marker
+			var endMarker = new AMap.Marker({
+				position: new AMap.LngLat(end[0],end[1]),
+				icon: endIcon,
+				offset: new AMap.Pixel(-13, -30)
+			});
+
+			map.add([startMarker, endMarker]);
 
 			$.each(e[0].points,function (index,value) {
 				var pos = value.location.split(",");

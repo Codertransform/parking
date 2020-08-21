@@ -27,11 +27,11 @@
 	<div class="text-c">
 		<form action="/cars/track/" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
-			<input type="text" name="trackId" id="trackId" placeholder=" 轨迹编号 " th:value="${track.trackId}" style="width:250px" class="input-text">
+			<input type="text" name="carId" id="carId" placeholder=" 车牌号 " th:value="${track.carId}" style="width:250px" class="input-text">
 			起止时间：
-			<input type="text" name="start" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'start\')||\'%y-%M-%d\'}' })" id="start" th:value="${track.start}" class="input-text Wdate" style="width:120px;">
+			<input type="text" name="start" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'start\')||\'%y-%M-%d\'}' })" id="start" th:value="${track.start}" class="input-text Wdate" autocomplete="off" style="width:120px;">
 			-
-			<input type="text" name="end" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'end\')}',maxDate:'%y-%M-%d' })" id="end" th:value="${track.end}" class="input-text Wdate" style="width:120px;">
+			<input type="text" name="end" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'end\')}',maxDate:'%y-%M-%d' })" id="end" th:value="${track.end}" class="input-text Wdate" autocomplete="off" style="width:120px;">
 			<button class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜轨迹 </button>
 		</form>
 	</div>
@@ -64,7 +64,7 @@
 					<td th:text="${tr.endTime}"></td>
 					<td th:text="${tr.miles}"></td>
 					<td class="f-14 td-manage">
-						<a style="text-decoration:none" th:onclick="track_replay('轨迹回放','/cars/track/replay',[[${tr.trackId}]],[[${tr.carId}]])" href="javascript:;" title="回放">回放</a>
+						<a style="text-decoration:none" th:onclick="track_replay('轨迹回放-[[${tr.carId}]]-[[${tr.trackId}]]','/cars/track/replay',[[${tr.trackId}]],[[${tr.carId}]])" href="javascript:;" title="回放">回放</a>
 					</td>
 				</tr>
 			</tbody>

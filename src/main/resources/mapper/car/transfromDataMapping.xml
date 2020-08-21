@@ -24,7 +24,7 @@
         </if>
     </select>
 
-    <select id="getLocation" resultType="TransformData">
+    <!--<select id="getLocation" resultType="TransformData">
         select
             a.id as "id",
             a.origin_id as "originId",
@@ -35,5 +35,27 @@
         left join origin_gps_data o on o.id = a.origin_id
         where o.serial_number = #{deviceId}
         order by a.time desc limit 1
+    </select>-->
+
+    <select id="getLocation" resultType="TransformData">
+        select
+            t.id as "id",
+            d.car_id as "carId",
+            t.origin_id as "originId",
+            t.latitude as "latitude",
+            t.longitude as "longitude",
+            t.time as "time",
+            t.device_id as "deviceId"
+        from (
+                 select device_id, MAX(time) as "time" from transform_gps_data
+                 where device_id != null or device_id != ''
+                 group by device_id
+             ) a
+        LEFT JOIN transform_gps_data t on t.device_id = a.device_id and t.time = a.time
+        left join device d on a.device_id = d.device_id
+        where 1=1
+        <if test="carId != null and carId != ''">
+            and d.car_id like CONCAT('%',#{carId},'%')
+        </if>
     </select>
 </mapper>

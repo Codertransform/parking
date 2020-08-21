@@ -87,7 +87,10 @@
 				async:false,
 				dataType:'json',
 				success:function (res) {
+					console.log("123");
+					console.log(res);
 					$.each(res,function (index,value) {
+						console.log(index + ":" + value);
 						if (value.carId !== null){
 							// 创建一个 Marker 实例：
 							var marker = new AMap.Marker({
@@ -100,6 +103,9 @@
 							markerList.push(marker);
 						}
 					})
+				},
+				error:function (res) {
+					console.log("456");
 				}
 			})
 		}else {

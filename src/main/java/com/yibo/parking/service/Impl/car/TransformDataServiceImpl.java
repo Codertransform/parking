@@ -2,7 +2,6 @@ package com.yibo.parking.service.Impl.car;
 
 import com.yibo.parking.dao.car.DeviceMapper;
 import com.yibo.parking.dao.car.TransformDataMapper;
-import com.yibo.parking.entity.car.Device;
 import com.yibo.parking.entity.car.TransformData;
 import com.yibo.parking.service.TransformDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class TransformDataServiceImpl implements TransformDataService {
     }
 
     public List<TransformData> getLocation(TransformData data) {
-        List<TransformData> dataList = new ArrayList<>();
+        /*List<TransformData> dataList = new ArrayList<>();
         if (data.getCarId() != null && !data.getCarId().equals("陕C·7797W")){
             Device device = new Device();
             device.setCarId(data.getCarId());
@@ -57,7 +56,7 @@ public class TransformDataServiceImpl implements TransformDataService {
                 transformData.setCarId(d.getCarId());
                 dataList.add(transformData);
             }
-        }
-        return dataList;
+        }*/
+        return dataMapper.getLocation(data);
     }
 }
