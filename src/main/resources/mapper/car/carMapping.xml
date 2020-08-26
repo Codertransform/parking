@@ -14,7 +14,8 @@
             a.status as status,
             a.pic_status as picStatus,
             a.buy_time as buy_time,
-            a.maintenance as maintenance
+            a.maintenance as maintenance,
+            a.dis_flag as "disFlag"
         from cars a
         left join type t on t.id = a.carType
         where 1 = 1
@@ -40,7 +41,8 @@
             a.status as status,
             a.pic_status as picStatus,
             a.buy_time as buy_time,
-            a.maintenance as maintenance
+            a.maintenance as maintenance,
+            a.dis_flag as "disFlag"
         from cars a
         left join type t on t.id = a.carType
         where a.status = 0
@@ -57,7 +59,8 @@
             a.status as status,
             a.pic_status as picStatus,
             a.buy_time as buy_time,
-            a.maintenance as maintenance
+            a.maintenance as maintenance,
+            a.dis_flag as "disFlag"
         from cars a
         left join type t on t.id = a.carType
         where a.status = 0
@@ -81,7 +84,8 @@
             a.status as status,
             a.pic_status as picStatus,
             a.buy_time as buy_time,
-            a.maintenance as maintenance
+            a.maintenance as maintenance,
+            a.dis_flag as "disFlag"
         from cars a
         left join type t on t.id = a.carType
         where 1=1
@@ -100,7 +104,8 @@
             status,
             pic_status,
             buy_time,
-            maintenance
+            maintenance,
+            dis_flag
         )
         values (
             #{id},
@@ -111,7 +116,8 @@
             #{status},
             #{picStatus},
             #{buy_time},
-            #{maintenance}
+            #{maintenance},
+            #{disFLag}
         )
     </insert>
 
@@ -124,7 +130,8 @@
             status = #{status},
             pic_status = #{picStatus},
             buy_time = #{buy_time},
-            maintenance = #{maintenance}
+            maintenance = #{maintenance},
+            dis_flag = #{disFlag}
         where id = #{id}
     </update>
 

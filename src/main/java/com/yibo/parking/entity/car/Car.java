@@ -10,8 +10,9 @@ public class Car {
     private String typeName;         //车辆类型名称
     private String status;         //状态
     private String picStatus;      //相册状态
-    private String buy_time;     //购买时间
+    private String buy_time;        //购买时间
     private String maintenance;     //上次保养时间
+    private String disFlag;         //分配标识
 
     public String getId() {
         return id;
@@ -99,5 +100,13 @@ public class Car {
 
     public void setMaintenance(String maintenance) {
         this.maintenance = maintenance;
+    }
+
+    public String getDisFlag() {
+        return disFlag;
+    }
+
+    public void setDisFlag(String disFlag) {
+        this.disFlag = disFlag;
     }
 }

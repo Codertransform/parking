@@ -3,12 +3,13 @@ package com.yibo.parking.utils;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
 
 public class IPUtil {
 
     public static String getIpAddr(HttpServletRequest request) {
 
-        /*System.out.println(request.getHeader("X-Real-Ip"));
+        System.out.println(request.getHeader("X-Real-Ip"));
         System.out.println(request.getHeader("X-Natapp-Ip"));
 
         Enumeration<String> headerNames = request.getHeaderNames();
@@ -17,7 +18,7 @@ public class IPUtil {
             String header2 = request.getHeader(nextElement);//通过请求头得到请求内容
 //            log.info("请求头=========={}" + nextElement + "VALUE:" + header2);
             System.out.println(nextElement+":"+header2);
-        }*/
+        }
 
         String ipAddress = null;
         try {

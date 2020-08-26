@@ -40,7 +40,8 @@ public class DispatchController {
     public String add(Model model){
         List<Unit> units = dispatchService.findUnitList();
         List<Car> cars = dispatchService.findCars();
-        model.addAttribute("title","车辆分派成功");
+        model.addAttribute("title","车辆分派");
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("user",userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName()));
         model.addAttribute("units",units);
         model.addAttribute("cars",cars);

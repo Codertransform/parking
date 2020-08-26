@@ -40,7 +40,7 @@
 							<li><a href="javascript:;" onclick="picture_add('添加资讯','picture-edit.html')"><i class="Hui-iconfont">&#xe613;</i> 图片</a></li>
 							<li><a href="javascript:;" onclick="product_add('添加资讯','product-edit.html')"><i class="Hui-iconfont">&#xe620;</i> 产品</a></li>
 							<li><a href="javascript:;" onclick="member_add('添加用户','member-edit.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
-					</ul>
+						</ul>
 					<li class="navbar-levelone current" sec:authorize="hasRole('ROLE_ADMIN')"><a href="javascript:;">平台</a></li>
 					<li class="navbar-levelone" sec:authorize="hasRole('ROLE_ADMIN')"><a href="javascript:;">微信小程序</a></li>
 					<!--<li class="navbar-levelone"><a href="javascript:;">财务</a></li>
@@ -85,7 +85,7 @@
 			</dd>
 		</dl>-->
 		<dl id="menu-cars">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 车辆管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><i class="Hui-iconfont">&#xe616;</i> 车辆管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars" data-title="车辆列表" href="javascript:void(0)">车辆列表</a></li>
@@ -97,14 +97,14 @@
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/lease" data-title="租用订单" href="javascript:void(0)">租用订单</a></li>
 					<!--					<li><a data-href="/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>-->
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/type" data-title="车辆类型" href="javascript:void(0)">车辆类型</a></li>
-					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')"><a data-href="/cars/position" data-title="车辆定位追踪" href="javascript:void(0)">车辆定位追踪</a></li>
-					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')"><a data-href="/cars/track" data-title="车辆轨迹" href="javascript:void(0)">车辆轨迹</a></li>
+					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><a data-href="/cars/position" data-title="车辆定位追踪" href="javascript:void(0)">车辆定位追踪</a></li>
+					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><a data-href="/cars/track" data-title="车辆轨迹" href="javascript:void(0)">车辆轨迹</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/device" data-title="GPS设备" href="javascript:void(0)">GPS设备</a></li>
 				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-unit">
-			<dt  sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 组织机构管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 组织机构管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/unit" data-title="组织机构" href="javascript:void(0)">组织机构</a></li>

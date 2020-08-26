@@ -25,6 +25,9 @@
         <if test="car != null and car.cardId != null and car.cardId != ''">
             and c.cardId = #{car.cardId}
         </if>
+        <if test="unit != null and unit.id != null and unit.id != ''">
+            and a.unitId = #{unit.id}
+        </if>
     </select>
 
     <select id="get" resultType="Dispatch">
@@ -46,8 +49,11 @@
         <if test="id != null and id != ''">
             and a.id = #{id}
         </if>
-        <if test="car != null and car.id != null and car.id != ''">
-            and a.carId = #{car.id}
+        <if test="car != null and car.cardId != null and car.cardId != ''">
+            and c.cardId like concat('%',#{car.cardId},'%')
+        </if>
+        <if test="unit != null and unit.id != null and unit.id != ''">
+            and a.unitId = #{unit.id}
         </if>
     </select>
 
