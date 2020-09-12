@@ -40,13 +40,6 @@
 			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜车辆 </button>
 		</form>
 	</div>
-	<!--<div class="cl pd-5 bg-1 bk-gray mt-20">
-		<span class="l">
-			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a class="btn btn-primary radius" data-title="添加车辆" data-href="/cars/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加车辆</a>
-		</span>
-		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
-	</div>-->
 	<div class="mt-20">
 		<div id="container"></div>
 	</div>
@@ -71,10 +64,12 @@
 	$(function () {
 		carId = $('#carId').val();
 		getLocations(carId);
-		setInterval('getLocations(carId)',3000);//轮询执行，500ms一次
+		setInterval('getLocations(carId)',3000);//轮询执行，3s一次
 	})
 
 	var markerList = [];
+
+	var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, 0)});
 
 	function getLocations(carId) {
 		map.remove(markerList);
@@ -87,8 +82,6 @@
 				async:false,
 				dataType:'json',
 				success:function (res) {
-					console.log("123");
-					console.log(res);
 					$.each(res,function (index,value) {
 						console.log(index + ":" + value);
 						if (value.carId !== null){
@@ -101,17 +94,24 @@
 								zoom:13
 							});
 							markerList.push(marker);
+							var content = value.carId + "<br/>" + value.speed+"  km/h";
+							var infoWindow = new AMap.InfoWindow({
+								anchor: 'bottom-center',
+								content: content,
+							});
+							infoWindow.open(map,[value.longitude, value.latitude]);
 						}
 					})
 				},
 				error:function (res) {
-					console.log("456");
+					console.log("error");
 				}
 			})
 		}else {
 			$.ajax({
 				url:'/cars/position/getCars',
 				type:'post',
+				data:{},
 				async:false,
 				dataType:'json',
 				success:function (res) {
@@ -125,14 +125,23 @@
 								icon: '/img/car.png', // 添加 Icon 图标 URL
 								zoom:13
 							});
+							marker.content = value.carId + "<br/>" + value.speed+"  km/h";
+							marker.on("click", markerClick);
+							marker.emit("click", {target:marker});
 							markerList.push(marker);
 						}
+
 					})
 				}
 			})
 		}
 		// 将创建的点标记添加到已有的地图实例：
 		map.add(markerList);
+	}
+	
+	function markerClick(e) {
+		infoWindow.setContent(e.target.content);
+		infoWindow.open(map, e.target.getPosition());
 	}
 </script>
 </body>

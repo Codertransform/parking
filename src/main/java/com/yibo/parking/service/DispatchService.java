@@ -3,6 +3,7 @@ package com.yibo.parking.service;
 import com.yibo.parking.entity.car.Dispatch;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DispatchService {
 
@@ -10,7 +11,7 @@ public interface DispatchService {
 
     Dispatch get(Dispatch dispatch);
 
-    int save(Dispatch dispatch);
+    Map<String, Object> save(Dispatch dispatch);
 
     int delete(Dispatch dispatch);
 }

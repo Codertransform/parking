@@ -30,10 +30,11 @@
 			<span class="select-box inline">
 				<select name="unit.id" class="select">
 					<option value="">选择组织机构</option>
-					<option th:each="u:${units}" th:value="${u.id}" th:text="${u.name}"></option>
+					<option th:each="u:${units}" th:value="${u.id}" th:text="${u.name}" th:selected="${u.id eq dispatch.unit.id}"></option>
+<!--					<option th:each="u:${units}" th:value="${u.id}" th:text="${u.name}"></option>-->
 				</select>
 			</span>
-			<input type="text" name="car.cardId" id="cardId" placeholder=" 车牌号 " style="width:250px" class="input-text">
+			<input type="text" name="car.cardId" id="cardId" placeholder=" 车牌号 " th:value="${dispatch.car.cardId}" style="width:250px" class="input-text">
 			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜车辆 </button>
 		</form>
 	</div>
@@ -51,7 +52,7 @@
 					<th width="25"><input type="checkbox" name="all" value=""></th>
 					<th width="40">车牌号</th>
 					<th width="80">单位名称</th>
-					<th width="75">管理员</th>
+					<th width="75">操作人</th>
 					<th width="75">操作时间</th>
 					<th width="60">备注</th>
 					<th width="120">操作</th>
@@ -61,8 +62,8 @@
 				<tr class="text-c" th:each="dis:${dispatches}">
 					<td><input type="checkbox" th:value="${dis.id}" name="one"></td>
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${dis.car.cardId}"></u></td>
-					<td th:text="${dis.unit.id}"></td>
-					<td th:text="${dis.user.id}"></td>
+					<td th:text="${dis.unit.name}"></td>
+					<td th:text="${dis.user.username}"></td>
 					<td th:text="${dis.oprateTime}"></td>
 					<td th:text="${dis.remarks}"></td>
 					<td class="f-14 td-manage">
@@ -91,7 +92,7 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,6]}// 不参与排序的列
 	]
 });
 

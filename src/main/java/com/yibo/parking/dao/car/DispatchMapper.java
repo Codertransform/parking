@@ -17,4 +17,6 @@ public interface DispatchMapper {
     int update(Dispatch dispatch);
 
     int delete(Dispatch dispatch);
+
+    List<Dispatch> findByCarId(Dispatch dispatch);
 }

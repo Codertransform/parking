@@ -44,6 +44,7 @@
             t.origin_id as "originId",
             t.latitude as "latitude",
             t.longitude as "longitude",
+            t.speed as "speed",
             t.time as "time",
             t.device_id as "deviceId"
         from (
@@ -55,7 +56,7 @@
         left join device d on a.device_id = d.device_id
         where 1=1
         <if test="carId != null and carId != ''">
-            and d.car_id like CONCAT('%',#{carId},'%')
+            and d.car_id like CONCAT('',#{carId},'%')
         </if>
     </select>
 </mapper>

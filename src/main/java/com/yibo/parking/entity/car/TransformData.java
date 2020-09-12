@@ -5,6 +5,7 @@ public class TransformData {
     private String originId;        //原始数据id
     private String latitude;        //纬度
     private String longitude;      //经度
+    private String speed;      //经度
     private String carId;           //车牌号
     private String time;
     private String unitId;
@@ -40,6 +41,14 @@ public class TransformData {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(String speed) {
+        this.speed = speed;
     }
 
     public String getCarId() {

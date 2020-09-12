@@ -84,7 +84,7 @@
         where id = #{id}
     </update>-->
 
-    <delete id="del">
+    <delete id="delete">
         delete from unit where id = #{id}
     </delete>
 </mapper>

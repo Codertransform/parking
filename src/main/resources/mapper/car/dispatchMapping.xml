@@ -23,10 +23,31 @@
             and a.oprate_time = #{oprateTime}
         </if>
         <if test="car != null and car.cardId != null and car.cardId != ''">
-            and c.cardId = #{car.cardId}
+            and c.cardId like concat('%',#{car.cardId},'%')
         </if>
         <if test="unit != null and unit.id != null and unit.id != ''">
             and a.unitId = #{unit.id}
+        </if>
+    </select>
+
+    <select id="findByCarId" resultType="Dispatch">
+        select
+            a.id as "id",
+            a.carId as "car.id",
+            c.cardId as "car.cardId",
+            a.unitId as "unit.id",
+            u.name as "unit.name",
+            a.adminId as "user.id",
+            b.username as "user.username",
+            a.oprate_time as "oprateTime",
+            a.remarks as "remarks"
+        from dispatch a
+        left join cars c on c.id = a.carId
+        left join unit u on a.unitId = u.id
+        left join user b on b.id = a.adminId
+        where 1 = 1
+        <if test="car != null and car.id != null and car.id != ''">
+            and a.carId = #{car.id}
         </if>
     </select>
 
@@ -45,16 +66,7 @@
         left join cars c on c.id = a.carId
         left join unit u on a.unitId = u.id
         left join user b on b.id = a.adminId
-        where 1=1
-        <if test="id != null and id != ''">
-            and a.id = #{id}
-        </if>
-        <if test="car != null and car.cardId != null and car.cardId != ''">
-            and c.cardId like concat('%',#{car.cardId},'%')
-        </if>
-        <if test="unit != null and unit.id != null and unit.id != ''">
-            and a.unitId = #{unit.id}
-        </if>
+        where a.id = #{id}
     </select>
 
     <insert id="insert">

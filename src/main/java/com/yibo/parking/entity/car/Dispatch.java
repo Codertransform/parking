@@ -58,4 +58,14 @@ public class Dispatch {
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    @Override
+    public String toString() {
+        return "id='" + id + '\'' +
+                ", car=" + car +
+                ", unit=" + unit +
+                ", user=" + user +
+                ", oprateTime='" + oprateTime + '\'' +
+                ", remarks='" + remarks + '\'';
+    }
 }
