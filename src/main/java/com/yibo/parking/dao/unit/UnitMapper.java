@@ -1,6 +1,7 @@
 package com.yibo.parking.dao.unit;
 
 import com.yibo.parking.entity.unit.Unit;
+import com.yibo.parking.entity.user.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface UnitMapper {
     int delete(String id);
 
     Unit get(String id);
+
+    Unit findByUser(User user);
 }

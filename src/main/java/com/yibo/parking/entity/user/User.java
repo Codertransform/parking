@@ -1,5 +1,6 @@
 package com.yibo.parking.entity.user;
 
+import com.yibo.parking.entity.unit.Unit;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +23,7 @@ public class User implements UserDetails {
     private List<Role> roles;
     private String roleId;
     private String roleName;
+    private Unit unit;
 
     public String getId() {
         return id;
@@ -140,6 +142,21 @@ public class User implements UserDetails {
         this.roleId = roleId;
     }
 
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
 
     @Override
     public String toString() {
@@ -154,6 +171,9 @@ public class User implements UserDetails {
                 ", login_time='" + login_time + '\'' +
                 ", login_ip='" + login_ip + '\'' +
                 ", roles=" + roles +
+                ", roleId='" + roleId + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", unit=" + unit +
                 '}';
     }
 }

@@ -3,6 +3,7 @@ package com.yibo.parking.service.Impl.unit;
 import com.alibaba.fastjson.JSONArray;
 import com.yibo.parking.dao.unit.UnitMapper;
 import com.yibo.parking.entity.unit.Unit;
+import com.yibo.parking.entity.user.User;
 import com.yibo.parking.service.UnitService;
 import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,5 +106,9 @@ public class UnitServiceIpml implements UnitService {
 
     public List<Unit> findList(){
         return null;
+    }
+
+    public Unit findByUser(User user) {
+        return unitMapper.findByUser(user);
     }
 }

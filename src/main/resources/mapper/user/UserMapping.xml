@@ -19,6 +19,14 @@
             <result column="flag" property="flag"/>
             <result column="description" property="description"/>
         </collection>
+        <collection property="unit" javaType="ArrayList" ofType="Unit">
+            <id column="uuid" property="id"/>
+            <result column="parent_id" property="parentId"/>
+            <result column="name" property="name"/>
+            <result column="tel" property="tel"/>
+            <result column="sort" property="sort"/>
+            <result column="remarks" property="remarks"/>
+        </collection>
     </resultMap>
 
     <select id="getAllUser" resultMap="userMap">
@@ -35,10 +43,18 @@
             r.id as "rid",
             r.name,
             r.flag,
-            r.description
+            r.description,
+            un.id as "uuid",
+            un.parent_id,
+            un.name,
+            un.tel,
+            un.sort,
+            un.remarks
         from `user` u
         left join user_role ur on ur.user_id = u.id
         left join role r on r.id = ur.role_id
+        left join user_unit uu on uu.user_id = u.id
+        left join unit un on un.id = uu.unit_id
     </select>
 
     <select id="get" resultMap="userMap">

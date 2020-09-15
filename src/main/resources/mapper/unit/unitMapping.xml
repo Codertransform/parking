@@ -43,6 +43,22 @@
         order by sort desc
     </select>
 
+    <select id="findByUser" resultType="Unit">
+        select
+            a.id as id,
+            a.parent_id as parentId,
+            a.name as name,
+            a.tel as tel,
+            a.sort as sort,
+            a.remarks as remarks
+        from unit a
+        left join user_unit uu on a.id = uu.unit_id
+        where 1 = 1
+        <if test="id != null and id != ''">
+            and uu.user_id = #{id}
+        </if>
+    </select>
+
     <insert id="insert">
         insert into unit(
             id,

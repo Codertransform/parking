@@ -5,6 +5,7 @@ import com.yibo.parking.entity.user.User;
 import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import com.yibo.parking.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ public class IndexController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private RedisTemplate<String,Object> redisTemplate;
 
     /**
      * 登录验证码SessionKey

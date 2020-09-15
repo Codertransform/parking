@@ -65,8 +65,12 @@ public class DispatchController {
 
     @RequestMapping(value = "/edit")
     public String edit(Dispatch dispatch, Model model){
+        List<Unit> units = dispatchService.findUnitList();
+        List<Car> cars = dispatchService.findCars();
         model.addAttribute("title", "分派信息变更");
         model.addAttribute("dispatch", dispatchService.get(dispatch));
+        model.addAttribute("units",units);
+        model.addAttribute("cars",cars);
         return "cars/dispatch/edit";
     }
 

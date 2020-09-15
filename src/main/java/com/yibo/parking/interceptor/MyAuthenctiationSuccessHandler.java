@@ -1,12 +1,15 @@
 package com.yibo.parking.interceptor;
 
+import com.yibo.parking.entity.unit.Unit;
 import com.yibo.parking.entity.user.User;
+import com.yibo.parking.service.Impl.unit.UnitServiceIpml;
 import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import com.yibo.parking.utils.IPUtil;
 import com.yibo.parking.utils.TimeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
@@ -27,6 +30,12 @@ public class MyAuthenctiationSuccessHandler extends SimpleUrlAuthenticationSucce
     @Autowired
     private UserServiceImpl userService;
 
+    @Autowired
+    private UnitServiceIpml unitServiceIpml;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         logger.info("security登陆成功拦截！");
@@ -36,6 +45,12 @@ public class MyAuthenctiationSuccessHandler extends SimpleUrlAuthenticationSucce
         user.setLogin_ip(IPUtil.getIpAddr(request));
         user.setLogin_time(TimeUtil.getTime());
         userService.loginUpdate(user);
+
+        Unit unit = unitServiceIpml.findByUser(user);
+        if (unit != null){
+            user.setUnit(unit);
+        }
+        redisTemplate.opsForValue().set(user.getId(),user);
 
         String url = null;
         SavedRequest savedRequest = requestCache.getRequest(request, response);

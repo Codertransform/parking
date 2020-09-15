@@ -46,7 +46,7 @@ public class DispatchServiceImpl implements DispatchService {
         List<Dispatch> find = dispatchMapper.findByCarId(dispatch);
         if (find.size() != 0) {
             map.put("flag",0);
-//            map.put("message","该车辆已分派请勿重复操作");
+            map.put("message","该车辆已分派请勿重复操作");
             return map;
         }
         if (dispatch.getId() != null) {
