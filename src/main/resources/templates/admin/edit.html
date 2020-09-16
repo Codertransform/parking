@@ -75,7 +75,19 @@
 		<div class="formControls col-xs-8 col-sm-9">
 			<span class="select-box" style="width:150px;">
 				<select class="select" name="roleId" size="1">
-					<option th:each="r:${roles}" th:value="${r.id}" th:text="${r.name}"></option>
+					<option value="">请选择角色</option>
+					<option th:each="r:${roles}" th:value="${r.id}" th:text="${r.name}" th:selected="${r.id eq admin.roleId}"></option>
+				</select>
+			</span>
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">组织机构：</label>
+		<div class="formControls col-xs-8 col-sm-9">
+			<span class="select-box" style="width:150px;">
+				<select class="select" name="unit.id" size="1">
+					<option value="">请选择组织机构</option>
+					<option th:each="u:${units}" th:value="${u.id}" th:text="${u.name}" th:selected="${u.id eq admin.unit.id}"></option>
 				</select>
 			</span>
 		</div>

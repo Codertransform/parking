@@ -3,6 +3,7 @@ package com.yibo.parking.controller.admin;
 import com.yibo.parking.entity.user.Role;
 import com.yibo.parking.entity.user.User;
 import com.yibo.parking.service.Impl.role.RoleServiceImpl;
+import com.yibo.parking.service.Impl.unit.UnitServiceIpml;
 import com.yibo.parking.service.Impl.user.UserServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class AdminController {
 
     @Autowired
     private RoleServiceImpl roleService;
+
+    @Autowired
+    private UnitServiceIpml unitService;
 
     @RequestMapping(value = {"","/"})
     public String index(Model model){
@@ -45,6 +49,7 @@ public class AdminController {
     public String edit(User user, Model model){
         model.addAttribute("title","修改管理员");
         model.addAttribute("roles",roleService.findList(new Role()));
+        model.addAttribute("units",unitService.findList());
         model.addAttribute("admin",userService.getUser(user));
         return "admin/edit";
     }

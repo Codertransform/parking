@@ -1,7 +1,9 @@
 package com.yibo.parking.service.Impl.user;
 
+import com.yibo.parking.dao.unit.UserUnitMapper;
 import com.yibo.parking.dao.user.UserMapper;
 import com.yibo.parking.dao.user.UserRoleMapper;
+import com.yibo.parking.entity.unit.UserUnit;
 import com.yibo.parking.entity.user.Role;
 import com.yibo.parking.entity.user.User;
 import com.yibo.parking.entity.user.UserRole;
@@ -26,6 +28,9 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRoleMapper userRoleMapper;
+
+    @Autowired
+    private UserUnitMapper userUnitMapper;
 
     public List<User> getAllUser() {
         return userMapper.getAllUser();
@@ -73,6 +78,19 @@ public class UserServiceImpl implements UserDetailsService {
                 UserRole userRole = userRoleMapper.get(ur);
                 userRole.setRoleId(user.getRoleId());
                 userRoleMapper.update(userRole);
+            }
+            if (user.getUnit() != null && user.getUnit().getId() != null && !user.getUnit().getId().equals("")){
+                UserUnit unit = new UserUnit();
+                if (userUnitMapper.getByUser(user.getId()) != null){
+                    unit.setUserId(user.getId());
+                    unit.setUnitId(user.getUnit().getId());
+                    userUnitMapper.update(unit);
+                }else {
+                    unit.setId(EntityIdGenerate.generateId());
+                    unit.setUserId(user.getId());
+                    unit.setUnitId(user.getUnit().getId());
+                    userUnitMapper.insert(unit);
+                }
             }
             map.put("flag",userMapper.update(u));
             map.put("message","更新管理员信息成功");

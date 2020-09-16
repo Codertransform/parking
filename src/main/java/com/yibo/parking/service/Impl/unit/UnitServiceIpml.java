@@ -105,7 +105,7 @@ public class UnitServiceIpml implements UnitService {
     }
 
     public List<Unit> findList(){
-        return null;
+        return unitMapper.getUnits();
     }
 
     public Unit findByUser(User user) {

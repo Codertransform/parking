@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.unit.UserUnitMapper">
+
+    <select id="findList" resultType="UserUnit">
+        select
+            id as id,
+            user_id as "userId",
+            unit_id as "unitId"
+        from user_unit
+        where 1=1
+        <if test="userId != null and userId != ''">
+            and user_id = #{userId}
+        </if>
+        <if test="unitId != null and unitId != ''">
+            and unit_id = #{unitId}
+        </if>
+    </select>
+
+    <select id="get" resultType="UserUnit">
+        select
+            id as id,
+            user_id as "userId",
+            unit_id as "unitId"
+        from user_unit where id = #{id}
+    </select>
+
+    <select id="getByUser" resultType="UserUnit">
+        select
+            id as "id",
+            user_id as "userId",
+            unit_id as "unitId"
+        from user_unit
+        where user_id = #{userId}
+    </select>
+
+    <insert id="insert">
+        insert into user_unit(
+            id,
+            user_id,
+            unit_id
+        )
+        values (
+            #{id},
+            #{userId},
+            #{unitId}
+        )
+    </insert>
+
+    <update id="update">
+        update user_unit set
+            user_id = #{userId},
+            unit_id = #{unitId}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from user_unit where id = #{id}
+    </delete>
+</mapper>

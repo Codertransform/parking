@@ -13,19 +13,19 @@
         <result property="regist_time" column="regist_time"/>
         <result property="login_time" column="login_time"/>
         <result property="login_ip" column="login_ip"/>
-        <collection property="roles" javaType="ArrayList" ofType="Role">
-            <id column="rid" property="id"/>
-            <result column="name" property="name"/>
-            <result column="flag" property="flag"/>
-            <result column="description" property="description"/>
-        </collection>
-        <collection property="unit" javaType="ArrayList" ofType="Unit">
+        <association property="unit" javaType="Unit">
             <id column="uuid" property="id"/>
             <result column="parent_id" property="parentId"/>
             <result column="name" property="name"/>
             <result column="tel" property="tel"/>
             <result column="sort" property="sort"/>
             <result column="remarks" property="remarks"/>
+        </association>
+        <collection property="roles" javaType="ArrayList" ofType="Role">
+            <id column="rid" property="id"/>
+            <result column="name" property="name"/>
+            <result column="flag" property="flag"/>
+            <result column="description" property="description"/>
         </collection>
     </resultMap>
 
