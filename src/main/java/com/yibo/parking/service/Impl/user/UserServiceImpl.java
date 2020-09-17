@@ -57,25 +57,11 @@ public class UserServiceImpl implements UserDetailsService {
         UserRole ur = new UserRole();
         //更新管理员信息
         if (user.getId() != null) {
-            User u = userMapper.get(user);
-            if (user.getUsername() != null && !user.getUsername().equals("")) {
-                u.setUsername(user.getUsername());
-            }
-            if (user.getPassword() != null && !user.getPassword().equals("")){
-                u.setPassword(passwordEncoder.encode(user.getPassword()));
-            }
-            if (user.getSex() != null) {
-                u.setSex(user.getSex());
-            }
-            if (user.getPhone() != null && !user.getPhone().equals("")) {
-                u.setPhone(user.getPhone());
-            }
-            if (user.getEmail() != null && !user.getPhone().equals("")) {
-                u.setEmail(user.getEmail());
-            }
             if (user.getRoleId() != null){
                 ur.setUserId(user.getId());
                 UserRole userRole = userRoleMapper.get(ur);
+                System.out.println(userRole);
+                System.out.println(user.getRoleId());
                 userRole.setRoleId(user.getRoleId());
                 userRoleMapper.update(userRole);
             }
@@ -92,7 +78,7 @@ public class UserServiceImpl implements UserDetailsService {
                     userUnitMapper.insert(unit);
                 }
             }
-            map.put("flag",userMapper.update(u));
+            map.put("flag",userMapper.update(user));
             map.put("message","更新管理员信息成功");
             return map;
         }
@@ -131,6 +117,11 @@ public class UserServiceImpl implements UserDetailsService {
     }
 
     public User getUser(User user) {
-        return userMapper.get(user);
+        User u = userMapper.get(user);
+        for (Role r : u.getRoles()) {
+            u.setRoleId(r.getId());
+            u.setRoleName(r.getName());
+        }
+        return u;
     }
 }

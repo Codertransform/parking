@@ -57,6 +57,7 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "/save")
     public String save(User user){
+        System.out.println(user);
         Map<String,Object> map = userService.save(user);
         int flag = (int) map.get("flag");
         if (flag != 0) {
