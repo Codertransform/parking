@@ -3,6 +3,7 @@ package com.yibo.parking.service.Impl.user;
 import com.yibo.parking.dao.unit.UserUnitMapper;
 import com.yibo.parking.dao.user.UserMapper;
 import com.yibo.parking.dao.user.UserRoleMapper;
+import com.yibo.parking.entity.unit.Unit;
 import com.yibo.parking.entity.unit.UserUnit;
 import com.yibo.parking.entity.user.Role;
 import com.yibo.parking.entity.user.User;
@@ -33,7 +34,16 @@ public class UserServiceImpl implements UserDetailsService {
     private UserUnitMapper userUnitMapper;
 
     public List<User> getAllUser() {
-        return userMapper.getAllUser();
+        List<User> users = userMapper.getAllUser();
+        for (User u : users) {
+            Unit unit = u.getUnit();
+            if (unit == null) {
+                unit = new Unit();
+                unit.setName("无所属机构");
+                u.setUnit(unit);
+            }
+        }
+        return users;
     }
 
     public User get(String username, String password) {
@@ -57,27 +67,27 @@ public class UserServiceImpl implements UserDetailsService {
         UserRole ur = new UserRole();
         //更新管理员信息
         if (user.getId() != null) {
+            User u = userMapper.get(user);
             if (user.getRoleId() != null){
                 ur.setUserId(user.getId());
                 UserRole userRole = userRoleMapper.get(ur);
-                System.out.println(userRole);
-                System.out.println(user.getRoleId());
                 userRole.setRoleId(user.getRoleId());
                 userRoleMapper.update(userRole);
             }
+            UserUnit unit = userUnitMapper.getByUser(user.getId());
             if (user.getUnit() != null && user.getUnit().getId() != null && !user.getUnit().getId().equals("")){
-                UserUnit unit = new UserUnit();
-                if (userUnitMapper.getByUser(user.getId()) != null){
-                    unit.setUserId(user.getId());
+                if (unit != null){
                     unit.setUnitId(user.getUnit().getId());
                     userUnitMapper.update(unit);
                 }else {
+                    unit = new UserUnit();
                     unit.setId(EntityIdGenerate.generateId());
                     unit.setUserId(user.getId());
                     unit.setUnitId(user.getUnit().getId());
                     userUnitMapper.insert(unit);
                 }
             }
+            user.setPassword(u.getPassword());
             map.put("flag",userMapper.update(user));
             map.put("message","更新管理员信息成功");
             return map;
@@ -121,6 +131,12 @@ public class UserServiceImpl implements UserDetailsService {
         for (Role r : u.getRoles()) {
             u.setRoleId(r.getId());
             u.setRoleName(r.getName());
+        }
+        Unit unit = u.getUnit();
+        if (unit == null) {
+            unit = new Unit();
+            unit.setId("");
+            u.setUnit(unit);
         }
         return u;
     }

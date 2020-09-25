@@ -56,7 +56,7 @@
 			<tr class="text-c" th:each="u:${users}">
 				<td><input type="checkbox" th:value="${u.id}" name="one"></td>
 				<td th:text="${u.username}"></td>
-				<td></td>
+				<td th:text="${u.unit.name}"></td>
 				<td th:each="r:${u.roles}">
 					<span th:text="${r.name}"></span>
 				</td>
