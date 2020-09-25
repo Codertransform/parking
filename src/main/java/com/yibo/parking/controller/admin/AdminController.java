@@ -42,6 +42,7 @@ public class AdminController {
         List<Role> roles = roleService.findList(role);
         model.addAttribute("title","新增管理员");
         model.addAttribute("roles",roles);
+        model.addAttribute("units",unitService.findList());
         return "admin/add";
     }
 

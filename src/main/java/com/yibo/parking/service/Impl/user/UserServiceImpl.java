@@ -100,6 +100,15 @@ public class UserServiceImpl implements UserDetailsService {
         userRoleMapper.insert(ur);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRegist_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        UserUnit unit = new UserUnit();
+        unit.setId(EntityIdGenerate.generateId());
+        unit.setUserId(user.getId());
+        if (user.getUnit() != null && user.getUnit().getId() != null && !user.getUnit().getId().equals("")) {
+            unit .setUnitId(user.getUnit().getId());
+        }else {
+            unit.setUnitId("");
+        }
+        userUnitMapper.insert(unit);
         map.put("flag",userMapper.insert(user));
         map.put("message","添加管理员信息成功");
         return map;
