@@ -74,7 +74,6 @@ public class DispatchController {
         return "cars/dispatch/edit";
     }
 
-    @ResponseBody
     @RequestMapping(value = "/adds")
     public String adds(@RequestParam("ids[]") String[] ids){
         return "cars/dispatch/adds";
