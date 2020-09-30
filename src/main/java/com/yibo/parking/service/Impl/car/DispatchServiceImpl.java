@@ -9,6 +9,7 @@ import com.yibo.parking.entity.unit.Unit;
 import com.yibo.parking.service.DispatchService;
 import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -28,6 +29,9 @@ public class DispatchServiceImpl implements DispatchService {
 
     @Autowired
     private CarMapper carMapper;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public List<Dispatch> findList(Dispatch dispatch) {
@@ -80,5 +84,15 @@ public class DispatchServiceImpl implements DispatchService {
 
     public Unit findUnit(Unit unit) {
         return unitMapper.get(unit.getId());
+    }
+
+    public String saveRedis(String[] ids) {
+        int i = 1;
+        for (String s : ids) {
+            String key = "car" + i;
+            redisTemplate.opsForValue().set("key",s);
+            i++;
+        }
+        return null;
     }
 }

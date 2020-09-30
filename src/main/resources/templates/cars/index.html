@@ -321,7 +321,7 @@ function datadel() {
 	});
 }
 
-function dispatch(title,url,id,w,h){
+function dispatch(title,url,ids,w,h){
 	if (w == null || w === '') {
 		w=800;
 	}
@@ -334,7 +334,7 @@ function dispatch(title,url,id,w,h){
 		fix: false, //不固定
 		maxmin: true,
 		title: title,
-		content: url + '?car.id=' +id,
+		content: url,
 	});
 	layer.full(index);
 }
@@ -348,26 +348,25 @@ function dispatches() {
 		btn:['分派','取消']
 	},function(){
 		if (ids.length === 0){
-			console.log("123");
 			layer.msg("请选择车辆", {icon:1,time:1000});
 		}else {
 			$.ajax({
-				url:'/cars/dispatch/adds',
+				url:'/cars/dispatch/ids',
 				type:'POST',
 				data:{'ids':ids},
 				dataType:'json',
 				success:function (e) {
-					if (e.code === '0'){
+					if (e.code === "0"){
 						layer.msg(e.message, {icon:1,time:1000});
 					}else {
-						layer.msg("错误码：" + e.code+"错误信息：" + e.message, {icon:2,time:1000});
+						layer.msg("错误信息：" + e.message, {icon:2,time:1000});
 					}
-					location.replace(location.href);
 				},
 				error:function (e) {
 					layer.msg(e.message,{icon:1,time:1000});
 				}
 			});
+			dispatch("车辆一键分派","/cars/dispatch/adds",ids,500,300);
 		}
 	});
 }
