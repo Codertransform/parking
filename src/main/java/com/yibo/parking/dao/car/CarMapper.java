@@ -29,4 +29,6 @@ public interface CarMapper {
     List<Car> findByPicStatus(Car car);
 
     void updatePicStatus(Car car);
+
+    Car findByCardId(Car car);
 }

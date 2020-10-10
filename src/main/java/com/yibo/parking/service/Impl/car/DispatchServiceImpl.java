@@ -90,7 +90,7 @@ public class DispatchServiceImpl implements DispatchService {
         int i = 1;
         for (String s : ids) {
             String key = "car" + i;
-            redisTemplate.opsForValue().set("key",s);
+            redisTemplate.opsForValue().set(key,s);
             i++;
         }
         return null;

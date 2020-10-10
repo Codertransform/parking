@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.car.TrackFoMapper">
+
+    <select id="findList" resultType="TrackFo">
+        select
+            a.id as "id",
+            a.car_id as "carId",
+            a.car_cardId as "cardId",
+            a.track_id as "trackId",
+            a.target_id as "targetId",
+            a.target_cardId as "targetCardId",
+            a.time as "time"
+        from track_follow a
+        where 1 = 1
+        <if test="trackId != null and trackId != ''">
+            and a.track_id = #{trackId}
+        </if>
+        <if test="cardId != null and cardId != ''">
+            and a.car_cardId like concat('%',#{cardId},'%')
+        </if>
+        <if test="targetCardId != null and targetCardId != ''">
+            and a.target_cardId like concat('%',#{targetCardId},'%')
+        </if>
+    </select>
+
+    <select id="get" resultType="TrackFo">
+        select
+            a.id as "id",
+            a.car_id as "carId",
+            a.car_cardId as "cardId",
+            a.track_id as "trackId",
+            a.target_id as "targetId",
+            a.target_cardId as "targetCardId",
+            a.time as "time"
+        from track_follow a
+        where 1=1
+        <if test="trackId != null and trackId != ''">
+            and a.track_id = #{trackId}
+        </if>
+        <if test="cardId != null and cardId != ''">
+            and a.car_cardId like concat('%',#{cardId},'%')
+        </if>
+        <if test="targetCardId != null and targetCardId != ''">
+            and a.target_cardId like concat('%',#{targetCardId},'%')
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into track_follow(
+            id,
+            car_id,
+            car_cardId,
+            track_id,
+            target_id,
+            target_cardId,
+            time
+        )
+        values (
+            #{id},
+            #{carId},
+            #{cardId},
+            #{trackId},
+            #{targetId},
+            #{targetCardId},
+            #{time}
+        )
+    </insert>
+
+    <update id="update">
+        update track_follow set
+            car_id = #{carId},
+            car_cardId = #{cardId},
+            track_id = #{trackId},
+            target_id = #{targetId},
+            target_cardId = #{targetCardId},
+            time = #{time}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from track_follow where id = #{id}
+    </delete>
+</mapper>

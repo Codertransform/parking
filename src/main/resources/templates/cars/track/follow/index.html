@@ -25,26 +25,16 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> [[${title}]] <span class="c-gray en">&gt;</span> 车辆列表 <a class="btn btn-success btn-refresh radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<form action="/cars/" method="post">
+		<form action="/cars/track/follow" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
-			<span class="select-box inline">
-				<select name="typeId" class="select">
-					<option value="">全部分类</option>
-					<option th:each="t:${types}" th:value="${t.id}" th:text="${t.name}" th:selected="${typeId eq t.id}"></option>
-				</select>
-			</span> 购买时间范围：
-			<input type="text" name="logmin" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" th:value="${logmin}" class="input-text Wdate" style="width:120px;">
-			-
-			<input type="text" name="logmax" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" th:value="${logmax}" class="input-text Wdate" style="width:120px;">
-			<input type="text" name="cardId" id="cardId" placeholder=" 车牌号 " th:value="${cardId}" style="width:250px" class="input-text">
+			<label for="cardId"><input type="text" name="cardId" id="cardId" placeholder=" 车牌号 " th:value="${trackFo.carId}" style="width:250px" class="input-text"></label>
 			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜车辆 </button>
 		</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a class="btn btn-primary radius" data-title="添加车辆" data-href="/cars/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加车辆</a>
-			<a class="btn btn-primary radius" data-title="一键分派" data-href="/cars/dispatch/adds" onclick="dispatches()" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 一件分派车辆</a>
+			<a class="btn btn-primary radius" data-title="轨迹跟随" data-href="/cars/track/follow/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加跟随</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
 	</div>
@@ -53,55 +43,23 @@
 			<thead>
 				<tr class="text-c">
 					<th width="25"><input type="checkbox" name="all" value=""></th>
-					<th width="40">车牌号</th>
-					<th width="80">车型</th>
-					<th width="75">颜色</th>
-					<th width="75">车辆类型</th>
-<!--					<th width="60">行驶里程(KM)</th>-->
-					<th width="60">状态</th>
-<!--					<th width="60">使用状态</th>-->
-					<th width="120">购买时间</th>
-<!--					<th width="60">是否有保险</th>-->
-					<th width="120">上次保养时间</th>
-<!--					<th width="120">租用状态</th>-->
-<!--					<th width="120">使用方</th>-->
+					<th width="40">轨迹编号</th>
+					<th width="80">跟随车辆</th>
+					<th width="75">被跟随车辆</th>
+					<th width="75">时间</th>
 					<th width="120">操作</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="text-c" th:each="car:${list}">
-					<td><input type="checkbox" th:value="${car.id}" name="one"></td>
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${car.cardId}"></u></td>
-					<td th:text="${car.model}"></td>
-					<td th:text="${car.color}"></td>
-					<td th:text="${car.typeName}"></td>
-					<!--					<td th:text="${car.distance}"></td> 行驶里程-->
-					<td class="td-status" th:switch="${car.status}">
-						<span th:case="-1" class="label label-default radius">已停用</span>
-						<span th:case="*" class="label label-success radius">正常</span>
-						<span th:case="1" class="label label-primary radius">待保养</span>
-						<span th:case="2" class="label label-warning radius">待维修</span>
-						<span th:case="3" class="label label-danger radius">维修中</span>
-						<span th:case="4" class="label label-danger radius">已预约</span>
-						<span th:case="5" class="label label-danger radius">已租用</span>
-					</td>
-
-					<!--					<td th:text="${car.useStatus}"></td> 使用状态-->
-					<td th:text="${car.buy_time}"></td>
-					<!--					<td th:text="${car.isInsurance}"></td> 是否有保险-->
-					<td th:text="${car.maintenance}"></td>
-					<!--					<td th:text="${car.hire}"></td> 租用状态-->
-					<!--					<td th:text="${car.userBy}"></td> 使用方-->
-					<td class="f-14 td-manage" th:switch="${car.status}">
-						<a style="text-decoration:none" class="ml-5" th:onclick="dispatch('车辆分派','/cars/dispatch/add',[[${car.id}]])" href="javascript:;" title="分派">分派</a>
-						<a style="text-decoration:none" th:case="0" th:onclick="article_stop(this,[[${car.id}]])"
-						   href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe6de;</i>
-						</a>
-						<a style="text-decoration:none" th:case="*" th:onclick="article_start(this,[[${car.id}]])"
-						   href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe603;</i>
-						</a>
-						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('车辆信息编辑','/cars/edit',[[${car.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a style="text-decoration:none" class="ml-5" th:onclick="article_del(this,[[${car.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+				<tr class="text-c" th:each="fos:${trackFos}">
+					<td><input type="checkbox" th:value="${fos.id}" name="one"></td>
+					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${fos.trackId}"></u></td>
+					<td th:text="${fos.cardId}"></td>
+					<td th:text="${fos.targetCardId}"></td>
+					<td th:text="${fos.time}"></td>
+					<td class="f-14 td-manage">
+						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('编辑轨迹跟随','/cars/edit',[[${fos.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a style="text-decoration:none" class="ml-5" th:onclick="article_del(this,[[${fos.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
 				</tr>
 			</tbody>
@@ -125,7 +83,7 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,5]}// 不参与排序的列
 	]
 });
 

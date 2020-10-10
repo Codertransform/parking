@@ -99,6 +99,7 @@
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/type" data-title="车辆类型" href="javascript:void(0)">车辆类型</a></li>
 					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><a data-href="/cars/position" data-title="车辆定位追踪" href="javascript:void(0)">车辆定位追踪</a></li>
 					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><a data-href="/cars/track" data-title="车辆轨迹" href="javascript:void(0)">车辆轨迹</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/track/follow" data-title="车辆轨迹跟随" href="javascript:void(0)">车辆轨迹跟随</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/device" data-title="GPS设备" href="javascript:void(0)">GPS设备</a></li>
 				</ul>
 			</dd>

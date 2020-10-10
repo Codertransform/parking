@@ -109,4 +109,10 @@ public class CarServiceImpl implements CarService {
         }
         return JSONArray.toJSONString(mapList);
     }
+
+    public Car getByCardId(String cardId){
+        Car car = new Car();
+        car.setCardId(cardId);
+        return carMapper.findByCardId(car);
+    }
 }

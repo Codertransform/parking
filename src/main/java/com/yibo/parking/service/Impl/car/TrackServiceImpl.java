@@ -11,7 +11,6 @@ import com.yibo.parking.utils.HttpClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,14 +26,7 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public List<Track> findList(Track track) {
-        List<Track> list = new ArrayList<>();
-        List<Track> tracks = trackMapper.findList(track);
-        for (Track t : tracks) {
-            if (!t.getCarId().equals("陕C·7797W")){
-                list.add(t);
-            }
-        }
-        return list;
+        return trackMapper.findList(track);
     }
 
     @Override

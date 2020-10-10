@@ -98,7 +98,7 @@ public class DispatchController {
     @RequestMapping(value = "/ids")
     public String ids(@RequestParam("ids[]") String[] ids){
         dispatchService.saveRedis(ids);
-        return JsonUtils.success(ids,"");
+        return JsonUtils.success(ids,"加入缓存成功");
     }
 
     @ResponseBody

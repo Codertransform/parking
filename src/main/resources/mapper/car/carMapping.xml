@@ -69,6 +69,27 @@
         </if>
     </select>
 
+    <select id="findByCardId" resultType="Car">
+        select
+            a.id as id,
+            a.cardId as cardId,
+            a.model as model,
+            a.color as color,
+            a.carType as typeId,
+            t.name as typeName,
+            a.status as status,
+            a.pic_status as picStatus,
+            a.buy_time as buy_time,
+            a.maintenance as maintenance,
+            a.dis_flag as "disFlag"
+        from cars a
+        left join type t on t.id = a.carType
+        where 1=1
+        <if test="cardId != null and cardId != ''">
+            and a.cardId = #{cardId}
+        </if>
+    </select>
+
     <select id="getAll" resultType="Car">
         select * from cars
     </select>

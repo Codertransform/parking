@@ -43,35 +43,6 @@
         </if>
     </select>
 
-    <insert id="insert">
-        insert into track(
-            id,
-            track_id,
-            car_id,
-            start_time,
-            end_time,
-            miles
-        )
-        values (
-            #{id},
-            #{trackId},
-            #{carId},
-            #{startTime},
-            #{endTime},
-            #{miles}
-        )
-    </insert>
-
-    <update id="update">
-        update track set
-            track_id = #{trackId},
-            car_id = #{carId},
-            start_time = #{startTime},
-            end_time = #{endTime},
-            miles = #{miles}
-        where id = #{id}
-    </update>
-
     <delete id="delete">
         delete from track where id = #{id}
     </delete>

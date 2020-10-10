@@ -2,6 +2,7 @@ package com.yibo.parking.controller.car;
 
 import com.alibaba.fastjson.JSONArray;
 import com.yibo.parking.entity.car.Track;
+import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.service.Impl.car.TrackServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class TrackController {
 
     @Autowired
     private TrackServiceImpl trackService;
+
+    @Autowired
+    private CarServiceImpl carService;
 
     @RequestMapping(value = {"","/"})
     public String index(Track track, Model model){
@@ -43,5 +47,4 @@ public class TrackController {
     public JSONArray getData(Track track){
         return trackService.get(track);
     }
-
 }
