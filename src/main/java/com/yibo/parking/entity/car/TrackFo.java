@@ -7,6 +7,7 @@ public class TrackFo {
     private String targetId;
     private String targetCardId;
     private String trackId;
+    private String track;
     private String time;
 
     public String getId() {
@@ -63,5 +64,18 @@ public class TrackFo {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "TrackFo{" +
+                "id='" + id + '\'' +
+                ", carId='" + carId + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", targetId='" + targetId + '\'' +
+                ", targetCardId='" + targetCardId + '\'' +
+                ", trackId='" + trackId + '\'' +
+                ", time='" + time + '\'' +
+                '}';
     }
 }

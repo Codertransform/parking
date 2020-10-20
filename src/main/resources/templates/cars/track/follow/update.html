@@ -31,14 +31,21 @@
 <body>
 <article class="page-container">
 	<form class="form form-horizontal" id="form-ts-add" action="/cars/track/follow/save" method="post">
+		<input type="hidden" name="id" th:value="${trackFo.id}">
+		<input type="hidden" name="time" th:value="${trackFo.time}">
+		<input type="hidden" name="cardId" th:value="${trackFo.cardId}">
+		<input type="hidden" name="trackId" th:value="${trackFo.trackId}">
+		<input type="hidden" name="targetCardId" th:value="${trackFo.targetCardId}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>跟随车辆：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-					<select name="carId" class="select">
-						<option value="">请选择跟随车辆</option>
-						<option th:each="c:${cars}" th:value="${c.id}" th:text="${c.cardId}"></option>
-					</select>
+					<label>
+						<select name="carId" id="carId" class="select">
+							<option value="">请选择跟随车辆</option>
+							<option th:each="c:${cars}" th:value="${c.id}" th:text="${c.cardId}" th:selected="${trackFo.carId eq c.id}"></option>
+						</select>
+					</label>
 				</span>
 			</div>
 		</div>
@@ -46,9 +53,9 @@
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>被跟随车辆：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-					<select name="targetId" class="select">
+					<select name="targetId" id="targetId" class="select">
 						<option value="">请选择被跟随车辆</option>
-						<option th:each="c:${cars}" th:value="${c.id}" th:text="${c.cardId}"></option>
+						<option th:each="c:${cars}" th:value="${c.id}" th:text="${c.cardId}" th:selected="${trackFo.targetId eq c.id}"></option>
 					</select>
 				</span>
 			</div>
@@ -83,6 +90,16 @@ $(function(){
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
+	});
+
+	$('#carId').change(function () {
+		var cardId = $(this).find('option:selected').text();
+		$('input[name=cardId]').val(cardId);
+	});
+
+	$('#targetId').change(function () {
+		var targetCardId = $(this).find('option:selected').text();
+		$('input[name=targetCardId]').val(targetCardId);
 	});
 
 	$('#draft').click(function () {

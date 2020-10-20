@@ -43,6 +43,22 @@
         </if>
     </select>
 
+    <select id="findByCarId" resultType="Track">
+        select
+            a.id as "id",
+            a.track_id as "trackId",
+            a.car_id as "carId",
+            a.start_time as "startTime",
+            a.end_time as "endTime",
+            a.miles as "miles"
+        from track a
+        where 1=1
+        <if test="carId != null and carId != ''">
+            and a.car_id = #{carId}
+        </if>
+        order by a.start_time limit 1
+    </select>
+
     <delete id="delete">
         delete from track where id = #{id}
     </delete>
