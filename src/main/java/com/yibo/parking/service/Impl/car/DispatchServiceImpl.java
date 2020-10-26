@@ -13,10 +13,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class DispatchServiceImpl implements DispatchService {
@@ -46,7 +43,6 @@ public class DispatchServiceImpl implements DispatchService {
     @Override
     public Map<String, Object> save(Dispatch dispatch) {
         Map<String,Object> map = new HashMap<>();
-        System.out.println(dispatch.getCar().getId());
         List<Dispatch> find = dispatchMapper.findByCarId(dispatch);
         if (find.size() != 0) {
             map.put("flag",0);
@@ -86,13 +82,36 @@ public class DispatchServiceImpl implements DispatchService {
         return unitMapper.get(unit.getId());
     }
 
-    public String saveRedis(String[] ids) {
+    public Map<String,Object> saveRedis(String[] ids) {
+        Map<String,Object> map = new HashMap<>();
         int i = 1;
         for (String s : ids) {
             String key = "car" + i;
             redisTemplate.opsForValue().set(key,s);
             i++;
         }
-        return null;
+        map.put("length",i);
+        map.put("message", "加入缓存成功");
+        return map;
+    }
+
+    public Map<String, Object> saves(Integer length, Dispatch dispatch) {
+        length = length + 1;
+        List<String> ids = new ArrayList<>();
+        for (int i = 1; i < length; i++) {
+            String key = "car" + i;
+            ids.add(String.valueOf(redisTemplate.opsForValue().get(key)));
+        }
+        Map<String, Object> map = new HashMap<>();
+        for (String i : ids) {
+            dispatch.setId(EntityIdGenerate.generateId());
+            Car car = carMapper.get(i);
+            dispatch.setCar(car);
+            dispatch.setOprateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            dispatchMapper.insert(dispatch);
+        }
+        map.put("flag",1);
+        map.put("message", "一键分派成功");
+        return map;
     }
 }

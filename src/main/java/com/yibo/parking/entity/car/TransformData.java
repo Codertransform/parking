@@ -6,7 +6,8 @@ public class TransformData {
     private String latitude;        //纬度
     private String longitude;      //经度
     private String speed;      //经度
-    private String carId;           //车牌号
+    private String carId;           //车辆id
+    private String cardId;           //车牌号
     private String time;
     private String unitId;
     private String deviceId;
@@ -57,6 +58,14 @@ public class TransformData {
 
     public void setCarId(String carId) {
         this.carId = carId;
+    }
+
+    public String getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 
     public String getTime() {

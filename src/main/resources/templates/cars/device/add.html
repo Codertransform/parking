@@ -51,13 +51,29 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">车牌号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入车牌号" id="carId" name="carId">
+				<span class="select-box">
+					<select name="carId" class="select">
+						<option value="">请选择车牌号</option>
+						<option th:each="c:${cars}" th:value="${c.id}" th:text="${c.cardId}"></option>
+					</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">所属机构：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+					<select name="unitId" class="select">
+						<option value="">请选择所属机构</option>
+						<option th:each="u:${units}" th:value="${u.id}" th:text="${u.name}"></option>
+					</select>
+				</span>
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
 				<button id="draft" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存 </button>
-				<button th:onclick="removeIframe()" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				<button onclick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
 	</form>

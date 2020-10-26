@@ -9,7 +9,10 @@
             a.sid as "sId",
             a.tid as "tId",
             a.device_id as "deviceId",
+            a.unit_id as "unitId",
+            a.unit_name as "unitName",
             a.car_id as "carId",
+            a.cardId as "cardId",
             a.status as "status"
         from device a
         where 1 = 1
@@ -22,8 +25,8 @@
         <if test="tId != null and tId != ''">
             and tid = #{tId}
         </if>
-        <if test="carId != null and carId != ''">
-            and car_id like concat('%',#{carId},'%')
+        <if test="cardId != null and cardId != ''">
+            and cardId like concat('%',#{cardId},'%')
         </if>
     </select>
 
@@ -33,7 +36,10 @@
             a.sid as sId,
             a.tid as tId,
             a.device_id as deviceId,
+            a.unit_id as unitId,
+            a.unit_name as unitName,
             a.car_id as carId,
+            a.cardId as cardId,
             a.status as status
         from device a
         where 1=1
@@ -45,13 +51,34 @@
         </if>
     </select>
 
+    <select id="getByDeviceId" resultType="Device">
+        select
+            a.id as id,
+            a.sid as sId,
+            a.tid as tId,
+            a.device_id as deviceId,
+            a.unit_id as unitId,
+            a.unit_name as unitName,
+            a.car_id as carId,
+            a.cardId as cardId,
+            a.status as status
+        from device a
+        where 1=1
+        <if test="deviceId != null and deviceId != ''">
+            and a.device_id = #{deviceId}
+        </if>
+    </select>
+
     <insert id="insert">
         insert into device(
             id,
             sid,
             tid,
             device_id,
+            unit_id,
+            unit_name,
             car_id,
+            cardId,
             status
         )
         values (
@@ -59,7 +86,10 @@
             #{sId},
             #{tId},
             #{deviceId},
+            #{unitId},
+            #{unitName},
             #{carId},
+            #{cardId},
             #{status}
         )
     </insert>
@@ -69,7 +99,10 @@
             sid = #{sId},
             tid = #{tId},
             device_id = #{deviceId},
+            unit_id = #{unitId},
+            unit_name = #{unitName},
             car_id = #{carId},
+            cardId = #{cardId},
             status = #{status}
         where id = #{id}
     </update>

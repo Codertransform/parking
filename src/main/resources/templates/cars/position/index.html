@@ -36,7 +36,7 @@
 	<div class="text-c">
 		<form action="/cars/position/" autocomplete="off" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
-			<input type="text" name="carId" id="carId" placeholder=" 车牌号 " th:value="${data.carId}" style="width:250px" class="input-text">
+			<input type="text" name="cardId" id="cardId" placeholder=" 车牌号 " th:value="${data.cardId}" style="width:250px" class="input-text">
 			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜车辆 </button>
 		</form>
 	</div>
@@ -59,42 +59,42 @@
 		resizeEnable: true, //是否监控地图容器尺寸变化
 	});
 
-	var carId = "";
+	var cardId = "";
 
 	$(function () {
-		carId = $('#carId').val();
-		getLocations(carId);
-		setInterval('getLocations(carId)',3000);//轮询执行，3s一次
+		cardId = $('#cardId').val();
+		getLocations(cardId);
+		setInterval('getLocations(cardId)',3000);//轮询执行，3s一次
 	})
 
 	var markerList = [];
 
 	var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, 0)});
 
-	function getLocations(carId) {
+	function getLocations(cardId) {
 		map.remove(markerList);
 		markerList = [];
-		if (carId !== "" && carId != null){
+		if (cardId !== "" && cardId != null){
 			$.ajax({
 				url:'/cars/position/getCars',
 				type:'post',
-				data:{'carId':carId},
+				data:{'cardId':cardId},
 				async:false,
 				dataType:'json',
 				success:function (res) {
 					$.each(res,function (index,value) {
 						console.log(index + ":" + value);
-						if (value.carId !== null){
+						if (value.cardId !== null){
 							// 创建一个 Marker 实例：
 							var marker = new AMap.Marker({
 								position: new AMap.LngLat(value.longitude, value.latitude),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
-								title: value.carId,
+								title: value.cardId,
 								offset: new AMap.Pixel(-10, -10),
 								icon: '/img/car.png', // 添加 Icon 图标 URL
 								zoom:13
 							});
 							markerList.push(marker);
-							var content = value.carId + "<br/>" + value.speed+"  km/h";
+							var content = value.cardId + "<br/>" + value.speed+"  km/h";
 							var infoWindow = new AMap.InfoWindow({
 								anchor: 'bottom-center',
 								content: content,
@@ -111,26 +111,24 @@
 			$.ajax({
 				url:'/cars/position/getCars',
 				type:'post',
-				data:{},
 				async:false,
 				dataType:'json',
 				success:function (res) {
 					$.each(res,function (index,value) {
-						if (value.carId !== null){
+						if (value.cardId !== null){
 							// 创建一个 Marker 实例：
 							var marker = new AMap.Marker({
 								position: new AMap.LngLat(value.longitude, value.latitude),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
-								title: value.carId,
+								title: value.cardId,
 								offset: new AMap.Pixel(-10, -10),
 								icon: '/img/car.png', // 添加 Icon 图标 URL
 								zoom:13
 							});
-							marker.content = value.carId + "<br/>" + value.speed+"  km/h";
+							marker.content = value.cardId + "<br/>" + value.speed+"  km/h";
 							marker.on("click", markerClick);
 							marker.emit("click", {target:marker});
 							markerList.push(marker);
 						}
-
 					})
 				}
 			})

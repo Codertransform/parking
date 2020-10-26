@@ -2,9 +2,14 @@ package com.yibo.parking.service.Impl.car;
 
 import com.yibo.parking.dao.car.DeviceMapper;
 import com.yibo.parking.dao.car.TransformDataMapper;
+import com.yibo.parking.dao.unit.UserUnitMapper;
+import com.yibo.parking.dao.user.UserMapper;
 import com.yibo.parking.entity.car.TransformData;
+import com.yibo.parking.entity.unit.UserUnit;
+import com.yibo.parking.entity.user.User;
 import com.yibo.parking.service.TransformDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +20,12 @@ public class TransformDataServiceImpl implements TransformDataService {
 
     @Autowired
     private TransformDataMapper dataMapper;
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private UserUnitMapper userUnitMapper;
 
     @Autowired
     private DeviceMapper deviceMapper;
@@ -35,28 +46,19 @@ public class TransformDataServiceImpl implements TransformDataService {
     }
 
     public List<TransformData> getLocation(TransformData data) {
-        /*List<TransformData> dataList = new ArrayList<>();
-        if (data.getCarId() != null && !data.getCarId().equals("陕C·7797W")){
-            Device device = new Device();
-            device.setCarId(data.getCarId());
-            Device d = deviceMapper.get(device);
-            TransformData td = new TransformData();
-            td.setDeviceId(d.getDeviceId());
-            TransformData transformData = dataMapper.getLocation(td);
-            transformData.setCarId(d.getCarId());
-            dataList.add(transformData);
+        List<TransformData> datas = new ArrayList<>();
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<TransformData> dataList = dataMapper.getLocation(data);
+        if (name.equals("admin")){
             return dataList;
         }
-        List<Device> devices = deviceMapper.findList(new Device());
-        for (Device d : devices) {
-            if (!d.getCarId().equals("陕C·7797W")){
-                TransformData td = new TransformData();
-                td.setDeviceId(d.getDeviceId());
-                TransformData transformData = dataMapper.getLocation(td);
-                transformData.setCarId(d.getCarId());
-                dataList.add(transformData);
+        User user = userMapper.findByName(SecurityContextHolder.getContext().getAuthentication().getName());
+        UserUnit un = userUnitMapper.getByUser(user.getId());
+        for (TransformData t : dataList) {
+            if (t.getUnitId() != null && t.getUnitId().equals(un.getUnitId())) {
+                datas.add(t);
             }
-        }*/
-        return dataMapper.getLocation(data);
+        }
+        return datas;
     }
 }

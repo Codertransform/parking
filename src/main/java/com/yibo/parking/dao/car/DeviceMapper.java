@@ -11,6 +11,8 @@ public interface DeviceMapper {
 
     Device get(Device device);
 
+    Device getByDeviceId(Device device);
+
     int insert(Device device);
 
     int update(Device device);

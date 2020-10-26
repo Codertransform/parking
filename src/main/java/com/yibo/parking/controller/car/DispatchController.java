@@ -75,11 +75,11 @@ public class DispatchController {
     }
 
     @RequestMapping(value = "/adds")
-    public String adds(@RequestParam("ids[]") String[] ids, Model model){
+    public String adds(Integer length, Model model){
         List<Unit> units = dispatchService.findUnitList();
         model.addAttribute("user",userService.findByName(SecurityContextHolder.getContext().getAuthentication().getName()));
         model.addAttribute("units",units);
-        model.addAttribute("ids",ids);
+        model.addAttribute("length",length);
         return "cars/dispatch/adds";
     }
 
@@ -97,13 +97,18 @@ public class DispatchController {
     @ResponseBody
     @RequestMapping(value = "/ids")
     public String ids(@RequestParam("ids[]") String[] ids){
-        dispatchService.saveRedis(ids);
-        return JsonUtils.success(ids,"加入缓存成功");
+        Map<String,Object> data = dispatchService.saveRedis(ids);
+        return JsonUtils.success(data.get("length"), String.valueOf(data.get("message")));
     }
 
     @ResponseBody
     @RequestMapping(value = "/saves")
-    public String saves(Dispatch dispatch){
-        return null;
+    public String saves(Integer length, Dispatch dispatch){
+        Map<String, Object> map = dispatchService.saves(length, dispatch);
+        int flag = (int) map.get("flag");
+        if (flag != 0){
+            return JsonUtils.success(dispatch, String.valueOf(map.get("message")));
+        }
+        return JsonUtils.error(dispatch);
     }
 }

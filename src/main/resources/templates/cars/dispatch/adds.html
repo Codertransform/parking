@@ -30,17 +30,26 @@
 </head>
 <body>
 <article class="page-container">
-	<form action="/cars/dispatch/save" method="post" class="form form-horizontal" id="form-dispatch">
-		<input type="hidden" name="user" th:value="${user.id}">
+	<form action="/cars/dispatch/saves" method="post" class="form form-horizontal" id="form-dispatch">
+		<input type="hidden" name="user.id" th:value="${user.id}">
+		<input type="hidden" name="length" th:value="${length}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>组织机构：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
-					<select name="unit.id" class="select">
-						<option value="">选择组织机构</option>
-						<option th:each="u:${units}" th:value="${u.id}" th:text="${u.name}"></option>
-					</select>
+					<label>
+						<select name="unit.id" class="select">
+							<option value="">选择组织机构</option>
+							<option th:each="u:${units}" th:value="${u.id}" th:text="${u.name}"></option>
+						</select>
+					</label>
 				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"  for="remarks"> 备注：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" name="remarks" id="remarks" placeholder="如需备注信息，请在此输入" class="input-text">
 			</div>
 		</div>
 		<div class="row cl">

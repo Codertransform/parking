@@ -1,9 +1,13 @@
 package com.yibo.parking.controller.car;
 
+import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.car.Device;
 import com.yibo.parking.entity.system.SystemServer;
+import com.yibo.parking.entity.unit.Unit;
+import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.service.Impl.car.DeviceServiceImpl;
 import com.yibo.parking.service.Impl.system.SystemServerServiceImpl;
+import com.yibo.parking.service.Impl.unit.UnitServiceIpml;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +28,12 @@ public class DeviceController {
     @Autowired
     private SystemServerServiceImpl serverService;
 
+    @Autowired
+    private CarServiceImpl carService;
+
+    @Autowired
+    private UnitServiceIpml unitServiceIpml;
+
     @RequestMapping(value = {"","/"})
     public String index(Device device, Model model){
         List<Device> devices = deviceService.findList(device);
@@ -40,16 +50,24 @@ public class DeviceController {
     @RequestMapping(value = "/add")
     public String add(Model model){
         List<SystemServer> servers = serverService.findList(new SystemServer());
+        List<Car> cars = carService.getAllCars();
+        List<Unit> units = unitServiceIpml.getUnits();
         model.addAttribute("title","设备添加");
         model.addAttribute("servers",servers);
+        model.addAttribute("cars",cars);
+        model.addAttribute("units",units);
         return "cars/device/add";
     }
 
     @RequestMapping(value = "/edit")
     public String edit(Device device, Model model){
         List<SystemServer> servers = serverService.findList(new SystemServer());
+        List<Car> cars = carService.getAllCars();
+        List<Unit> units = unitServiceIpml.getUnits();
         model.addAttribute("title","修改设备信息");
         model.addAttribute("servers",servers);
+        model.addAttribute("cars",cars);
+        model.addAttribute("units",units);
         model.addAttribute("dev",deviceService.get(device));
         return "cars/device/edit";
     }

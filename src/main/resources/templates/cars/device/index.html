@@ -48,6 +48,7 @@
 					<th width="80">服务编号</th>
 					<th width="80">高德设备编号</th>
 					<th width="60">车牌号</th>
+					<th width="80">所属组织机构</th>
 					<th width="60">状态</th>
 					<th width="120">操作</th>
 				</tr>
@@ -59,7 +60,8 @@
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" title="查看" th:text="${dev.deviceId}"></u></td>
 					<td th:text="${dev.sId}"></td>
 					<td th:text="${dev.tId}"></td>
-					<td th:text="${dev.carId}"></td>
+					<td th:text="${dev.cardId}"></td>
+					<td th:text="${dev.unitName}"></td>
 					<td class="td-status" th:switch="${dev.status}">
 						<span th:case="0" class="label label-default radius">已停用</span>
 						<span th:case="*" class="label label-success radius">正常</span>
