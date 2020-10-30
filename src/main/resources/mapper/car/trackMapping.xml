@@ -8,10 +8,12 @@
             a.id as "id",
             a.track_id as "trackId",
             a.car_id as "carId",
+            c.cardId as "cardId",
             a.start_time as "startTime",
             a.end_time as "endTime",
             a.miles as "miles"
         from track a
+        left join cars c on c.id = a.car_id
         where 1 = 1
         <if test="trackId != null and trackId != ''">
             and a.track_id = #{trackId}

@@ -4,6 +4,7 @@ public class Track {
     private String id;
     private String trackId;
     private String carId;
+    private String cardId;
     private String startTime;
     private String endTime;
     private String miles;
@@ -32,6 +33,14 @@ public class Track {
 
     public void setCarId(String carId) {
         this.carId = carId;
+    }
+
+    public String getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 
     public String getStartTime() {
