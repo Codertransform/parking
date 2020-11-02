@@ -1,4 +1,4 @@
-package com.yibo.parking.dao.car;
+package com.yibo.parking.dao.work;
 
 import com.yibo.parking.entity.car.MaintainOrder;
 import org.apache.ibatis.annotations.Mapper;

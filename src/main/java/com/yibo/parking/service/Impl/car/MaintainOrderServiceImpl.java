@@ -1,6 +1,6 @@
 package com.yibo.parking.service.Impl.car;
 
-import com.yibo.parking.dao.car.MaintainOrderMapper;
+import com.yibo.parking.dao.work.MaintainOrderMapper;
 import com.yibo.parking.entity.car.MaintainOrder;
 import com.yibo.parking.service.MaintainOrderService;
 import com.yibo.parking.utils.OrderIdGenerate;

@@ -84,7 +84,7 @@ public class DispatchServiceImpl implements DispatchService {
 
     public Map<String,Object> saveRedis(String[] ids) {
         Map<String,Object> map = new HashMap<>();
-        int i = 1;
+        int i = 0;
         for (String s : ids) {
             String key = "car" + i;
             redisTemplate.opsForValue().set(key,s);
@@ -96,9 +96,8 @@ public class DispatchServiceImpl implements DispatchService {
     }
 
     public Map<String, Object> saves(Integer length, Dispatch dispatch) {
-        length = length + 1;
         List<String> ids = new ArrayList<>();
-        for (int i = 1; i < length; i++) {
+        for (int i = 0; i < length; i++) {
             String key = "car" + i;
             ids.add(String.valueOf(redisTemplate.opsForValue().get(key)));
         }

@@ -34,17 +34,18 @@
 			<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 			<nav class="nav navbar-nav">
 				<ul class="cl">
-					<li class="dropDown dropDown_hover" sec:authorize="hasRole('ROLE_ADMIN')"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<!--<li class="dropDown dropDown_hover" sec:authorize="hasRole('ROLE_ADMIN')"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="javascript:;" onclick="article_add('添加资讯','article-edit.html')"><i class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
 							<li><a href="javascript:;" onclick="picture_add('添加资讯','picture-edit.html')"><i class="Hui-iconfont">&#xe613;</i> 图片</a></li>
 							<li><a href="javascript:;" onclick="product_add('添加资讯','product-edit.html')"><i class="Hui-iconfont">&#xe620;</i> 产品</a></li>
 							<li><a href="javascript:;" onclick="member_add('添加用户','member-edit.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
 						</ul>
+					</li>-->
 					<li class="navbar-levelone current" sec:authorize="hasRole('ROLE_ADMIN')"><a href="javascript:;">平台</a></li>
 					<li class="navbar-levelone" sec:authorize="hasRole('ROLE_ADMIN')"><a href="javascript:;">微信小程序</a></li>
-					<!--<li class="navbar-levelone"><a href="javascript:;">财务</a></li>
-					<li class="navbar-levelone"><a href="javascript:;">手机</a></li>-->
+					<li class="navbar-levelone" sec:authorize="hasRole('ROLE_ADMIN')"><a href="javascript:;">协同办公</a></li>
+<!--					<li class="navbar-levelone"><a href="javascript:;">手机</a></li>-->
 				</ul>
 			</nav>
 		</div>
@@ -101,50 +102,6 @@
 					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><a data-href="/cars/track" data-title="车辆轨迹" href="javascript:void(0)">车辆轨迹</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/track/follow" data-title="车辆轨迹跟随" href="javascript:void(0)">车辆轨迹跟随</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/device" data-title="GPS设备" href="javascript:void(0)">GPS设备</a></li>
-				</ul>
-			</dd>
-		</dl>
-		<dl id="menu-insurance">
-			<dt sec:authorize="hasAnyRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆保险<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/insurance" data-title="车辆保险" href="javascript:void(0)">车辆保险</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/maintain" data-title="车辆保养" href="javascript:void(0)">车辆保养</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/repair" data-title="车辆维修" href="javascript:void(0)">车辆维修</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>-->
-				</ul>
-			</dd>
-		</dl>
-		<dl id="menu-maintain">
-			<dt sec:authorize="hasAnyRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆保养<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/insurance" data-title="车辆保险" href="javascript:void(0)">车辆保险</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/maintain" data-title="车辆保养" href="javascript:void(0)">车辆保养</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/repair" data-title="车辆维修" href="javascript:void(0)">车辆维修</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>-->
-				</ul>
-			</dd>
-		</dl>
-		<dl id="menu-repair">
-			<dt sec:authorize="hasAnyRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆维修<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/insurance" data-title="车辆保险" href="javascript:void(0)">车辆保险</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/maintain" data-title="车辆保养" href="javascript:void(0)">车辆保养</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/repair" data-title="车辆维修" href="javascript:void(0)">车辆维修</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>-->
-				</ul>
-			</dd>
-		</dl>
-		<dl id="menu-oil">
-			<dt sec:authorize="hasAnyRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆加油<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/insurance" data-title="车辆保险" href="javascript:void(0)">车辆保险</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/maintain" data-title="车辆保养" href="javascript:void(0)">车辆保养</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/repair" data-title="车辆维修" href="javascript:void(0)">车辆维修</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>-->
 				</ul>
 			</dd>
 		</dl>
@@ -239,11 +196,54 @@
 	</div>
 
 	<div class="menu_dropdown bk_2" style="display:none">
-		<dl id="menu-bbbbb">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 二级导航2<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dl id="menu-collector">
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 收费员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="article-list.html" data-title="资讯管理" href="javascript:void(0)">三级导航</a></li>
+					<li><a data-href="/work/collector/general" data-title="普通收费员" href="javascript:void(0)">普通收费员</a></li>
+					<li><a data-href="/work/collector/intelligent" data-title="智能收费员" href="javascript:void(0)">智能收费员</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-invoice">
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 发票管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="/work/invoice" data-title="发票列表" href="javascript:void(0)">发票列表</a></li>
+					<li><a data-href="/work/invoice/receive" data-title="发票领取登记" href="javascript:void(0)">发票领取登记</a></li>
+					<li><a data-href="/work/invoice/check" data-title="发票核销" href="javascript:void(0)">发票核销</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-insurance">
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆保险<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/work/insurance" data-title="车辆保险" href="javascript:void(0)">车辆保险</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-maintain">
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆保养<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/work/maintain" data-title="车辆保养" href="javascript:void(0)">车辆保养</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-repair">
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆维修<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/work/repair" data-title="车辆维修" href="javascript:void(0)">车辆维修</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-oil">
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆加油<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/work/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>
 				</ul>
 			</dd>
 		</dl>

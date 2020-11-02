@@ -1,4 +1,4 @@
-package com.yibo.parking.controller.car;
+package com.yibo.parking.controller.work;
 
 import com.yibo.parking.entity.car.MaintainOrder;
 import com.yibo.parking.service.Impl.car.MaintainOrderServiceImpl;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/maintain")
+@RequestMapping(value = "/work/maintain")
 public class MaintainOrderController {
 
     @Autowired

@@ -1,11 +1,11 @@
-package com.yibo.parking.controller.car;
+package com.yibo.parking.controller.work;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/insurance")
+@RequestMapping(value = "/work/insurance")
 public class insuController {
 
     @RequestMapping(value = {"","/"})

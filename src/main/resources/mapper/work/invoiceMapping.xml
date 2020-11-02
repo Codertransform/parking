@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.work.InvoiceMapper">
+
+    <select id="findList" resultType="Invoice">
+        select
+            a.id as "id",
+            a.num_start as "numStart",
+            a.num_end as "numEnd",
+            a.code as "code",
+            a.in_time as "inTime",
+            a.out_time as "outTime",
+            a.`outer` as "outer",
+            a.status as "status"
+        from invoice a
+        where 1 = 1
+        <if test="numStart != null and numStart != ''">
+            and a.num_start = #{numStart}
+        </if>
+        <if test="numEnd != null and numEnd != ''">
+            and a.num_end = #{numEnd}
+        </if>
+    </select>
+
+    <select id="get" resultType="Invoice">
+        select
+            a.id as "id",
+            a.num_start as "numStart",
+            a.num_end as "numEnd",
+            a.code as "code",
+            a.in_time as "inTime",
+            a.out_time as "outTime",
+            a.`outer` as "outer",
+            a.status as "status"
+        from invoice a
+        where 1=1
+        <if test="numStart != null and numStart != ''">
+            and a.num_start = #{numStart}
+        </if>
+        <if test="numEnd != null and numEnd != ''">
+            and a.num_end = #{numEnd}
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into invoice(
+            id,
+            num_start,
+            num_end,
+            code,
+            in_time,
+            out_time,
+            `outer`,
+            writein_time,
+            status,
+            remarks
+        )
+        values (
+            #{id},
+            #{numStart},
+            #{numEnd},
+            #{code},
+            #{inTime},
+            #{outTime},
+            #{outer},
+            #{writeinTime},
+            #{status},
+            #{remarks}
+        )
+    </insert>
+
+    <update id="update">
+        update invoice set
+            num_start = #{numStart},
+            num_end = #{numEnd},
+            code = #{code},
+            in_time = #{inTime},
+            status = #{status}
+        where id = #{id}
+    </update>
+
+    <update id="status">
+        update invoice set
+            status = #{status}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from invoice where id = #{id}
+    </delete>
+</mapper>
