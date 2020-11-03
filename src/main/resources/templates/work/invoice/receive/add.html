@@ -30,7 +30,7 @@
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-ts-add" action="/work/invoice/saves" method="post">
+	<form class="form form-horizontal" id="form-ts-add" action="/work/invoice/reSave" method="post">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发票起始号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -38,9 +38,9 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发票截至号：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发票截止号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入发票截至号" id="numEnd" name="numEnd">
+				<input type="text" class="input-text" value="" placeholder="请输入发票截止号" id="numEnd" name="numEnd">
 			</div>
 		</div>
 		<div class="row cl">
@@ -50,9 +50,9 @@
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>步长：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>申领人：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="默认步长为25" id="step" name="step">
+				<input type="text" class="input-text" value="" placeholder="请输入申领人姓名" id="outer" name="outer">
 			</div>
 		</div>
 		<div class="row cl">

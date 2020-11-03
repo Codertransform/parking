@@ -25,7 +25,7 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 发票管理 <span class="c-gray en">&gt;</span> [[${title}]] <a class="btn btn-success btn-refresh radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<form action="/work/invoice/" method="post">
+		<form action="/work/invoice/receive" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
 			<input type="text" name="numStart" id="numStart" placeholder=" 起始发票号 " th:value="${invoice.numStart}" style="width:250px" class="input-text">
 			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜发票 </button>
@@ -34,8 +34,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a class="btn btn-primary radius" data-title="添加发票" data-href="/work/invoice/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加发票</a>
-			<a class="btn btn-primary radius" data-title="批量添加发票" data-href="/work/invoice/adds" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 批量添加发票</a>
+			<a class="btn btn-primary radius" data-title="登记领取" data-href="/work/invoice/reAdd" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 登记发票</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${invoices.size()}]]</strong> 条</span>
 	</div>
@@ -121,7 +120,7 @@ function article_add(title,url,w,h){
 		title: title,
 		content: url
 	});
-	layer.full(index);
+	layer.full(list);
 }
 /*资讯-编辑*/
 function article_edit(title,url,id,w,h){
@@ -139,7 +138,7 @@ function article_edit(title,url,id,w,h){
 		title: title,
 		content: url + '?id=' +id
 	});
-	layer.full(index);
+	layer.full(list);
 }
 /*资讯-删除*/
 function article_del(obj,id){
@@ -150,7 +149,7 @@ function article_del(obj,id){
 			data:{'id':id},
 			dataType: 'json',
 			success: function(data){
-				if (data.code == "0"){
+				if (data.code === "0"){
 					$(obj).parents("tr").remove();
 					layer.msg(data.message,{icon:1,time:1000});
 				}else {
@@ -296,7 +295,7 @@ function datadel() {
 			data:{'ids':ids},
 			dataType:'json',
 			success:function (e) {
-				if (e.code == '0'){
+				if (e.code === '0'){
 					layer.msg(e.message,{icon:1,time:1000});
 				}else {
 					layer.msg("错误码："+e.code+"错误信息："+e.message,{icon:2,time:1000});

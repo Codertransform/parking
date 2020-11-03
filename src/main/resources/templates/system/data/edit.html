@@ -25,40 +25,35 @@
 <!--/meta 作为公共模版分离出去-->
 
 <title>[[${title}]]</title>
-<meta name="keywords" content="易泊停车">
+<meta name="keywords" content="易泊停车,车辆,管理系统">
 <meta name="description" content="易泊停车管理有限公司车辆管理系统">
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-ts-add" action="/work/invoice/saves" method="post">
+	<form class="form form-horizontal" id="form-ts-edit" action="/system/data/save" method="post">
+		<input type="hidden" name="id" th:value="${systemData.id}">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发票起始号：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>字典类型：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入发票起始号" id="numStart" name="numStart">
+				<input type="text" class="input-text" th:value="${systemData.type}" placeholder="请输入字典类型" id="type" name="type">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发票截至号：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>字典键名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入发票截至号" id="numEnd" name="numEnd">
+				<input type="text" class="input-text" th:value="${systemData.key}" placeholder="请输入字典键名" id="key" name="key">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发票代码：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>字典值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入发票代码" id="code" name="code">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>步长：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="默认步长为25" id="step" name="step">
+				<input type="text" class="input-text" th:value="${systemData.value}" placeholder="请输入字典值" id="value" name="value">
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<button id="draft" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存 </button>
-				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+				<button id="draft" class="btn btn-secondary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button onclick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
 	</form>
@@ -95,15 +90,9 @@ $(function(){
 
 	//表单验证
 	function check() {
-		$("#form-ts-add").validate({
+		$("#form-ts-edit").validate({
 			rules:{
-				numStart:{
-					required:true
-				},
-				numEnd:{
-					required:true
-				},
-				code:{
+				deviceId:{
 					required:true
 				}
 			},

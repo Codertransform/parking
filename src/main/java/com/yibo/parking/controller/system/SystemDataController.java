@@ -24,17 +24,20 @@ public class SystemDataController {
         List<SystemData> datas = dataService.findList(systemData);
         model.addAttribute("title","数据字典");
         model.addAttribute("datas",datas);
-        if (datas != null){
-            model.addAttribute("count", datas.size());
-        }else {
-            model.addAttribute("count", 0);
-        }
         return "/system/data/index";
     }
 
+    @RequestMapping(value = "/edit")
+    public String edit(SystemData systemData, Model model){
+        systemData = dataService.get(systemData);
+        model.addAttribute("title", "字典信息修改");
+        model.addAttribute("systemData", systemData);
+        return "system/data/edit";
+    }
+
     @ResponseBody
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(SystemData systemData){
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(SystemData systemData){
         int s = dataService.save(systemData);
         if (s != 0) {
             return JsonUtils.success(systemData,"添加字典成功！");

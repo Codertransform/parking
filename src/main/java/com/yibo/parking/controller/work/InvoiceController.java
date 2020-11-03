@@ -71,16 +71,41 @@ public class InvoiceController {
     @ResponseBody
     @RequestMapping(value = "/del")
     public String del(Invoice invoice){
-        return "";
+        int d = invoiceService.delete(invoice);
+        if (d != 0) {
+            return JsonUtils.success(invoice, "删除成功");
+        }
+        return JsonUtils.error(invoice);
     }
 
     @RequestMapping(value = "/receive")
-    public String receive(Model model){
-        return "";
+    public String receive(Invoice invoice, Model model){
+        List<Invoice> invoices = invoiceService.findByStatus(invoice);
+        model.addAttribute("title", "发票领取登记");
+        model.addAttribute("invoices", invoices);
+        model.addAttribute("invoice", invoice);
+        return "work/invoice/receive/list";
+    }
+
+    @RequestMapping(value = "/reAdd")
+    public String reAdd(Model model){
+        model.addAttribute("title", "发票登记");
+        return "work/invoice/receive/add";
+    }
+
+    @RequestMapping(value = "/reEdit")
+    public String reEdit(Invoice invoice){
+
+        return null;
+    }
+
+    @RequestMapping(value = "/reSave")
+    public String reSave(Invoice invoice){
+        return null;
     }
 
     @RequestMapping(value = "/check")
     public String check(Invoice invoice){
-        return "";
+        return "work/invoice/check/list";
     }
 }

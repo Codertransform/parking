@@ -72,4 +72,8 @@ public class InvoiceServiceImpl implements InvoiceService {
         map.put("message", "批量添加发票成功");
         return map;
     }
+
+    public List<Invoice> findByStatus(Invoice invoice) {
+        return invoiceMapper.findByStatus(invoice);
+    }
 }

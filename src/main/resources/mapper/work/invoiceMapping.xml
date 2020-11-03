@@ -43,6 +43,23 @@
         </if>
     </select>
 
+    <select id="findByStatus" resultType="Invoice">
+        select
+            a.id as "id",
+            a.num_start as "numStart",
+            a.num_end as "numEnd",
+            a.code as "code",
+            a.in_time as "inTime",
+            a.out_time as "outTime",
+            a.`outer` as "outer",
+            a.status as "status"
+        from invoice a
+        where a.status = '1'
+        <if test="numStart != null and numStart != ''">
+            and a.num_start = #{numStart}
+        </if>
+    </select>
+
     <insert id="insert">
         insert into invoice(
             id,
@@ -80,7 +97,7 @@
         where id = #{id}
     </update>
 
-    <update id="status">
+    <update id="updateStatus">
         update invoice set
             status = #{status}
         where id = #{id}

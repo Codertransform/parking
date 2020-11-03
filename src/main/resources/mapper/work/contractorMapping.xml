@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.work.ContractorMapper">
+
+    <select id="findList" resultType="Contractor">
+        select
+            a.id as "id",
+            a.name as "name",
+            a.id_num as "idNum",
+            a.tel as "tel",
+            sd.value as "address",
+            a.start_date as "startDate",
+            a.end_date as "endDate",
+            a.amount as "amount",
+            a.remarks as "remarks"
+        from contractor a
+        left join system_data sd on sd.`key` = a.address and sd.type = 'address'
+        where 1 = 1
+        <if test="name != null and name != ''">
+            and a.name like concat('%',#{name},'%')
+        </if>
+        <if test="address != null and address != ''">
+            and a.address like concat('%',#{address},'%')
+        </if>
+        <if test="idNum != null and idNum != ''">
+            and a.id_num = #{idNum}
+        </if>
+        <if test="tel != null and tel != ''">
+            and a.tel = #{tel}
+        </if>
+    </select>
+
+    <select id="get" resultType="Contractor">
+        select
+            a.id as "id",
+            a.name as "name",
+            a.id_num as "idNum",
+            a.tel as "tel",
+            a.address as "address",
+            a.start_date as "startDate",
+            a.end_date as "endDate",
+            a.amount as "amount",
+            a.remarks as "remarks"
+        from contractor a
+        where 1=1
+        <if test="name != null and name != ''">
+            and a.name like concat('%',#{name},'%')
+        </if>
+        <if test="address != null and address != ''">
+            and a.address like concat('%',#{address},'%')
+        </if>
+        <if test="idNum != null and idNum != ''">
+            and a.id_num = #{idNum}
+        </if>
+        <if test="tel != null and tel != ''">
+            and a.tel = #{tel}
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into contractor(
+            id,
+            name,
+            id_num,
+            tel,
+            address,
+            start_date,
+            end_date,
+            amount,
+            remarks
+        )
+        values (
+            #{id},
+            #{name},
+            #{idNum},
+            #{tel},
+            #{address},
+            #{startDate},
+            #{endDate},
+            #{amount},
+            #{remarks}
+        )
+    </insert>
+
+    <update id="update">
+        update contractor set
+            name = #{name},
+            id_num = #{idNum},
+            tel = #{tel},
+            address = #{address},
+            start_date = #{startDate},
+            end_date = #{endDate},
+            amount = #{amount},
+            remarks = #{remarks}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from contractor where id = #{id}
+    </delete>
+</mapper>

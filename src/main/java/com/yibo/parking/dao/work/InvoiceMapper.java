@@ -17,4 +17,8 @@ public interface InvoiceMapper {
     int update(Invoice invoice);
 
     int delete(Invoice invoice);
+
+    int updateStatus(Invoice invoice);
+
+    List<Invoice> findByStatus(Invoice invoice);
 }

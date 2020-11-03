@@ -30,29 +30,60 @@
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-ts-add" action="/work/invoice/saves" method="post">
+	<form class="form form-horizontal" id="form-ts-add" action="/work/contractor/save" method="post">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发票起始号：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>姓名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入发票起始号" id="numStart" name="numStart">
+				<input type="text" class="input-text" value="" placeholder="请输入承包人姓名" id="name" name="name">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发票截至号：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>身份证号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入发票截至号" id="numEnd" name="numEnd">
+				<input type="text" class="input-text" value="" placeholder="请输入承包人身份证号" id="idNum" name="idNum">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发票代码：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>联系电话：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入发票代码" id="code" name="code">
+				<input type="text" class="input-text" value="" placeholder="请输入承包人联系电话" id="tel" name="tel">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>步长：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>承包路段：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="默认步长为25" id="step" name="step">
+				<span class="select-box">
+					<label>
+						<select name="address" class="select">
+							<option value="">请选择承包路段</option>
+							<option th:each="d:${dataList}" th:value="${d.key}" th:text="${d.value}"></option>
+						</select>
+					</label>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>开始日期：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" id="startDate" name="startDate" autocomplete="off" class="input-text Wdate">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>截止日期：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" id="endDate" name="endDate" autocomplete="off" class="input-text Wdate">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>承包金额：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="请输入承包金额" id="amount" name="amount">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">备注：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="remarks" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*0-100"></textarea>
 			</div>
 		</div>
 		<div class="row cl">
@@ -75,16 +106,18 @@
 <script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-<script type="text/javascript" src="/lib/webuploader/0.1.5/webuploader.min.js"></script>
-<script type="text/javascript" src="/lib/ueditor/1.4.3/ueditor.config.js"></script>
-<script type="text/javascript" src="/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
-<script type="text/javascript" src="/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
+	});
+
+	$(".textarea").Huitextarealength({
+		minlength:0,
+		maxlength:100,//字数限制
+		exceed:true//超多字数不让输入
 	});
 
 	$('#draft').click(function () {
@@ -97,15 +130,30 @@ $(function(){
 	function check() {
 		$("#form-ts-add").validate({
 			rules:{
-				numStart:{
+				name:{
 					required:true
 				},
-				numEnd:{
+				idNum:{
 					required:true
 				},
-				code:{
+				tel:{
+					required:true,
+					number:true,
+					minlength:11
+				},
+				address:{
 					required:true
-				}
+				},
+				startDate:{
+					required:true
+				},
+				endDate:{
+					required:true
+				},
+				amount:{
+					required:true,
+					number:true
+				},
 			},
 			onkeyup:false,
 			focusCleanup:true,

@@ -41,4 +41,10 @@ public class SystemDataServiceImpl implements SystemDataService {
     public int delete(SystemData systemData) {
         return dataMapper.delete(systemData);
     }
+
+    public List<SystemData> findByAd() {
+        SystemData data = new SystemData();
+        data.setType("address");
+        return dataMapper.findList(data);
+    }
 }
