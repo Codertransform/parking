@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -36,14 +37,17 @@ public class ContractorController {
     @RequestMapping(value = "/add")
     public String add(Model model){
         List<SystemData> dataList = dataService.findByAd();
-        model.addAttribute("title", "添加承包人");
         model.addAttribute("dataList", dataList);
+        model.addAttribute("title", "添加承包人");
         return "work/contractor/add";
     }
 
     @RequestMapping(value = "/edit")
     public String edit(Contractor contractor, Model model){
+        contractor = contractorService.get(contractor);
+        List<SystemData> dataList = dataService.findByAd();
         model.addAttribute("contractor", contractor);
+        model.addAttribute("dataList", dataList);
         return "work/contractor/edit";
     }
 
@@ -66,5 +70,15 @@ public class ContractorController {
             return JsonUtils.success(contractor, "承包人信息删除成功！");
         }
         return JsonUtils.error(contractor);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/deletes")
+    public String dels(@RequestParam("ids[]") String[] ids){
+        int d = contractorService.dels(ids);
+        if (d > 0)
+            return JsonUtils.success(ids, "批量删除成功");
+        else
+            return JsonUtils.error(ids);
     }
 }

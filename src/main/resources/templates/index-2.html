@@ -97,7 +97,7 @@
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/dispatch" data-title="车辆分派" href="javascript:void(0)">车辆分派</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/lease" data-title="租用订单" href="javascript:void(0)">租用订单</a></li>
 <!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>-->
-					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/type" data-title="车辆类型" href="javascript:void(0)">车辆类型</a></li>
+<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/type" data-title="车辆类型" href="javascript:void(0)">车辆类型</a></li>-->
 					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><a data-href="/cars/position" data-title="车辆定位追踪" href="javascript:void(0)">车辆定位追踪</a></li>
 					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><a data-href="/cars/track" data-title="车辆轨迹" href="javascript:void(0)">车辆轨迹</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/track/follow" data-title="车辆轨迹跟随" href="javascript:void(0)">车辆轨迹跟随</a></li>
@@ -165,7 +165,7 @@
 			<dd>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/server" data-title="系统服务" href="javascript:void(0)">系统服务</a></li>
-					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/base" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
+<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/base" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>-->
 <!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/category" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>-->
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/data" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/system/rental/strategy" data-title="租车策略" href="javascript:void(0)">租车策略</a></li>
@@ -200,7 +200,7 @@
 			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 收费员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/work/collector/general" data-title="普通收费员" href="javascript:void(0)">普通收费员</a></li>
+					<li><a data-href="/work/collector/general" data-title="非智能收费员" href="javascript:void(0)">非智能收费员</a></li>
 					<li><a data-href="/work/collector/intelligent" data-title="智能收费员" href="javascript:void(0)">智能收费员</a></li>
 				</ul>
 			</dd>

@@ -47,6 +47,7 @@
 					<th width="80">发票号起始</th>
 					<th width="80">发票号截至</th>
 					<th width="100">发票代码</th>
+					<th width="30">面额(元)</th>
 					<th width="120">录入/领取/核销时间</th>
 					<th width="40">状态</th>
 					<th width="100">备注</th>
@@ -59,6 +60,7 @@
 					<td th:text="${i.numStart}"></td>
 					<td th:text="${i.numEnd}"></td>
 					<td th:text="${i.code}"></td>
+					<td th:text="${i.denomination}"></td>
 					<td th:switch="${i.status}">
 						<span th:case="0" th:text="${i.inTime}"></span>
 						<span th:case="1" th:text="${i.outTime}"></span>
@@ -101,7 +103,7 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,7]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
 	]
 });
 

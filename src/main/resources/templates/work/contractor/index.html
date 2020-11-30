@@ -51,7 +51,7 @@
 					<th width="150">承包路段</th>
 					<th width="100">开始日期</th>
 					<th width="100">截止日期</th>
-					<th width="80">承保金额</th>
+					<th width="80">承包金额</th>
 					<th width="100">备注</th>
 					<th width="120">操作</th>
 				</tr>
@@ -68,7 +68,7 @@
 					<td th:text="${c.amount}"></td>
 					<td th:text="${c.remarks}"></td>
 					<td class="f-14 td-manage">
-						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('承包人信息编辑','/work/invoice/edit',[[${c.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('承包人信息编辑','/work/contractor/edit',[[${c.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a style="text-decoration:none" class="ml-5" th:onclick="article_del(this,[[${c.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
 				</tr>
@@ -138,11 +138,11 @@ function article_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
 			type: 'POST',
-			url: '/cars/lease/del',
+			url: '/work/contractor/delete',
 			data:{'id':id},
 			dataType: 'json',
 			success: function(data){
-				if (data.code == "0"){
+				if (data.code === "0"){
 					$(obj).parents("tr").remove();
 					layer.msg(data.message,{icon:1,time:1000});
 				}else {
@@ -156,126 +156,6 @@ function article_del(obj,id){
 	});
 }
 
-/*资讯-审核*/
-function order_shenhe(obj,id){
-	layer.confirm('审核订单？', {
-		btn: ['通过','不通过','取消'], 
-		shade: false,
-		closeBtn: 0
-	},
-	function(){
-		$.ajax({
-			url:'/cars/lease/check',
-			data:{'id':id,'status':'2'},
-			type:'POST',
-			dataType:'json',
-			success:function (e) {
-				if (e.code === "0"){
-					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="order_change(this,\''+id+'\')" href="javascript:;" title="变更支付状态">变更支付状态</a>');
-					$(obj).parents("tr").find(".td-status").html('<span class="label label-primary radius">待支付</span>');
-					$(obj).remove();
-					layer.msg(e.message, {icon:6,time:1000});
-				}
-			}
-		});
-	},
-	function(){
-		$.ajax({
-			url:'/cars/lease/check',
-			data:{'id':id,'status':'-2'},
-			type:'POST',
-			dataType:'json',
-			success:function (e) {
-				if (e.code === "0"){
-					$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-					$(obj).remove();
-					layer.msg(e.message, {icon:6,time:1000});
-				}
-			}
-		});
-	});	
-}
-
-/*订单-变更支付状态*/
-function order_change(obj,id){
-	layer.confirm('变更订单支付状态？', {
-		btn: ['已支付','取消'],
-		shade: false,
-		closeBtn: 0
-	},
-	function(){
-		$.ajax({
-			url:'/cars/lease/check',
-			data:{'id':id,'status':'1'},
-			type:'POST',
-			dataType:'json',
-			success:function (e) {
-				if (e.code === "0"){
-					$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已支付</span>');
-					$(obj).remove();
-					layer.msg(e.message, {icon:6,time:1000});
-				}
-			}
-		});
-	},
-	function(){
-
-	});
-}
-/*资讯-下架*/
-function article_stop(obj,id){
-	layer.confirm('确认要停用吗？',{
-		btn:['停用','取消']
-	},function(index){
-		$.ajax({
-			url:'/cars/stop',
-			type:'POST',
-			data:{'id':id},
-			dataType:'json',
-			success:function (e) {
-				if (e.code == "0"){
-					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,\''+id+'\')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe603;</i></a>');
-					$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
-					$(obj).remove();
-					layer.msg(e.message,{icon: 0,time:1000});
-				}else {
-					layer.msg(e.message,{icon: 5,time:1000});
-				}
-			}
-		});
-	});
-}
-
-/*资讯-发布*/
-function article_start(obj,id){
-	layer.confirm('确认要启用吗？',{
-		btn:['启用','取消']
-	},function(index){
-		$.ajax({
-			url:'/cars/start',
-			type:'POST',
-			data:{'id':id},
-			dataType:'json',
-			success:function (e) {
-				if (e.code == "0"){
-					$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,\''+id+'\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe6de;</i></a>');
-					$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">正常</span>');
-					$(obj).remove();
-					layer.msg(e.message,{icon: 0,time:1000});
-				}else {
-					layer.msg(e.message,{icon: 5,time:1000});
-				}
-			}
-		});
-	});
-}
-/*资讯-申请上线*/
-function article_shenqing(obj,id){
-	$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-	$(obj).parents("tr").find(".td-manage").html("");
-	layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
-}
-
 function datadel() {
 	var ids = [];
 	$('input[name=one]:checked').each(function () {
@@ -283,12 +163,12 @@ function datadel() {
 	});
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
-			url:'/cars/lease/dels',
+			url:'/work/contractor/deletes',
 			type:'POST',
 			data:{'ids':ids},
 			dataType:'json',
 			success:function (e) {
-				if (e.code == '0'){
+				if (e.code === '0'){
 					layer.msg(e.message,{icon:1,time:1000});
 				}else {
 					layer.msg("错误码："+e.code+"错误信息："+e.message,{icon:2,time:1000});

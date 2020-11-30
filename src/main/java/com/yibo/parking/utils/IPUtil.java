@@ -1,15 +1,16 @@
 package com.yibo.parking.utils;
 
-import javax.servlet.http.HttpServletRequest;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Enumeration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
 public class IPUtil {
 
-    public static String getIpAddr(HttpServletRequest request) {
+    public static String getIpAddr(Authentication authentication) {
 
-        System.out.println(request.getHeader("X-Real-Ip"));
+        WebAuthenticationDetails details = (WebAuthenticationDetails) authentication.getDetails();
+        System.out.println(details);
+
+        /*System.out.println(request.getHeader("X-Real-Ip"));
         System.out.println(request.getHeader("X-Natapp-Ip"));
 
         Enumeration<String> headerNames = request.getHeaderNames();
@@ -53,9 +54,9 @@ public class IPUtil {
             }
         } catch (Exception e) {
             ipAddress="";
-        }
+        }*/
         // ipAddress = this.getRequest().getRemoteAddr();
 
-        return ipAddress;
+        return "";
     }
 }

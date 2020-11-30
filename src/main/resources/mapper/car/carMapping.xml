@@ -9,15 +9,14 @@
             a.cardId as cardId,
             a.model as model,
             a.color as color,
-            a.carType as typeId,
-            t.name as typeName,
+            sd.value as typeId,
             a.status as status,
             a.pic_status as picStatus,
             a.buy_time as buy_time,
             a.maintenance as maintenance,
             a.dis_flag as "disFlag"
         from cars a
-        left join type t on t.id = a.carType
+        left join system_data sd on sd.`key` = a.carType and sd.type = 'car_type'
         where 1 = 1
         <if test="typeId != null and typeId != ''">
             and carType = #{typeId}

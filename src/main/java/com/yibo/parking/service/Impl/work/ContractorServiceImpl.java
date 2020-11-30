@@ -33,6 +33,7 @@ public class ContractorServiceImpl implements ContractorService {
         if (contractor.getId() != null) {
             map.put("flag", contractorMapper.update(contractor));
             map.put("message", "承包人信息修改成功！");
+            return map;
         }
         contractor.setId(EntityIdGenerate.generateId());
         map.put("flag", contractorMapper.insert(contractor));
@@ -43,5 +44,20 @@ public class ContractorServiceImpl implements ContractorService {
     @Override
     public int delete(Contractor contractor) {
         return contractorMapper.delete(contractor);
+    }
+
+    public int dels(String[] ids) {
+        int d = 0;
+        for (String id : ids){
+            Contractor contractor = new Contractor();
+            contractor.setId(id);
+            contractorMapper.delete(contractor);
+            d++;
+        }
+        return d;
+    }
+
+    public List<Contractor> findAllList() {
+        return contractorMapper.findList(new Contractor());
     }
 }

@@ -81,7 +81,7 @@ public class InvoiceController {
     @RequestMapping(value = "/receive")
     public String receive(Invoice invoice, Model model){
         List<Invoice> invoices = invoiceService.findByStatus(invoice);
-        model.addAttribute("title", "发票领取登记");
+        model.addAttribute("title", "发票领取");
         model.addAttribute("invoices", invoices);
         model.addAttribute("invoice", invoice);
         return "work/invoice/receive/list";
@@ -89,7 +89,7 @@ public class InvoiceController {
 
     @RequestMapping(value = "/reAdd")
     public String reAdd(Model model){
-        model.addAttribute("title", "发票登记");
+        model.addAttribute("title", "发票领取");
         return "work/invoice/receive/add";
     }
 

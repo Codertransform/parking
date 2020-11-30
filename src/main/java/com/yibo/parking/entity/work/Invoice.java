@@ -5,6 +5,7 @@ public class Invoice {
     private String numStart;
     private String numEnd;
     private String code;
+    private String denomination;
     private String inTime;
     private String outTime;
     private String outer;
@@ -44,6 +45,14 @@ public class Invoice {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getDenomination() {
+        return denomination;
+    }
+
+    public void setDenomination(String denomination) {
+        this.denomination = denomination;
     }
 
     public String getInTime() {

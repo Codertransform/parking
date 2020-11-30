@@ -14,7 +14,7 @@
             a.end_date as "endDate",
             a.amount as "amount",
             a.remarks as "remarks"
-        from contractor a
+        from oa_contractor a
         left join system_data sd on sd.`key` = a.address and sd.type = 'address'
         where 1 = 1
         <if test="name != null and name != ''">
@@ -42,7 +42,7 @@
             a.end_date as "endDate",
             a.amount as "amount",
             a.remarks as "remarks"
-        from contractor a
+        from oa_contractor a
         where 1=1
         <if test="name != null and name != ''">
             and a.name like concat('%',#{name},'%')
@@ -59,7 +59,7 @@
     </select>
 
     <insert id="insert">
-        insert into contractor(
+        insert into oa_contractor(
             id,
             name,
             id_num,
@@ -84,7 +84,7 @@
     </insert>
 
     <update id="update">
-        update contractor set
+        update oa_contractor set
             name = #{name},
             id_num = #{idNum},
             tel = #{tel},
@@ -97,6 +97,6 @@
     </update>
 
     <delete id="delete">
-        delete from contractor where id = #{id}
+        delete from oa_contractor where id = #{id}
     </delete>
 </mapper>

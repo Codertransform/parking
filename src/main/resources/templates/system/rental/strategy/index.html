@@ -27,15 +27,15 @@
 	<div class="text-c">
 		<form action="/system/rental/strategy/" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
-			<input type="text" name="deviceId" id="deviceId" placeholder=" 设备编号 " th:value="${deviceId}" style="width:250px" class="input-text">
-			<input type="text" name="carId" id="carId" placeholder=" 车牌号 " th:value="${carId}" style="width:250px" class="input-text">
-			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜车辆 </button>
+			<input type="text" name="numbering" id="deviceId" placeholder=" 策略编号 " th:value="${deviceId}" style="width:250px" class="input-text">
+			<input type="text" name="name" id="carId" placeholder=" 策略名称 " th:value="${carId}" style="width:250px" class="input-text">
+			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜策略 </button>
 		</form>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a class="btn btn-primary radius" data-title="添加设备" data-href="/cars/device/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加设备</a>
+			<a class="btn btn-primary radius" data-title="添加策略" data-href="/system/rental/strategy/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加策略</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
 	</div>
@@ -44,11 +44,8 @@
 			<thead>
 				<tr class="text-c">
 					<th width="25"><input type="checkbox" name="all" value=""></th>
-					<th width="80">策略名称</th>
-					<th width="80">服务编号</th>
-					<th width="80">高德设备编号</th>
-					<th width="60">车牌号</th>
-					<th width="80">所属组织机构</th>
+					<th width="120">策略编号</th>
+					<th width="120">策略名称</th>
 					<th width="60">状态</th>
 					<th width="120">操作</th>
 				</tr>
@@ -56,15 +53,12 @@
 			<tbody>
 				<tr class="text-c" th:each="dev:${list}">
 					<td><input type="checkbox" th:value="${dev.id}" name="one"></td>
-<!--					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${dev.deviceId}"></u></td>-->
-					<td class="text-l"><u style="cursor:pointer" class="text-primary" title="查看" th:text="${dev.deviceId}"></u></td>
-					<td th:text="${dev.sId}"></td>
-					<td th:text="${dev.tId}"></td>
-					<td th:text="${dev.cardId}"></td>
-					<td th:text="${dev.unitName}"></td>
+					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${dev.deviceId}"></u></td>
+					<td th:text="${dev.numbering}"></td>
+					<td th:text="${dev.name}"></td>
 					<td class="td-status" th:switch="${dev.status}">
 						<span th:case="0" class="label label-default radius">已停用</span>
-						<span th:case="*" class="label label-success radius">正常</span>
+						<span th:case="*" class="label label-success radius">已启用</span>
 					</td>
 					<td class="f-14 td-manage" th:switch="${dev.status}">
 						<a style="text-decoration:none" th:case="*" th:onclick="article_stop(this,[[${dev.id}]])"
@@ -73,7 +67,7 @@
 						<a style="text-decoration:none" th:case="0" th:onclick="article_start(this,[[${dev.id}]])"
 						   href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe603;</i>
 						</a>
-						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('车辆信息编辑','/cars/device/edit',[[${dev.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('编辑策略','/system/rental/strategy/edit',[[${dev.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a style="text-decoration:none" class="ml-5" th:onclick="article_del(this,[[${dev.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
 				</tr>
@@ -98,7 +92,7 @@ $('.table-sort').dataTable({
 	"pading":false,
 	"aoColumnDefs": [
 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,6]}// 不参与排序的列
+	  {"orderable":false,"aTargets":[0,4]}// 不参与排序的列
 	]
 });
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.work.NormalTollMapper">
+
+    <select id="findList" resultType="NormalToll">
+        select
+            a.id as "id",
+            a.code as "code",
+            a.name as "name",
+            a.tel as "tel",
+            a.address as "address",
+            a.position as "position",
+            a.remarks as "remarks"
+        from oa_normal_toll a
+        where 1 = 1
+        <if test="name != null and name != ''">
+            and a.name like  concat('%',#{name},'%')
+        </if>
+        <if test="position != null and position != ''">
+            and a.position = #{position}
+        </if>
+    </select>
+
+    <select id="get" resultType="NormalToll">
+        select
+            a.id as "id",
+            a.code as "code",
+            a.name as "name",
+            a.tel as "tel",
+            a.address as "address",
+            a.position as "position",
+            a.remarks as "remarks"
+        from oa_normal_toll a
+        where a.id = #{id}
+    </select>
+
+    <insert id="insert">
+        insert into oa_normal_toll(
+            id,
+            code,
+            name,
+            tel,
+            address,
+            position,
+            remarks
+        )
+        values (
+            #{id},
+            #{code},
+            #{name},
+            #{tel},
+            #{address},
+            #{position},
+            #{remarks}
+        )
+    </insert>
+
+    <update id="update">
+        update oa_normal_toll set
+            code = #{code},
+            name = #{name},
+            tel = #{tel},
+            address = #{address},
+            position = #{position},
+            remarks = #{remarks}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from oa_normal_toll where id = #{id}
+    </delete>
+</mapper>
