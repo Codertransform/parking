@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.work.ContractorTollMapper">
+
+    <select id="findList" resultType="ContractorToll">
+        select
+            a.id as "id",
+            a.contractor_id as "contractorId",
+            a.toll_id as "tollId"
+        from oa_contractor_toll a
+        where 1 = 1
+        <if test="contractorId != null and contractorId != ''">
+            and a.contractor_id = #{contractorId}
+        </if>
+        <if test="tollId != null and tollId != ''">
+            and a.toll_id = #{tollId}
+        </if>
+    </select>
+
+    <select id="get" resultType="ContractorToll">
+        select
+            a.id as "id",
+            a.contractor_id as "contractorId",
+            a.toll_id as "tollId"
+        from oa_contractor_toll a
+        where a.id = #{id}
+    </select>
+
+    <insert id="insert">
+        insert into oa_contractor_toll(
+            id,
+            contractor_id,
+            toll_id
+        )
+        values (
+            #{id},
+            #{contractorId},
+            #{tollId}
+        )
+    </insert>
+
+    <update id="update">
+        update oa_contractor_toll set
+            contractor_id = #{contractorId},
+            toll_id = #{tollId}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from oa_contractor_toll where id = #{id}
+    </delete>
+</mapper>

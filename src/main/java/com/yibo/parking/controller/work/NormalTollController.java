@@ -1,6 +1,7 @@
 package com.yibo.parking.controller.work;
 
 import com.yibo.parking.entity.work.Contractor;
+import com.yibo.parking.entity.work.ContractorToll;
 import com.yibo.parking.entity.work.NormalToll;
 import com.yibo.parking.service.Impl.work.ContractorServiceImpl;
 import com.yibo.parking.service.Impl.work.NormalTollServiceImpl;
@@ -48,9 +49,10 @@ public class NormalTollController {
     }
 
     @RequestMapping(value = "/bind")
-    public String bind(Model model){
+    public String bind(NormalToll normalToll, Model model){
         List<Contractor> contractors = contractorService.findAllList();
         model.addAttribute("contractors", contractors);
+        model.addAttribute("normalToll", normalToll);
         model.addAttribute("title", "绑定收费员");
         return "work/NormalToll/bind";
     }
@@ -68,8 +70,19 @@ public class NormalTollController {
 
     @ResponseBody
     @RequestMapping(value = "/bindSave")
-    public String bindSave(NormalToll normalToll){
-        Map<String,Object> map = normalTollService.save(normalToll);
+    public String bindSave(ContractorToll contractorToll){
+        Map<String,Object> map = normalTollService.bindSave(contractorToll);
+        int flag = (int) map.get("flag");
+        if (flag != 0){
+            return JsonUtils.success(contractorToll, String.valueOf(map.get("message")));
+        }
+        return JsonUtils.errorBy(contractorToll, String.valueOf(map.get("message")));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/del")
+    public String delete(NormalToll normalToll){
+        Map<String, Object> map = normalTollService.delete(normalToll);
         int flag = (int) map.get("flag");
         if (flag != 0){
             return JsonUtils.success(normalToll, String.valueOf(map.get("message")));
@@ -78,8 +91,8 @@ public class NormalTollController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/del")
-    public String delete(NormalToll normalToll){
+    @RequestMapping(value = "/dels")
+    public String deletes(NormalToll normalToll){
         Map<String, Object> map = normalTollService.delete(normalToll);
         int flag = (int) map.get("flag");
         if (flag != 0){

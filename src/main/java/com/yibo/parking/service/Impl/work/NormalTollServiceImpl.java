@@ -1,6 +1,8 @@
 package com.yibo.parking.service.Impl.work;
 
+import com.yibo.parking.dao.work.ContractorTollMapper;
 import com.yibo.parking.dao.work.NormalTollMapper;
+import com.yibo.parking.entity.work.ContractorToll;
 import com.yibo.parking.entity.work.NormalToll;
 import com.yibo.parking.service.NormalTollService;
 import com.yibo.parking.utils.EntityIdGenerate;
@@ -16,6 +18,9 @@ public class NormalTollServiceImpl implements NormalTollService {
 
     @Autowired
     private NormalTollMapper normalTollMapper;
+
+    @Autowired
+    private ContractorTollMapper contractorTollMapper;
 
     @Override
     public List<NormalToll> findList(NormalToll normalToll) {
@@ -48,6 +53,25 @@ public class NormalTollServiceImpl implements NormalTollService {
         if (d != 0){
             map.put("flag", d);
             map.put("message", "删除成功");
+        }
+        return map;
+    }
+
+    public Map<String, Object> bindSave(ContractorToll contractorToll) {
+        List<ContractorToll> tolls = contractorTollMapper.findList(contractorToll);
+        Map<String, Object> map = new HashMap<>();
+        if (tolls.size() != 0){
+            map.put("flag",0);
+            map.put("message", "已绑定承包人，请勿重复操作");
+        }else{
+            if (contractorToll.getId() != null){
+                map.put("flag", contractorTollMapper.update(contractorToll));
+                map.put("message", "更新成功");
+            }else {
+                contractorToll.setId(EntityIdGenerate.generateId());
+                map.put("flag", contractorTollMapper.insert(contractorToll));
+                map.put("message", "绑定成功");
+            }
         }
         return map;
     }

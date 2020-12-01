@@ -31,12 +31,13 @@
 <body>
 <article class="page-container">
 	<form class="form form-horizontal" id="form-ts-add" action="/work/collector/general/bindSave" method="post">
+		<input type="hidden" name="tollId" th:value="${normalToll.id}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span> 承包人：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
 					<label>
-						<select name="address" class="select">
+						<select name="contractorId" class="select">
 							<option value="">请选择承包人</option>
 							<option th:each="c:${contractors}" th:value="${c.id}" th:text="${c.name}"></option>
 						</select>

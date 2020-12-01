@@ -10,9 +10,12 @@
             a.name as "name",
             a.tel as "tel",
             a.address as "address",
-            a.position as "position",
+            sd.value as "position",
             a.remarks as "remarks"
         from oa_normal_toll a
+        left join oa_contractor_toll oct on a.id = oct.toll_id
+        left join oa_contractor oc on oct.contractor_id = oc.id
+        left join system_data sd on oc.address = sd.`key` and sd.type = 'address'
         where 1 = 1
         <if test="name != null and name != ''">
             and a.name like  concat('%',#{name},'%')

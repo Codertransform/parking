@@ -23,6 +23,15 @@ public class JsonUtils {
         return gson.toJson(json);
     }
 
+    public static String errorBy(Object data, String message){
+        Json json = new Json();
+        json.setCode("-1");
+        json.setData(data);
+        json.setMessage(message);
+        Gson gson = new Gson();
+        return gson.toJson(json);
+    }
+
     public static String orderApiError(String code, String message){
         Json json = new Json();
         json.setCode(code);
