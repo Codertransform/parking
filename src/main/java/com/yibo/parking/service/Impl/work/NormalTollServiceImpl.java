@@ -57,6 +57,16 @@ public class NormalTollServiceImpl implements NormalTollService {
         return map;
     }
 
+    public Map<String, Object> deletes(NormalToll normalToll) {
+        Map<String, Object> map = new HashMap<>();
+        int d = normalTollMapper.delete(normalToll);
+        if (d != 0){
+            map.put("flag", d);
+            map.put("message", "删除成功");
+        }
+        return map;
+    }
+
     public Map<String, Object> bindSave(ContractorToll contractorToll) {
         List<ContractorToll> tolls = contractorTollMapper.findList(contractorToll);
         Map<String, Object> map = new HashMap<>();

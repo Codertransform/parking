@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -92,7 +93,7 @@ public class NormalTollController {
 
     @ResponseBody
     @RequestMapping(value = "/dels")
-    public String deletes(NormalToll normalToll){
+    public String deletes(@RequestParam("ids[]") String[] ids, NormalToll normalToll){
         Map<String, Object> map = normalTollService.delete(normalToll);
         int flag = (int) map.get("flag");
         if (flag != 0){
