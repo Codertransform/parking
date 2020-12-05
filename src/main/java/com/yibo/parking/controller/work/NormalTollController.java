@@ -93,12 +93,13 @@ public class NormalTollController {
 
     @ResponseBody
     @RequestMapping(value = "/dels")
-    public String deletes(@RequestParam("ids[]") String[] ids, NormalToll normalToll){
-        Map<String, Object> map = normalTollService.delete(normalToll);
+    public String deletes(@RequestParam("ids[]") List<String> ids){
+        Map<String, Object> map = normalTollService.deletes(ids);
         int flag = (int) map.get("flag");
-        if (flag != 0){
-            return JsonUtils.success(normalToll, String.valueOf(map.get("message")));
+        if (flag == ids.size()){
+            return JsonUtils.success(ids, String.valueOf(map.get("message")));
+        }else {
+            return JsonUtils.error(ids);
         }
-        return JsonUtils.error(normalToll);
     }
 }

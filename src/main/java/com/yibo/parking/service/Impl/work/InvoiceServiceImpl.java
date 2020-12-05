@@ -53,8 +53,13 @@ public class InvoiceServiceImpl implements InvoiceService {
     public Map<String, Object> saves(Invoice invoice) {
         Map<String, Object> map = new HashMap<>();
         int flag = 0;
+        int step = 0;
         int s = Integer.parseInt(invoice.getNumStart());
-        int step = invoice.getStep();
+        if (invoice.getStep() != null){
+            step = invoice.getStep();
+        }else {
+            step = 25;
+        }
         while (s < Integer.parseInt(invoice.getNumEnd())){
             Invoice in = new Invoice();
             in.setId(EntityIdGenerate.generateId());
@@ -62,6 +67,7 @@ public class InvoiceServiceImpl implements InvoiceService {
             s = s + step - 1;
             in.setNumEnd(String.valueOf(s));
             in.setCode(invoice.getCode());
+            in.setDenomination(invoice.getDenomination());
             in.setInTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             in.setStatus("0");
             invoiceMapper.insert(in);
@@ -75,5 +81,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     public List<Invoice> findByStatus(Invoice invoice) {
         return invoiceMapper.findByStatus(invoice);
+    }
+
+    public Map<String, Object> reSave(Invoice invoice) {
+        Map<String, Object> map = new HashMap<>();
+        invoice = invoiceMapper.get(invoice);
+
+        return null;
     }
 }

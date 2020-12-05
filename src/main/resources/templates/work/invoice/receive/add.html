@@ -52,7 +52,22 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>申领人：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入申领人姓名" id="outer" name="outer">
+				<span class="select-box">
+					<label>
+						<select name="outer" class="select">
+							<option value="">请选择承包人</option>
+							<option th:each="c:${contractors}" th:value="${c.id}" th:text="${c.name}"></option>
+						</select>
+					</label>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">备注：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<label>
+					<textarea name="remarks" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*0-100"></textarea>
+				</label>
 			</div>
 		</div>
 		<div class="row cl">
@@ -85,6 +100,12 @@ $(function(){
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
+	});
+
+	$(".textarea").Huitextarealength({
+		minlength:0,
+		maxlength:100,//字数限制
+		exceed:true//超多字数不让输入
 	});
 
 	$('#draft').click(function () {

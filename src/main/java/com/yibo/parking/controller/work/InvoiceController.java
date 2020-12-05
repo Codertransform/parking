@@ -1,6 +1,8 @@
 package com.yibo.parking.controller.work;
 
+import com.yibo.parking.entity.work.Contractor;
 import com.yibo.parking.entity.work.Invoice;
+import com.yibo.parking.service.Impl.work.ContractorServiceImpl;
 import com.yibo.parking.service.Impl.work.InvoiceServiceImpl;
 import com.yibo.parking.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class InvoiceController {
 
     @Autowired
     private InvoiceServiceImpl invoiceService;
+
+    @Autowired
+    private ContractorServiceImpl contractorService;
 
     @RequestMapping(value = {"","/"})
     public String index(Invoice invoice, Model model){
@@ -89,7 +94,9 @@ public class InvoiceController {
 
     @RequestMapping(value = "/reAdd")
     public String reAdd(Model model){
+        List<Contractor> contractors = contractorService.findAllList();
         model.addAttribute("title", "发票领取");
+        model.addAttribute("contractors", contractors);
         return "work/invoice/receive/add";
     }
 
@@ -99,11 +106,18 @@ public class InvoiceController {
         return null;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/reSave")
     public String reSave(Invoice invoice){
-        return null;
+        Map<String, Object> map = invoiceService.reSave(invoice);
+        int flag = (int) map.get("flag");
+        if (flag != 0) {
+            return JsonUtils.success(invoice, String.valueOf(map.get("message")));
+        }
+        return JsonUtils.error(invoice);
     }
 
+    @ResponseBody
     @RequestMapping(value = "/check")
     public String check(Invoice invoice){
         return "work/invoice/check/list";
