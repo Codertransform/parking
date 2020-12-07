@@ -54,12 +54,10 @@
             a.denomination as "denomination",
             a.in_time as "inTime",
             a.out_time as "outTime",
-            oc.name as "outer",
+            a.`outer` as "outer",
             a.status as "status",
             a.remarks as "remarks"
         from invoice a
-        left join oa_contractor oc on a.`outer` = oc.id
-        left join oa_normal_toll ont on a.`outer` = ont.id
         where a.status = '1'
         <if test="numStart != null and numStart != ''">
             and a.num_start = #{numStart}

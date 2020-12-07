@@ -1,7 +1,11 @@
 package com.yibo.parking.service.Impl.work;
 
+import com.yibo.parking.dao.work.ContractorMapper;
 import com.yibo.parking.dao.work.InvoiceMapper;
+import com.yibo.parking.dao.work.NormalTollMapper;
+import com.yibo.parking.entity.work.Contractor;
 import com.yibo.parking.entity.work.Invoice;
+import com.yibo.parking.entity.work.NormalToll;
 import com.yibo.parking.service.InvoiceService;
 import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Autowired
     private InvoiceMapper invoiceMapper;
+
+    @Autowired
+    private ContractorMapper contractorMapper;
+
+    @Autowired
+    private NormalTollMapper normalTollMapper;
 
     @Override
     public List<Invoice> findList(Invoice invoice) {
@@ -80,7 +90,22 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     public List<Invoice> findByStatus(Invoice invoice) {
-        return invoiceMapper.findByStatus(invoice);
+        List<Invoice> invoices = invoiceMapper.findByStatus(invoice);
+        for (Invoice in : invoices){
+            Contractor contractor = new Contractor();
+            contractor.setId(in.getOuter());
+            Contractor con = contractorMapper.get(contractor);
+            if (con != null) {
+                in.setOuter(con.getName());
+            }
+            NormalToll normalToll = new NormalToll();
+            normalToll.setId(in.getOuter());
+            NormalToll nor = normalTollMapper.get(normalToll);
+            if (nor != null) {
+                in.setOuter(nor.getName());
+            }
+        }
+        return invoices;
     }
 
     public Map<String, Object> reSave(Invoice invoice) {
