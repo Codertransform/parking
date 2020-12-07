@@ -84,9 +84,20 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     public Map<String, Object> reSave(Invoice invoice) {
+        System.out.println(invoice.getRemarks());
         Map<String, Object> map = new HashMap<>();
-        invoice = invoiceMapper.get(invoice);
-
-        return null;
+        Invoice in = invoiceMapper.get(invoice);
+        if (in == null){
+            map.put("flag", 0);
+            map.put("message", "信息有误，请重新输入！");
+        }else {
+            in.setOuter(invoice.getOuter());
+            in.setOutTime(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+            in.setStatus("1");
+            in.setRemarks(invoice.getRemarks());
+            map.put("flag", invoiceMapper.updateOut(in));
+            map.put("message", "领取成功！");
+        }
+        return map;
     }
 }

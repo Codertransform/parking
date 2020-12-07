@@ -54,9 +54,12 @@
             a.denomination as "denomination",
             a.in_time as "inTime",
             a.out_time as "outTime",
-            a.`outer` as "outer",
-            a.status as "status"
+            oc.name as "outer",
+            a.status as "status",
+            a.remarks as "remarks"
         from invoice a
+        left join oa_contractor oc on a.`outer` = oc.id
+        left join oa_normal_toll ont on a.`outer` = ont.id
         where a.status = '1'
         <if test="numStart != null and numStart != ''">
             and a.num_start = #{numStart}
@@ -100,6 +103,20 @@
             denomination = #{denomination},
             in_time = #{inTime},
             status = #{status}
+        where id = #{id}
+    </update>
+
+    <update id="updateOut">
+        update invoice set
+            num_start = #{numStart},
+            num_end = #{numEnd},
+            code = #{code},
+            denomination = #{denomination},
+            in_time = #{inTime},
+            out_time = #{outTime},
+            `outer` = #{outer},
+            status = #{status},
+            remarks = #{remarks}
         where id = #{id}
     </update>
 

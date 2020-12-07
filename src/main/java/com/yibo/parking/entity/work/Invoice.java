@@ -110,4 +110,22 @@ public class Invoice {
     public void setStep(Integer step) {
         this.step = step;
     }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "id='" + id + '\'' +
+                ", numStart='" + numStart + '\'' +
+                ", numEnd='" + numEnd + '\'' +
+                ", code='" + code + '\'' +
+                ", denomination='" + denomination + '\'' +
+                ", inTime='" + inTime + '\'' +
+                ", outTime='" + outTime + '\'' +
+                ", outer='" + outer + '\'' +
+                ", writeinTime='" + writeinTime + '\'' +
+                ", status='" + status + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", step=" + step +
+                '}';
+    }
 }
