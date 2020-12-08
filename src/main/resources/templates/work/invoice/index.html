@@ -36,6 +36,7 @@
 			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 			<a class="btn btn-primary radius" data-title="添加发票" data-href="/work/invoice/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加发票</a>
 			<a class="btn btn-primary radius" data-title="批量添加发票" data-href="/work/invoice/adds" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 批量添加发票</a>
+			<a class="btn btn-primary radius" onclick="reAdds()" href="javascript: void(0)"><i class="Hui-iconfont">&#xe600;</i> 批量申领发票</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${invoices.size()}]]</strong> 条</span>
 	</div>
@@ -310,6 +311,42 @@ function datadel() {
 			}
 		});
 	});
+}
+
+function reAdds(title,url,w,h) {
+	var ids = [];
+	$('input[name=one]:checked').each(function () {
+		ids.push($(this).val());
+	});
+	if (ids.length !== 0){
+		layer.open({
+			type: 2,
+			area: [w+'px', h +'px'],
+			fix: false, //不固定
+			maxmin: true,
+			title: title,
+			content: url + '?id=' +id
+		});
+	}else {
+		layer.msg("请选择发票",{icon:1,time:1000});
+	}
+	/*$.ajax({
+		url:'/work/invoice/reAdds',
+		type:'POST',
+		data:{'ids':ids},
+		dataType:'json',
+		success:function (e) {
+			if (e.code === '0'){
+				layer.msg(e.message,{icon:1,time:1000});
+			}else {
+				layer.msg("错误码："+e.code+"错误信息："+e.message,{icon:2,time:1000});
+			}
+			location.replace(location.href);
+		},
+		error:function (e) {
+			layer.msg(e.message,{icon:2,time:1000});
+		}
+	});*/
 }
 </script> 
 </body>

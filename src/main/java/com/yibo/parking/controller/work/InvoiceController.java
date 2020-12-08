@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -94,6 +95,14 @@ public class InvoiceController {
 
     @RequestMapping(value = "/reAdd")
     public String reAdd(Model model){
+        List<Contractor> contractors = contractorService.findAllList();
+        model.addAttribute("contractors", contractors);
+        return "work/invoice/receive/add";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/reAdds")
+    public String reAdds(@RequestParam("ids[]") String[] ids, Model model){
         List<Contractor> contractors = contractorService.findAllList();
         model.addAttribute("contractors", contractors);
         return "work/invoice/receive/add";
