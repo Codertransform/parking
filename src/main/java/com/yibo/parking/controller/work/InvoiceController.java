@@ -86,6 +86,7 @@ public class InvoiceController {
 
     @RequestMapping(value = "/receive")
     public String receive(Invoice invoice, Model model){
+        invoice.setStatus("1");
         List<Invoice> invoices = invoiceService.findByStatus(invoice);
         model.addAttribute("title", "发票领取登记");
         model.addAttribute("invoices", invoices);
@@ -125,9 +126,15 @@ public class InvoiceController {
         return JsonUtils.error(invoice);
     }
 
-    @ResponseBody
     @RequestMapping(value = "/check")
-    public String check(Invoice invoice){
+    public String check(Invoice invoice, Model model){
+        invoice.setStatus("2");
+        List<Invoice> checks = invoiceService.findByStatus(invoice);
+        model.addAttribute("title", "发票核销");
+        model.addAttribute("invoice", invoice);
+        model.addAttribute("checks", checks);
         return "work/invoice/check/list";
     }
+
+
 }

@@ -58,7 +58,10 @@
             a.status as "status",
             a.remarks as "remarks"
         from invoice a
-        where a.status = '1'
+        where 1=1
+        <if test="status != null and status != ''">
+            and a.status = #{status}
+        </if>
         <if test="numStart != null and numStart != ''">
             and a.num_start = #{numStart}
         </if>
