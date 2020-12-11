@@ -13,30 +13,10 @@
             a.in_time as "inTime",
             a.out_time as "outTime",
             a.`outer` as "outer",
+            a.writein_time as "writeinTime",
             a.status as "status"
         from invoice a
         where 1 = 1
-        <if test="numStart != null and numStart != ''">
-            and a.num_start = #{numStart}
-        </if>
-        <if test="numEnd != null and numEnd != ''">
-            and a.num_end = #{numEnd}
-        </if>
-    </select>
-
-    <select id="get" resultType="Invoice">
-        select
-            a.id as "id",
-            a.num_start as "numStart",
-            a.num_end as "numEnd",
-            a.code as "code",
-            a.denomination as "denomination",
-            a.in_time as "inTime",
-            a.out_time as "outTime",
-            a.`outer` as "outer",
-            a.status as "status"
-        from invoice a
-        where 1=1
         <if test="numStart != null and numStart != ''">
             and a.num_start = #{numStart}
         </if>
@@ -55,6 +35,7 @@
             a.in_time as "inTime",
             a.out_time as "outTime",
             a.`outer` as "outer",
+            a.writein_time as "writeinTime",
             a.status as "status",
             a.remarks as "remarks"
         from invoice a
@@ -62,6 +43,47 @@
         <if test="status != null and status != ''">
             and a.status = #{status}
         </if>
+        <if test="numStart != null and numStart != ''">
+            and a.num_start = #{numStart}
+        </if>
+    </select>
+
+    <select id="get" resultType="Invoice">
+        select
+        a.id as "id",
+        a.num_start as "numStart",
+        a.num_end as "numEnd",
+        a.code as "code",
+        a.denomination as "denomination",
+        a.in_time as "inTime",
+        a.out_time as "outTime",
+        a.`outer` as "outer",
+        a.writein_time as "writeinTime",
+        a.status as "status"
+        from invoice a
+        where 1=1
+        <if test="numStart != null and numStart != ''">
+            and a.num_start = #{numStart}
+        </if>
+        <if test="numEnd != null and numEnd != ''">
+            and a.num_end = #{numEnd}
+        </if>
+    </select>
+
+    <select id="getByStatus" resultType="Invoice">
+        select
+            a.id as "id",
+            a.num_start as "numStart",
+            a.num_end as "numEnd",
+            a.code as "code",
+            a.denomination as "denomination",
+            a.in_time as "inTime",
+            a.out_time as "outTime",
+            a.`outer` as "outer",
+            a.writein_time as "writeinTime",
+            a.status as "status"
+        from invoice a
+        where a.status = '1'
         <if test="numStart != null and numStart != ''">
             and a.num_start = #{numStart}
         </if>
@@ -118,6 +140,13 @@
             `outer` = #{outer},
             status = #{status},
             remarks = #{remarks}
+        where id = #{id}
+    </update>
+
+    <update id="updateWrite">
+        update invoice set
+            writein_time = #{writeinTime},
+            status = #{status}
         where id = #{id}
     </update>
 

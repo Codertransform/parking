@@ -136,5 +136,32 @@ public class InvoiceController {
         return "work/invoice/check/list";
     }
 
+    @RequestMapping(value = "/check/add")
+    public String checked(Model model){
+        model.addAttribute("title", "核销发票");
+        return "work/invoice/check/add";
+    }
 
+    @ResponseBody
+    @RequestMapping(value = "/check/indes")
+    public String indes(Invoice invoice){
+        Map<String, Object> map = invoiceService.getInvoice(invoice);
+        int flag = (int) map.get("flag");
+        if (flag != 0){
+            Invoice inv = (Invoice) map.get("invoice");
+            return JsonUtils.success(inv, String.valueOf(map.get("message")));
+        }
+        return JsonUtils.errorBy(map.get("invoice"), String.valueOf(map.get("message")));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/check/save")
+    public String checkUpdate(Invoice invoice){
+        Map<String, Object> map = invoiceService.checkSave(invoice);
+        int flag = (int) map.get("flag");
+        if (flag != 0){
+            return JsonUtils.success(invoice, String.valueOf(map.get("message")));
+        }
+        return JsonUtils.errorBy(invoice, String.valueOf(map.get("message")));
+    }
 }

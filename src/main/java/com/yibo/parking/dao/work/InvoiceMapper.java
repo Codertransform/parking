@@ -18,9 +18,13 @@ public interface InvoiceMapper {
 
     int updateOut(Invoice invoice);
 
+    int updateWrite(Invoice invoice);
+
     int delete(Invoice invoice);
 
     int updateStatus(Invoice invoice);
 
     List<Invoice> findByStatus(Invoice invoice);
+
+    Invoice getByStatus(Invoice invoice);
 }

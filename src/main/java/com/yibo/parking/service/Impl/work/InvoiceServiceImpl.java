@@ -125,4 +125,34 @@ public class InvoiceServiceImpl implements InvoiceService {
         }
         return map;
     }
+
+    public Map<String, Object> getInvoice(Invoice invoice) {
+        Map<String, Object> map = new HashMap<>();
+        Invoice inv = invoiceMapper.getByStatus(invoice);
+        if (inv != null) {
+            map.put("flag", 1);
+            map.put("invoice", inv);
+            map.put("message", "该发票待核销");
+        }else {
+            map.put("flag", 0);
+            map.put("message", "未检测到该发票");
+        }
+        return map;
+    }
+
+    public Map<String, Object> checkSave(Invoice invoice) {
+        Map<String, Object> map = new HashMap<>();
+        System.out.println(invoice.getId());
+        invoice.setWriteinTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        invoice.setStatus("2");
+        int flag = invoiceMapper.updateWrite(invoice);
+        if (flag != 0){
+            map.put("flag", flag);
+            map.put("message", "该发票已核销");
+        }else {
+            map.put("flag", flag);
+            map.put("message", "系统错误，请联系管理员");
+        }
+        return map;
+    }
 }
