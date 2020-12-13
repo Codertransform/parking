@@ -14,7 +14,8 @@
             a.out_time as "outTime",
             a.`outer` as "outer",
             a.writein_time as "writeinTime",
-            a.status as "status"
+            a.status as "status",
+            a.remarks as "remarks"
         from invoice a
         where 1 = 1
         <if test="numStart != null and numStart != ''">
@@ -50,16 +51,17 @@
 
     <select id="get" resultType="Invoice">
         select
-        a.id as "id",
-        a.num_start as "numStart",
-        a.num_end as "numEnd",
-        a.code as "code",
-        a.denomination as "denomination",
-        a.in_time as "inTime",
-        a.out_time as "outTime",
-        a.`outer` as "outer",
-        a.writein_time as "writeinTime",
-        a.status as "status"
+            a.id as "id",
+            a.num_start as "numStart",
+            a.num_end as "numEnd",
+            a.code as "code",
+            a.denomination as "denomination",
+            a.in_time as "inTime",
+            a.out_time as "outTime",
+            a.`outer` as "outer",
+            a.writein_time as "writeinTime",
+            a.status as "status",
+            a.remarks as "remarks"
         from invoice a
         where 1=1
         <if test="numStart != null and numStart != ''">
@@ -81,7 +83,8 @@
             a.out_time as "outTime",
             a.`outer` as "outer",
             a.writein_time as "writeinTime",
-            a.status as "status"
+            a.status as "status",
+            a.remarks as "remarks"
         from invoice a
         where a.status = '1'
         <if test="numStart != null and numStart != ''">
