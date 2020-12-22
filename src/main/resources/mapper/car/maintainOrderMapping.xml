@@ -7,6 +7,13 @@
         select * from maintain_order
     </select>
 
+    <select id="countOrders" resultType="MaintainOrder">
+        select
+            sum()
+        from a.maintain_order
+
+    </select>
+
     <insert id="insert">
         insert into maintain_order (
             id,
