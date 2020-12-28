@@ -155,4 +155,10 @@ public class InvoiceServiceImpl implements InvoiceService {
         }
         return map;
     }
+
+    public int changeStatus(Invoice invoice) {
+        invoice = invoiceMapper.get(invoice);
+        invoice.setStatus("0");
+        return invoiceMapper.updateStatus(invoice);
+    }
 }

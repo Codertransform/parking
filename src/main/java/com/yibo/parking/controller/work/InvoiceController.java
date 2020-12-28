@@ -48,8 +48,9 @@ public class InvoiceController {
 
     @RequestMapping(value = "/edit")
     public String edit(Invoice invoice, Model model){
+        model.addAttribute("invoice", invoiceService.get(invoice));
         model.addAttribute("title","修改发票");
-        return "";
+        return "work/invoice/edit";
     }
 
     @ResponseBody
@@ -110,9 +111,12 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/reEdit")
-    public String reEdit(Invoice invoice){
-
-        return null;
+    public String reEdit(Invoice invoice, Model model){
+        List<Contractor> contractors = contractorService.findAllList();
+        model.addAttribute("title", "发票登记信息编辑");
+        model.addAttribute("invoice", invoiceService.get(invoice));
+        model.addAttribute("contractors", contractors);
+        return "work/invoice/receive/edit";
     }
 
     @ResponseBody
@@ -122,6 +126,16 @@ public class InvoiceController {
         int flag = (int) map.get("flag");
         if (flag != 0) {
             return JsonUtils.success(invoice, String.valueOf(map.get("message")));
+        }
+        return JsonUtils.error(invoice);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/reDel")
+    public String reDel(Invoice invoice){
+        int flag = invoiceService.changeStatus(invoice);
+        if (flag != 0) {
+            return JsonUtils.success(invoice, "删除成功");
         }
         return JsonUtils.error(invoice);
     }

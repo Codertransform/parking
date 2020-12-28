@@ -134,7 +134,7 @@ function article_edit(title,url,id,w,h){
 	if (h == null || h === '') {
 		h=($(window).height() - 50);
 	}
-	var index = layer.open({
+	layer.open({
 		type: 2,
 		area: [w+'px', h +'px'],
 		fix: false, //不固定
@@ -142,7 +142,6 @@ function article_edit(title,url,id,w,h){
 		title: title,
 		content: url + '?id=' +id
 	});
-	layer.full(index);
 }
 /*资讯-删除*/
 function article_del(obj,id){

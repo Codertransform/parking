@@ -62,6 +62,9 @@
         a.status as "status"
         from invoice a
         where 1=1
+        <if test="id != null and id != ''">
+            and a.id = #{id}
+        </if>
         <if test="numStart != null and numStart != ''">
             and a.num_start = #{numStart}
         </if>
