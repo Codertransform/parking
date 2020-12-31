@@ -31,7 +31,12 @@ public class TrackFoServiceImpl implements TrackFoService {
 
     @Override
     public List<TrackFo> findList(TrackFo trackFo) {
-        return trackFoMapper.findList(trackFo);
+        List<TrackFo> trackFos = trackFoMapper.findList(trackFo);
+        for (TrackFo fo : trackFos){
+            Track track = trackMapper.findByCarId(fo.getTargetId());
+            fo.setTrackId(track.getTrackId());
+        }
+        return trackFos;
     }
 
     @Override
@@ -55,6 +60,8 @@ public class TrackFoServiceImpl implements TrackFoService {
         Map<String, Object> map = new HashMap<>();
         trackFo.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         if (trackFo.getId() != null){
+            Track track = trackMapper.findByCarId(trackFo.getTargetId());
+            trackFo.setTrackId(track.getTrackId());
             map.put("flag",trackFoMapper.update(trackFo));
             map.put("message","更新成功");
         }else {

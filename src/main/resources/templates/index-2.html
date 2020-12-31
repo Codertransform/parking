@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css" href="/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/lib/font-awesome-4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/skin/green/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
@@ -86,27 +87,36 @@
 			</dd>
 		</dl>-->
 		<dl id="menu-cars">
-			<dt sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><i class="Hui-iconfont">&#xe616;</i> 车辆管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><i class="fa fa-car"></i> 车辆管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars" data-title="车辆列表" href="javascript:void(0)">车辆列表</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/gallery" data-title="车辆图库" href="javascript:void(0)">车辆图库</a></li>
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/insurance" data-title="车辆保险" href="javascript:void(0)">车辆保险</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/maintain" data-title="车辆保养" href="javascript:void(0)">车辆保养</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/repair" data-title="车辆维修" href="javascript:void(0)">车辆维修</a></li>-->
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/dispatch" data-title="车辆分派" href="javascript:void(0)">车辆分派</a></li>
-					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/lease" data-title="租用订单" href="javascript:void(0)">租用订单</a></li>
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>-->
-<!--					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/type" data-title="车辆类型" href="javascript:void(0)">车辆类型</a></li>-->
 					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><a data-href="/cars/position" data-title="车辆定位追踪" href="javascript:void(0)">车辆定位追踪</a></li>
 					<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><a data-href="/cars/track" data-title="车辆轨迹" href="javascript:void(0)">车辆轨迹</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/track/follow" data-title="车辆轨迹跟随" href="javascript:void(0)">车辆轨迹跟随</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-order">
+			<dt sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><i class="fa fa-reorder"></i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/lease" data-title="租用订单" href="javascript:void(0)">租用订单</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-device">
+			<dt sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><i class="fa fa-tablet fa-lg"></i> 设备管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/device" data-title="GPS设备" href="javascript:void(0)">GPS设备</a></li>
 				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-unit">
-			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 组织机构管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="fa fa-sitemap"></i> 组织机构管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/unit" data-title="组织机构" href="javascript:void(0)">组织机构</a></li>
@@ -178,7 +188,7 @@
 
 	<div class="menu_dropdown bk_2" style="display:none">
 		<dl id="menu-banner" sec:authorize="hasRole('ROLE_ADMIN')">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="fa fa-picture-o"></i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="/wx/banner" data-title="广告管理" href="javascript:void(0)">广告管理</a></li>
@@ -186,7 +196,7 @@
 			</dd>
 		</dl>
 		<dl id="menu-wechatMenu" sec:authorize="hasRole('ROLE_ADMIN')">
-			<dt><i class="Hui-iconfont">&#xe681;</i> 菜单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="fa fa-bars"></i> 菜单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="/wx/menu" data-title="功能菜单" href="javascript:void(0)">功能菜单</a></li>
@@ -197,7 +207,7 @@
 
 	<div class="menu_dropdown bk_2" style="display:none">
 		<dl id="menu-collector">
-			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 收费员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="fa fa-user-o"></i> 收费员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="/work/collector/general" data-title="非智能收费员" href="javascript:void(0)">非智能收费员</a></li>
@@ -206,7 +216,7 @@
 			</dd>
 		</dl>
 		<dl id="menu-contractor">
-			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 承包人管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="fa fa-user"></i> 承包人管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="/work/contractor" data-title="承包人管理" href="javascript:void(0)">承包人管理</a></li>
@@ -214,7 +224,7 @@
 			</dd>
 		</dl>
 		<dl id="menu-invoice">
-			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 发票管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="fa fa-ticket"></i> 发票管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a data-href="/work/invoice" data-title="发票列表" href="javascript:void(0)">发票列表</a></li>
@@ -224,7 +234,7 @@
 			</dd>
 		</dl>
 		<dl id="menu-insurance">
-			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆保险<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="fa fa-folder"></i> 车辆保险<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/work/insurance" data-title="车辆保险" href="javascript:void(0)">车辆保险</a></li>
@@ -232,7 +242,7 @@
 			</dd>
 		</dl>
 		<dl id="menu-maintain">
-			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆保养<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="fa fa-recycle"></i> 车辆保养<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/work/maintain" data-title="车辆保养" href="javascript:void(0)">车辆保养</a></li>
@@ -240,7 +250,7 @@
 			</dd>
 		</dl>
 		<dl id="menu-repair">
-			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆维修<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="fa fa-suitcase"></i> 车辆维修<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/work/repair" data-title="车辆维修" href="javascript:void(0)">车辆维修</a></li>
@@ -248,7 +258,7 @@
 			</dd>
 		</dl>
 		<dl id="menu-oil">
-			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="Hui-iconfont">&#xe616;</i> 车辆加油<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt sec:authorize="hasRole('ROLE_ADMIN')"><i class="fa fa-tachometer"></i> 车辆加油<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/work/oil" data-title="车辆加油" href="javascript:void(0)">车辆加油</a></li>
