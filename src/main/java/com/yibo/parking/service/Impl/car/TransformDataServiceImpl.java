@@ -1,6 +1,6 @@
 package com.yibo.parking.service.Impl.car;
 
-import com.yibo.parking.dao.car.DeviceMapper;
+import com.yibo.parking.dao.device.DeviceMapper;
 import com.yibo.parking.dao.car.TransformDataMapper;
 import com.yibo.parking.dao.unit.UserUnitMapper;
 import com.yibo.parking.dao.user.UserMapper;

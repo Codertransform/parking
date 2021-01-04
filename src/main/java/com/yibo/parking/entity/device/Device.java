@@ -1,4 +1,4 @@
-package com.yibo.parking.entity.car;
+package com.yibo.parking.entity.device;
 
 public class Device {
     private String id;

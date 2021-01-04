@@ -1,6 +1,6 @@
 package com.yibo.parking.service;
 
-import com.yibo.parking.entity.car.Device;
+import com.yibo.parking.entity.device.Device;
 
 import java.util.List;
 

@@ -2,9 +2,9 @@ package com.yibo.parking.service.Impl.car;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.yibo.parking.dao.car.DeviceMapper;
+import com.yibo.parking.dao.device.DeviceMapper;
 import com.yibo.parking.dao.car.TrackMapper;
-import com.yibo.parking.entity.car.Device;
+import com.yibo.parking.entity.device.Device;
 import com.yibo.parking.entity.car.Track;
 import com.yibo.parking.service.TrackService;
 import com.yibo.parking.utils.HttpClientUtil;

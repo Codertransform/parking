@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.parking.dao.device.HeartMapper">
+
+    <select id="findList" resultType="Heart">
+        select
+            t.id as "id",
+            a.device_id as "deviceId",
+            d.tid as "tId",
+            d.cardId as "cardId",
+            t.time as "upTime"
+        from (
+                 select device_id, MAX(time) as "time" from transform_gps_data
+                 group by device_id
+             ) a
+        LEFT JOIN transform_gps_data t on t.device_id = a.device_id and t.time = a.time
+        left join origin_gps_data o on o.id = t.origin_id
+        left join device d on a.device_id = d.device_id
+        where o.data_type = 'V1'
+    </select>
+
+    <select id="get" resultType="Heart">
+        select
+            a.id as id,
+            a.sid as sId,
+            a.tid as tId,
+            a.device_id as deviceId,
+            a.unit_id as unitId,
+            a.unit_name as unitName,
+            a.car_id as carId,
+            a.cardId as cardId,
+            a.status as status
+        from device a
+        where 1=1
+        <if test="id != null and id != ''">
+            and a.id = #{id}
+        </if>
+        <if test="carId != null and carId != ''">
+            and a.car_id like concat('%',#{carId},'%')
+        </if>
+    </select>
+
+    <select id="getByDeviceId" resultType="Heart">
+        select
+            a.id as id,
+            a.sid as sId,
+            a.tid as tId,
+            a.device_id as deviceId,
+            a.unit_id as unitId,
+            a.unit_name as unitName,
+            a.car_id as carId,
+            a.cardId as cardId,
+            a.status as status
+        from device a
+        where 1=1
+        <if test="deviceId != null and deviceId != ''">
+            and a.device_id = #{deviceId}
+        </if>
+    </select>
+
+    <insert id="insert">
+        insert into device(
+            id,
+            sid,
+            tid,
+            device_id,
+            unit_id,
+            unit_name,
+            car_id,
+            cardId,
+            status
+        )
+        values (
+            #{id},
+            #{sId},
+            #{tId},
+            #{deviceId},
+            #{unitId},
+            #{unitName},
+            #{carId},
+            #{cardId},
+            #{status}
+        )
+    </insert>
+
+    <update id="update">
+        update device set
+            sid = #{sId},
+            tid = #{tId},
+            device_id = #{deviceId},
+            unit_id = #{unitId},
+            unit_name = #{unitName},
+            car_id = #{carId},
+            cardId = #{cardId},
+            status = #{status}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from device where id = #{id}
+    </delete>
+</mapper>

@@ -65,7 +65,7 @@
 		cardId = $('#cardId').val();
 		getLocations(cardId);
 		setInterval('getLocations(cardId)',3000);//轮询执行，3s一次
-	})
+	});
 
 	var markerList = [];
 
@@ -83,7 +83,6 @@
 				dataType:'json',
 				success:function (res) {
 					$.each(res,function (index,value) {
-						console.log(index + ":" + value);
 						if (value.cardId !== null){
 							// 创建一个 Marker 实例：
 							var marker = new AMap.Marker({

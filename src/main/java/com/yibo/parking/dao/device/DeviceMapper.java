@@ -1,6 +1,6 @@
-package com.yibo.parking.dao.car;
+package com.yibo.parking.dao.device;
 
-import com.yibo.parking.entity.car.Device;
+import com.yibo.parking.entity.device.Device;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

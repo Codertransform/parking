@@ -1,11 +1,11 @@
-package com.yibo.parking.controller.car;
+package com.yibo.parking.controller.device;
 
 import com.yibo.parking.entity.car.Car;
-import com.yibo.parking.entity.car.Device;
+import com.yibo.parking.entity.device.Device;
 import com.yibo.parking.entity.system.SystemServer;
 import com.yibo.parking.entity.unit.Unit;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
-import com.yibo.parking.service.Impl.car.DeviceServiceImpl;
+import com.yibo.parking.service.Impl.device.DeviceServiceImpl;
 import com.yibo.parking.service.Impl.system.SystemServerServiceImpl;
 import com.yibo.parking.service.Impl.unit.UnitServiceIpml;
 import com.yibo.parking.utils.JsonUtils;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/cars/device")
+@RequestMapping(value = "/device")
 public class DeviceController {
 
     @Autowired
@@ -44,7 +44,7 @@ public class DeviceController {
             model.addAttribute("deviceId",device.getDeviceId());
             model.addAttribute("carId",device.getCarId());
         }
-        return "cars/device/index";
+        return "device/index";
     }
 
     @RequestMapping(value = "/add")
@@ -56,7 +56,7 @@ public class DeviceController {
         model.addAttribute("servers",servers);
         model.addAttribute("cars",cars);
         model.addAttribute("units",units);
-        return "cars/device/add";
+        return "device/add";
     }
 
     @RequestMapping(value = "/edit")
@@ -69,7 +69,7 @@ public class DeviceController {
         model.addAttribute("cars",cars);
         model.addAttribute("units",units);
         model.addAttribute("dev",deviceService.get(device));
-        return "cars/device/edit";
+        return "device/edit";
     }
 
     @ResponseBody

@@ -1,12 +1,12 @@
-package com.yibo.parking.service.Impl.car;
+package com.yibo.parking.service.Impl.device;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yibo.parking.dao.car.CarMapper;
-import com.yibo.parking.dao.car.DeviceMapper;
+import com.yibo.parking.dao.device.DeviceMapper;
 import com.yibo.parking.dao.system.SystemDataMapper;
 import com.yibo.parking.dao.unit.UnitMapper;
 import com.yibo.parking.entity.car.Car;
-import com.yibo.parking.entity.car.Device;
+import com.yibo.parking.entity.device.Device;
 import com.yibo.parking.entity.system.SystemData;
 import com.yibo.parking.entity.unit.Unit;
 import com.yibo.parking.service.DeviceService;

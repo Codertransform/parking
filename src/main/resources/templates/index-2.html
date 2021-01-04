@@ -111,7 +111,8 @@
 			<dt sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GXHBJ')"><i class="fa fa-tablet fa-lg"></i> 设备管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/cars/device" data-title="GPS设备" href="javascript:void(0)">GPS设备</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/device" data-title="GPS设备" href="javascript:void(0)">GPS设备</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a data-href="/device/heart" data-title="设备心跳" href="javascript:void(0)">设备心跳</a></li>
 				</ul>
 			</dd>
 		</dl>
