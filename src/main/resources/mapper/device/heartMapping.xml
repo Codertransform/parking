@@ -12,6 +12,7 @@
             t.time as "upTime"
         from (
                  select device_id, MAX(time) as "time" from transform_gps_data
+                 where device_id is not null and device_id != ''
                  group by device_id
              ) a
         LEFT JOIN transform_gps_data t on t.device_id = a.device_id and t.time = a.time
