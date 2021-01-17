@@ -228,4 +228,8 @@ public class LeaseServiceImpl implements LeaseService {
     public Lease get(Lease lease) {
         return leaseMapper.get(lease);
     }
+
+    public List<Lease> getOrdersAPI() {
+        return null;
+    }
 }

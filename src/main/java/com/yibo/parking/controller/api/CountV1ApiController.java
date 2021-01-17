@@ -1,8 +1,8 @@
 package com.yibo.parking.controller.api;
 
-import com.yibo.parking.entity.car.MaintainOrder;
+import com.yibo.parking.entity.car.Lease;
 import com.yibo.parking.service.Impl.car.CarServiceImpl;
-import com.yibo.parking.service.Impl.car.MaintainOrderServiceImpl;
+import com.yibo.parking.service.Impl.car.LeaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,13 +18,13 @@ public class CountV1ApiController {
     private CarServiceImpl carService;
 
     @Autowired
-    private MaintainOrderServiceImpl orderService;
+    private LeaseServiceImpl leaseService;
 
     @ResponseBody
     @RequestMapping(value = "/welcome")
     public String index(){
-        List<MaintainOrder> orders = orderService.getOrders();
-
+        //获取车辆租用订单
+        List<Lease> leases = leaseService.getOrdersAPI();
         return null;
     }
 
