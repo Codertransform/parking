@@ -18,7 +18,7 @@
         LEFT JOIN transform_gps_data t on t.device_id = a.device_id and t.time = a.time
         left join origin_gps_data o on o.id = t.origin_id
         left join device d on a.device_id = d.device_id
-        where o.data_type = 'V1'
+        where d.tid is not NULL;
     </select>
 
     <select id="get" resultType="Heart">
