@@ -35,7 +35,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a href="javascript:;" onclick="admin_permission_add('添加权限节点','/permission/add','','310')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a>
+			<a href="javascript:;" onclick="admin_permission_add('添加权限节点','/permission/add','800','600')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加权限节点</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span> </div>
 	<table class="table table-border table-bordered table-striped table-hover" id="treeTable">
@@ -62,6 +62,7 @@
 				<td><span style="text-align: center" th:text="${p.url}"></span></td>
 				<td th:text="${p.remarks}"></td>
 				<td>
+					<a title="添加下级节点" href="javascript:;" th:onclick="admin_permission_sonAdd('添加下级节点','/permission/add',[[${p.id}]],'','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 					<a title="编辑" href="javascript:;" th:onclick="admin_permission_edit('权限节点编辑','/permission/edit',[[${p.id}]],'','310')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 					<a title="删除" href="javascript:;" th:onclick="admin_permission_del(this,[[${p.id}]])" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
 				</td>
@@ -118,7 +119,7 @@ function admin_permission_del(obj,id){
 			error:function(data) {
 				console.log(data.msg);
 			},
-		});		
+		});
 	});
 }
 </script>

@@ -4,6 +4,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class GeneratorUser {
 
@@ -22,15 +24,14 @@ public class GeneratorUser {
             if (con != null) {
                 stmt = con.prepareStatement(sql);
                 stmt.setString(1, EntityIdGenerate.generateId());
-                stmt.setString(2, EntityIdGenerate.generateId());
-                stmt.setString(3, "admin");
-                stmt.setString(4, passwordEncoder.encode("123"));
+                stmt.setString(2, "test");
+                stmt.setString(3, passwordEncoder.encode("123"));
                 stmt.setString(4, "1");
-                stmt.setString(4, "15769271840");
-                stmt.setString(4, "18204099093@163.com");
-                stmt.setString(5, "2020-04-26 00:00:00");
-                stmt.setString(6, null);
-                stmt.setString(7, "");
+                stmt.setString(5, "15769271840");
+                stmt.setString(6, "18204099093@163.com");
+                stmt.setString(7, new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+                stmt.setString(8, null);
+                stmt.setString(9, null);
             }
             if (stmt != null) {
                 int result =stmt.executeUpdate();// 返回值代表收到影响的行数

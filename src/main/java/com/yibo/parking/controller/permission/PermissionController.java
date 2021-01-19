@@ -36,6 +36,14 @@ public class PermissionController {
         return "/permission/add";
     }
 
+    @RequestMapping(value = "/sonAdd")
+    public String sonAdd(Permission permission, Model model){
+        List<Permission> pers = permissionService.findList(permission);
+        model.addAttribute("pers", pers);
+        model.addAttribute("permission", permission);
+        return "permission/sonAdd";
+    }
+
     @RequestMapping(value = "/edit")
     public String edit(Permission permission, Model model){
         permission = permissionService.get(permission);
