@@ -64,7 +64,7 @@
 					<td th:text="${tr.endTime}"></td>
 					<td th:text="${tr.miles}"></td>
 					<td class="f-14 td-manage">
-						<a style="text-decoration:none" th:onclick="track_replay('轨迹回放-[[${tr.carId}]]-[[${tr.trackId}]]','/cars/track/replay',[[${tr.trackId}]],[[${tr.carId}]])" href="javascript:;" title="回放">回放</a>
+						<a style="text-decoration:none" th:onclick="track_replay('轨迹回放-[[${tr.cardId}]]-[[${tr.trackId}]]','/cars/track/replay',[[${tr.trackId}]],[[${tr.carId}]])" href="javascript:;" title="回放">回放</a>
 					</td>
 				</tr>
 			</tbody>
@@ -166,14 +166,14 @@ function article_del(obj,id){
 			error:function(data) {
 				layer.msg(data.message,{icon:1,time:1000});
 			},
-		});		
+		});
 	});
 }
 
 /*资讯-审核*/
 function article_shenhe(obj,id){
 	layer.confirm('审核文章？', {
-		btn: ['通过','不通过','取消'], 
+		btn: ['通过','不通过','取消'],
 		shade: false,
 		closeBtn: 0
 	},
@@ -188,7 +188,7 @@ function article_shenhe(obj,id){
 		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
 		$(obj).remove();
     	layer.msg('未通过', {icon:5,time:1000});
-	});	
+	});
 }
 /*资讯-下架*/
 function article_stop(obj,id){
@@ -269,6 +269,6 @@ function datadel() {
 		});
 	});
 }
-</script> 
+</script>
 </body>
 </html>
