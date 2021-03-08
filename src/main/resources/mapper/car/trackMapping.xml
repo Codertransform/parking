@@ -18,12 +18,14 @@
         <if test="trackId != null and trackId != ''">
             and a.track_id = #{trackId}
         </if>
-        <if test="carId != null and carId != ''">
-            and a.car_id = #{carId}
+        <if test="cardId != null and cardId != ''">
+            and c.cardId like concat('%',#{cardId},'%')
         </if>
-        <if test="start != null and start != '' and end != null and end != ''">
-            and a.start_time between #{start} and #{end}
-            and a.end_time between #{start} and #{end}
+        <if test="start != null and start != ''">
+            and a.start_time > #{start}
+        </if>
+        <if test="end != null and end != ''">
+            and #{end} > a.end_time
         </if>
     </select>
 
