@@ -49,7 +49,7 @@ public class TrackServiceImpl implements TrackService {
         if (object.get("errcode").toString().equals("10000")) {
             JSONObject jsonObject = object.getJSONObject("data");
             array = jsonObject.getJSONArray("tracks");
-            JSONObject json = array.getJSONObject(0);
+            /*JSONObject json = array.getJSONObject(0);
             int count = Integer.parseInt(json.get("counts").toString());
             if (count > 1000){
                 Map<String,String> m = new HashMap<>();
@@ -62,7 +62,7 @@ public class TrackServiceImpl implements TrackService {
                 String res = HttpClientUtil.doGet(url,m);
                 JSONObject o = JSONObject.parseObject(res);
                 System.out.println(o);
-            }
+            }*/
         }
         return array;
     }

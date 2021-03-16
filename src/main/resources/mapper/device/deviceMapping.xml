@@ -47,7 +47,7 @@
             and a.id = #{id}
         </if>
         <if test="carId != null and carId != ''">
-            and a.car_id like concat('%',#{carId},'%')
+            and a.car_id = #{carId}
         </if>
     </select>
 

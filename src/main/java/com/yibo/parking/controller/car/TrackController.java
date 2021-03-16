@@ -2,7 +2,6 @@ package com.yibo.parking.controller.car;
 
 import com.alibaba.fastjson.JSONArray;
 import com.yibo.parking.entity.car.Track;
-import com.yibo.parking.service.Impl.car.CarServiceImpl;
 import com.yibo.parking.service.Impl.car.TrackServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,26 +18,24 @@ public class TrackController {
     @Autowired
     private TrackServiceImpl trackService;
 
-    @Autowired
-    private CarServiceImpl carService;
-
     @RequestMapping(value = {"","/"})
     public String index(Track track, Model model){
         List<Track> tracks = trackService.findList(track);
         model.addAttribute("title", "车辆轨迹管理");
         model.addAttribute("tracks", tracks);
+        System.out.println(track);
         model.addAttribute("track", track);
         if (tracks != null) {
             model.addAttribute("count", tracks.size());
         }
-        return "/cars/track/index";
+        return "cars/track/index";
     }
 
     @RequestMapping(value = "/replay")
     public String replay(String trackId, String carId, Model model){
         model.addAttribute("trackId", trackId);
         model.addAttribute("carId", carId);
-        return "/cars/track/replay";
+        return "cars/track/replay";
     }
 
 
