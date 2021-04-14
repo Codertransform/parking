@@ -71,11 +71,22 @@ public class InvoiceServiceImpl implements InvoiceService {
             step = 25;
         }
         while (s < Integer.parseInt(invoice.getNumEnd())){
+            System.out.println(invoice.getNumStart().charAt(0));
             Invoice in = new Invoice();
             in.setId(EntityIdGenerate.generateId());
-            in.setNumStart(String.valueOf(s));
+            if (invoice.getNumStart().charAt(0) == '0'){
+                in.setNumStart("0"+String.valueOf(s));
+                System.out.println(in.getNumStart());
+            }else {
+                in.setNumStart(String.valueOf(s));
+            }
             s = s + step - 1;
-            in.setNumEnd(String.valueOf(s));
+            if (invoice.getNumEnd().charAt(0) == '0'){
+                in.setNumEnd("0"+String.valueOf(s));
+                System.out.println(in.getNumEnd());
+            }else {
+                in.setNumEnd(String.valueOf(s));
+            }
             in.setCode(invoice.getCode());
             in.setDenomination(invoice.getDenomination());
             in.setInTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));

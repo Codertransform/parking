@@ -33,7 +33,7 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+<!--			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>-->
 		</span>
 		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
 	</div>
@@ -41,7 +41,6 @@
 		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 			<thead>
 				<tr class="text-c">
-					<th width="25"><input type="checkbox" name="all" value=""></th>
 					<th width="80">设备编号</th>
 					<th width="80">高德设备编号</th>
 					<th width="60">车牌号</th>
@@ -50,7 +49,6 @@
 			</thead>
 			<tbody>
 				<tr class="text-c" th:each="h:${hearts}">
-					<td><input type="checkbox" th:value="${h.id}" name="one"></td>
 <!--					<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看" th:text="${dev.deviceId}"></u></td>-->
 					<td class="text-l"><u style="cursor:pointer" class="text-primary" title="查看" th:text="${h.deviceId}"></u></td>
 					<td th:text="${h.tid}"></td>
@@ -73,7 +71,7 @@
 <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
 $('.table-sort').dataTable({
-	"aaSorting": [ 1, "desc" ],//默认第几个排序
+	"aaSorting": [ 0, "desc" ],//默认第几个排序
 	"bStateSave": true,//状态保存
 	"pading":false,
 	"aoColumnDefs": [
@@ -137,14 +135,14 @@ function article_del(obj,id){
 			error:function(data) {
 				layer.msg(data.message,{icon:1,time:1000});
 			},
-		});		
+		});
 	});
 }
 
 /*资讯-审核*/
 function article_shenhe(obj,id){
 	layer.confirm('审核文章？', {
-		btn: ['通过','不通过','取消'], 
+		btn: ['通过','不通过','取消'],
 		shade: false,
 		closeBtn: 0
 	},
@@ -159,7 +157,7 @@ function article_shenhe(obj,id){
 		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
 		$(obj).remove();
     	layer.msg('未通过', {icon:5,time:1000});
-	});	
+	});
 }
 /*资讯-下架*/
 function article_stop(obj,id){
@@ -240,6 +238,6 @@ function datadel() {
 		});
 	});
 }
-</script> 
+</script>
 </body>
 </html>

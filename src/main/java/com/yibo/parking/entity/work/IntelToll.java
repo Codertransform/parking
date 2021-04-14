@@ -1,12 +1,12 @@
 package com.yibo.parking.entity.work;
 
-public class NormalToll {
+public class IntelToll {
     private String id;
     private String code;        //工号
     private String name;        //姓名
+    private String birthday;    //出生日期
     private String tel;         //电话
     private String address;     //住址
-    private String position;    //路段
     private String remarks;     //备注
 
     public String getId() {
@@ -33,6 +33,14 @@ public class NormalToll {
         this.name = name;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
     public String getTel() {
         return tel;
     }
@@ -47,14 +55,6 @@ public class NormalToll {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public String getRemarks() {
