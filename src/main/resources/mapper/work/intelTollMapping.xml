@@ -7,6 +7,7 @@
         select
             a.id as "id",
             a.code as "code",
+            a.pos_id as "posId",
             a.name as "name",
             a.birthday as "birthday",
             a.tel as "tel",
@@ -26,6 +27,7 @@
         select
             a.id as "id",
             a.code as "code",
+            a.pos_id as "posId",
             a.name as "name",
             a.birthday as "birthday",
             a.tel as "tel",
@@ -39,6 +41,7 @@
         insert into oa_intel_toll(
             id,
             code,
+            pos_id,
             name,
             birthday,
             tel,
@@ -48,6 +51,7 @@
         values (
             #{id},
             #{code},
+            #{posId},
             #{name},
             #{birthday},
             #{tel},
@@ -59,6 +63,7 @@
     <update id="update">
         update oa_intel_toll set
             code = #{code},
+            pos_id = #{posId},
             name = #{name},
             birthday = #{birthday},
             tel = #{tel},

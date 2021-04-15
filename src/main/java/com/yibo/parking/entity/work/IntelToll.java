@@ -3,6 +3,7 @@ package com.yibo.parking.entity.work;
 public class IntelToll {
     private String id;
     private String code;        //工号
+    private String posId;        //工号
     private String name;        //姓名
     private String birthday;    //出生日期
     private String tel;         //电话
@@ -23,6 +24,14 @@ public class IntelToll {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getPosId() {
+        return posId;
+    }
+
+    public void setPosId(String posId) {
+        this.posId = posId;
     }
 
     public String getName() {

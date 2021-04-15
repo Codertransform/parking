@@ -30,17 +30,29 @@
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-ts-add" action="/work/collector/general/save" method="post">
+	<form class="form form-horizontal" id="form-ts-add" action="/work/collector/intelligent/save" method="post">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>编号：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>工号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="请输入编号" id="code" name="code">
+				<input type="text" class="input-text" value="" placeholder="请输入工号" id="code" name="code">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>终端号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="请输入终端" id="posId" name="posId">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>姓名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" value="" placeholder="请输入姓名" id="name" name="name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>出生日期：</label>
+			<div class="formControls col-xs-8 col-sm-2">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd' })" id="birthday" name="birthday" autocomplete="off" class="input-text Wdate">
 			</div>
 		</div>
 		<div class="row cl">
@@ -56,9 +68,21 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">配发物资：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="checkbox" id="package" name="package" value="package"/><label for="package">挎包</label>
+				<input type="checkbox" id="mask" name="mask" value="mask"/><label for="mask">口罩</label>
+				<input type="checkbox" id="gloves" name="gloves" value="gloves"/><label for="gloves">手套</label>
+				<input type="checkbox" id="winterclothes" name="winterclothes" value="winterclothes"/><label for="winterclothes">冬装</label>
+				<input type="checkbox" id="raincoat" name="raincoat" value="raincoat"/><label for="raincoat">雨衣</label>
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<textarea name="remarks" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*0-100"></textarea>
+				<label>
+					<textarea name="remarks" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*0-100"></textarea>
+				</label>
 			</div>
 		</div>
 		<div class="row cl">
@@ -81,10 +105,6 @@
 <script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-<script type="text/javascript" src="/lib/webuploader/0.1.5/webuploader.min.js"></script>
-<script type="text/javascript" src="/lib/ueditor/1.4.3/ueditor.config.js"></script>
-<script type="text/javascript" src="/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
-<script type="text/javascript" src="/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('.skin-minimal input').iCheck({
@@ -102,7 +122,7 @@ $(function(){
 	$('#draft').click(function () {
 		check();
 	});
-	
+
 });
 
 	//表单验证

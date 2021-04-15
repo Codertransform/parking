@@ -29,4 +29,9 @@ public class IntelTollController {
     public String add(){
         return "work/intelToll/add";
     }
+
+    @RequestMapping(value = "/save")
+    public String save(IntelToll intelToll){
+        return null;
+    }
 }
