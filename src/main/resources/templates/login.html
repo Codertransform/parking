@@ -83,15 +83,15 @@ var _hmt = _hmt || [];
       uploadLoginValidateCode();
     });
 
-    showMessage();
+    const message = [[${msg}]];
+    showMessage(message);
   });
 
   function uploadLoginValidateCode() {
     $("#loginValidateCode").attr("src","/ValidateCode?random="+new Date().getMilliseconds());
   }
 
-  function showMessage() {
-    var message = [[${msg}]];
+  function showMessage(message) {
     if (message !== ""){
       layer.msg(message, {icon: 2, time: 1000});
     }

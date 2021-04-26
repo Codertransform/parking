@@ -1,6 +1,7 @@
 package com.yibo.parking.controller.work;
 
 import com.yibo.parking.entity.work.IntelToll;
+import com.yibo.parking.service.Impl.system.SystemDataServiceImpl;
 import com.yibo.parking.service.Impl.work.IntelTollServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class IntelTollController {
     @Autowired
     private IntelTollServiceImpl intelTollService;
 
+    @Autowired
+    private SystemDataServiceImpl systemDataService;
+
     @RequestMapping(value = {"","/"})
     public String index(IntelToll intelToll, Model model){
         List<IntelToll> intelTolls = intelTollService.findList(intelToll);
@@ -26,7 +30,8 @@ public class IntelTollController {
     }
 
     @RequestMapping(value = "/add")
-    public String add(){
+    public String add(Model model){
+        model.addAttribute("supplies",intelTollService.getDatas());
         return "work/intelToll/add";
     }
 

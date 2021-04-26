@@ -33,19 +33,19 @@
 	<form class="form form-horizontal" id="form-ts-add" action="/work/collector/intelligent/save" method="post">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>工号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
+			<div class="formControls col-xs-8 col-sm-3">
 				<input type="text" class="input-text" value="" placeholder="请输入工号" id="code" name="code">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>终端号：</label>
-			<div class="formControls col-xs-8 col-sm-9">
+			<div class="formControls col-xs-8 col-sm-3">
 				<input type="text" class="input-text" value="" placeholder="请输入终端" id="posId" name="posId">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>姓名：</label>
-			<div class="formControls col-xs-8 col-sm-9">
+			<div class="formControls col-xs-8 col-sm-3">
 				<input type="text" class="input-text" value="" placeholder="请输入姓名" id="name" name="name">
 			</div>
 		</div>
@@ -57,29 +57,25 @@
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>电话：</label>
-			<div class="formControls col-xs-8 col-sm-9">
+			<div class="formControls col-xs-8 col-sm-3">
 				<input type="text" class="input-text" value="" placeholder="请输入电话" id="tel" name="tel">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>住址：</label>
-			<div class="formControls col-xs-8 col-sm-9">
+			<div class="formControls col-xs-8 col-sm-3">
 				<input type="text" class="input-text" value="" placeholder="请输入住址" id="address" name="address">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">配发物资：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="checkbox" id="package" name="package" value="package"/><label for="package">挎包</label>
-				<input type="checkbox" id="mask" name="mask" value="mask"/><label for="mask">口罩</label>
-				<input type="checkbox" id="gloves" name="gloves" value="gloves"/><label for="gloves">手套</label>
-				<input type="checkbox" id="winterclothes" name="winterclothes" value="winterclothes"/><label for="winterclothes">冬装</label>
-				<input type="checkbox" id="raincoat" name="raincoat" value="raincoat"/><label for="raincoat">雨衣</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input th:each="d:${supplies}" type="checkbox" th:name="${d.type}" th:value="${d.key}" th:text="${d.value}"/>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">备注：</label>
-			<div class="formControls col-xs-8 col-sm-9">
+			<div class="formControls col-xs-8 col-sm-6">
 				<label>
 					<textarea name="remarks" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*0-100"></textarea>
 				</label>

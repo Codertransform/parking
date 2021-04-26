@@ -1,6 +1,8 @@
 package com.yibo.parking.service.Impl.work;
 
+import com.yibo.parking.dao.system.SystemDataMapper;
 import com.yibo.parking.dao.work.IntelTollMapper;
+import com.yibo.parking.entity.system.SystemData;
 import com.yibo.parking.entity.work.IntelToll;
 import com.yibo.parking.service.IntelTollService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class IntelTollServiceImpl implements IntelTollService {
 
     @Autowired
     private IntelTollMapper intelTollMapper;
+
+    @Autowired
+    private SystemDataMapper systemDataMapper;
 
     @Override
     public List<IntelToll> findList(IntelToll intelToll) {
@@ -33,5 +38,11 @@ public class IntelTollServiceImpl implements IntelTollService {
     @Override
     public Map<String, Object> delete(IntelToll intelToll) {
         return null;
+    }
+
+    public List<SystemData> getDatas(){
+        SystemData data = new SystemData();
+        data.setType("supplies");
+        return systemDataMapper.findList(data);
     }
 }
