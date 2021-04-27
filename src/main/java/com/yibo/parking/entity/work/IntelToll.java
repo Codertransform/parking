@@ -8,6 +8,7 @@ public class IntelToll {
     private String birthday;    //出生日期
     private String tel;         //电话
     private String address;     //住址
+    private String supplies;    //配发物资
     private String remarks;     //备注
 
     public String getId() {
@@ -64,6 +65,14 @@ public class IntelToll {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getSupplies() {
+        return supplies;
+    }
+
+    public void setSupplies(String supplies) {
+        this.supplies = supplies;
     }
 
     public String getRemarks() {

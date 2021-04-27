@@ -12,6 +12,7 @@
             a.birthday as "birthday",
             a.tel as "tel",
             a.address as "address",
+            a.supplies as "supplies",
             a.remarks as "remarks"
         from oa_intel_toll a
         where 1 = 1
@@ -32,6 +33,7 @@
             a.birthday as "birthday",
             a.tel as "tel",
             a.address as "address",
+            a.supplies as "supplies",
             a.remarks as "remarks"
         from oa_intel_toll a
         where a.id = #{id}
@@ -46,6 +48,7 @@
             birthday,
             tel,
             address,
+            supplies,
             remarks
         )
         values (
@@ -56,6 +59,7 @@
             #{birthday},
             #{tel},
             #{address},
+            #{supplies},
             #{remarks}
         )
     </insert>
@@ -68,6 +72,7 @@
             birthday = #{birthday},
             tel = #{tel},
             address = #{address},
+            supplies = #{supplies},
             remarks = #{remarks}
         where id = #{id}
     </update>

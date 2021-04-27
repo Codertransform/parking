@@ -46,12 +46,14 @@ public class InvoiceServiceImpl implements InvoiceService {
             int u = invoiceMapper.update(invoice);
             map.put("flag", u);
             map.put("message", "修改发票成功");
+        }else {
+            invoice.setId(EntityIdGenerate.generateId());
+            invoice.setStatus("0");
+            invoice.setInTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            int i = invoiceMapper.insert(invoice);
+            map.put("flag", i);
+            map.put("message", "添加发票成功");
         }
-        invoice.setId(EntityIdGenerate.generateId());
-        invoice.setStatus("0");
-        invoice.setInTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        map.put("flag",invoiceMapper.insert(invoice));
-        map.put("message", "添加发票成功");
         return map;
     }
 
