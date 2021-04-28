@@ -9,7 +9,6 @@ import com.yibo.parking.utils.EntityIdGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,10 +25,15 @@ public class IntelTollServiceImpl implements IntelTollService {
     @Override
     public List<IntelToll> findList(IntelToll intelToll) {
         List<IntelToll> list = intelTollMapper.findList(intelToll);
+        List<SystemData> data = systemDataMapper.findList(new SystemData("supplies"));
         for (IntelToll toll : list) {
+            String[] str = null;
             if (toll.getSupplies() != null && !toll.getSupplies().equals("")){
-                String[] s = toll.getSupplies().split(",");
-                System.out.println(Arrays.toString(s));
+                str = toll.getSupplies().split(",");
+                String st = "";
+                for (String s : str){
+
+                }
             }
         }
         return list;

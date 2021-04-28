@@ -6,6 +6,13 @@ public class SystemData {
     private String key;
     private String value;
 
+    public SystemData() {
+    }
+
+    public SystemData(String type) {
+        this.type = type;
+    }
+
     public String getId() {
         return id;
     }
