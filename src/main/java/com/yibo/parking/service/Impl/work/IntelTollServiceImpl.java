@@ -30,10 +30,15 @@ public class IntelTollServiceImpl implements IntelTollService {
             String[] str = null;
             if (toll.getSupplies() != null && !toll.getSupplies().equals("")){
                 str = toll.getSupplies().split(",");
-                String st = "";
+                StringBuilder st = new StringBuilder();
                 for (String s : str){
-
+                    for (SystemData d : data){
+                        if (d.getKey().equals(s)){
+                            st.append(d.getValue()).append("，");
+                        }
+                    }
                 }
+                toll.setSupplies(st.toString());
             }
         }
         return list;
