@@ -50,6 +50,12 @@
 			</div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>身份证号：</label>
+			<div class="formControls col-xs-8 col-sm-3">
+				<input type="text" class="input-text" value="" placeholder="请输入姓名" id="idNum" name="idNum">
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>出生日期：</label>
 			<div class="formControls col-xs-8 col-sm-2">
 				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd' })" id="birthday" name="birthday" autocomplete="off" class="input-text Wdate">
@@ -71,6 +77,12 @@
 			<label class="form-label col-xs-4 col-sm-2">配发物资：</label>
 			<div class="formControls col-xs-8 col-sm-3">
 				<input th:each="d:${supplies}" type="checkbox" th:name="${d.type}" th:value="${d.key}" th:text="${d.value}"/>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>入职日期：</label>
+			<div class="formControls col-xs-8 col-sm-2">
+				<input type="text" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd' })" id="joinTime" name="joinTime" autocomplete="off" class="input-text Wdate">
 			</div>
 		</div>
 		<div class="row cl">

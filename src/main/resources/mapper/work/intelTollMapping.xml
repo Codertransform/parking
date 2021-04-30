@@ -9,10 +9,12 @@
             a.code as "code",
             a.pos_id as "posId",
             a.name as "name",
+            a.idNum as "idNum",
             a.birthday as "birthday",
             a.tel as "tel",
             a.address as "address",
             a.supplies as "supplies",
+            a.joinTime as "joinTime",
             a.remarks as "remarks"
         from oa_intel_toll a
         where 1 = 1
@@ -30,10 +32,12 @@
             a.code as "code",
             a.pos_id as "posId",
             a.name as "name",
+            a.idNum as "idNum",
             a.birthday as "birthday",
             a.tel as "tel",
             a.address as "address",
             a.supplies as "supplies",
+            a.joinTime as "joinTime",
             a.remarks as "remarks"
         from oa_intel_toll a
         where a.id = #{id}
@@ -45,10 +49,12 @@
             code,
             pos_id,
             name,
+            idNum,
             birthday,
             tel,
             address,
             supplies,
+            joinTime,
             remarks
         )
         values (
@@ -56,10 +62,12 @@
             #{code},
             #{posId},
             #{name},
+            #{idNum},
             #{birthday},
             #{tel},
             #{address},
             #{supplies},
+            #{joinTime},
             #{remarks}
         )
     </insert>
@@ -69,10 +77,12 @@
             code = #{code},
             pos_id = #{posId},
             name = #{name},
+            idNum = #{idNum},
             birthday = #{birthday},
             tel = #{tel},
             address = #{address},
             supplies = #{supplies},
+            joinTime = #{joinTime},
             remarks = #{remarks}
         where id = #{id}
     </update>
