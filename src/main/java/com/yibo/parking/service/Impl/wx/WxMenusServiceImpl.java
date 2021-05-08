@@ -2,7 +2,6 @@ package com.yibo.parking.service.Impl.wx;
 
 import com.alibaba.fastjson.JSONArray;
 import com.yibo.parking.dao.wx.WxMenuMapper;
-import com.yibo.parking.entity.member.Member;
 import com.yibo.parking.entity.wx.Menu;
 import com.yibo.parking.service.WxMenuService;
 import com.yibo.parking.utils.EntityIdGenerate;
@@ -84,7 +83,7 @@ public class WxMenusServiceImpl implements WxMenuService {
         for (Menu m : menus) {
             Map<String,Object> map = new HashMap<>();
             map.put("id",m.getId());
-            map.put("icon","https://wzytest.com" + m.getIcon());
+            map.put("icon","https://bjepark.com" + m.getIcon());
             map.put("name",m.getName());
             map.put("link",m.getLink());
             map.put("status",m.getStatus());

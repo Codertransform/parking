@@ -73,7 +73,7 @@ public class WxBannerServiceImpl implements WxBannerService {
             Map<String, Object> map = new HashMap<>();
             map.put("id",b.getId());
             map.put("name",b.getName());
-            map.put("picAddress","https://wzytest.com" + b.getPicAddress());
+            map.put("picAddress","https://bjepark.com" + b.getPicAddress());
             map.put("status",b.getStatus());
             map.put("remarks",b.getRemarks());
             mapList.add(map);

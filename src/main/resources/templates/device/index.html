@@ -25,7 +25,7 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 车辆管理 <span class="c-gray en">&gt;</span> [[${title}]] <a class="btn btn-success btn-refresh radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<form action="/cars/device/" method="post">
+		<form action="/device/" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
 			<input type="text" name="deviceId" id="deviceId" placeholder=" 设备编号 " th:value="${deviceId}" style="width:250px" class="input-text">
 			<input type="text" name="carId" id="carId" placeholder=" 车牌号 " th:value="${carId}" style="width:250px" class="input-text">
@@ -35,7 +35,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a href="javascript: void(0);" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-			<a class="btn btn-primary radius" data-title="添加设备" data-href="/cars/device/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加设备</a>
+			<a class="btn btn-primary radius" data-title="添加设备" data-href="/device/add" onclick="article_add($(this).data('title'),$(this).data('href'))" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加设备</a>
 		</span>
 		<span class="r">共有数据：<strong>[[${count}]]</strong> 条</span>
 	</div>
@@ -73,7 +73,7 @@
 						<a style="text-decoration:none" th:case="0" th:onclick="article_start(this,[[${dev.id}]])"
 						   href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe603;</i>
 						</a>
-						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('车辆信息编辑','/cars/device/edit',[[${dev.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a style="text-decoration:none" class="ml-5" th:onclick="article_edit('车辆信息编辑','/device/edit',[[${dev.id}]])" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a style="text-decoration:none" class="ml-5" th:onclick="article_del(this,[[${dev.id}]])" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
 				</tr>
@@ -143,7 +143,7 @@ function article_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
 			type: 'POST',
-			url: '/cars/device/del',
+			url: '/device/del',
 			data:{'id':id},
 			dataType: 'json',
 			success: function(data){
@@ -157,14 +157,14 @@ function article_del(obj,id){
 			error:function(data) {
 				layer.msg(data.message,{icon:1,time:1000});
 			},
-		});		
+		});
 	});
 }
 
 /*资讯-审核*/
 function article_shenhe(obj,id){
 	layer.confirm('审核文章？', {
-		btn: ['通过','不通过','取消'], 
+		btn: ['通过','不通过','取消'],
 		shade: false,
 		closeBtn: 0
 	},
@@ -179,7 +179,7 @@ function article_shenhe(obj,id){
 		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
 		$(obj).remove();
     	layer.msg('未通过', {icon:5,time:1000});
-	});	
+	});
 }
 /*资讯-下架*/
 function article_stop(obj,id){
@@ -187,7 +187,7 @@ function article_stop(obj,id){
 		btn:['停用','取消']
 	},function(index){
 		$.ajax({
-			url:'/cars/device/status',
+			url:'/device/status',
 			type:'POST',
 			data:{'id':id,'status':0},
 			dataType:'json',
@@ -211,7 +211,7 @@ function article_start(obj,id){
 		btn:['启用','取消']
 	},function(index){
 		$.ajax({
-			url:'/cars/device/status',
+			url:'/device/status',
 			type:'POST',
 			data:{'id':id,'status':1},
 			dataType:'json',
@@ -242,7 +242,7 @@ function datadel() {
 	});
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
-			url:'/cars/device/dels',
+			url:'/device/dels',
 			type:'POST',
 			data:{'ids':ids},
 			dataType:'json',
@@ -260,6 +260,6 @@ function datadel() {
 		});
 	});
 }
-</script> 
+</script>
 </body>
 </html>

@@ -51,7 +51,7 @@ public class carController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String toAdd(Car car){
         int i = carService.save(car);
-        if (i == 1){
+        if (i != 0){
             return JsonUtils.success(car,"保存车辆信息成功");
         }else {
             return JsonUtils.error(car);

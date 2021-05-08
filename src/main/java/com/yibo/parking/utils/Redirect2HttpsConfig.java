@@ -1,11 +1,17 @@
 package com.yibo.parking.utils;
 
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Redirect2HttpsConfig {
 
-    /*@Bean
+    @Bean
     public Connector connector(){
         Connector connector=new Connector("org.apache.coyote.http11.Http11NioProtocol");
         connector.setScheme("http");
@@ -30,5 +36,5 @@ public class Redirect2HttpsConfig {
         };
         tomcat.addAdditionalTomcatConnectors(connector);
         return tomcat;
-    }*/
+    }
 }

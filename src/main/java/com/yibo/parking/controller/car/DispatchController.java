@@ -108,7 +108,20 @@ public class DispatchController {
         int flag = (int) map.get("flag");
         if (flag != 0){
             return JsonUtils.success(dispatch, String.valueOf(map.get("message")));
+        }else {
+            return JsonUtils.error(dispatch);
         }
-        return JsonUtils.error(dispatch);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/del")
+    public String del(Dispatch dispatch){
+        Map<String, Object> map = dispatchService.delete(dispatch);
+        int flag = (int) map.get("flag");
+        if (flag != 0){
+            return JsonUtils.success(dispatch, String.valueOf(map.get("message")));
+        }else {
+            return JsonUtils.errorBy(dispatch, String.valueOf(map.get("message")));
+        }
     }
 }

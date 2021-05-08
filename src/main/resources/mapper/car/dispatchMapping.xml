@@ -98,7 +98,7 @@
         where id = #{id}
     </update>
 
-    <delete id="del">
+    <delete id="delete">
         delete from dispatch where id = #{id}
     </delete>
 </mapper>

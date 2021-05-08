@@ -82,19 +82,10 @@ var _hmt = _hmt || [];
     $("#kanbuq").on('click',function(){
       uploadLoginValidateCode();
     });
-
-    const message = [[${msg}]];
-    showMessage(message);
   });
 
   function uploadLoginValidateCode() {
     $("#loginValidateCode").attr("src","/ValidateCode?random="+new Date().getMilliseconds());
-  }
-
-  function showMessage(message) {
-    if (message !== ""){
-      layer.msg(message, {icon: 2, time: 1000});
-    }
   }
 </script>
 </body>

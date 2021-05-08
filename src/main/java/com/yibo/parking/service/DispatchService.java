@@ -13,5 +13,5 @@ public interface DispatchService {
 
     Map<String, Object> save(Dispatch dispatch);
 
-    int delete(Dispatch dispatch);
+    Map<String, Object> delete(Dispatch dispatch);
 }

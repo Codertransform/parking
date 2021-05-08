@@ -62,8 +62,19 @@ public class DispatchServiceImpl implements DispatchService {
     }
 
     @Override
-    public int delete(Dispatch dispatch) {
-        return 0;
+    public Map<String, Object> delete(Dispatch dispatch) {
+        Map<String, Object> map = new HashMap<>();
+        int flag = 0;
+        dispatch = dispatchMapper.get(dispatch);
+        if (dispatch != null){
+            flag = dispatchMapper.delete(dispatch);
+            map.put("flag", flag);
+            map.put("message", "删除成功");
+        }else {
+            map.put("flag", flag);
+            map.put("message", "信息有误，请联系管理员");
+        }
+        return map;
     }
 
     public List<Unit> findUnitList() {

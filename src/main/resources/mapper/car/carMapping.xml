@@ -126,8 +126,7 @@
             buy_time,
             maintenance,
             dis_flag
-        )
-        values (
+        )values (
             #{id},
             #{cardId},
             #{model},
@@ -137,7 +136,7 @@
             #{picStatus},
             #{buy_time},
             #{maintenance},
-            #{disFLag}
+            #{disFlag}
         )
     </insert>
 

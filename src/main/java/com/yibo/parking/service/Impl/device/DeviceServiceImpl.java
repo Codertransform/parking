@@ -83,6 +83,7 @@ public class DeviceServiceImpl implements DeviceService {
         map.put("name",device.getDeviceId());
         String result = HttpClientUtil.doPost(url,map);
         JSONObject object = JSONObject.parseObject(result);
+        System.out.println(object);
         if (object.get("errcode").toString().equals("10000")){
             JSONObject json = object.getJSONObject("data");
             device.settId(json.get("tid").toString());

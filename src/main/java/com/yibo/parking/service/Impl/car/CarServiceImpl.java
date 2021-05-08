@@ -49,6 +49,7 @@ public class CarServiceImpl implements CarService {
             if (car.getMaintenance().equals("")){
                 car.setMaintenance(null);
             }
+            car.setDisFlag("0");
             return carMapper.insert(car);
         }
     }
@@ -97,7 +98,7 @@ public class CarServiceImpl implements CarService {
                     gallery.setCar(c);
                     gallery = galleryMapper.get(gallery);
                     if (gallery.getThumb() != null){
-                        map.put("thumb","https://wzytest.com"+gallery.getThumb());
+                        map.put("thumb","https://bjepark.com"+gallery.getThumb());
                     }else {
                         map.put("thumb", "null");
                     }
