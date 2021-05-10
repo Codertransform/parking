@@ -8,7 +8,7 @@
             t.id as "id",
             a.device_id as "deviceId",
             d.tid as "tId",
-            d.cardId as "cardId",
+            c.cardId as "cardId",
             t.time as "upTime"
         from (
                  select device_id, MAX(time) as "time" from transform_gps_data
@@ -18,6 +18,7 @@
         LEFT JOIN transform_gps_data t on t.device_id = a.device_id and t.time = a.time
         left join origin_gps_data o on o.id = t.origin_id
         left join device d on a.device_id = d.device_id
+        left join cars c on c.id = d.car_id
         where d.tid is not NULL;
     </select>
 

@@ -41,14 +41,14 @@
         select
             t.id as "id",
             d.car_id as "carId",
-            d.cardId as "cardId",
+            c.cardId as "cardId",
             t.origin_id as "originId",
             t.latitude as "latitude",
             t.longitude as "longitude",
             t.speed as "speed",
             t.time as "time",
             t.device_id as "deviceId",
-            d.unit_id as "unitId"
+            di.unitId as "unitId"
         from (
                  select device_id, MAX(time) as "time" from transform_gps_data
                  where device_id IS NOT NULL or device_id != ''
@@ -56,9 +56,12 @@
              ) a
         LEFT JOIN transform_gps_data t on t.device_id = a.device_id and t.time = a.time
         left join device d on a.device_id = d.device_id
+        left join cars c on c.id = d.car_id
+        left join dispatch di on di.carId = c.id
+        left join unit u on u.id = di.unitId
         where 1=1
         <if test="cardId != null and cardId != ''">
-            and d.cardid like CONCAT('',#{cardId},'%')
+            and c.cardid like CONCAT('%',#{cardId},'%')
         </if>
     </select>
 </mapper>

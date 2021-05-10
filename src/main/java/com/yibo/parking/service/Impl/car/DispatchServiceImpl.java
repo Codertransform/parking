@@ -53,6 +53,9 @@ public class DispatchServiceImpl implements DispatchService {
             map.put("flag",dispatchMapper.update(dispatch));
             map.put("message","车辆分派修改成功！");
         }else {
+            Car car = carMapper.get(dispatch.getCar().getId());
+            car.setDisFlag("1");
+            carMapper.update(car);
             dispatch.setId(EntityIdGenerate.generateId());
             dispatch.setOprateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             map.put("flag",dispatchMapper.insert(dispatch));

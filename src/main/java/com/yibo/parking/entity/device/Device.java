@@ -82,4 +82,19 @@ public class Device {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "id='" + id + '\'' +
+                ", sId='" + sId + '\'' +
+                ", tId='" + tId + '\'' +
+                ", deviceId='" + deviceId + '\'' +
+                ", unitId='" + unitId + '\'' +
+                ", unitName='" + unitName + '\'' +
+                ", carId='" + carId + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

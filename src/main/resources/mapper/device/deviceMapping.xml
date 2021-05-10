@@ -9,24 +9,27 @@
             a.sid as "sId",
             a.tid as "tId",
             a.device_id as "deviceId",
-            a.unit_id as "unitId",
-            a.unit_name as "unitName",
+            u.id as "unitId",
+            u.name as "unitName",
             a.car_id as "carId",
-            a.cardId as "cardId",
+            c.cardId as "cardId",
             a.status as "status"
         from device a
+        left join dispatch d on a.car_id = d.carId
+        left join cars c on d.carId = c.id
+        left join unit u on d.unitId = u.id
         where 1 = 1
         <if test="deviceId != null and deviceId != ''">
-            and device_id = #{deviceId}
+            and a.device_id = #{deviceId}
         </if>
         <if test="sId != null and sId != ''">
-            and sid = #{sId}
+            and a.sid = #{sId}
         </if>
         <if test="tId != null and tId != ''">
-            and tid = #{tId}
+            and a.tid = #{tId}
         </if>
         <if test="cardId != null and cardId != ''">
-            and cardId like concat('%',#{cardId},'%')
+            and c.cardId like concat('%',#{cardId},'%')
         </if>
     </select>
 

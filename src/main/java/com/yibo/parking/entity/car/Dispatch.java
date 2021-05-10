@@ -5,11 +5,11 @@ import com.yibo.parking.entity.user.User;
 
 public class Dispatch {
     private String id;
-    private Car car;
-    private Unit unit;
-    private User user;
-    private String oprateTime;
-    private String remarks;
+    private Car car;                //车辆
+    private Unit unit;              //组织机构
+    private User user;              //管理员
+    private String oprateTime;      //操作时间
+    private String remarks;         //备注
 
     public String getId() {
         return id;

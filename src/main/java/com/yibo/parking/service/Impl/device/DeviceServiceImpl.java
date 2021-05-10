@@ -5,10 +5,8 @@ import com.yibo.parking.dao.car.CarMapper;
 import com.yibo.parking.dao.device.DeviceMapper;
 import com.yibo.parking.dao.system.SystemDataMapper;
 import com.yibo.parking.dao.unit.UnitMapper;
-import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.device.Device;
 import com.yibo.parking.entity.system.SystemData;
-import com.yibo.parking.entity.unit.Unit;
 import com.yibo.parking.service.DeviceService;
 import com.yibo.parking.utils.EntityIdGenerate;
 import com.yibo.parking.utils.HttpClientUtil;
@@ -61,12 +59,7 @@ public class DeviceServiceImpl implements DeviceService {
         map.put("tid",device.gettId());
         String result = HttpClientUtil.doPost(url,map);
         JSONObject object = JSONObject.parseObject(result);
-        System.out.println(object);
         if (object.get("errcode").toString().equals("10000")){
-            Car car = carMapper.get(device.getCarId());
-            device.setCardId(car.getCardId());
-            Unit unit = unitMapper.get(device.getUnitId());
-            device.setUnitName(unit.getName());
             return deviceMapper.update(device);
         }
         return 0;
@@ -87,10 +80,7 @@ public class DeviceServiceImpl implements DeviceService {
         if (object.get("errcode").toString().equals("10000")){
             JSONObject json = object.getJSONObject("data");
             device.settId(json.get("tid").toString());
-            Car car = carMapper.get(device.getCarId());
-            device.setCardId(car.getCardId());
-            Unit unit = unitMapper.get(device.getUnitId());
-            device.setUnitName(unit.getName());
+            System.out.println(device);
             return deviceMapper.insert(device);
         }
         return 0;
