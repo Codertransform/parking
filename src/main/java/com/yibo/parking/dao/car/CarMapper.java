@@ -31,4 +31,6 @@ public interface CarMapper {
     void updatePicStatus(Car car);
 
     Car findByCardId(Car car);
+
+    List<Car> getCarsByUnit(@Param("unitId") String unitId);
 }

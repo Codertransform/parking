@@ -1,10 +1,13 @@
 package com.yibo.parking.service.Impl.car;
 
-import com.yibo.parking.dao.device.DeviceMapper;
+import com.alibaba.fastjson.JSONArray;
+import com.yibo.parking.dao.car.CarMapper;
 import com.yibo.parking.dao.car.TransformDataMapper;
+import com.yibo.parking.dao.unit.UnitMapper;
 import com.yibo.parking.dao.unit.UserUnitMapper;
 import com.yibo.parking.dao.user.UserMapper;
 import com.yibo.parking.entity.car.TransformData;
+import com.yibo.parking.entity.unit.Unit;
 import com.yibo.parking.entity.unit.UserUnit;
 import com.yibo.parking.entity.user.User;
 import com.yibo.parking.service.TransformDataService;
@@ -13,7 +16,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TransformDataServiceImpl implements TransformDataService {
@@ -28,7 +33,10 @@ public class TransformDataServiceImpl implements TransformDataService {
     private UserUnitMapper userUnitMapper;
 
     @Autowired
-    private DeviceMapper deviceMapper;
+    private CarMapper carMapper;
+
+    @Autowired
+    private UnitMapper unitMapper;
 
     @Override
     public List<String[]> findList(TransformData data) {
@@ -60,5 +68,32 @@ public class TransformDataServiceImpl implements TransformDataService {
             }
         }
         return datas;
+    }
+
+    public String List2Josn() {
+        List<Map<String,Object>> list = new ArrayList<>();
+        List<Unit> unitsList = unitMapper.getUnits();
+        for (Unit u : unitsList) {
+            Map<String,Object> map = new LinkedHashMap<>();
+            map.put("id",u.getId());
+            map.put("pId",u.getParentId());
+            map.put("name",u.getName());
+            if (u.getParentId().equals("0")){
+                map.put("open",true);
+            }
+            /*List<Car> carList = carMapper.getCarsByUnit(u.getId());
+            if (carList != null){
+                for (Car c : carList){
+                    System.out.println(c);
+                    Map<String,Object> carMap = new LinkedHashMap<>();
+                    map.put("id",c.getId());
+                    map.put("pId",u.getId());
+                    map.put("name",c.getCardId());
+                    list.add(carMap);
+                }
+            }*/
+            list.add(map);
+        }
+        return JSONArray.toJSONString(list);
     }
 }

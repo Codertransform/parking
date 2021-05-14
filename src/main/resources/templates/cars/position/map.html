@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/lib/html5shiv.js"></script>
+    <script type="text/javascript" src="/lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="/lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>[[${title}]]</title>
+    <style type="text/css">
+        #container {
+            width: 100%;
+            height: 30rem;
+        }
+        .info{
+            width:26rem;
+        }
+    </style>
+</head>
+<body>
+<div class="mt-20">
+    <div id="container"></div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=f52c8718520bac7e44db8010b3f8419e"></script>
+<script type="text/javascript">
+
+    var map = new AMap.Map('container',{
+        resizeEnable: true, //是否监控地图容器尺寸变化
+    });
+
+    var cardId = "";
+
+    $(function () {
+        cardId = $('#cardId').val();
+        getLocations(cardId);
+        setInterval('getLocations(cardId)',3000);//轮询执行，3s一次
+    });
+
+    var markerList = [];
+
+    var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, 0)});
+
+    function getLocations(cardId) {
+        map.remove(markerList);
+        markerList = [];
+        if (cardId !== "" && cardId != null){
+            $.ajax({
+                url:'/cars/position/getCars',
+                type:'post',
+                data:{'cardId':cardId},
+                async:false,
+                dataType:'json',
+                success:function (res) {
+                    $.each(res,function (index,value) {
+                        if (value.cardId !== null){
+                            // 创建一个 Marker 实例：
+                            var marker = new AMap.Marker({
+                                position: new AMap.LngLat(value.longitude, value.latitude),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+                                title: value.cardId,
+                                offset: new AMap.Pixel(-10, -10),
+                                icon: '/img/car.png', // 添加 Icon 图标 URL
+                                zoom:13
+                            });
+                            markerList.push(marker);
+                        }
+                    })
+                },
+                error:function (res) {
+                    console.log("error");
+                }
+            })
+        }else {
+            $.ajax({
+                url:'/cars/position/getCars',
+                type:'post',
+                async:false,
+                dataType:'json',
+                success:function (res) {
+                    $.each(res,function (index,value) {
+                        if (value.cardId !== null){
+                            // 创建一个 Marker 实例：
+                            var marker = new AMap.Marker({
+                                position: new AMap.LngLat(value.longitude, value.latitude),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+                                title: value.cardId,
+                                offset: new AMap.Pixel(-10, -10),
+                                icon: '/img/car.png', // 添加 Icon 图标 URL
+                                zoom:13
+                            });
+                            marker.content = value.cardId + "<br/>" + value.speed+"  km/h";
+                            marker.on("click", markerClick);
+                            markerList.push(marker);
+                        }
+                    })
+                }
+            })
+        }
+        // 将创建的点标记添加到已有的地图实例：
+        map.add(markerList);
+    }
+
+    function markerClick(e) {
+        infoWindow.setContent(e.target.content);
+        infoWindow.open(map, e.target.getPosition());
+    }
+</script>
+</body>
+</html>

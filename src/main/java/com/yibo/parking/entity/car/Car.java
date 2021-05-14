@@ -13,6 +13,8 @@ public class Car {
     private String buy_time;        //购买时间
     private String maintenance;     //上次保养时间
     private String disFlag;         //分配标识
+    private String unitId;          //组织机构id
+    private String unitName;        //组织机构名称
 
     public String getId() {
         return id;
@@ -108,5 +110,41 @@ public class Car {
 
     public void setDisFlag(String disFlag) {
         this.disFlag = disFlag;
+    }
+
+    public String getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(String unitId) {
+        this.unitId = unitId;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id='" + id + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", brandName='" + brandName + '\'' +
+                ", model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", typeId='" + typeId + '\'' +
+                ", typeName='" + typeName + '\'' +
+                ", status='" + status + '\'' +
+                ", picStatus='" + picStatus + '\'' +
+                ", buy_time='" + buy_time + '\'' +
+                ", maintenance='" + maintenance + '\'' +
+                ", disFlag='" + disFlag + '\'' +
+                ", unitId='" + unitId + '\'' +
+                ", unitName='" + unitName + '\'' +
+                '}';
     }
 }

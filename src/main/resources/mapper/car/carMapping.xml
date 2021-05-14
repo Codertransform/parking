@@ -114,6 +114,31 @@
         </if>
     </select>
 
+    <select id="getCarsByUnit" resultType="Car">
+        select
+            a.id as id,
+            a.cardId as cardId,
+            a.model as model,
+            a.color as color,
+            a.carType as typeId,
+            t.name as typeName,
+            a.status as status,
+            a.pic_status as picStatus,
+            a.buy_time as buy_time,
+            a.maintenance as maintenance,
+            u.id as "unitId",
+            u.name as "unitName",
+            a.dis_flag as "disFlag"
+        from cars a
+        left join type t on t.id = a.carType
+        left join dispatch d on d.carId = a.id
+        left join unit u on u.id = d.unitId
+        where u.id IS NOT NULL
+        <if test="unitId != null and unitId != ''">
+            and u.id = #{unitId}
+        </if>
+    </select>
+
     <insert id="insert">
         insert into cars(
             id,
