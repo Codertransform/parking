@@ -6,6 +6,7 @@ import com.yibo.parking.dao.car.TransformDataMapper;
 import com.yibo.parking.dao.unit.UnitMapper;
 import com.yibo.parking.dao.unit.UserUnitMapper;
 import com.yibo.parking.dao.user.UserMapper;
+import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.car.TransformData;
 import com.yibo.parking.entity.unit.Unit;
 import com.yibo.parking.entity.unit.UserUnit;
@@ -78,20 +79,19 @@ public class TransformDataServiceImpl implements TransformDataService {
             map.put("id",u.getId());
             map.put("pId",u.getParentId());
             map.put("name",u.getName());
-            if (u.getParentId().equals("0")){
+            List<Car> carList = carMapper.getCarsByUnit(u.getId());
+            if (u.getParentId().equals("0") || carList != null){
                 map.put("open",true);
             }
-            /*List<Car> carList = carMapper.getCarsByUnit(u.getId());
             if (carList != null){
                 for (Car c : carList){
-                    System.out.println(c);
                     Map<String,Object> carMap = new LinkedHashMap<>();
-                    map.put("id",c.getId());
-                    map.put("pId",u.getId());
-                    map.put("name",c.getCardId());
+                    carMap.put("id",c.getId());
+                    carMap.put("pId",c.getUnitId());
+                    carMap.put("name",c.getCardId());
                     list.add(carMap);
                 }
-            }*/
+            }
             list.add(map);
         }
         return JSONArray.toJSONString(list);

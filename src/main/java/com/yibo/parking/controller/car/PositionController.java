@@ -1,6 +1,5 @@
 package com.yibo.parking.controller.car;
 
-import com.yibo.parking.entity.car.Car;
 import com.yibo.parking.entity.car.TransformData;
 import com.yibo.parking.service.Impl.car.TransformDataServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,12 @@ public class PositionController {
         model.addAttribute("title","车辆地图显示");
         model.addAttribute("data",data);
         return "cars/position/map";
+    }
+
+    @RequestMapping(value = "/table")
+    public String table(Model model){
+        model.addAttribute("title","车辆实时信息");
+        return "cars/position/table";
     }
 
     @ResponseBody
