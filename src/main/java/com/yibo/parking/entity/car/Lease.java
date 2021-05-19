@@ -17,6 +17,8 @@ public class Lease {
     private String status;
     private String startdate;
     private String enddate;
+    private String typeId;
+    private String cardId;
 
     public String getId() {
         return id;
@@ -120,5 +122,21 @@ public class Lease {
 
     public void setEnddate(String enddate) {
         this.enddate = enddate;
+    }
+
+    public String getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 }

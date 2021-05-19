@@ -47,8 +47,8 @@ public class LeaseServiceImpl implements LeaseService {
     private MemberWxInfoDao infoDao;
 
     @Override
-    public List<Lease> getLeases(String logmin, String logmax, String unit, String carId) {
-        return leaseMapper.getLeases(logmin,logmax,unit,carId);
+    public List<Lease> getLeases(Lease lease) {
+        return leaseMapper.getLeases(lease);
     }
 
     @Override

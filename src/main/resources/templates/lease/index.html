@@ -28,16 +28,16 @@
 		<form action="/cars/lease" method="post">
 			<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
 			<span class="select-box inline">
-				<select name="unit" class="select">
-					<option value="0">请选择车辆类型</option>
-					<option th:each="t:${types}" th:value="${t.id}" th:text="${t.name}" th:selected="${t.id eq unit}"></option>
+				<select name="typeId" class="select">
+					<option value="">请选择车辆类型</option>
+					<option th:each="t:${types}" th:value="${t.id}" th:text="${t.name}" th:selected="${t.id eq lease.typeId}"></option>
 				</select>
 			</span>
 			购买时间范围：
-			<input type="text" name="logmin" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" th:value="${logmin}" class="input-text Wdate" style="width:120px;">
+			<input type="text" name="startdate" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'startdate\')||\'%y-%M-%d\'}' })" id="startdate" th:value="${lease.startdate}" class="input-text Wdate" style="width:120px;">
 			-
-			<input type="text" name="logmax" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" th:value="${logmax}" class="input-text Wdate" style="width:120px;">
-			<input type="text" name="carId" id="carId" placeholder=" 车牌号 " th:value="${carId}" style="width:250px" class="input-text">
+			<input type="text" name="enddate" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'enddate\')}',maxDate:'%y-%M-%d' })" id="enddate" th:value="${lease.enddate}" class="input-text Wdate" style="width:120px;">
+			<input type="text" name="cardId" id="carId" placeholder=" 车牌号 " th:value="${lease.cardId}" style="width:250px" class="input-text">
 			<button name="" id="search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜订单 </button>
 		</form>
 	</div>
@@ -175,14 +175,14 @@ function article_del(obj,id){
 			error:function(data) {
 				layer.msg(data.message,{icon:1,time:1000});
 			},
-		});		
+		});
 	});
 }
 
 /*资讯-审核*/
 function order_shenhe(obj,id){
 	layer.confirm('审核订单？', {
-		btn: ['通过','不通过','取消'], 
+		btn: ['通过','不通过','取消'],
 		shade: false,
 		closeBtn: 0
 	},
@@ -216,7 +216,7 @@ function order_shenhe(obj,id){
 				}
 			}
 		});
-	});	
+	});
 }
 
 /*订单-变更支付状态*/
@@ -324,6 +324,6 @@ function datadel() {
 		});
 	});
 }
-</script> 
+</script>
 </body>
 </html>

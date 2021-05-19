@@ -11,7 +11,7 @@ public interface LeaseMapper {
 
     public Lease get(Lease lease);
 
-    public List<Lease> getLeases(@Param("logmin")String logmin, @Param("logmax")String logmax, @Param("unit") String unit, @Param("car")String carId);
+    public List<Lease> getLeases(Lease lease);
 
     public int insert(Lease lease);
 

@@ -28,11 +28,11 @@
         <if test="unit != null and unit.id != null and unit.id != ''">
             and unit = #{unit.id}
         </if>
-        <if test="logmin != null and logmin != ''">
-            and startdate = #{logmin}
+        <if test="startdate != null and startdate != ''">
+            and startdate = #{startdate}
         </if>
-        <if test="logmax != null and logmax != ''">
-            and enddate = #{logmax}
+        <if test="enddate != null and enddate != ''">
+            and enddate = #{enddate}
         </if>
         <if test="car != null and car.id != null and car.id != ''">
             and carId = #{car.id}
