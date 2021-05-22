@@ -21,12 +21,13 @@
         <if test="cardId != null and cardId != ''">
             and c.cardId like concat('%',#{cardId},'%')
         </if>
-        <if test="start != null and start != ''">
-            and a.start_time > #{start}
+        <if test="startTime != null and startTime != ''">
+            and a.start_time > #{startTime}
         </if>
-        <if test="end != null and end != ''">
-            and #{end} > a.end_time
+        <if test="endTime != null and endTime != ''">
+            and #{endTime} > a.end_time
         </if>
+        order by a.start_time
     </select>
 
     <select id="get" resultType="Track">

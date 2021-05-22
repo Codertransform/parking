@@ -96,4 +96,8 @@ public class TransformDataServiceImpl implements TransformDataService {
         }
         return JSONArray.toJSONString(list);
     }
+
+    public List<TransformData> getCars(TransformData data) {
+        return getLocation(data);
+    }
 }

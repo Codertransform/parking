@@ -19,7 +19,8 @@ public class User implements UserDetails {
     private String email;
     private String regist_time;
     private String login_time;
-    private String login_ip;
+    private String tLoginIp;
+    private String lLoginIp;
     private List<Role> roles;
     private String roleId;
     private String roleName;
@@ -118,12 +119,20 @@ public class User implements UserDetails {
         this.login_time = login_time;
     }
 
-    public String getLogin_ip() {
-        return login_ip;
+    public String gettLoginIp() {
+        return tLoginIp;
     }
 
-    public void setLogin_ip(String login_ip) {
-        this.login_ip = login_ip;
+    public void settLoginIp(String tLoginIp) {
+        this.tLoginIp = tLoginIp;
+    }
+
+    public String getlLoginIp() {
+        return lLoginIp;
+    }
+
+    public void setlLoginIp(String lLoginIp) {
+        this.lLoginIp = lLoginIp;
     }
 
     public List<Role> getRoles() {
@@ -169,7 +178,8 @@ public class User implements UserDetails {
                 ", email='" + email + '\'' +
                 ", regist_time='" + regist_time + '\'' +
                 ", login_time='" + login_time + '\'' +
-                ", login_ip='" + login_ip + '\'' +
+                ", tLoginIp='" + tLoginIp + '\'' +
+                ", lLoginIp='" + lLoginIp + '\'' +
                 ", roles=" + roles +
                 ", roleId='" + roleId + '\'' +
                 ", roleName='" + roleName + '\'' +

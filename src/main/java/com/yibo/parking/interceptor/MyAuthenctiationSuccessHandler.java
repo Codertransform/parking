@@ -42,7 +42,8 @@ public class MyAuthenctiationSuccessHandler extends SimpleUrlAuthenticationSucce
         RequestCache requestCache = new HttpSessionRequestCache();
 
         User user = userService.findByName(authentication.getName());
-        user.setLogin_ip(IPUtil.getIpAddr(authentication));
+        user.setlLoginIp(user.gettLoginIp());
+        user.settLoginIp(IPUtil.getIpAddr(request));
         user.setLogin_time(TimeUtil.getTime());
         userService.loginUpdate(user);
 

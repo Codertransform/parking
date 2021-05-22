@@ -82,4 +82,19 @@ public class Track {
     public void setEnd(String end) {
         this.end = end;
     }
+
+    @Override
+    public String toString() {
+        return "Track{" +
+                "id='" + id + '\'' +
+                ", trackId='" + trackId + '\'' +
+                ", carId='" + carId + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", miles='" + miles + '\'' +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                '}';
+    }
 }

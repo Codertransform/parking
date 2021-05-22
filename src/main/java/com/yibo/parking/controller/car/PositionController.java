@@ -38,6 +38,12 @@ public class PositionController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/getCarsDatas")
+    public List<TransformData> getCarsData(TransformData data){
+        return transformDataService.getCars(data);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/getTree")
     public String list(){
         return transformDataService.List2Josn();

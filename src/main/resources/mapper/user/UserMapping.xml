@@ -12,7 +12,8 @@
         <result property="email" column="email"/>
         <result property="regist_time" column="regist_time"/>
         <result property="login_time" column="login_time"/>
-        <result property="login_ip" column="login_ip"/>
+        <result property="tLoginIp" column="t_login_ip"/>
+        <result property="lLoginIp" column="l_login_ip"/>
         <association property="unit" javaType="Unit">
             <id column="uuid" property="id"/>
             <result column="parent_id" property="parentId"/>
@@ -39,7 +40,8 @@
             u.email,
             u.regist_time,
             u.login_time,
-            u.login_ip,
+            u.t_login_ip,
+            u.l_login_ip,
             r.id as "rid",
             r.name,
             r.flag,
@@ -67,7 +69,8 @@
             u.email,
             u.regist_time,
             u.login_time,
-            u.login_ip,
+            u.t_login_ip,
+            u.l_login_ip,
             r.id as "rid",
             r.name,
             r.flag,
@@ -107,7 +110,8 @@
             u.email,
             u.regist_time,
             u.login_time,
-            u.login_ip,
+            u.t_login_ip,
+            u.l_login_ip,
             r.id as "rid",
             r.name,
             r.flag,
@@ -131,7 +135,8 @@
             email,
             regist_time,
             login_time,
-            login_ip
+            t_login_ip,
+            l_login_ip
         )values(
             #{id},
             #{username},
@@ -141,7 +146,8 @@
             #{email},
             #{regist_time},
             #{login_time},
-            #{login_ip}
+            #{tLoginIp}
+            #{lLoginIp}
         )
     </insert>
 
@@ -164,7 +170,8 @@
     <update id="loginUpdate">
         update user set
             login_time = #{login_time},
-            login_ip = #{login_ip}
+            t_login_ip = #{tLoginIp},
+            l_login_ip = #{lLoginIp}
         where id = #{id}
     </update>
 

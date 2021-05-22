@@ -28,19 +28,15 @@
     </style>
 </head>
 <body>
-<div class="page-container">
-    <div class="mt-20">
-            <table class="layui-table" lay-even lay-size="sm">
-            <thead>
-                <tr>
-                    <th lay-data="{field:'city'}">车牌号</th>
-                    <th lay-data="{field:'username', width:80}">时速</th>
-                    <th lay-data="{field:'sex', width:80, sort: true}">今日里程</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-</div>
+<table class="layui-table" lay-even lay-size="sm">
+    <thead>
+        <tr>
+            <th lay-data="{field:'city'}">车牌号</th>
+            <th lay-data="{field:'username', width:80}">时速</th>
+            <th lay-data="{field:'sex', width:80, sort: true}">今日里程</th>
+        </tr>
+    </thead>
+</table>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/lib/layer/2.5.6/layui.js"></script>
@@ -51,15 +47,7 @@
 <script type="text/javascript" src="/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
-    $('.table-sort').dataTable({
-        "aaSorting": [ 1, "desc" ],//默认第几个排序
-        "bStateSave": true,//状态保存
-        "pading":false,
-        "aoColumnDefs": [
-            //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-            {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
-        ]
-    });
+
 </script>
 </body>
 </html>

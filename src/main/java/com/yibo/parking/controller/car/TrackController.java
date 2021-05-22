@@ -23,7 +23,6 @@ public class TrackController {
         List<Track> tracks = trackService.findList(track);
         model.addAttribute("title", "车辆轨迹管理");
         model.addAttribute("tracks", tracks);
-        System.out.println(track);
         model.addAttribute("track", track);
         if (tracks != null) {
             model.addAttribute("count", tracks.size());
