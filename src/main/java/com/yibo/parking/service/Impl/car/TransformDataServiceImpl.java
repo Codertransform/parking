@@ -100,4 +100,9 @@ public class TransformDataServiceImpl implements TransformDataService {
     public List<TransformData> getCars(TransformData data) {
         return getLocation(data);
     }
+
+    public List<TransformData> getDatas() {
+
+        return null;
+    }
 }

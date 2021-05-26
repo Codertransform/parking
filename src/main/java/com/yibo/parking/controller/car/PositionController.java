@@ -38,6 +38,12 @@ public class PositionController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/getDatas")
+    public List<TransformData> getDatas(){
+        return transformDataService.getDatas();
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/getCarsDatas")
     public List<TransformData> getCarsData(TransformData data){
         return transformDataService.getCars(data);

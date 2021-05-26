@@ -1,0 +1,56 @@
+2021-05-26 17:20:21.842  INFO 7532 --- [main] c.yibo.parking.ParkingApplicationTests   : Starting ParkingApplicationTests on DESKTOP-2R7EJEI with PID 7532 (started by WZY in E:\IdeaProjects\parking)
+2021-05-26 17:20:21.842  INFO 7532 --- [main] c.yibo.parking.ParkingApplicationTests   : No active profile set, falling back to default profiles: default
+2021-05-26 17:20:24.232  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-05-26 17:20:24.232  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-05-26 17:20:24.264  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23ms. Found 0 JDBC repository interfaces.
+2021-05-26 17:20:24.279  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-05-26 17:20:24.279  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-05-26 17:20:24.311  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12ms. Found 0 JPA repository interfaces.
+2021-05-26 17:20:24.326  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-05-26 17:20:24.326  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-05-26 17:20:24.342  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 Redis repository interfaces.
+2021-05-26 17:20:25.234  INFO 7532 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2021-05-26 17:20:25.242  INFO 7532 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2021-05-26 17:20:25.259  INFO 7532 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2021-05-26 17:20:25.748  INFO 7532 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-26 17:20:25.780  INFO 7532 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-26 17:20:25.780  INFO 7532 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-26 17:20:26.576  INFO 7532 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-26 17:20:26.670  INFO 7532 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2021-05-26 17:20:26.686  INFO 7532 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-05-26 17:20:26.889  INFO 7532 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (com.mysql.jdbc.JDBC4Connection.getNetworkTimeout()I)
+2021-05-26 17:20:26.889  INFO 7532 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-05-26 17:20:27.061  INFO 7532 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-26 17:20:27.201  INFO 7532 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.17.Final
+2021-05-26 17:20:27.545  INFO 7532 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-05-26 17:20:27.940  INFO 7532 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2021-05-26 17:20:28.315  INFO 7532 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-26 17:20:28.331  INFO 7532 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-26 17:20:28.628  WARN 7532 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/**'], []
+2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/lib/**'], []
+2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
+2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
+2021-05-26 17:20:29.003  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/font/**'], []
+2021-05-26 17:20:29.003  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-05-26 17:20:29.003  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/Widget/**'], []
+2021-05-26 17:20:29.003  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/uploadFiles/**'], []
+2021-05-26 17:20:29.112  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a0963be, org.springframework.security.web.context.SecurityContextPersistenceFilter@762bf32d, org.springframework.security.web.header.HeaderWriterFilter@63de4fa, org.springframework.security.web.authentication.logout.LogoutFilter@4d0e1a9a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@56da96b3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b1a30e5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1152900, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@dd737ea, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d3bf8db, org.springframework.security.web.session.SessionManagementFilter@18907af2, org.springframework.security.web.access.ExceptionTranslationFilter@72a7aa4f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@54567b05]
+2021-05-26 17:20:29.799  INFO 7532 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-05-26 17:20:30.018  WARN 7532 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-05-26 17:20:30.763  INFO 7532 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2021-05-26 17:20:30.763  INFO 7532 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 1 subscriber(s).
+2021-05-26 17:20:30.763  INFO 7532 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2021-05-26 17:20:30.779  INFO 7532 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories¡­
+2021-05-26 17:20:30.779  INFO 7532 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-05-26 17:20:30.779  INFO 7532 --- [main] c.yibo.parking.ParkingApplicationTests   : Started ParkingApplicationTests in 9.457 seconds (JVM running for 11.679)
+2021-05-26 17:20:30.967  INFO 7532 --- [SpringContextShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2021-05-26 17:20:30.967  INFO 7532 --- [SpringContextShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 0 subscriber(s).
+2021-05-26 17:20:30.967  INFO 7532 --- [SpringContextShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
+2021-05-26 17:20:31.013  INFO 7532 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-26 17:20:31.029  INFO 7532 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2021-05-26 17:20:31.029  INFO 7532 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-26 17:20:31.029  INFO 7532 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-05-26 17:20:31.076  INFO 7532 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

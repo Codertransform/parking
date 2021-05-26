@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="/static/h-ui/css/H-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/H-ui.admin.css" />
     <link rel="stylesheet" type="text/css" href="/lib/Hui-iconfont/1.0.8/iconfont.css" />
-    <link rel="stylesheet" type="text/css" href="/lib/layer/2.5.6/css/layui.css" />
     <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/style.css" />
     <!--[if IE 6]>
@@ -28,14 +27,18 @@
     </style>
 </head>
 <body>
-<table class="layui-table" lay-even lay-size="sm">
+<table class="table table-border table-bordered table-bg">
     <thead>
-        <tr>
-            <th lay-data="{field:'city'}">车牌号</th>
-            <th lay-data="{field:'username', width:80}">时速</th>
-            <th lay-data="{field:'sex', width:80, sort: true}">今日里程</th>
-        </tr>
+    <tr>
+        <th colspan="7" scope="col">实时信息</th>
+    </tr>
+    <tr class="text-c">
+        <th>车牌号</th>
+        <th>时速</th>
+        <th>里程</th>
+    </tr>
     </thead>
+    <tbody></tbody>
 </table>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -47,7 +50,28 @@
 <script type="text/javascript" src="/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
+    $(function () {
+        getDatas();
+        setInterval('getDatas()',3000);//轮询执行，3s一次
+    });
 
+    function getDatas(){
+        var table = $('table tbody');
+        $.ajax({
+            url:'/cars/position/getDatas',
+            type:'post',
+            async:false,
+            dataType:'json',
+            success:function (res) {
+                $.each(res,function (index,value) {
+                    table.append('<tr><td>' + value.cardId + '</td><td>' + value.speed + '</td><td>' + value.miles + '</td></tr>');
+                })
+            },
+            error:function (res) {
+                console.log(res);
+            }
+        })
+    }
 </script>
 </body>
 </html>
