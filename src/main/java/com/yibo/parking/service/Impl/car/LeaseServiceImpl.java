@@ -232,4 +232,8 @@ public class LeaseServiceImpl implements LeaseService {
     public List<Lease> getOrdersAPI() {
         return null;
     }
+
+    public Map<String, Object> getOrderList(String userId, String type) {
+        return null;
+    }
 }

@@ -147,4 +147,11 @@ public class WxApiController {
             return JsonUtils.orderGetApiSuccess("-1",map.get("leases"),map.get("message").toString(),0,0,0);
         }
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/getOrderList")
+    public String getOrderList(String userId, String type){
+        Map<String, Object> map = leaseService.getOrderList(userId, type);
+        return "";
+    }
 }
