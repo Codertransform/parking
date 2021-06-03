@@ -1,99 +1,92 @@
-2021-05-26 17:20:21.842  INFO 7532 --- [main] c.yibo.parking.ParkingApplicationTests   : Starting ParkingApplicationTests on DESKTOP-2R7EJEI with PID 7532 (started by WZY in E:\IdeaProjects\parking)
-2021-05-26 17:20:21.842  INFO 7532 --- [main] c.yibo.parking.ParkingApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-26 17:20:24.232  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2021-05-26 17:20:24.232  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2021-05-26 17:20:24.264  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23ms. Found 0 JDBC repository interfaces.
-2021-05-26 17:20:24.279  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2021-05-26 17:20:24.279  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-05-26 17:20:24.311  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12ms. Found 0 JPA repository interfaces.
-2021-05-26 17:20:24.326  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2021-05-26 17:20:24.326  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2021-05-26 17:20:24.342  INFO 7532 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 Redis repository interfaces.
-2021-05-26 17:20:25.234  INFO 7532 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
-2021-05-26 17:20:25.242  INFO 7532 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
-2021-05-26 17:20:25.259  INFO 7532 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
-2021-05-26 17:20:25.748  INFO 7532 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-05-26 17:20:25.780  INFO 7532 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-05-26 17:20:25.780  INFO 7532 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-05-26 17:20:26.576  INFO 7532 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-05-26 17:20:26.670  INFO 7532 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2021-05-26 17:20:26.686  INFO 7532 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-05-26 17:20:26.889  INFO 7532 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (com.mysql.jdbc.JDBC4Connection.getNetworkTimeout()I)
-2021-05-26 17:20:26.889  INFO 7532 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-05-26 17:20:27.061  INFO 7532 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-05-26 17:20:27.201  INFO 7532 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.17.Final
-2021-05-26 17:20:27.545  INFO 7532 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-05-26 17:20:27.940  INFO 7532 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2021-05-26 17:20:28.315  INFO 7532 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-05-26 17:20:28.331  INFO 7532 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-05-26 17:20:28.628  WARN 7532 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/**'], []
-2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/lib/**'], []
-2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
-2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
-2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
-2021-05-26 17:20:28.987  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
-2021-05-26 17:20:29.003  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/font/**'], []
-2021-05-26 17:20:29.003  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
-2021-05-26 17:20:29.003  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/Widget/**'], []
-2021-05-26 17:20:29.003  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/uploadFiles/**'], []
-2021-05-26 17:20:29.112  INFO 7532 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a0963be, org.springframework.security.web.context.SecurityContextPersistenceFilter@762bf32d, org.springframework.security.web.header.HeaderWriterFilter@63de4fa, org.springframework.security.web.authentication.logout.LogoutFilter@4d0e1a9a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@56da96b3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b1a30e5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1152900, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@dd737ea, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d3bf8db, org.springframework.security.web.session.SessionManagementFilter@18907af2, org.springframework.security.web.access.ExceptionTranslationFilter@72a7aa4f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@54567b05]
-2021-05-26 17:20:29.799  INFO 7532 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2021-05-26 17:20:30.018  WARN 7532 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-05-26 17:20:30.763  INFO 7532 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2021-05-26 17:20:30.763  INFO 7532 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 1 subscriber(s).
-2021-05-26 17:20:30.763  INFO 7532 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
-2021-05-26 17:20:30.779  INFO 7532 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories��
-2021-05-26 17:20:30.779  INFO 7532 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2021-05-26 17:20:30.779  INFO 7532 --- [main] c.yibo.parking.ParkingApplicationTests   : Started ParkingApplicationTests in 9.457 seconds (JVM running for 11.679)
-2021-05-26 17:20:30.967  INFO 7532 --- [SpringContextShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2021-05-26 17:20:30.967  INFO 7532 --- [SpringContextShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 0 subscriber(s).
-2021-05-26 17:20:30.967  INFO 7532 --- [SpringContextShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
-2021-05-26 17:20:31.013  INFO 7532 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-05-26 17:20:31.029  INFO 7532 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2021-05-26 17:20:31.029  INFO 7532 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-05-26 17:20:31.029  INFO 7532 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2021-05-26 17:20:31.076  INFO 7532 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2021-05-26 21:35:42.939  INFO 14776 --- [main] c.yibo.parking.ParkingApplicationTests   : Starting ParkingApplicationTests on DESKTOP-2R7EJEI with PID 14776 (started by WZY in E:\IdeaProjects\parking)
-2021-05-26 21:35:42.939  INFO 14776 --- [main] c.yibo.parking.ParkingApplicationTests   : No active profile set, falling back to default profiles: default
-2021-05-26 21:35:43.830  INFO 14776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2021-05-26 21:35:43.830  INFO 14776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2021-05-26 21:35:43.861  INFO 14776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20ms. Found 0 JDBC repository interfaces.
-2021-05-26 21:35:43.861  INFO 14776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
-2021-05-26 21:35:43.861  INFO 14776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2021-05-26 21:35:43.892  INFO 14776 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 Redis repository interfaces.
-2021-05-26 21:35:44.252  INFO 14776 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
-2021-05-26 21:35:44.252  INFO 14776 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
-2021-05-26 21:35:44.252  INFO 14776 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
-2021-05-26 21:35:44.548  INFO 14776 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-05-26 21:35:44.564  INFO 14776 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-05-26 21:35:44.564  INFO 14776 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/**'], []
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/lib/**'], []
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/font/**'], []
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/Widget/**'], []
-2021-05-26 21:35:46.282  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/uploadFiles/**'], []
-2021-05-26 21:35:46.454  INFO 14776 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53016b11, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c2a95d5, org.springframework.security.web.header.HeaderWriterFilter@4fb57fb3, org.springframework.security.web.authentication.logout.LogoutFilter@13192275, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@70be89ec, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f048c86, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e3899fd, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@4ee8051c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7af327e3, org.springframework.security.web.session.SessionManagementFilter@226d5af0, org.springframework.security.web.access.ExceptionTranslationFilter@61b60600, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7b297740]
-2021-05-26 21:35:47.017  INFO 14776 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-05-26 21:35:47.142  INFO 14776 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2021-05-26 21:35:47.282  WARN 14776 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-05-26 21:35:47.517  INFO 14776 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-05-26 21:35:47.751  INFO 14776 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (com.mysql.jdbc.JDBC4Connection.getNetworkTimeout()I)
-2021-05-26 21:35:47.751  INFO 14776 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-05-26 21:35:48.360  INFO 14776 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2021-05-26 21:35:48.485  INFO 14776 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2021-05-26 21:35:48.485  INFO 14776 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 1 subscriber(s).
-2021-05-26 21:35:48.485  INFO 14776 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
-2021-05-26 21:35:48.485  INFO 14776 --- [main] c.yibo.parking.ParkingApplicationTests   : Started ParkingApplicationTests in 5.871 seconds (JVM running for 6.663)
-2021-05-26 21:35:48.969  INFO 14776 --- [SpringContextShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2021-05-26 21:35:48.969  INFO 14776 --- [SpringContextShutdownHook] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 0 subscriber(s).
-2021-05-26 21:35:48.969  INFO 14776 --- [SpringContextShutdownHook] o.s.i.endpoint.EventDrivenConsumer       : stopped bean '_org.springframework.integration.errorLogger'
-2021-05-26 21:35:48.985  INFO 14776 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2021-05-26 21:35:49.016  INFO 14776 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-05-26 21:35:49.032  INFO 14776 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2021-05-26 21:35:49.047  INFO 14776 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-06-02 09:32:40.500  INFO 3548 --- [main] com.yibo.parking.ParkingApplication      : Starting ParkingApplication on DESKTOP-2R7EJEI with PID 3548 (E:\IdeaProjects\parking\target\classes started by WZY in E:\IdeaProjects\parking)
+2021-06-02 09:32:40.500  INFO 3548 --- [main] com.yibo.parking.ParkingApplication      : No active profile set, falling back to default profiles: default
+2021-06-02 09:32:42.281  INFO 3548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-06-02 09:32:42.281  INFO 3548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-06-02 09:32:42.312  INFO 3548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20ms. Found 0 JDBC repository interfaces.
+2021-06-02 09:32:42.312  INFO 3548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-06-02 09:32:42.328  INFO 3548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-06-02 09:32:42.343  INFO 3548 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9ms. Found 0 Redis repository interfaces.
+2021-06-02 09:32:42.828  INFO 3548 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2021-06-02 09:32:42.843  INFO 3548 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2021-06-02 09:32:42.859  INFO 3548 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2021-06-02 09:32:43.125  INFO 3548 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-06-02 09:32:43.140  INFO 3548 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-06-02 09:32:43.140  INFO 3548 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-06-02 09:32:43.618  INFO 3548 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 443 (https) 80 (http)
+2021-06-02 09:32:43.636  INFO 3548 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-06-02 09:32:43.636  INFO 3548 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+2021-06-02 09:32:43.859  INFO 3548 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-06-02 09:32:43.859  INFO 3548 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3328 ms
+2021-06-02 09:32:46.042  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/assets/**'], []
+2021-06-02 09:32:46.042  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/lib/**'], []
+2021-06-02 09:32:46.042  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
+2021-06-02 09:32:46.042  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-06-02 09:32:46.043  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2021-06-02 09:32:46.043  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
+2021-06-02 09:32:46.043  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/font/**'], []
+2021-06-02 09:32:46.043  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-06-02 09:32:46.043  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/Widget/**'], []
+2021-06-02 09:32:46.043  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/uploadFiles/**'], []
+2021-06-02 09:32:46.060  INFO 3548 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@10244722, org.springframework.security.web.context.SecurityContextPersistenceFilter@4c51077d, org.springframework.security.web.header.HeaderWriterFilter@5d512ddb, org.springframework.security.web.authentication.logout.LogoutFilter@7061622, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@746c411c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2839e3c8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a515e5d, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@56b8aaf1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61615b4a, org.springframework.security.web.session.SessionManagementFilter@4de79b7d, org.springframework.security.web.access.ExceptionTranslationFilter@32f1fafe, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2a8a3ada]
+2021-06-02 09:32:46.220  INFO 3548 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-06-02 09:32:46.323  INFO 3548 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-06-02 09:32:46.406  WARN 3548 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-06-02 09:32:46.489  INFO 3548 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-06-02 09:32:46.637  INFO 3548 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (com.mysql.jdbc.JDBC4Connection.getNetworkTimeout()I)
+2021-06-02 09:32:46.641  INFO 3548 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-06-02 09:32:46.876  INFO 3548 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2021-06-02 09:32:46.939  INFO 3548 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2021-06-02 09:32:46.939  INFO 3548 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'application.errorChannel' has 1 subscriber(s).
+2021-06-02 09:32:46.939  INFO 3548 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started bean '_org.springframework.integration.errorLogger'
+2021-06-02 09:32:47.470  INFO 3548 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 443 (https) 80 (http) with context path ''
+2021-06-02 09:32:47.486  INFO 3548 --- [main] com.yibo.parking.ParkingApplication      : Started ParkingApplication in 7.484 seconds (JVM running for 9.681)
+2021-06-02 11:08:19.075  INFO 3548 --- [https-jsse-nio-443-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-06-02 11:08:19.093  INFO 3548 --- [https-jsse-nio-443-exec-8] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-06-02 11:08:19.146  INFO 3548 --- [https-jsse-nio-443-exec-8] o.s.web.servlet.DispatcherServlet        : Completed initialization in 53 ms
+2021-06-02 11:08:28.872 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.user.UserMapper.findByName     : ==>  Preparing: select u.id as "uid", u.username, u.password, u.sex, u.phone, u.email, u.regist_time, u.login_time, u.t_login_ip, u.l_login_ip, r.id as "rid", r.name, r.flag, r.description from `user` u left join user_role ur on ur.user_id = u.id left join role r on r.id = ur.role_id where 1=1 and u.username = ? 
+2021-06-02 11:08:28.899 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.user.UserMapper.findByName     : ==> Parameters: admin(String)
+2021-06-02 11:08:28.930 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.user.UserMapper.findByName     : <==      Total: 1
+2021-06-02 11:08:29.010  INFO 3548 --- [https-jsse-nio-443-exec-10] c.y.p.i.SecurityAuthenticationProvider   : requestCode:6403,saveCode:6403
+2021-06-02 11:08:29.097  INFO 3548 --- [https-jsse-nio-443-exec-10] c.y.p.i.MyAuthenctiationSuccessHandler   : security登陆成功拦截！
+2021-06-02 11:08:29.098 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.user.UserMapper.findByName     : ==>  Preparing: select u.id as "uid", u.username, u.password, u.sex, u.phone, u.email, u.regist_time, u.login_time, u.t_login_ip, u.l_login_ip, r.id as "rid", r.name, r.flag, r.description from `user` u left join user_role ur on ur.user_id = u.id left join role r on r.id = ur.role_id where 1=1 and u.username = ? 
+2021-06-02 11:08:29.100 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.user.UserMapper.findByName     : ==> Parameters: admin(String)
+2021-06-02 11:08:29.102 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.user.UserMapper.findByName     : <==      Total: 1
+2021-06-02 11:08:29.117 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.user.UserMapper.loginUpdate    : ==>  Preparing: update user set login_time = ?, t_login_ip = ?, l_login_ip = ? where id = ? 
+2021-06-02 11:08:29.118 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.user.UserMapper.loginUpdate    : ==> Parameters: 2021-06-02 11:08:29(String), 192.168.1.232(String), 192.168.1.232(String), ee21b75f2e7e4e1fbeb73c2666a898f8(String)
+2021-06-02 11:08:29.121 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.user.UserMapper.loginUpdate    : <==    Updates: 1
+2021-06-02 11:08:29.122 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.unit.UnitMapper.findByUser     : ==>  Preparing: select a.id as id, a.parent_id as parentId, a.name as name, a.tel as tel, a.sort as sort, a.remarks as remarks from unit a left join user_unit uu on a.id = uu.unit_id where 1 = 1 and uu.user_id = ? 
+2021-06-02 11:08:29.123 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.unit.UnitMapper.findByUser     : ==> Parameters: ee21b75f2e7e4e1fbeb73c2666a898f8(String)
+2021-06-02 11:08:29.126 DEBUG 3548 --- [https-jsse-nio-443-exec-10] c.y.p.dao.unit.UnitMapper.findByUser     : <==      Total: 0
+2021-06-02 11:08:29.962 DEBUG 3548 --- [https-jsse-nio-443-exec-2] c.y.p.dao.user.UserMapper.findByName     : ==>  Preparing: select u.id as "uid", u.username, u.password, u.sex, u.phone, u.email, u.regist_time, u.login_time, u.t_login_ip, u.l_login_ip, r.id as "rid", r.name, r.flag, r.description from `user` u left join user_role ur on ur.user_id = u.id left join role r on r.id = ur.role_id where 1=1 and u.username = ? 
+2021-06-02 11:08:29.963 DEBUG 3548 --- [https-jsse-nio-443-exec-2] c.y.p.dao.user.UserMapper.findByName     : ==> Parameters: admin(String)
+2021-06-02 11:08:29.965 DEBUG 3548 --- [https-jsse-nio-443-exec-2] c.y.p.dao.user.UserMapper.findByName     : <==      Total: 1
+2021-06-02 11:08:29.966 DEBUG 3548 --- [https-jsse-nio-443-exec-2] c.yibo.parking.dao.user.RoleMapper.get   : ==>  Preparing: select a.id as "aid", a.name as "name", a.flag, a.description, p.id as "pid", p.pId, p.name as "pname", p.url from role a left join role_permission rp on a.id = rp.role_id left join permission p on rp.permission_id = p.id where 1=1 and a.id = ? 
+2021-06-02 11:08:29.966 DEBUG 3548 --- [https-jsse-nio-443-exec-2] c.yibo.parking.dao.user.RoleMapper.get   : ==> Parameters: 17276e23750d4dfd9b0f1e48254c0a5f(String)
+2021-06-02 11:08:29.977 DEBUG 3548 --- [https-jsse-nio-443-exec-2] c.yibo.parking.dao.user.RoleMapper.get   : <==      Total: 16
+2021-06-02 11:08:30.244 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.y.p.dao.user.UserMapper.findByName     : ==>  Preparing: select u.id as "uid", u.username, u.password, u.sex, u.phone, u.email, u.regist_time, u.login_time, u.t_login_ip, u.l_login_ip, r.id as "rid", r.name, r.flag, r.description from `user` u left join user_role ur on ur.user_id = u.id left join role r on r.id = ur.role_id where 1=1 and u.username = ? 
+2021-06-02 11:08:30.244 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.y.p.dao.user.UserMapper.findByName     : ==> Parameters: admin(String)
+2021-06-02 11:08:30.245 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.y.p.dao.user.UserMapper.findByName     : <==      Total: 1
+2021-06-02 11:08:30.245 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.yibo.parking.dao.user.RoleMapper.get   : ==>  Preparing: select a.id as "aid", a.name as "name", a.flag, a.description, p.id as "pid", p.pId, p.name as "pname", p.url from role a left join role_permission rp on a.id = rp.role_id left join permission p on rp.permission_id = p.id where 1=1 and a.id = ? 
+2021-06-02 11:08:30.246 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.yibo.parking.dao.user.RoleMapper.get   : ==> Parameters: 17276e23750d4dfd9b0f1e48254c0a5f(String)
+2021-06-02 11:08:30.247 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.yibo.parking.dao.user.RoleMapper.get   : <==      Total: 16
+2021-06-02 11:08:30.249 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.y.p.dao.user.UserMapper.findByName     : ==>  Preparing: select u.id as "uid", u.username, u.password, u.sex, u.phone, u.email, u.regist_time, u.login_time, u.t_login_ip, u.l_login_ip, r.id as "rid", r.name, r.flag, r.description from `user` u left join user_role ur on ur.user_id = u.id left join role r on r.id = ur.role_id where 1=1 and u.username = ? 
+2021-06-02 11:08:30.249 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.y.p.dao.user.UserMapper.findByName     : ==> Parameters: admin(String)
+2021-06-02 11:08:30.250 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.y.p.dao.user.UserMapper.findByName     : <==      Total: 1
+2021-06-02 11:08:35.110 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.y.p.dao.user.UserMapper.findByName     : ==>  Preparing: select u.id as "uid", u.username, u.password, u.sex, u.phone, u.email, u.regist_time, u.login_time, u.t_login_ip, u.l_login_ip, r.id as "rid", r.name, r.flag, r.description from `user` u left join user_role ur on ur.user_id = u.id left join role r on r.id = ur.role_id where 1=1 and u.username = ? 
+2021-06-02 11:08:35.110 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.y.p.dao.user.UserMapper.findByName     : ==> Parameters: admin(String)
+2021-06-02 11:08:35.110 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.y.p.dao.user.UserMapper.findByName     : <==      Total: 1
+2021-06-02 11:08:35.110 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.yibo.parking.dao.user.RoleMapper.get   : ==>  Preparing: select a.id as "aid", a.name as "name", a.flag, a.description, p.id as "pid", p.pId, p.name as "pname", p.url from role a left join role_permission rp on a.id = rp.role_id left join permission p on rp.permission_id = p.id where 1=1 and a.id = ? 
+2021-06-02 11:08:35.110 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.yibo.parking.dao.user.RoleMapper.get   : ==> Parameters: 17276e23750d4dfd9b0f1e48254c0a5f(String)
+2021-06-02 11:08:35.110 DEBUG 3548 --- [https-jsse-nio-443-exec-9] c.yibo.parking.dao.user.RoleMapper.get   : <==      Total: 16
+2021-06-02 11:08:35.304 DEBUG 3548 --- [https-jsse-nio-443-exec-1] c.y.p.dao.user.UserMapper.findByName     : ==>  Preparing: select u.id as "uid", u.username, u.password, u.sex, u.phone, u.email, u.regist_time, u.login_time, u.t_login_ip, u.l_login_ip, r.id as "rid", r.name, r.flag, r.description from `user` u left join user_role ur on ur.user_id = u.id left join role r on r.id = ur.role_id where 1=1 and u.username = ? 
+2021-06-02 11:08:35.305 DEBUG 3548 --- [https-jsse-nio-443-exec-1] c.y.p.dao.user.UserMapper.findByName     : ==> Parameters: admin(String)
+2021-06-02 11:08:35.307 DEBUG 3548 --- [https-jsse-nio-443-exec-1] c.y.p.dao.user.UserMapper.findByName     : <==      Total: 1
+2021-06-02 11:08:35.308 DEBUG 3548 --- [https-jsse-nio-443-exec-1] c.yibo.parking.dao.user.RoleMapper.get   : ==>  Preparing: select a.id as "aid", a.name as "name", a.flag, a.description, p.id as "pid", p.pId, p.name as "pname", p.url from role a left join role_permission rp on a.id = rp.role_id left join permission p on rp.permission_id = p.id where 1=1 and a.id = ? 
+2021-06-02 11:08:35.308 DEBUG 3548 --- [https-jsse-nio-443-exec-1] c.yibo.parking.dao.user.RoleMapper.get   : ==> Parameters: 17276e23750d4dfd9b0f1e48254c0a5f(String)
+2021-06-02 11:08:35.310 DEBUG 3548 --- [https-jsse-nio-443-exec-1] c.yibo.parking.dao.user.RoleMapper.get   : <==      Total: 16
+2021-06-02 11:08:35.556 DEBUG 3548 --- [https-jsse-nio-443-exec-4] c.y.p.dao.user.UserMapper.findByName     : ==>  Preparing: select u.id as "uid", u.username, u.password, u.sex, u.phone, u.email, u.regist_time, u.login_time, u.t_login_ip, u.l_login_ip, r.id as "rid", r.name, r.flag, r.description from `user` u left join user_role ur on ur.user_id = u.id left join role r on r.id = ur.role_id where 1=1 and u.username = ? 
+2021-06-02 11:08:35.556 DEBUG 3548 --- [https-jsse-nio-443-exec-4] c.y.p.dao.user.UserMapper.findByName     : ==> Parameters: admin(String)
+2021-06-02 11:08:35.559 DEBUG 3548 --- [https-jsse-nio-443-exec-4] c.y.p.dao.user.UserMapper.findByName     : <==      Total: 1
+2021-06-02 11:08:35.560 DEBUG 3548 --- [https-jsse-nio-443-exec-4] c.yibo.parking.dao.user.RoleMapper.get   : ==>  Preparing: select a.id as "aid", a.name as "name", a.flag, a.description, p.id as "pid", p.pId, p.name as "pname", p.url from role a left join role_permission rp on a.id = rp.role_id left join permission p on rp.permission_id = p.id where 1=1 and a.id = ? 
+2021-06-02 11:08:35.560 DEBUG 3548 --- [https-jsse-nio-443-exec-4] c.yibo.parking.dao.user.RoleMapper.get   : ==> Parameters: 17276e23750d4dfd9b0f1e48254c0a5f(String)
+2021-06-02 11:08:35.561 DEBUG 3548 --- [https-jsse-nio-443-exec-4] c.yibo.parking.dao.user.RoleMapper.get   : <==      Total: 16

@@ -1,0 +1,22 @@
+*{
+    font-family: sans-serif;
+}
+h1,h4{
+    text-align: center;
+}
+video {
+    width: 300px;
+    height: auto;
+}
+#local-video{
+    position: relative;
+    margin: 0 auto;
+    display: block;
+}
+
+#remote-video{
+    display: flex;
+    height: auto;
+    margin: auto;
+    position: relative !important;
+}

@@ -150,8 +150,13 @@ public class WxApiController {
 
     @ResponseBody
     @RequestMapping(value = "/getOrderList")
-    public String getOrderList(String userId, String type){
-        Map<String, Object> map = leaseService.getOrderList(userId, type);
-        return "";
+    public String getOrderList(MemberWxInfo info){
+        Map<String, Object> map = leaseService.getOrderList(info);
+        boolean flag = (boolean) map.get("flag");
+        if (flag){
+            return JsonUtils.orderApiSuccess("0", map.get("data"), String.valueOf(map.get("message")));
+        }else {
+            return JsonUtils.orderApiError("-1", String.valueOf(map.get("message")));
+        }
     }
 }

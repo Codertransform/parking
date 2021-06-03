@@ -187,7 +187,7 @@ public class LeaseServiceImpl implements LeaseService {
             int paied = 0;
             for (Lease l : leases) {
                 if (l.getStatus().equals("1")){
-                    paied ++;
+                    paied++;
                 }else {
                     unpay++;
                 }
@@ -233,7 +233,9 @@ public class LeaseServiceImpl implements LeaseService {
         return null;
     }
 
-    public Map<String, Object> getOrderList(String userId, String type) {
+    public Map<String, Object> getOrderList(MemberWxInfo info) {
+        Map<String, Object> map = new HashMap<>();
+        List<Lease> leases = leaseMapper.findByMemberType(info);
         return null;
     }
 }

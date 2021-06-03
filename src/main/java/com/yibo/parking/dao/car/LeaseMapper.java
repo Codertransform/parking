@@ -1,6 +1,7 @@
 package com.yibo.parking.dao.car;
 
 import com.yibo.parking.entity.car.Lease;
+import com.yibo.parking.entity.member.MemberWxInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -26,4 +27,6 @@ public interface LeaseMapper {
     List<Lease> findByMemberId(@Param("memberId") String memberId);
 
     List<Lease> findByCarId(@Param("carId") String carId);
+
+    List<Lease> findByMemberType(MemberWxInfo info);
 }

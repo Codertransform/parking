@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <link rel="stylesheet" type="text/css" href="/static/Zego/zego.css" />
+</head>
+<body>
+    <h1>
+        Zego RTC Video Call
+    </h1>
+    <h4>Local video</h4>
+    <video id="local-video" autoplay muted playsinline controls></video>
+    <h4>Remote video</h4>
+    <video id="remote-video" autoplay muted playsinline controls></video>
+
+    <script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/ZegoExpress-Web/ZegoExpressWebRTC-2.6.0.js"></script>
+    <script type="text/javascript">
+        // 初始化实例
+        const zg = new ZegoExpressEngine(270263764, 'wss://webliveroom-test.zego.im/ws');
+
+        /* 1. 即构提供开发阶段获取 Token 接口:https://wsliveroom-alpha.zego.im:8282/token，只能用于测试环境，正式环境一定要由开发者业务服务器实现 Token
+           2. userID 为用户自定义，与登录房间所用 userID 相同
+         */
+
+        $.get('https://wsliveroom-alpha.zego.im:8282/token', {
+            'app_id': '270263764',
+            'id_name': '123'
+        }, token => {
+            // 获取Token成功
+            console.log(token);
+        });
+    </script>
+</body>
+</html>

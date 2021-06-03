@@ -13,7 +13,7 @@
             u.name as "unit.name",
             a.member_id as "member.id",
             a.type as "type.id",
-            t.name as "type.name",
+            t.value as "type.name",
             a.startmiles as startmiles,
             a.endmiles as endmiles,
             a.position as position,
@@ -23,8 +23,8 @@
         from lease a
         left join cars c on c.id = a.carId
         left join unit u on u.id = a.unit
-        left join type t on t.id = a.type
-        where 1 = 1
+        left join system_data t on t.`key` = a.type
+        where t.type = 'car_type'
         <if test="unit != null and unit.id != null and unit.id != ''">
             and unit = #{unit.id}
         </if>
@@ -100,6 +100,31 @@
         where 1=1
         <if test="memberId != null and memberId != ''">
             and a.member_id = #{memberId}
+        </if>
+        order by a.startdate desc
+    </select>
+
+    <select id="findByMemberType" resultType="Lease">
+        select
+            a.id as id,
+            a.order_id as orderId,
+            a.carId as "car.id",
+            a.unit as "unit.id",
+            a.member_id as "member.id",
+            a.type as "type.id",
+            a.startmiles as startmiles,
+            a.endmiles as endmiles,
+            a.position as position,
+            a.status as status,
+            a.startdate as startdate,
+            a.enddate as enddate
+        from lease a
+        where 1=1
+        <if test="memberId != null and memberId != ''">
+            and a.member_id = #{memberId}
+        </if>
+        <if test="status != null and status != ''">
+            and a.status = #{status}
         </if>
         order by a.startdate desc
     </select>
